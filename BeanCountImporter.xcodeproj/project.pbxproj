@@ -1,0 +1,637 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F9786CB01F550C7E002EBB53 /* CSV.framework.dSYM in Carthage dSYMs */ = {isa = PBXBuildFile; fileRef = F9786CAF1F550C77002EBB53 /* CSV.framework.dSYM */; };
+		F9C438551F550AB5004732E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438541F550AB5004732E2 /* AppDelegate.swift */; };
+		F9C438571F550AB5004732E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438561F550AB5004732E2 /* ViewController.swift */; };
+		F9C438591F550AB5004732E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9C438581F550AB5004732E2 /* Assets.xcassets */; };
+		F9C4385C1F550AB5004732E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9C4385A1F550AB5004732E2 /* Main.storyboard */; };
+		F9C438671F550AB5004732E2 /* BeanCountImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438661F550AB5004732E2 /* BeanCountImporterTests.swift */; };
+		F9C438721F550AB5004732E2 /* BeanCountImporterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438711F550AB5004732E2 /* BeanCountImporterUITests.swift */; };
+		F9C438801F550C11004732E2 /* CSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9C4387F1F550C11004732E2 /* CSV.framework */; };
+		F9C438811F550C11004732E2 /* CSV.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9C4387F1F550C11004732E2 /* CSV.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F9C438631F550AB5004732E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F9C438491F550AB5004732E2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F9C438501F550AB5004732E2;
+			remoteInfo = BeanCountImporter;
+		};
+		F9C4386E1F550AB5004732E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F9C438491F550AB5004732E2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F9C438501F550AB5004732E2;
+			remoteInfo = BeanCountImporter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F9786CAE1F550C5F002EBB53 /* Carthage dSYMs */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				F9786CB01F550C7E002EBB53 /* CSV.framework.dSYM in Carthage dSYMs */,
+			);
+			name = "Carthage dSYMs";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9C438821F550C11004732E2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F9C438811F550C11004732E2 /* CSV.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		F9786CAF1F550C77002EBB53 /* CSV.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = file; name = CSV.framework.dSYM; path = Carthage/Build/Mac/CSV.framework.dSYM; sourceTree = "<group>"; };
+		F9C438511F550AB5004732E2 /* BeanCountImporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeanCountImporter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9C438541F550AB5004732E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F9C438561F550AB5004732E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F9C438581F550AB5004732E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F9C4385B1F550AB5004732E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F9C4385D1F550AB5004732E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9C438621F550AB5004732E2 /* BeanCountImporterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeanCountImporterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9C438661F550AB5004732E2 /* BeanCountImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeanCountImporterTests.swift; sourceTree = "<group>"; };
+		F9C438681F550AB5004732E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9C4386D1F550AB5004732E2 /* BeanCountImporterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeanCountImporterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9C438711F550AB5004732E2 /* BeanCountImporterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeanCountImporterUITests.swift; sourceTree = "<group>"; };
+		F9C438731F550AB5004732E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9C4387F1F550C11004732E2 /* CSV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CSV.framework; path = Carthage/Build/Mac/CSV.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F9C4384E1F550AB5004732E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9C438801F550C11004732E2 /* CSV.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9C4385F1F550AB5004732E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9C4386A1F550AB5004732E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F9786CB11F550CA5002EBB53 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F9C438581F550AB5004732E2 /* Assets.xcassets */,
+				F9C4385D1F550AB5004732E2 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F9C438481F550AB5004732E2 = {
+			isa = PBXGroup;
+			children = (
+				F9C438531F550AB5004732E2 /* BeanCountImporter */,
+				F9C438651F550AB5004732E2 /* BeanCountImporterTests */,
+				F9C438701F550AB5004732E2 /* BeanCountImporterUITests */,
+				F9C438831F550C18004732E2 /* Frameworks */,
+				F9C438521F550AB5004732E2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F9C438521F550AB5004732E2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F9C438511F550AB5004732E2 /* BeanCountImporter.app */,
+				F9C438621F550AB5004732E2 /* BeanCountImporterTests.xctest */,
+				F9C4386D1F550AB5004732E2 /* BeanCountImporterUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F9C438531F550AB5004732E2 /* BeanCountImporter */ = {
+			isa = PBXGroup;
+			children = (
+				F9C438541F550AB5004732E2 /* AppDelegate.swift */,
+				F9C438561F550AB5004732E2 /* ViewController.swift */,
+				F9C4385A1F550AB5004732E2 /* Main.storyboard */,
+				F9786CB11F550CA5002EBB53 /* Supporting Files */,
+			);
+			path = BeanCountImporter;
+			sourceTree = "<group>";
+		};
+		F9C438651F550AB5004732E2 /* BeanCountImporterTests */ = {
+			isa = PBXGroup;
+			children = (
+				F9C438661F550AB5004732E2 /* BeanCountImporterTests.swift */,
+				F9C438681F550AB5004732E2 /* Info.plist */,
+			);
+			path = BeanCountImporterTests;
+			sourceTree = "<group>";
+		};
+		F9C438701F550AB5004732E2 /* BeanCountImporterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F9C438711F550AB5004732E2 /* BeanCountImporterUITests.swift */,
+				F9C438731F550AB5004732E2 /* Info.plist */,
+			);
+			path = BeanCountImporterUITests;
+			sourceTree = "<group>";
+		};
+		F9C438831F550C18004732E2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9C4387F1F550C11004732E2 /* CSV.framework */,
+				F9786CAF1F550C77002EBB53 /* CSV.framework.dSYM */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F9C438501F550AB5004732E2 /* BeanCountImporter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9C438761F550AB5004732E2 /* Build configuration list for PBXNativeTarget "BeanCountImporter" */;
+			buildPhases = (
+				F9786CB21F550CD1002EBB53 /* SwiftLint */,
+				F9C4384D1F550AB5004732E2 /* Sources */,
+				F9C4384E1F550AB5004732E2 /* Frameworks */,
+				F9C4384F1F550AB5004732E2 /* Resources */,
+				F9C438821F550C11004732E2 /* Embed Frameworks */,
+				F9786CAE1F550C5F002EBB53 /* Carthage dSYMs */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BeanCountImporter;
+			productName = BeanCountImporter;
+			productReference = F9C438511F550AB5004732E2 /* BeanCountImporter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F9C438611F550AB5004732E2 /* BeanCountImporterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9C438791F550AB5004732E2 /* Build configuration list for PBXNativeTarget "BeanCountImporterTests" */;
+			buildPhases = (
+				F9C4385E1F550AB5004732E2 /* Sources */,
+				F9C4385F1F550AB5004732E2 /* Frameworks */,
+				F9C438601F550AB5004732E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F9C438641F550AB5004732E2 /* PBXTargetDependency */,
+			);
+			name = BeanCountImporterTests;
+			productName = BeanCountImporterTests;
+			productReference = F9C438621F550AB5004732E2 /* BeanCountImporterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F9C4386C1F550AB5004732E2 /* BeanCountImporterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9C4387C1F550AB5004732E2 /* Build configuration list for PBXNativeTarget "BeanCountImporterUITests" */;
+			buildPhases = (
+				F9C438691F550AB5004732E2 /* Sources */,
+				F9C4386A1F550AB5004732E2 /* Frameworks */,
+				F9C4386B1F550AB5004732E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F9C4386F1F550AB5004732E2 /* PBXTargetDependency */,
+			);
+			name = BeanCountImporterUITests;
+			productName = BeanCountImporterUITests;
+			productReference = F9C4386D1F550AB5004732E2 /* BeanCountImporterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F9C438491F550AB5004732E2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Steffen Kötte";
+				TargetAttributes = {
+					F9C438501F550AB5004732E2 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = D99VYUJN25;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+					};
+					F9C438611F550AB5004732E2 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = D99VYUJN25;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F9C438501F550AB5004732E2;
+					};
+					F9C4386C1F550AB5004732E2 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = D99VYUJN25;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F9C438501F550AB5004732E2;
+					};
+				};
+			};
+			buildConfigurationList = F9C4384C1F550AB5004732E2 /* Build configuration list for PBXProject "BeanCountImporter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F9C438481F550AB5004732E2;
+			productRefGroup = F9C438521F550AB5004732E2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F9C438501F550AB5004732E2 /* BeanCountImporter */,
+				F9C438611F550AB5004732E2 /* BeanCountImporterTests */,
+				F9C4386C1F550AB5004732E2 /* BeanCountImporterUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F9C4384F1F550AB5004732E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9C438591F550AB5004732E2 /* Assets.xcassets in Resources */,
+				F9C4385C1F550AB5004732E2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9C438601F550AB5004732E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9C4386B1F550AB5004732E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F9786CB21F550CD1002EBB53 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F9C4384D1F550AB5004732E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9C438571F550AB5004732E2 /* ViewController.swift in Sources */,
+				F9C438551F550AB5004732E2 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9C4385E1F550AB5004732E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9C438671F550AB5004732E2 /* BeanCountImporterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9C438691F550AB5004732E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9C438721F550AB5004732E2 /* BeanCountImporterUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F9C438641F550AB5004732E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F9C438501F550AB5004732E2 /* BeanCountImporter */;
+			targetProxy = F9C438631F550AB5004732E2 /* PBXContainerItemProxy */;
+		};
+		F9C4386F1F550AB5004732E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F9C438501F550AB5004732E2 /* BeanCountImporter */;
+			targetProxy = F9C4386E1F550AB5004732E2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F9C4385A1F550AB5004732E2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F9C4385B1F550AB5004732E2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F9C438741F550AB5004732E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F9C438751F550AB5004732E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		F9C438771F550AB5004732E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/BeanCountImporter/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.BeanCountImporter.BeanCountImporter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		F9C438781F550AB5004732E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/BeanCountImporter/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.BeanCountImporter.BeanCountImporter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		F9C4387A1F550AB5004732E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = D99VYUJN25;
+				INFOPLIST_FILE = BeanCountImporterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.BeanCountImporter.BeanCountImporterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeanCountImporter.app/Contents/MacOS/BeanCountImporter";
+			};
+			name = Debug;
+		};
+		F9C4387B1F550AB5004732E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = D99VYUJN25;
+				INFOPLIST_FILE = BeanCountImporterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.BeanCountImporter.BeanCountImporterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeanCountImporter.app/Contents/MacOS/BeanCountImporter";
+			};
+			name = Release;
+		};
+		F9C4387D1F550AB5004732E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = D99VYUJN25;
+				INFOPLIST_FILE = BeanCountImporterUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.BeanCountImporter.BeanCountImporterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = BeanCountImporter;
+			};
+			name = Debug;
+		};
+		F9C4387E1F550AB5004732E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = D99VYUJN25;
+				INFOPLIST_FILE = BeanCountImporterUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.BeanCountImporter.BeanCountImporterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = BeanCountImporter;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F9C4384C1F550AB5004732E2 /* Build configuration list for PBXProject "BeanCountImporter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9C438741F550AB5004732E2 /* Debug */,
+				F9C438751F550AB5004732E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F9C438761F550AB5004732E2 /* Build configuration list for PBXNativeTarget "BeanCountImporter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9C438771F550AB5004732E2 /* Debug */,
+				F9C438781F550AB5004732E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F9C438791F550AB5004732E2 /* Build configuration list for PBXNativeTarget "BeanCountImporterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9C4387A1F550AB5004732E2 /* Debug */,
+				F9C4387B1F550AB5004732E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F9C4387C1F550AB5004732E2 /* Build configuration list for PBXNativeTarget "BeanCountImporterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9C4387D1F550AB5004732E2 /* Debug */,
+				F9C4387E1F550AB5004732E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F9C438491F550AB5004732E2 /* Project object */;
+}
