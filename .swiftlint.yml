@@ -1,6 +1,9 @@
 excluded:
   - Carthage
 
+disabled_rules:
+  - trailing_comma
+
 opt_in_rules:
   - attributes
   - closure_end_indentation

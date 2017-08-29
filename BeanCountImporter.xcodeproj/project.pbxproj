@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		F9786CB01F550C7E002EBB53 /* CSV.framework.dSYM in Carthage dSYMs */ = {isa = PBXBuildFile; fileRef = F9786CAF1F550C77002EBB53 /* CSV.framework.dSYM */; };
+		F98AD0F71F551D2300CC02DA /* CSVImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0F61F551D2300CC02DA /* CSVImporter.swift */; };
+		F98AD0F91F55211900CC02DA /* RBCImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0F81F55211900CC02DA /* RBCImporter.swift */; };
+		F98AD0FB1F55213300CC02DA /* TangerineImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0FA1F55213300CC02DA /* TangerineImporter.swift */; };
 		F9C438551F550AB5004732E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438541F550AB5004732E2 /* AppDelegate.swift */; };
 		F9C438571F550AB5004732E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438561F550AB5004732E2 /* ViewController.swift */; };
 		F9C438591F550AB5004732E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9C438581F550AB5004732E2 /* Assets.xcassets */; };
@@ -61,7 +64,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F9786CAF1F550C77002EBB53 /* CSV.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = file; name = CSV.framework.dSYM; path = Carthage/Build/Mac/CSV.framework.dSYM; sourceTree = "<group>"; };
+		F9786CAF1F550C77002EBB53 /* CSV.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CSV.framework.dSYM; path = Carthage/Build/Mac/CSV.framework.dSYM; sourceTree = "<group>"; };
+		F98AD0F61F551D2300CC02DA /* CSVImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVImporter.swift; sourceTree = "<group>"; };
+		F98AD0F81F55211900CC02DA /* RBCImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBCImporter.swift; sourceTree = "<group>"; };
+		F98AD0FA1F55213300CC02DA /* TangerineImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangerineImporter.swift; sourceTree = "<group>"; };
 		F9C438511F550AB5004732E2 /* BeanCountImporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeanCountImporter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9C438541F550AB5004732E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9C438561F550AB5004732E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +118,32 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F98AD0FC1F552C7300CC02DA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F9C4385A1F550AB5004732E2 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F98AD0FD1F552C8000CC02DA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F9C438561F550AB5004732E2 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F98AD0FE1F552C8E00CC02DA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F98AD0F61F551D2300CC02DA /* CSVImporter.swift */,
+				F98AD0F81F55211900CC02DA /* RBCImporter.swift */,
+				F98AD0FA1F55213300CC02DA /* TangerineImporter.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		F9C438481F550AB5004732E2 = {
 			isa = PBXGroup;
 			children = (
@@ -137,8 +169,9 @@
 			isa = PBXGroup;
 			children = (
 				F9C438541F550AB5004732E2 /* AppDelegate.swift */,
-				F9C438561F550AB5004732E2 /* ViewController.swift */,
-				F9C4385A1F550AB5004732E2 /* Main.storyboard */,
+				F98AD0FE1F552C8E00CC02DA /* Model */,
+				F98AD0FD1F552C8000CC02DA /* Controller */,
+				F98AD0FC1F552C7300CC02DA /* Views */,
 				F9786CB11F550CA5002EBB53 /* Supporting Files */,
 			);
 			path = BeanCountImporter;
@@ -331,7 +364,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9C438571F550AB5004732E2 /* ViewController.swift in Sources */,
+				F98AD0F91F55211900CC02DA /* RBCImporter.swift in Sources */,
 				F9C438551F550AB5004732E2 /* AppDelegate.swift in Sources */,
+				F98AD0FB1F55213300CC02DA /* TangerineImporter.swift in Sources */,
+				F98AD0F71F551D2300CC02DA /* CSVImporter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
