@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F91C986C1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = F91C986B1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM */; };
 		F9786CB01F550C7E002EBB53 /* CSV.framework.dSYM in Carthage dSYMs */ = {isa = PBXBuildFile; fileRef = F9786CAF1F550C77002EBB53 /* CSV.framework.dSYM */; };
+		F97ED1F91F5CBC55009BAD44 /* SwiftBeanCountModel.framework.dSYM in Carthage dSYMs */ = {isa = PBXBuildFile; fileRef = F91C986B1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM */; };
 		F98AD0F71F551D2300CC02DA /* CSVImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0F61F551D2300CC02DA /* CSVImporter.swift */; };
 		F98AD0F91F55211900CC02DA /* RBCImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0F81F55211900CC02DA /* RBCImporter.swift */; };
 		F98AD0FB1F55213300CC02DA /* TangerineImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0FA1F55213300CC02DA /* TangerineImporter.swift */; };
@@ -19,6 +21,8 @@
 		F9C438721F550AB5004732E2 /* BeanCountImporterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438711F550AB5004732E2 /* BeanCountImporterUITests.swift */; };
 		F9C438801F550C11004732E2 /* CSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9C4387F1F550C11004732E2 /* CSV.framework */; };
 		F9C438811F550C11004732E2 /* CSV.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9C4387F1F550C11004732E2 /* CSV.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9DD92C01F5CBBD500738DEA /* SwiftBeanCountModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9DD92BF1F5CBBD400738DEA /* SwiftBeanCountModel.framework */; };
+		F9DD92C11F5CBBD500738DEA /* SwiftBeanCountModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9DD92BF1F5CBBD400738DEA /* SwiftBeanCountModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +50,7 @@
 			dstSubfolderSpec = 16;
 			files = (
 				F9786CB01F550C7E002EBB53 /* CSV.framework.dSYM in Carthage dSYMs */,
+				F97ED1F91F5CBC55009BAD44 /* SwiftBeanCountModel.framework.dSYM in Carthage dSYMs */,
 			);
 			name = "Carthage dSYMs";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,6 +61,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				F9DD92C11F5CBBD500738DEA /* SwiftBeanCountModel.framework in Embed Frameworks */,
 				F9C438811F550C11004732E2 /* CSV.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -64,6 +70,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F91C986B1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftBeanCountModel.framework.dSYM; path = Carthage/Build/Mac/SwiftBeanCountModel.framework.dSYM; sourceTree = "<group>"; };
 		F9786CAF1F550C77002EBB53 /* CSV.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CSV.framework.dSYM; path = Carthage/Build/Mac/CSV.framework.dSYM; sourceTree = "<group>"; };
 		F98AD0F61F551D2300CC02DA /* CSVImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVImporter.swift; sourceTree = "<group>"; };
 		F98AD0F81F55211900CC02DA /* RBCImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBCImporter.swift; sourceTree = "<group>"; };
@@ -81,6 +88,7 @@
 		F9C438711F550AB5004732E2 /* BeanCountImporterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeanCountImporterUITests.swift; sourceTree = "<group>"; };
 		F9C438731F550AB5004732E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9C4387F1F550C11004732E2 /* CSV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CSV.framework; path = Carthage/Build/Mac/CSV.framework; sourceTree = "<group>"; };
+		F9DD92BF1F5CBBD400738DEA /* SwiftBeanCountModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftBeanCountModel.framework; path = Carthage/Build/Mac/SwiftBeanCountModel.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9DD92C01F5CBBD500738DEA /* SwiftBeanCountModel.framework in Frameworks */,
 				F9C438801F550C11004732E2 /* CSV.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -198,6 +207,8 @@
 		F9C438831F550C18004732E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F9DD92BF1F5CBBD400738DEA /* SwiftBeanCountModel.framework */,
+				F91C986B1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM */,
 				F9C4387F1F550C11004732E2 /* CSV.framework */,
 				F9786CAF1F550C77002EBB53 /* CSV.framework.dSYM */,
 			);
@@ -321,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9C438591F550AB5004732E2 /* Assets.xcassets in Resources */,
+				F91C986C1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM in Resources */,
 				F9C4385C1F550AB5004732E2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
