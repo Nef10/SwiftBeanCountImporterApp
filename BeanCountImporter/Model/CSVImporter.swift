@@ -46,16 +46,24 @@ class CSVImporter {
         "Lickerish",
         "Delicious Pho",
         "Red Card Sports Bar",
+        "Smithe Salad",
+        "Grounds For Appeal",
+        "Cactus Club Cafe",
+        "The Parlour",
+        "Yaletown Brewing Company",
+        "Super Chef Grill",
+        "Honjin Sushi",
         ]
 
     static private let naming = [
         "Bean Around The": "Bean around the World",
         "Bean Around The World": "Bean around the World",
+        "Bean Around The World Coffee": "Bean around the World",
         "Compass Vending": "Translink",
         "Ikea Richmond": "IKEA",
         "Tacofino Yaleto": "Tacofino",
         "Grounds For App": "Grounds For Appeal",
-        "The Greek By An": "The Greek",
+        "The Greek By An": "The Greek By Anatoli",
         "Phat Sports Bar": "PHAT Sports Bar",
         "A&w": "A&W",
         "A&W Store": "A&W",
@@ -69,10 +77,14 @@ class CSVImporter {
         "Dairy Queen Orange Jul": "Orange Julius",
         "Earls Yaletown": "Earls",
         "Earl's Fir Street": "Earls",
+        "Earls 10120 Yaletown": "Earls",
         "Broadway & Macdonald": "",
         "Fresh Take Out Japanes": "Fresh Sushi",
         "Nero Belgian Waffle Ba": "Nero",
         "Score On Davie": "Score",
+        "The Distillery Bar + Kitchen At Yaletown Distilling Company": "Distillery",
+        "Phat": "PHAT Sports Bar",
+        "Flying Pig Yaletown": "Flying Pig",
         ]
 
     static private let accounts = [
@@ -92,6 +104,7 @@ class CSVImporter {
         "A&W": "Expenses:Food:FastFood",
         "Donair Stop": "Expenses:Food:TakeOut",
         "RBC": "Expenses:FinancialInstitutions",
+        "SAP Canada Inc.": "Income:Salary:SAP:LunchOnUs",
         "Freedom Mobile": "Expenses:Communication:MobilePhone:Contract",
         "SquareOne": "Expenses:Insurance:Tenant:SquareOne",
         "Netflix": "Expenses:Leisure:Entertainment:Streaming",
@@ -105,6 +118,12 @@ class CSVImporter {
         "Delicious Pho": "Expenses:Food:EatingOut",
         "Score": "Expenses:Food:EatingOut",
         "Orange Julius": "Expenses:Food:Snack",
+        "Distillery": "Expenses:Food:EatingOut",
+        "Smithe Salad": "Expenses:Food:TakeOut",
+        "Cactus Club Cafe": "Expenses:Food:EatingOut",
+        "Super Chef Grill": "Expenses:Food:TakeOut",
+        "Flying Pig": "Expenses:Food:EatingOut",
+        "Honjin Sushi": "Expenses:Food:EatingOut",
         ]
 
     static private let regexe: [NSRegularExpression] = {
@@ -114,6 +133,8 @@ class CSVImporter {
             try! NSRegularExpression(pattern: "WWWINTERAC PUR [0-9]{4}", options: []),
             try! NSRegularExpression(pattern: "INTERAC E-TRF- [0-9]{4}", options: []),
             try! NSRegularExpression(pattern: "[0-9]* ~ Internet Withdrawal", options: []),
+            try! NSRegularExpression(pattern: "(-)? SAP", options: []),
+            try! NSRegularExpression(pattern: "-( )?(MAY|JUNE)( )?201(4|6)", options: []),
             try! NSRegularExpression(pattern: "[^ ]*  BC  CA", options: []),
             try! NSRegularExpression(pattern: "#( )?[0-9]{1,5}", options: []),
 
@@ -181,6 +202,8 @@ class CSVImporter {
 
         } else if headerRow == TangerineImporter.header {
             return TangerineImporter(csvReader: csvReader, accountName: accountName, commoditySymbol: commoditySymbol)
+        } else if headerRow == LunchOnUsImporter.header {
+            return LunchOnUsImporter(csvReader: csvReader, accountName: accountName, commoditySymbol: commoditySymbol)
         }
         return nil
     }
