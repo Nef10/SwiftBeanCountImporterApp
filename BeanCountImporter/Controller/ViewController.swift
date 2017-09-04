@@ -9,32 +9,40 @@
 import Cocoa
 import CSV
 
-class ViewController: NSViewController {
+class SelectorViewController: NSViewController {
 
     @IBOutlet private weak var accountNameField: NSTextField!
     @IBOutlet private weak var commoditySymbolField: NSTextField!
+    @IBOutlet private weak var fileNameLabel: NSTextField!
 
-    @IBAction private func importButtonClicked(_ sender: Any) {
+    private var fileURL: URL?
+
+    @IBAction private func selectButtonClicked(_ sender: Any) {
         let openPanel = NSOpenPanel()
         openPanel.canChooseDirectories = false
         openPanel.allowsMultipleSelection = false
         openPanel.allowedFileTypes = ["csv"]
         openPanel.begin { [weak self] (response) in
             if response == .OK {
-                self?.importFile(url: openPanel.url)
+                self?.fileURL = openPanel.url
+                self?.fileNameLabel.stringValue = self?.fileURL?.lastPathComponent ?? ""
             }
         }
     }
 
-    private func importFile(url: URL?) {
-        guard let url = url, let importer = CSVImporter.new(url: url) else {
-            let alert = NSAlert(error: NSError(domain: Bundle.main.bundleIdentifier ?? "",
-                                               code: 1,
-                                               userInfo: [NSLocalizedDescriptionKey: "Error while opening or parsing the selected file"]))
-            alert.runModal()
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else {
             return
         }
-        importer.parse(accountName: accountNameField.stringValue, commoditySymbol: commoditySymbolField.stringValue)
+        switch identifier.rawValue {
+        case "showImportSheet":
+            guard let controller = segue.destinationController as? ImportViewController else {
+                return
+            }
+            controller.csvImporter = CSVImporter.new(url: fileURL, accountName: accountNameField.stringValue, commoditySymbol: commoditySymbolField.stringValue)
+        default:
+            break
+        }
     }
 
 }
