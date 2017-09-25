@@ -143,7 +143,7 @@ class CSVImporter {
             try! NSRegularExpression(pattern: "WWWINTERAC PUR [0-9]{4}", options: []),
             try! NSRegularExpression(pattern: "INTERAC E-TRF- [0-9]{4}", options: []),
             try! NSRegularExpression(pattern: "[0-9]* ~ Internet Withdrawal", options: []),
-            try! NSRegularExpression(pattern: "(-)? SAP", options: []),
+            try! NSRegularExpression(pattern: "(-)? SAP(?! CANADA)", options: []),
             try! NSRegularExpression(pattern: "-( )?(MAY|JUNE)( )?201(4|6)", options: []),
             try! NSRegularExpression(pattern: "[^ ]*  BC  CA", options: []),
             try! NSRegularExpression(pattern: "#( )?[0-9]{1,5}", options: []),
