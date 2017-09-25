@@ -53,6 +53,8 @@ class CSVImporter {
         "Yaletown Brewing Company",
         "Super Chef Grill",
         "Honjin Sushi",
+        "Freshslice Pizza",
+        "Super Great Pizza",
         ]
 
     static private let naming = [
@@ -85,6 +87,9 @@ class CSVImporter {
         "The Distillery Bar + Kitchen At Yaletown Distilling Company": "Distillery",
         "Phat": "PHAT Sports Bar",
         "Flying Pig Yaletown": "Flying Pig",
+        "Boiling Point Burnaby": "Boiling Point",
+        "Thirst First Refreshme": "Thirst First",
+        "Milk $ Sugar Cafe": "Milk & Sugar Cafe",
         ]
 
     static private let accounts = [
@@ -124,6 +129,11 @@ class CSVImporter {
         "Super Chef Grill": "Expenses:Food:TakeOut",
         "Flying Pig": "Expenses:Food:EatingOut",
         "Honjin Sushi": "Expenses:Food:EatingOut",
+        "Boiling Point": "Expenses:Food:EatingOut",
+        "Thirst First": "Expenses:Food:Snack",
+        "Freshslice Pizza": "Expenses:Food:Snack",
+        "Milk & Sugar Cafe": "Expenses:Food:Snack",
+        "Super Great Pizza": "Expenses:Food:Snack",
         ]
 
     static private let regexe: [NSRegularExpression] = {
