@@ -1,3 +1,5 @@
+# Xcode
+
 ## Build generated
 build/
 DerivedData/
@@ -28,12 +30,15 @@ xcuserdata/
 timeline.xctimeline
 playground.xcworkspace
 
-# Swift Package Manager
-Packages/
-Package.pins
-Package.resolved
+## Swift Package Manager
 .build/
 
-# Carthage
+## Carthage
 Carthage/Checkouts
 Carthage/Build
+
+## fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output

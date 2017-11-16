@@ -22,7 +22,7 @@ class SelectorViewController: NSViewController {
         openPanel.canChooseDirectories = false
         openPanel.allowsMultipleSelection = false
         openPanel.allowedFileTypes = ["csv"]
-        openPanel.begin { [weak self] (response) in
+        openPanel.begin { [weak self] response in
             if response == .OK {
                 self?.fileURL = openPanel.url
                 self?.fileNameLabel.stringValue = self?.fileURL?.lastPathComponent ?? ""
