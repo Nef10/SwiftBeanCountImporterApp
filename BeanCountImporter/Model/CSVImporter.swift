@@ -55,7 +55,7 @@ class CSVImporter {
         "Honjin Sushi",
         "Freshslice Pizza",
         "Super Great Pizza",
-        ]
+    ]
 
     static private let naming = [
         "Bean Around The": "Bean around the World",
@@ -89,8 +89,9 @@ class CSVImporter {
         "Flying Pig Yaletown": "Flying Pig",
         "Boiling Point Burnaby": "Boiling Point",
         "Thirst First Refreshme": "Thirst First",
+        "Thirst First Re": "Thirst First",
         "Milk $ Sugar Cafe": "Milk & Sugar Cafe",
-        ]
+    ]
 
     static private let accounts = [
         "Safeway": "Expenses:Food:Groceries",
@@ -134,7 +135,7 @@ class CSVImporter {
         "Freshslice Pizza": "Expenses:Food:Snack",
         "Milk & Sugar Cafe": "Expenses:Food:Snack",
         "Super Great Pizza": "Expenses:Food:Snack",
-        ]
+    ]
 
     static private let regexe: [NSRegularExpression] = {
         [ // swiftlint:disable force_try
@@ -147,7 +148,6 @@ class CSVImporter {
             try! NSRegularExpression(pattern: "-( )?(MAY|JUNE)( )?201(4|6)", options: []),
             try! NSRegularExpression(pattern: "[^ ]*  BC  CA", options: []),
             try! NSRegularExpression(pattern: "#( )?[0-9]{1,5}", options: []),
-
         ] // swiftlint:enable force_try
     }()
 
@@ -159,8 +159,7 @@ class CSVImporter {
 
     func parse() -> Ledger {
         let ledger = Ledger()
-        let account = Account(name: accountName)
-        let unknownAccount = Account(name: CSVImporter.unknownAccountName)
+        let account = Account(name: accountName, accountType: .asset)
         let commodity = Commodity(symbol: commoditySymbol)
         while csvReader.next() != nil {
             let data = parseLine()
@@ -172,9 +171,7 @@ class CSVImporter {
                                                              range: NSRange(description.startIndex..., in: description),
                                                              withTemplate: "")
             }
-            description = description.replacingOccurrences(of: "&amp;", with: "&")
-            description = description.trimmingCharacters(in: .whitespaces)
-            description = description.capitalized
+            description = description.replacingOccurrences(of: "&amp;", with: "&").trimmingCharacters(in: .whitespaces).capitalized
             if let naming = CSVImporter.naming[description] {
                 payee = naming
                 description = ""
@@ -185,15 +182,13 @@ class CSVImporter {
             let transactionMetaData = TransactionMetaData(date: data.date, payee: payee, narration: description, flag: .complete, tags: [])
             let transaction = Transaction(metaData: transactionMetaData)
             let amount = Amount(number: data.amount, commodity: commodity, decimalDigits: 2)
-            let accountPosting = Posting(account: account, amount: amount, transaction: transaction)
-            transaction.postings.append(accountPosting)
+            transaction.postings.append(Posting(account: account, amount: amount, transaction: transaction))
             let categoryAmount = Amount(number: -data.amount, commodity: commodity, decimalDigits: 2)
-            var categoryAccount = unknownAccount
+            var categoryAccount = Account(name: CSVImporter.unknownAccountName, accountType: .equity)
             if let accountName = CSVImporter.accounts[payee] {
-                categoryAccount = Account(name: accountName)
+                categoryAccount = Account(name: accountName, accountType: .equity)
             }
-            let categoryPosting = Posting(account: categoryAccount, amount: categoryAmount, transaction: transaction)
-            transaction.postings.append(categoryPosting)
+            transaction.postings.append(Posting(account: categoryAccount, amount: categoryAmount, transaction: transaction))
             ledger.transactions.append(transaction)
         }
         return ledger
