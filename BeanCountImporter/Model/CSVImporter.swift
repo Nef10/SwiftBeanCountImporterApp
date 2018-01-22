@@ -26,38 +26,6 @@ class CSVImporter {
     static private let unknownAccountName = "TODO"
 
     static private let payees = [
-        "Safeway",
-        "Jugo Juice",
-        "Starbucks",
-        "Ebiten",
-        "Mcdonald's",
-        "Tim Horton's",
-        "Tim Hortons",
-        "Mastercuts",
-        "Fresh Bowl",
-        "Donair Stop",
-        "Freedom Mobile",
-        "Subway",
-        "Brooklyn Pizza",
-        "Sushi Aji",
-        "Cineplex",
-        "Rodney's Oyster House",
-        "The Greek By Anatoli",
-        "Lickerish",
-        "Delicious Pho",
-        "Red Card Sports Bar",
-        "Smithe Salad",
-        "Grounds For Appeal",
-        "Cactus Club Cafe",
-        "The Parlour",
-        "Yaletown Brewing Company",
-        "Super Chef Grill",
-        "Honjin Sushi",
-        "Freshslice Pizza",
-        "Super Great Pizza",
-    ]
-
-    static private let naming = [
         "Bean Around The": "Bean around the World",
         "Bean Around The World": "Bean around the World",
         "Bean Around The World Coffee": "Bean around the World",
@@ -91,6 +59,35 @@ class CSVImporter {
         "Thirst First Refreshme": "Thirst First",
         "Thirst First Re": "Thirst First",
         "Milk $ Sugar Cafe": "Milk & Sugar Cafe",
+        "Safeway": "Safeway",
+        "Jugo Juice": "Jugo Juice",
+        "Starbucks": "Starbucks",
+        "Ebiten": "Ebiten",
+        "Mcdonald's": "Mcdonald's",
+        "Tim Horton's": "Tim Hortons",
+        "Tim Hortons": "Tim Hortons",
+        "Mastercuts": "Mastercuts",
+        "Fresh Bowl": "Fresh Bowl",
+        "Donair Stop": "Donair Stop",
+        "Freedom Mobile": "Freedom Mobile",
+        "Subway": "Subway",
+        "Brooklyn Pizza": "Brooklyn Pizza",
+        "Sushi Aji": "Sushi Aji",
+        "Cineplex": "Cineplex",
+        "Rodney's Oyster House": "Rodney's Oyster House",
+        "The Greek By Anatoli": "The Greek By Anatoli",
+        "Lickerish": "Lickerish",
+        "Delicious Pho": "Delicious Pho",
+        "Red Card Sports Bar": "Red Card Sports Bar",
+        "Smithe Salad": "Smithe Salad",
+        "Grounds For Appeal": "Grounds For Appeal",
+        "Cactus Club Cafe": "Cactus Club Cafe",
+        "The Parlour": "The Parlour",
+        "Yaletown Brewing Company": "Yaletown Brewing Company",
+        "Super Chef Grill": "Super Chef Grill",
+        "Honjin Sushi": "Honjin Sushi",
+        "Freshslice Pizza": "Freshslice Pizza",
+        "Super Great Pizza": "Super Great Pizza",
     ]
 
     static private let accounts = [
@@ -172,11 +169,8 @@ class CSVImporter {
                                                              withTemplate: "")
             }
             description = description.replacingOccurrences(of: "&amp;", with: "&").trimmingCharacters(in: .whitespaces).capitalized
-            if let naming = CSVImporter.naming[description] {
-                payee = naming
-                description = ""
-            } else if CSVImporter.payees.contains(description) {
-                payee = description
+            if let name = CSVImporter.payees[description] {
+                payee = name
                 description = ""
             }
             let transactionMetaData = TransactionMetaData(date: data.date, payee: payee, narration: description, flag: .complete, tags: [])
@@ -204,7 +198,6 @@ class CSVImporter {
         }
         if headerRow == RBCImporter.header {
             return RBCImporter(csvReader: csvReader, accountName: accountName, commoditySymbol: commoditySymbol)
-
         } else if headerRow == TangerineImporter.header {
             return TangerineImporter(csvReader: csvReader, accountName: accountName, commoditySymbol: commoditySymbol)
         } else if headerRow == LunchOnUsImporter.header {
