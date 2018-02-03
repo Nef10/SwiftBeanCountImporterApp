@@ -15,6 +15,7 @@
 		F98AD0F71F551D2300CC02DA /* CSVImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0F61F551D2300CC02DA /* CSVImporter.swift */; };
 		F98AD0F91F55211900CC02DA /* RBCImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0F81F55211900CC02DA /* RBCImporter.swift */; };
 		F98AD0FB1F55213300CC02DA /* TangerineImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0FA1F55213300CC02DA /* TangerineImporter.swift */; };
+		F98E4AF82025911B00924AD4 /* DataEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98E4AF72025911B00924AD4 /* DataEntryViewController.swift */; };
 		F9C438551F550AB5004732E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438541F550AB5004732E2 /* AppDelegate.swift */; };
 		F9C438571F550AB5004732E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438561F550AB5004732E2 /* ViewController.swift */; };
 		F9C438591F550AB5004732E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9C438581F550AB5004732E2 /* Assets.xcassets */; };
@@ -79,6 +80,7 @@
 		F98AD0F61F551D2300CC02DA /* CSVImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVImporter.swift; sourceTree = "<group>"; };
 		F98AD0F81F55211900CC02DA /* RBCImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBCImporter.swift; sourceTree = "<group>"; };
 		F98AD0FA1F55213300CC02DA /* TangerineImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangerineImporter.swift; sourceTree = "<group>"; };
+		F98E4AF72025911B00924AD4 /* DataEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEntryViewController.swift; sourceTree = "<group>"; };
 		F9C438511F550AB5004732E2 /* BeanCountImporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeanCountImporter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9C438541F550AB5004732E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9C438561F550AB5004732E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			children = (
 				F9C438561F550AB5004732E2 /* ViewController.swift */,
 				F97ED1FC1F5CEEE1009BAD44 /* ImportViewController.swift */,
+				F98E4AF72025911B00924AD4 /* DataEntryViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				F9C438571F550AB5004732E2 /* ViewController.swift in Sources */,
 				F98AD0F91F55211900CC02DA /* RBCImporter.swift in Sources */,
 				F9C438551F550AB5004732E2 /* AppDelegate.swift in Sources */,
+				F98E4AF82025911B00924AD4 /* DataEntryViewController.swift in Sources */,
 				F93C20221F5D1D7900372960 /* LunchOnUsImporter.swift in Sources */,
 				F97ED1FD1F5CEEE1009BAD44 /* ImportViewController.swift in Sources */,
 				F98AD0FB1F55213300CC02DA /* TangerineImporter.swift in Sources */,
