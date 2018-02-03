@@ -20,10 +20,8 @@ class CSVImporter {
     }
 
     let csvReader: CSVReader
-    private let accountName: String
+    let account: Account
     private let commoditySymbol: String
-
-    static private let unknownAccountName = "TODO"
 
     static private let payees = [
         "Bean Around The": "Bean around the World",
@@ -150,13 +148,12 @@ class CSVImporter {
 
     init(csvReader: CSVReader, accountName: String, commoditySymbol: String) {
         self.csvReader = csvReader
-        self.accountName = accountName
+        account = Account(name: accountName, accountType: .asset)
         self.commoditySymbol = commoditySymbol
     }
 
     func parse() -> Ledger {
         let ledger = Ledger()
-        let account = Account(name: accountName, accountType: .asset)
         let commodity = Commodity(symbol: commoditySymbol)
         while csvReader.next() != nil {
             let data = parseLine()
@@ -173,12 +170,12 @@ class CSVImporter {
                 payee = name
                 description = ""
             }
-            let transactionMetaData = TransactionMetaData(date: data.date, payee: payee, narration: description, flag: .complete, tags: [])
+            let transactionMetaData = TransactionMetaData(date: data.date, payee: payee, narration: description, flag: .incomplete, tags: [])
             let transaction = Transaction(metaData: transactionMetaData)
             let amount = Amount(number: data.amount, commodity: commodity, decimalDigits: 2)
             transaction.postings.append(Posting(account: account, amount: amount, transaction: transaction))
             let categoryAmount = Amount(number: -data.amount, commodity: commodity, decimalDigits: 2)
-            var categoryAccount = Account(name: CSVImporter.unknownAccountName, accountType: .equity)
+            var categoryAccount = Account(name: "", accountType: .equity)
             if let accountName = CSVImporter.accounts[payee] {
                 categoryAccount = Account(name: accountName, accountType: .equity)
             }
