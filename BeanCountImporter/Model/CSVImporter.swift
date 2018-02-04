@@ -21,7 +21,9 @@ class CSVImporter {
 
     let csvReader: CSVReader
     let account: Account
+
     private let commoditySymbol: String
+    private let accountName = "Expenses:TODO"
 
     static private let payees = [
         "Bean Around The": "Bean around the World",
@@ -146,14 +148,14 @@ class CSVImporter {
         ] // swiftlint:enable force_try
     }()
 
-    init(csvReader: CSVReader, accountName: String, commoditySymbol: String) {
+    init(csvReader: CSVReader, account: Account, commoditySymbol: String) {
         self.csvReader = csvReader
-        account = Account(name: accountName, accountType: .asset)
+        self.account = account
         self.commoditySymbol = commoditySymbol
     }
 
-    func parse() -> Ledger {
-        let ledger = Ledger()
+    func parse() -> [Transaction] {
+        var transactions = [Transaction]()
         let commodity = Commodity(symbol: commoditySymbol)
         while csvReader.next() != nil {
             let data = parseLine()
@@ -175,14 +177,14 @@ class CSVImporter {
             let amount = Amount(number: data.amount, commodity: commodity, decimalDigits: 2)
             transaction.postings.append(Posting(account: account, amount: amount, transaction: transaction))
             let categoryAmount = Amount(number: -data.amount, commodity: commodity, decimalDigits: 2)
-            var categoryAccount = Account(name: "", accountType: .equity)
-            if let accountName = CSVImporter.accounts[payee] {
-                categoryAccount = Account(name: accountName, accountType: .equity)
+            var categoryAccount = try! Account(name: accountName) // swiftlint:disable:this force_try
+            if let accountName = CSVImporter.accounts[payee], let account = try? Account(name: accountName) {
+                categoryAccount = account
             }
             transaction.postings.append(Posting(account: categoryAccount, amount: categoryAmount, transaction: transaction))
-            ledger.transactions.append(transaction)
+            transactions.append(transaction)
         }
-        return ledger
+        return transactions
     }
 
     func parseLine() -> CSVLine {
@@ -190,15 +192,15 @@ class CSVImporter {
     }
 
     static func new(url: URL?, accountName: String, commoditySymbol: String) -> CSVImporter? {
-        guard let url = url, let csvReader = openFile(url), let headerRow = csvReader.headerRow else {
+        guard let url = url, let csvReader = openFile(url), let headerRow = csvReader.headerRow, let account = try? Account(name: accountName) else {
             return nil
         }
         if headerRow == RBCImporter.header {
-            return RBCImporter(csvReader: csvReader, accountName: accountName, commoditySymbol: commoditySymbol)
+            return RBCImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
         } else if headerRow == TangerineImporter.header {
-            return TangerineImporter(csvReader: csvReader, accountName: accountName, commoditySymbol: commoditySymbol)
+            return TangerineImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
         } else if headerRow == LunchOnUsImporter.header {
-            return LunchOnUsImporter(csvReader: csvReader, accountName: accountName, commoditySymbol: commoditySymbol)
+            return LunchOnUsImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
         }
         return nil
     }

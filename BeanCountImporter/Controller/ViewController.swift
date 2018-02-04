@@ -8,6 +8,7 @@
 
 import Cocoa
 import CSV
+import SwiftBeanCountModel
 
 class SelectorViewController: NSViewController {
 
@@ -71,7 +72,7 @@ class SelectorViewController: NSViewController {
     }
 
     private func isAccountValid() -> Bool {
-        return !accountNameField.stringValue.isEmpty
+        return Account.isNameValid(accountNameField.stringValue)
     }
 
     private func isCommodityValid() -> Bool {
@@ -82,7 +83,7 @@ class SelectorViewController: NSViewController {
         if !isFileValid() {
             showValidationError("Please select a file.")
         } else if !isAccountValid() {
-            showValidationError("Please enter an account.")
+            showValidationError("Please enter a valid account.")
         } else if !isCommodityValid() {
             showValidationError("Please enter a Commodity.")
         }

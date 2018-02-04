@@ -18,6 +18,7 @@ class ImportViewController: NSViewController {
     var csvImporter: CSVImporter?
 
     private var ledger: Ledger = Ledger()
+    private var transactions = [Transaction]()
     private var transactionsFinished = 0
 
     @IBOutlet private var textView: NSTextView!
@@ -28,7 +29,7 @@ class ImportViewController: NSViewController {
             textView.string = "Unable to import file"
             return
         }
-        ledger = importer.parse()
+        transactions = importer.parse()
         updateOutput()
     }
 
@@ -46,7 +47,7 @@ class ImportViewController: NSViewController {
                 return
             }
             controller.baseAccount = csvImporter?.account
-            controller.transaction = ledger.transactions[transactionsFinished]
+            controller.transaction = transactions[transactionsFinished]
             controller.delegate = self
         default:
             break
@@ -54,11 +55,11 @@ class ImportViewController: NSViewController {
     }
 
     private func updateOutput() {
-        textView.string = String(describing: ledger)
+        textView.string = String(describing: ledger).trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     private func showDataEntryViewForNextTransactionIfNeccessary() {
-        if transactionsFinished < ledger.transactions.count {
+        if transactionsFinished < transactions.count {
             showDateEntryViewForNextTransaction()
         }
     }
@@ -71,12 +72,10 @@ class ImportViewController: NSViewController {
 
 extension ImportViewController: DataEntryViewControllerDelegate {
 
-    internal func finished(_ sheet: NSWindow, transaction: Transaction?) {
+    internal func finished(_ sheet: NSWindow, transaction: Transaction) {
         view.window?.endSheet(sheet)
-        if let transaction = transaction {
-            ledger.transactions[transactionsFinished] = transaction
-            updateOutput()
-        }
+        _ = ledger.add(transaction)
+        updateOutput()
         transactionsFinished += 1
         showDataEntryViewForNextTransactionIfNeccessary()
     }
