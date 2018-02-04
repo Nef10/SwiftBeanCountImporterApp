@@ -10,7 +10,7 @@ import Cocoa
 import SwiftBeanCountModel
 
 protocol DataEntryViewControllerDelegate: AnyObject {
-    func finished(_ sheet: NSWindow, transaction: Transaction?)
+    func finished(_ sheet: NSWindow, transaction: Transaction)
     func cancel(_ sheet: NSWindow)
 }
 
@@ -46,11 +46,11 @@ class DataEntryViewController: NSViewController {
     }
 
     @IBAction private func continueButtonPressed(_ sender: Any) {
-        guard isAccountValid() else {
+        guard let transaction = try? getUpdatedTransaction() else {
             showAccountValidationError()
             return
         }
-        delegate?.finished(view.window!, transaction: getUpdatedTransaction())
+        delegate?.finished(view.window!, transaction: transaction)
     }
 
     @IBAction private func cancelButtonPressed(_ sender: Any) {
@@ -74,8 +74,8 @@ class DataEntryViewController: NSViewController {
     }
 
     private func handleInvalidPassedData() {
-        descriptionField.stringValue = "Error while importing"
-        delegate?.finished(view.window!, transaction: self.transaction)
+        assertionFailure("Passed invalid data to DataEntryViewController")
+        self.delegate?.cancel(view.window!)
     }
 
     private func prepopulateUI() {
@@ -94,21 +94,13 @@ class DataEntryViewController: NSViewController {
         accountField.stringValue = posting.account.name
     }
 
-    private func getUpdatedTransaction() -> Transaction {
+    private func getUpdatedTransaction() throws -> Transaction {
         let metaData = TransactionMetaData(date: transaction!.metaData.date,
                                            payee: payeeField.stringValue,
                                            narration: descriptionField.stringValue,
                                            flag: flag,
                                            tags: getTags())
-        let accountName = accountField.stringValue
-        var accountType = AccountType.expense
-        for type in AccountType.allValues() {
-            if accountName.starts(with: type.rawValue) {
-                accountType = type
-                break
-            }
-        }
-        let posting = Posting(account: Account(name: accountName, accountType: accountType),
+        let posting = Posting(account: try Account(name: accountField.stringValue),
                               amount: relevantPosting!.amount,
                               transaction: transaction!,
                               price: relevantPosting?.price)
@@ -127,15 +119,6 @@ class DataEntryViewController: NSViewController {
             tags.append(Tag(name: tagString))
         }
         return tags
-    }
-
-    private func isAccountValid() -> Bool {
-        for type in AccountType.allValues() {
-            if accountField.stringValue.starts(with: type.rawValue) {
-                return true
-            }
-        }
-        return false
     }
 
     private func showAccountValidationError() {
