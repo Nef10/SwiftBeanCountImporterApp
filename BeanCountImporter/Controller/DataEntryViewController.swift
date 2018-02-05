@@ -116,7 +116,11 @@ class DataEntryViewController: NSViewController {
             guard !tagString.isEmpty else {
                 continue
             }
-            tags.append(Tag(name: tagString))
+            var tag = tagString
+            if tagString.starts(with: "#") {
+                tag = String(tagString.dropFirst())
+            }
+            tags.append(Tag(name: tag))
         }
         return tags
     }
