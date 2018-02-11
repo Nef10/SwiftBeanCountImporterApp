@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F909311B202FE9A500166FB9 /* AccountComboBoxDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909311A202FE9A500166FB9 /* AccountComboBoxDataSource.swift */; };
+		F909311D202FF1F000166FB9 /* PayeeComboBoxDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909311C202FF1F000166FB9 /* PayeeComboBoxDataSource.swift */; };
 		F91C986C1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = F91C986B1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM */; };
 		F93C20221F5D1D7900372960 /* LunchOnUsImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C20211F5D1D7900372960 /* LunchOnUsImporter.swift */; };
 		F9786CB01F550C7E002EBB53 /* CSV.framework.dSYM in Carthage dSYMs */ = {isa = PBXBuildFile; fileRef = F9786CAF1F550C77002EBB53 /* CSV.framework.dSYM */; };
@@ -73,6 +75,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F909311A202FE9A500166FB9 /* AccountComboBoxDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountComboBoxDataSource.swift; sourceTree = "<group>"; };
+		F909311C202FF1F000166FB9 /* PayeeComboBoxDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayeeComboBoxDataSource.swift; sourceTree = "<group>"; };
 		F91C986B1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftBeanCountModel.framework.dSYM; path = Carthage/Build/Mac/SwiftBeanCountModel.framework.dSYM; sourceTree = "<group>"; };
 		F93C20211F5D1D7900372960 /* LunchOnUsImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchOnUsImporter.swift; sourceTree = "<group>"; };
 		F9786CAF1F550C77002EBB53 /* CSV.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CSV.framework.dSYM; path = Carthage/Build/Mac/CSV.framework.dSYM; sourceTree = "<group>"; };
@@ -124,6 +128,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F9093119202FE98900166FB9 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				F909311A202FE9A500166FB9 /* AccountComboBoxDataSource.swift */,
+				F909311C202FF1F000166FB9 /* PayeeComboBoxDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
 		F9786CB11F550CA5002EBB53 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +202,7 @@
 				F9C438541F550AB5004732E2 /* AppDelegate.swift */,
 				F98AD0FE1F552C8E00CC02DA /* Model */,
 				F98AD0FD1F552C8000CC02DA /* Controller */,
+				F9093119202FE98900166FB9 /* DataSource */,
 				F98AD0FC1F552C7300CC02DA /* Views */,
 				F9786CB11F550CA5002EBB53 /* Supporting Files */,
 			);
@@ -384,10 +398,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9C438571F550AB5004732E2 /* ViewController.swift in Sources */,
+				F909311B202FE9A500166FB9 /* AccountComboBoxDataSource.swift in Sources */,
 				F98AD0F91F55211900CC02DA /* RBCImporter.swift in Sources */,
 				F9C438551F550AB5004732E2 /* AppDelegate.swift in Sources */,
 				F98E4AF82025911B00924AD4 /* DataEntryViewController.swift in Sources */,
 				F93C20221F5D1D7900372960 /* LunchOnUsImporter.swift in Sources */,
+				F909311D202FF1F000166FB9 /* PayeeComboBoxDataSource.swift in Sources */,
 				F97ED1FD1F5CEEE1009BAD44 /* ImportViewController.swift in Sources */,
 				F98AD0FB1F55213300CC02DA /* TangerineImporter.swift in Sources */,
 				F98AD0F71F551D2300CC02DA /* CSVImporter.swift in Sources */,

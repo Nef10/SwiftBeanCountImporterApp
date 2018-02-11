@@ -10,18 +10,42 @@ import Cocoa
 import SwiftBeanCountModel
 
 protocol DataEntryViewControllerDelegate: AnyObject {
+
+    /// Will be called after the user clicked continue and the data validation passed
+    ///
+    /// The delegate is responsible for dismissing the DataEntryViewController
+    ///
+    /// - Parameters:
+    ///   - sheet: window of the DataEntryViewController
+    ///   - transaction: updated transaction
     func finished(_ sheet: NSWindow, transaction: Transaction)
+
+    /// Will be called if the user cancels the data entry
+    ///
+    /// The delegate is responsible for dismissing the DataEntryViewController
+    ///
+    /// - Parameter sheet: window of the DataEntryViewController
     func cancel(_ sheet: NSWindow)
 }
 
 class DataEntryViewController: NSViewController {
 
+    /// Leder used for autocomplete, can be nil
+    var ledger: Ledger?
+
+    /// Transaction to prepopulate the UI with, must not be nil upon loading the view
     var transaction: Transaction?
+
+    /// Account of the posting which should not be shown, must not be nil upon loading the view
     var baseAccount: Account?
+
+    /// Delegate which will be informed about continue and cancel actions
     weak var delegate: DataEntryViewControllerDelegate?
 
     private var relevantPosting: Posting?
     private var flag = Flag.incomplete
+    private var accountComboBoxDataSource: AccountComboBoxDataSource?
+    private var payeeComboBoxDataSource: PayeeComboBoxDataSource?
 
     @IBOutlet private weak var dateField: NSTextField!
     @IBOutlet private weak var amountField: NSTextField!
@@ -41,8 +65,8 @@ class DataEntryViewController: NSViewController {
             handleInvalidPassedData()
             return
         }
+        setupUI()
         prepopulateUI()
-        tagField.tokenizingCharacterSet = CharacterSet.whitespacesAndNewlines
     }
 
     @IBAction private func continueButtonPressed(_ sender: Any) {
@@ -62,6 +86,16 @@ class DataEntryViewController: NSViewController {
             flag = .complete
         } else {
             flag = .incomplete
+        }
+    }
+
+    private func setupUI() {
+        tagField.tokenizingCharacterSet = CharacterSet.whitespacesAndNewlines
+        if let ledger = ledger {
+            accountComboBoxDataSource = AccountComboBoxDataSource(ledger: ledger)
+            accountField.dataSource = accountComboBoxDataSource
+            payeeComboBoxDataSource = PayeeComboBoxDataSource(ledger: ledger)
+            payeeField.dataSource = payeeComboBoxDataSource
         }
     }
 
