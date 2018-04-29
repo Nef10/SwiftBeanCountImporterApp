@@ -168,9 +168,9 @@ class DataEntryViewController: NSViewController {
     }
 
     static private let dateFormatter: DateFormatter = {
-        let _dateFormatter = DateFormatter()
-        _dateFormatter.dateFormat = "yyyy-MM-dd"
-        return _dateFormatter
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter
     }()
 
 }

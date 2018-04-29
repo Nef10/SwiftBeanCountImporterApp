@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		F909311B202FE9A500166FB9 /* AccountComboBoxDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909311A202FE9A500166FB9 /* AccountComboBoxDataSource.swift */; };
 		F909311D202FF1F000166FB9 /* PayeeComboBoxDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909311C202FF1F000166FB9 /* PayeeComboBoxDataSource.swift */; };
+		F9093120202FF4B300166FB9 /* SwiftBeanCountParser.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = F909311E202FF4B300166FB9 /* SwiftBeanCountParser.framework.dSYM */; };
+		F9093122202FF4BB00166FB9 /* SwiftBeanCountParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F909311F202FF4B300166FB9 /* SwiftBeanCountParser.framework */; };
+		F9093123202FF4BB00166FB9 /* SwiftBeanCountParser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F909311F202FF4B300166FB9 /* SwiftBeanCountParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F91C986C1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = F91C986B1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM */; };
 		F93C20221F5D1D7900372960 /* LunchOnUsImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C20211F5D1D7900372960 /* LunchOnUsImporter.swift */; };
 		F9786CB01F550C7E002EBB53 /* CSV.framework.dSYM in Carthage dSYMs */ = {isa = PBXBuildFile; fileRef = F9786CAF1F550C77002EBB53 /* CSV.framework.dSYM */; };
@@ -66,6 +69,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				F9093123202FF4BB00166FB9 /* SwiftBeanCountParser.framework in Embed Frameworks */,
 				F9DD92C11F5CBBD500738DEA /* SwiftBeanCountModel.framework in Embed Frameworks */,
 				F9C438811F550C11004732E2 /* CSV.framework in Embed Frameworks */,
 			);
@@ -77,6 +81,8 @@
 /* Begin PBXFileReference section */
 		F909311A202FE9A500166FB9 /* AccountComboBoxDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountComboBoxDataSource.swift; sourceTree = "<group>"; };
 		F909311C202FF1F000166FB9 /* PayeeComboBoxDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayeeComboBoxDataSource.swift; sourceTree = "<group>"; };
+		F909311E202FF4B300166FB9 /* SwiftBeanCountParser.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftBeanCountParser.framework.dSYM; path = Carthage/Build/Mac/SwiftBeanCountParser.framework.dSYM; sourceTree = "<group>"; };
+		F909311F202FF4B300166FB9 /* SwiftBeanCountParser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftBeanCountParser.framework; path = Carthage/Build/Mac/SwiftBeanCountParser.framework; sourceTree = "<group>"; };
 		F91C986B1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftBeanCountModel.framework.dSYM; path = Carthage/Build/Mac/SwiftBeanCountModel.framework.dSYM; sourceTree = "<group>"; };
 		F93C20211F5D1D7900372960 /* LunchOnUsImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchOnUsImporter.swift; sourceTree = "<group>"; };
 		F9786CAF1F550C77002EBB53 /* CSV.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CSV.framework.dSYM; path = Carthage/Build/Mac/CSV.framework.dSYM; sourceTree = "<group>"; };
@@ -108,6 +114,7 @@
 			files = (
 				F9DD92C01F5CBBD500738DEA /* SwiftBeanCountModel.framework in Frameworks */,
 				F9C438801F550C11004732E2 /* CSV.framework in Frameworks */,
+				F9093122202FF4BB00166FB9 /* SwiftBeanCountParser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +237,8 @@
 		F9C438831F550C18004732E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F909311F202FF4B300166FB9 /* SwiftBeanCountParser.framework */,
+				F909311E202FF4B300166FB9 /* SwiftBeanCountParser.framework.dSYM */,
 				F9DD92BF1F5CBBD400738DEA /* SwiftBeanCountModel.framework */,
 				F91C986B1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM */,
 				F9C4387F1F550C11004732E2 /* CSV.framework */,
@@ -304,7 +313,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Steffen Kötte";
 				TargetAttributes = {
 					F9C438501F550AB5004732E2 = {
@@ -356,6 +365,7 @@
 				F9C438591F550AB5004732E2 /* Assets.xcassets in Resources */,
 				F91C986C1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM in Resources */,
 				F9C4385C1F550AB5004732E2 /* Main.storyboard in Resources */,
+				F9093120202FF4B300166FB9 /* SwiftBeanCountParser.framework.dSYM in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +477,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -474,6 +485,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -523,6 +535,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -530,6 +543,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
