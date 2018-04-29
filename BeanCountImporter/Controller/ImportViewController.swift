@@ -16,6 +16,7 @@ class ImportViewController: NSViewController {
     }
 
     var csvImporter: CSVImporter?
+    var autocompleteLedger: Ledger?
 
     private var ledger: Ledger = Ledger()
     private var transactions = [Transaction]()
@@ -49,6 +50,7 @@ class ImportViewController: NSViewController {
             controller.baseAccount = csvImporter?.account
             controller.transaction = transactions[transactionsFinished]
             controller.delegate = self
+            controller.ledger = autocompleteLedger
         default:
             break
         }
