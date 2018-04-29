@@ -1,2 +1,3 @@
 github "yaslab/CSV.swift" ~> 2.0
-github "Nef10/SwiftBeanCountModel" == 0.0.4
+github "Nef10/SwiftBeanCountModel" == 0.0.5
+github "Nef10/SwiftBeanCountParser" == 0.0.5
