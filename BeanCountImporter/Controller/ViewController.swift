@@ -9,6 +9,7 @@
 import Cocoa
 import CSV
 import SwiftBeanCountModel
+import SwiftBeanCountParser
 
 class SelectorViewController: NSViewController {
 
@@ -19,8 +20,10 @@ class SelectorViewController: NSViewController {
     @IBOutlet private weak var accountNameField: NSTextField!
     @IBOutlet private weak var commoditySymbolField: NSTextField!
     @IBOutlet private weak var fileNameLabel: NSTextField!
+    @IBOutlet private weak var ledgerNameLabel: NSTextField!
 
     private var fileURL: URL?
+    private var ledgerURL: URL?
 
     @IBAction private func selectButtonClicked(_ sender: Any) {
         let openPanel = NSOpenPanel()
@@ -31,6 +34,19 @@ class SelectorViewController: NSViewController {
             if response == .OK {
                 self?.fileURL = openPanel.url
                 self?.fileNameLabel.stringValue = self?.fileURL?.lastPathComponent ?? ""
+            }
+        }
+    }
+
+    @IBAction private func ledgerSelectButtonClicked(_ sender: Any) {
+        let openPanel = NSOpenPanel()
+        openPanel.canChooseDirectories = false
+        openPanel.allowsMultipleSelection = false
+        openPanel.allowedFileTypes = ["beancount"]
+        openPanel.begin { [weak self] response in
+            if response == .OK {
+                self?.ledgerURL = openPanel.url
+                self?.ledgerNameLabel.stringValue = self?.ledgerURL?.lastPathComponent ?? ""
             }
         }
     }
@@ -58,6 +74,9 @@ class SelectorViewController: NSViewController {
                 return
             }
             controller.csvImporter = CSVImporter.new(url: fileURL, accountName: accountNameField.stringValue, commoditySymbol: commoditySymbolField.stringValue)
+            if let ledgerURL = ledgerURL {
+                controller.autocompleteLedger = try? Parser.parse(contentOf: ledgerURL)
+            }
         default:
             break
         }
