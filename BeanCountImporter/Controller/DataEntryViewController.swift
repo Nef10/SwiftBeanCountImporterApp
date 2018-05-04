@@ -34,7 +34,7 @@ class DataEntryViewController: NSViewController {
     var ledger: Ledger?
 
     /// Transaction to prepopulate the UI with, must not be nil upon loading the view
-    var transaction: Transaction?
+    var importedTransaction: ImportedTransaction?
 
     /// Account of the posting which should not be shown, must not be nil upon loading the view
     var baseAccount: Account?
@@ -46,6 +46,7 @@ class DataEntryViewController: NSViewController {
     private var flag = Flag.incomplete
     private var accountComboBoxDataSource: AccountComboBoxDataSource?
     private var payeeComboBoxDataSource: PayeeComboBoxDataSource?
+    private var transaction: Transaction?
 
     @IBOutlet private weak var dateField: NSTextField!
     @IBOutlet private weak var amountField: NSTextField!
@@ -74,11 +75,16 @@ class DataEntryViewController: NSViewController {
             showAccountValidationError()
             return
         }
+        savePrefrillData(transaction: transaction)
         delegate?.finished(view.window!, transaction: transaction)
     }
 
     @IBAction private func cancelButtonPressed(_ sender: Any) {
         self.delegate?.cancel(view.window!)
+    }
+
+    @IBAction private func saveDescriptionPayeeCheckboxClicked(_ sender: Any) {
+        saveAccountCheckbox.isEnabled = saveDescriptionPayeeCheckbox.state == .on
     }
 
     @IBAction func flagRadioButtonChanged(_ sender: NSButton) {
@@ -100,6 +106,7 @@ class DataEntryViewController: NSViewController {
     }
 
     private func processPassedData() {
+        transaction = importedTransaction?.transaction
         relevantPosting = transaction?.postings.first { $0.account != baseAccount }
     }
 
@@ -134,12 +141,13 @@ class DataEntryViewController: NSViewController {
                                            narration: descriptionField.stringValue,
                                            flag: flag,
                                            tags: getTags())
-        let posting = Posting(account: try Account(name: accountField.stringValue),
-                              amount: relevantPosting!.amount,
-                              transaction: transaction!,
-                              price: relevantPosting?.price)
-        var postings = transaction!.postings.filter { $0 != relevantPosting }
-        postings.append(posting)
+        let relevantPosting = Posting(account: try Account(name: accountField.stringValue),
+                                      amount: self.relevantPosting!.amount,
+                                      transaction: transaction!,
+                                      price: self.relevantPosting?.price)
+        var postings = transaction!.postings.filter { $0 != self.relevantPosting }
+        postings.append(relevantPosting)
+        self.relevantPosting = relevantPosting
         return Transaction(metaData: metaData, postings: postings)
     }
 
@@ -165,6 +173,26 @@ class DataEntryViewController: NSViewController {
         alert.addButton(withTitle: "OK")
         alert.messageText = "Please enter a valid account."
         alert.beginSheetModal(for: view.window!, completionHandler: nil)
+    }
+
+    private func savePrefrillData(transaction: Transaction) {
+        if saveDescriptionPayeeCheckbox.state == .on {
+            if !transaction.metaData.payee.isEmpty {
+                var defaultPayees = UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsPayees) ?? [:]
+                defaultPayees[transaction.metaData.narration] = transaction.metaData.payee
+                UserDefaults.standard.set(defaultPayees, forKey: CSVImporter.userDefaultsPayees)
+            }
+            if let importedTransaction = importedTransaction {
+                var defaultDescriptions = UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsDescription) ?? [:]
+                defaultDescriptions[importedTransaction.originalDescription] = transaction.metaData.narration
+                UserDefaults.standard.set(defaultDescriptions, forKey: CSVImporter.userDefaultsDescription)
+            }
+            if saveAccountCheckbox.state == .on, let accountName = relevantPosting?.account.name, !transaction.metaData.payee.isEmpty {
+                var defaultAccounts = UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsAccounts) ?? [:]
+                defaultAccounts[transaction.metaData.payee] = accountName
+                UserDefaults.standard.set(defaultAccounts, forKey: CSVImporter.userDefaultsAccounts)
+            }
+        }
     }
 
     static private let dateFormatter: DateFormatter = {

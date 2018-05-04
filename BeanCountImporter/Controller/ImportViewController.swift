@@ -19,7 +19,7 @@ class ImportViewController: NSViewController {
     var autocompleteLedger: Ledger?
 
     private var ledger: Ledger = Ledger()
-    private var transactions = [Transaction]()
+    private var transactions = [ImportedTransaction]()
     private var transactionsFinished = 0
 
     @IBOutlet private var textView: NSTextView!
@@ -48,7 +48,7 @@ class ImportViewController: NSViewController {
                 return
             }
             controller.baseAccount = csvImporter?.account
-            controller.transaction = transactions[transactionsFinished]
+            controller.importedTransaction = transactions[transactionsFinished]
             controller.delegate = self
             controller.ledger = autocompleteLedger
         default:

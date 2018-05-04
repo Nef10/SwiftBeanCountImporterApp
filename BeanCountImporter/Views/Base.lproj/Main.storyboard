@@ -901,6 +901,9 @@ DQ
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="saveDescriptionPayeeCheckboxClicked:" target="4qL-kF-ACr" id="mCs-wW-KCh"/>
+                                </connections>
                             </button>
                             <button horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="50r-9c-pNB">
                                 <rect key="frame" x="396" y="13" width="95" height="32"/>
