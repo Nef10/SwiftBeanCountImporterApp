@@ -56,13 +56,13 @@ class CSVImporter {
             let data = parseLine()
             var description = data.description
             var payee = data.payee
+            let originalPayee = description
             for regex in CSVImporter.regexe {
                 description = regex.stringByReplacingMatches(in: description,
                                                              options: .withoutAnchoringBounds,
                                                              range: NSRange(description.startIndex..., in: description),
                                                              withTemplate: "")
             }
-            description = description.replacingOccurrences(of: "&amp;", with: "&").trimmingCharacters(in: .whitespaces).capitalized
             let originalDescription = description
             if let savedPayee = (UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsPayees) as? [String: String])?[description] {
                 payee = savedPayee
@@ -77,7 +77,7 @@ class CSVImporter {
                 let account = try? Account(name: accountName) {
                 categoryAccount = account
             }
-            let flag: Flag = description == originalDescription ? .incomplete : .complete
+            let flag: Flag = description == originalDescription && payee == originalPayee ? .incomplete : .complete
             let transactionMetaData = TransactionMetaData(date: data.date, payee: payee, narration: description, flag: flag, tags: [])
             let transaction = Transaction(metaData: transactionMetaData)
             let amount = Amount(number: data.amount, commodity: commodity, decimalDigits: 2)

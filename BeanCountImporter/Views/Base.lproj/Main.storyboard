@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -890,14 +890,14 @@ DQ
                             </comboBox>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O47-xr-S2G">
                                 <rect key="frame" x="100" y="80" width="206" height="18"/>
-                                <buttonCell key="cell" type="check" title="Save this accout for the payee" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="e8x-4p-I9g">
+                                <buttonCell key="cell" type="check" title="Save this accout for the payee" bezelStyle="regularSquare" imagePosition="left" inset="2" id="e8x-4p-I9g">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3I4-Pu-lXk">
                                 <rect key="frame" x="100" y="222" width="253" height="18"/>
-                                <buttonCell key="cell" type="check" title="Save this description / payee mapping" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Nd8-11-hHp">
+                                <buttonCell key="cell" type="check" title="Save this description / payee mapping" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Nd8-11-hHp">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
