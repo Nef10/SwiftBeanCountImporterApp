@@ -129,8 +129,10 @@ class DataEntryViewController: NSViewController {
         payeeField.stringValue = metaData.payee
         if metaData.flag == .complete {
             completeFlagButton.state = .on
+            flag = .complete
         } else {
             incompleteFlagButton.state = .on
+            flag = .incomplete
         }
         accountField.stringValue = posting.account.name
     }
@@ -176,22 +178,20 @@ class DataEntryViewController: NSViewController {
     }
 
     private func savePrefrillData(transaction: Transaction) {
-        if saveDescriptionPayeeCheckbox.state == .on {
+        if saveDescriptionPayeeCheckbox.state == .on, let importedTransaction = importedTransaction {
             if !transaction.metaData.payee.isEmpty {
                 var defaultPayees = UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsPayees) ?? [:]
-                defaultPayees[transaction.metaData.narration] = transaction.metaData.payee
+                defaultPayees[importedTransaction.originalDescription] = transaction.metaData.payee
                 UserDefaults.standard.set(defaultPayees, forKey: CSVImporter.userDefaultsPayees)
+                if saveAccountCheckbox.state == .on, let accountName = relevantPosting?.account.name {
+                    var defaultAccounts = UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsAccounts) ?? [:]
+                    defaultAccounts[transaction.metaData.payee] = accountName
+                    UserDefaults.standard.set(defaultAccounts, forKey: CSVImporter.userDefaultsAccounts)
+                }
             }
-            if let importedTransaction = importedTransaction {
-                var defaultDescriptions = UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsDescription) ?? [:]
-                defaultDescriptions[importedTransaction.originalDescription] = transaction.metaData.narration
-                UserDefaults.standard.set(defaultDescriptions, forKey: CSVImporter.userDefaultsDescription)
-            }
-            if saveAccountCheckbox.state == .on, let accountName = relevantPosting?.account.name, !transaction.metaData.payee.isEmpty {
-                var defaultAccounts = UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsAccounts) ?? [:]
-                defaultAccounts[transaction.metaData.payee] = accountName
-                UserDefaults.standard.set(defaultAccounts, forKey: CSVImporter.userDefaultsAccounts)
-            }
+            var defaultDescriptions = UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsDescription) ?? [:]
+            defaultDescriptions[importedTransaction.originalDescription] = transaction.metaData.narration
+            UserDefaults.standard.set(defaultDescriptions, forKey: CSVImporter.userDefaultsDescription)
         }
     }
 
