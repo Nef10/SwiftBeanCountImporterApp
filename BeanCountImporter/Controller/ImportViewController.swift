@@ -42,7 +42,7 @@ class ImportViewController: NSViewController {
         guard let identifier = segue.identifier else {
             return
         }
-        switch identifier.rawValue {
+        switch identifier {
         case SegueIdentifier.dataEntrySheet:
             guard let controller = segue.destinationController as? DataEntryViewController else {
                 return
@@ -67,7 +67,7 @@ class ImportViewController: NSViewController {
     }
 
     private func showDateEntryViewForNextTransaction() {
-        performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: SegueIdentifier.dataEntrySheet), sender: self)
+        performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.dataEntrySheet), sender: self)
     }
 
 }

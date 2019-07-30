@@ -52,7 +52,7 @@ class SelectorViewController: NSViewController {
     }
 
     override func shouldPerformSegue(withIdentifier identifier: NSStoryboardSegue.Identifier, sender: Any?) -> Bool {
-        switch identifier.rawValue {
+        switch identifier {
         case SegueIdentifier.showImport:
             if !isInputValid() {
                 showValidationError()
@@ -68,7 +68,7 @@ class SelectorViewController: NSViewController {
         guard let identifier = segue.identifier else {
             return
         }
-        switch identifier.rawValue {
+        switch identifier {
         case SegueIdentifier.showImport:
             guard let controller = segue.destinationController as? ImportViewController else {
                 return

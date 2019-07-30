@@ -31,7 +31,7 @@ extension PayeeComboBoxDataSource: NSComboBoxDataSource {
     }
 
     func comboBox(_ comboBox: NSComboBox, indexOfItemWithStringValue string: String) -> Int {
-        return payees.index { $0.lowercased() == string.lowercased() } ?? NSNotFound
+        return payees.firstIndex { $0.lowercased() == string.lowercased() } ?? NSNotFound
     }
 
     func comboBox(_ comboBox: NSComboBox, completedString string: String) -> String? {
