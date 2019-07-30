@@ -31,7 +31,7 @@ extension AccountComboBoxDataSource: NSComboBoxDataSource {
     }
 
     func comboBox(_ comboBox: NSComboBox, indexOfItemWithStringValue string: String) -> Int {
-        return accounts.index { $0.name == string } ?? NSNotFound
+        return accounts.firstIndex { $0.name == string } ?? NSNotFound
     }
 
     func comboBox(_ comboBox: NSComboBox, completedString string: String) -> String? {
