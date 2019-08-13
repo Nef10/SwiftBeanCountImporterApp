@@ -56,7 +56,7 @@ class CSVImporter {
             let data = parseLine()
             var description = data.description
             var payee = data.payee
-            let originalPayee = description
+            let originalPayee = payee
             for regex in CSVImporter.regexe {
                 description = regex.stringByReplacingMatches(in: description,
                                                              options: .withoutAnchoringBounds,
