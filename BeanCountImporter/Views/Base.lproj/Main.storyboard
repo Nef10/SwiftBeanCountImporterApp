@@ -890,7 +890,7 @@ DQ
                             </comboBox>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O47-xr-S2G">
                                 <rect key="frame" x="100" y="80" width="206" height="18"/>
-                                <buttonCell key="cell" type="check" title="Save this accout for the payee" bezelStyle="regularSquare" imagePosition="left" inset="2" id="e8x-4p-I9g">
+                                <buttonCell key="cell" type="check" title="Save this accout for the payee" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="e8x-4p-I9g">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
