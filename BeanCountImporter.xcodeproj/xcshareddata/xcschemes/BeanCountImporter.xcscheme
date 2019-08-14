@@ -39,16 +39,6 @@
                ReferencedContainer = "container:BeanCountImporter.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F9C4386C1F550AB5004732E2"
-               BuildableName = "BeanCountImporterUITests.xctest"
-               BlueprintName = "BeanCountImporterUITests"
-               ReferencedContainer = "container:BeanCountImporter.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
