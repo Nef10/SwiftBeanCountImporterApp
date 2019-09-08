@@ -49,41 +49,48 @@ class CSVImporter {
         self.commoditySymbol = commoditySymbol
     }
 
+    private func parseLineIntoTransaction() -> ImportedTransaction? {
+        guard csvReader.next() != nil else {
+            return nil
+        }
+        let commodity = Commodity(symbol: commoditySymbol)
+        let data = parseLine()
+        var description = data.description
+        var payee = data.payee
+        let originalPayee = payee
+        for regex in CSVImporter.regexe {
+            description = regex.stringByReplacingMatches(in: description,
+                                                         options: .withoutAnchoringBounds,
+                                                         range: NSRange(description.startIndex..., in: description),
+                                                         withTemplate: "")
+        }
+        let originalDescription = description
+        if let savedPayee = (UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsPayees) as? [String: String])?[description] {
+            payee = savedPayee
+        }
+        if let savedDescription = (UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsDescription) as? [String: String])?[description] {
+            description = savedDescription
+        }
+
+        let categoryAmount = Amount(number: -data.amount, commodity: commodity, decimalDigits: 2)
+        var categoryAccount = try! Account(name: defaultAccountName) // swiftlint:disable:this force_try
+        if let accountName = (UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsAccounts) as? [String: String])?[payee],
+            let account = try? Account(name: accountName) {
+            categoryAccount = account
+        }
+        let flag: Flag = description == originalDescription && payee == originalPayee ? .incomplete : .complete
+        let transactionMetaData = TransactionMetaData(date: data.date, payee: payee, narration: description, flag: flag, tags: [])
+        let transaction = Transaction(metaData: transactionMetaData)
+        let amount = Amount(number: data.amount, commodity: commodity, decimalDigits: 2)
+        transaction.postings.append(Posting(account: account, amount: amount, transaction: transaction))
+        transaction.postings.append(Posting(account: categoryAccount, amount: categoryAmount, transaction: transaction))
+        return ImportedTransaction(transaction: transaction, originalDescription: originalDescription)
+    }
+
     func parse() -> [ImportedTransaction] {
         var transactions = [ImportedTransaction]()
-        let commodity = Commodity(symbol: commoditySymbol)
-        while csvReader.next() != nil {
-            let data = parseLine()
-            var description = data.description
-            var payee = data.payee
-            let originalPayee = payee
-            for regex in CSVImporter.regexe {
-                description = regex.stringByReplacingMatches(in: description,
-                                                             options: .withoutAnchoringBounds,
-                                                             range: NSRange(description.startIndex..., in: description),
-                                                             withTemplate: "")
-            }
-            let originalDescription = description
-            if let savedPayee = (UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsPayees) as? [String: String])?[description] {
-                payee = savedPayee
-            }
-            if let savedDescription = (UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsDescription) as? [String: String])?[description] {
-                description = savedDescription
-            }
-
-            let categoryAmount = Amount(number: -data.amount, commodity: commodity, decimalDigits: 2)
-            var categoryAccount = try! Account(name: defaultAccountName) // swiftlint:disable:this force_try
-            if let accountName = (UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsAccounts) as? [String: String])?[payee],
-                let account = try? Account(name: accountName) {
-                categoryAccount = account
-            }
-            let flag: Flag = description == originalDescription && payee == originalPayee ? .incomplete : .complete
-            let transactionMetaData = TransactionMetaData(date: data.date, payee: payee, narration: description, flag: flag, tags: [])
-            let transaction = Transaction(metaData: transactionMetaData)
-            let amount = Amount(number: data.amount, commodity: commodity, decimalDigits: 2)
-            transaction.postings.append(Posting(account: account, amount: amount, transaction: transaction))
-            transaction.postings.append(Posting(account: categoryAccount, amount: categoryAmount, transaction: transaction))
-            transactions.append(ImportedTransaction(transaction: transaction, originalDescription: originalDescription))
+        while let transaction = parseLineIntoTransaction() {
+            transactions.append(transaction)
         }
         return transactions
     }
