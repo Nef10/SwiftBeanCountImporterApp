@@ -19,18 +19,16 @@ class ImportViewController: NSViewController {
     var autocompleteLedger: Ledger?
 
     private var ledger: Ledger = Ledger()
-    private var transactions = [ImportedTransaction]()
-    private var transactionsFinished = 0
+    private var nextTransactions: ImportedTransaction?
 
     @IBOutlet private var textView: NSTextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let importer = csvImporter else {
+        guard csvImporter != nil else {
             textView.string = "Unable to import file"
             return
         }
-        transactions = importer.parse()
         updateOutput()
     }
 
@@ -48,7 +46,7 @@ class ImportViewController: NSViewController {
                 return
             }
             controller.baseAccount = csvImporter?.account
-            controller.importedTransaction = transactions[transactionsFinished]
+            controller.importedTransaction = nextTransactions
             controller.delegate = self
             controller.ledger = autocompleteLedger
         default:
@@ -61,7 +59,8 @@ class ImportViewController: NSViewController {
     }
 
     private func showDataEntryViewForNextTransactionIfNeccessary() {
-        if transactionsFinished < transactions.count {
+        nextTransactions = csvImporter!.parseLineIntoTransaction()
+        if nextTransactions != nil {
             showDateEntryViewForNextTransaction()
         }
     }
@@ -78,7 +77,6 @@ extension ImportViewController: DataEntryViewControllerDelegate {
         view.window?.endSheet(sheet)
         _ = ledger.add(transaction)
         updateOutput()
-        transactionsFinished += 1
         showDataEntryViewForNextTransactionIfNeccessary()
     }
 

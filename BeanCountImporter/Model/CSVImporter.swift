@@ -49,7 +49,7 @@ class CSVImporter {
         self.commoditySymbol = commoditySymbol
     }
 
-    private func parseLineIntoTransaction() -> ImportedTransaction? {
+    func parseLineIntoTransaction() -> ImportedTransaction? {
         guard csvReader.next() != nil else {
             return nil
         }
@@ -85,14 +85,6 @@ class CSVImporter {
         transaction.postings.append(Posting(account: account, amount: amount, transaction: transaction))
         transaction.postings.append(Posting(account: categoryAccount, amount: categoryAmount, transaction: transaction))
         return ImportedTransaction(transaction: transaction, originalDescription: originalDescription)
-    }
-
-    func parse() -> [ImportedTransaction] {
-        var transactions = [ImportedTransaction]()
-        while let transaction = parseLineIntoTransaction() {
-            transactions.append(transaction)
-        }
-        return transactions
     }
 
     func parseLine() -> CSVLine {
