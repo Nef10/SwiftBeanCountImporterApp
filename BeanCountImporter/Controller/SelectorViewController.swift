@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SelectorViewController.swift
 //  BeanCountImporter
 //
 //  Created by Steffen Kötte on 2017-08-28.
@@ -11,10 +11,21 @@ import CSV
 import SwiftBeanCountModel
 import SwiftBeanCountParser
 
+enum ImportMode {
+    case csv(CSVImporter?)
+    case text(String?, String?)
+}
+
+private enum SelectedImportMode {
+    case csv(URL)
+    case text(String, String)
+}
+
 class SelectorViewController: NSViewController {
 
     struct SegueIdentifier {
         static let showImport = "showImport"
+        static let showTextEntry = "showTextEntry"
     }
 
     @IBOutlet private weak var accountNameField: NSTextField!
@@ -22,8 +33,8 @@ class SelectorViewController: NSViewController {
     @IBOutlet private weak var fileNameLabel: NSTextField!
     @IBOutlet private weak var ledgerNameLabel: NSTextField!
 
-    private var fileURL: URL?
     private var ledgerURL: URL?
+    private var selectedImportMode: SelectedImportMode?
 
     @IBAction private func selectButtonClicked(_ sender: Any) {
         let openPanel = NSOpenPanel()
@@ -32,8 +43,11 @@ class SelectorViewController: NSViewController {
         openPanel.allowedFileTypes = ["csv"]
         openPanel.begin { [weak self] response in
             if response == .OK {
-                self?.fileURL = openPanel.url
-                self?.fileNameLabel.stringValue = self?.fileURL?.lastPathComponent ?? ""
+                guard let fileURL = openPanel.url else {
+                    return
+                }
+                self?.selectedImportMode = .csv(fileURL)
+                self?.fileNameLabel.stringValue = fileURL.lastPathComponent
             }
         }
     }
@@ -73,9 +87,23 @@ class SelectorViewController: NSViewController {
             guard let controller = segue.destinationController as? ImportViewController else {
                 return
             }
-            controller.csvImporter = CSVImporter.new(url: fileURL, accountName: accountNameField.stringValue, commoditySymbol: commoditySymbolField.stringValue)
+            switch selectedImportMode! {
+            case let .csv(fileURL):
+                controller.importMode = .csv(CSVImporter.new(url: fileURL, accountName: accountNameField.stringValue, commoditySymbol: commoditySymbolField.stringValue))
+            case let .text(transactionString, balanceString):
+                controller.importMode = .text(transactionString, balanceString)
+            }
             if let ledgerURL = ledgerURL {
                 controller.autocompleteLedger = try? Parser.parse(contentOf: ledgerURL)
+            }
+        case SegueIdentifier.showTextEntry:
+            guard let controller = segue.destinationController as? TextEntryViewController else {
+                return
+            }
+            controller.delegate = self
+            if case let .text(transactionString, balanceString)? = selectedImportMode {
+                controller.prefilledTransactionString = transactionString
+                controller.prefilledBalanceString = balanceString
             }
         default:
             break
@@ -83,11 +111,11 @@ class SelectorViewController: NSViewController {
     }
 
     private func isInputValid() -> Bool {
-        return isFileValid() && isAccountValid() && isCommodityValid()
+        return isSourceValid() && isAccountValid() && isCommodityValid()
     }
 
-    private func isFileValid() -> Bool {
-        return fileURL != nil
+    private func isSourceValid() -> Bool {
+        return selectedImportMode != nil
     }
 
     private func isAccountValid() -> Bool {
@@ -99,8 +127,8 @@ class SelectorViewController: NSViewController {
     }
 
     private func showValidationError() {
-        if !isFileValid() {
-            showValidationError("Please select a file.")
+        if !isSourceValid() {
+            showValidationError("Please select a file or enter valid text.")
         } else if !isAccountValid() {
             showValidationError("Please enter a valid account.")
         } else if !isCommodityValid() {
@@ -114,6 +142,27 @@ class SelectorViewController: NSViewController {
         alert.addButton(withTitle: "OK")
         alert.messageText = text
         alert.beginSheetModal(for: view.window!, completionHandler: nil)
+    }
+
+}
+
+extension SelectorViewController: TextEntryViewControllerDelegate {
+
+    internal func finished(_ sheet: NSWindow, transaction: String, balance: String) {
+        view.window?.endSheet(sheet)
+        let transactionString = transaction.trimmingCharacters(in: .whitespacesAndNewlines)
+        let balanceString = balance.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !transactionString.isEmpty || !balanceString.isEmpty {
+            selectedImportMode = .text(transactionString, balanceString)
+            fileNameLabel.stringValue = "Text entered"
+        } else {
+            selectedImportMode = nil
+            fileNameLabel.stringValue = ""
+        }
+    }
+
+    func cancel(_ sheet: NSWindow) {
+        view.window?.endSheet(sheet)
     }
 
 }

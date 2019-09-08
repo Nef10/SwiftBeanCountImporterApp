@@ -15,18 +15,18 @@ class ImportViewController: NSViewController {
         static let dataEntrySheet = "dataEntrySheet"
     }
 
-    var csvImporter: CSVImporter?
+    var importMode: ImportMode?
     var autocompleteLedger: Ledger?
 
-    private var ledger: Ledger = Ledger()
+    private var resultLedger: Ledger = Ledger()
     private var nextTransactions: ImportedTransaction?
 
     @IBOutlet private var textView: NSTextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard csvImporter != nil else {
-            textView.string = "Unable to import file"
+        guard importMode != nil else {
+            textView.string = "Unable to import data"
             return
         }
         updateOutput()
@@ -42,7 +42,7 @@ class ImportViewController: NSViewController {
         }
         switch identifier {
         case SegueIdentifier.dataEntrySheet:
-            guard let controller = segue.destinationController as? DataEntryViewController else {
+            guard let controller = segue.destinationController as? DataEntryViewController, case let .csv(csvImporter)? = importMode else {
                 return
             }
             controller.baseAccount = csvImporter?.account
@@ -55,11 +55,14 @@ class ImportViewController: NSViewController {
     }
 
     private func updateOutput() {
-        textView.string = ledger.transactions.map { String(describing: $0) }.reduce("") { "\($0)\n\n\($1)" }.trimmingCharacters(in: .whitespacesAndNewlines)
+        textView.string = resultLedger.transactions.map { String(describing: $0) }.reduce("") { "\($0)\n\n\($1)" }.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     private func showDataEntryViewForNextTransactionIfNeccessary() {
-        nextTransactions = csvImporter!.parseLineIntoTransaction()
+        guard case let .csv(csvImporter)? = importMode else {
+            return
+        }
+        nextTransactions = csvImporter?.parseLineIntoTransaction()
         if nextTransactions != nil {
             showDateEntryViewForNextTransaction()
         }
@@ -75,7 +78,7 @@ extension ImportViewController: DataEntryViewControllerDelegate {
 
     internal func finished(_ sheet: NSWindow, transaction: Transaction) {
         view.window?.endSheet(sheet)
-        _ = ledger.add(transaction)
+        _ = resultLedger.add(transaction)
         updateOutput()
         showDataEntryViewForNextTransactionIfNeccessary()
     }
