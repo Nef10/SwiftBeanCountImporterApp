@@ -150,7 +150,9 @@ class DataEntryViewController: NSViewController {
         var postings = transaction!.postings.filter { $0 != self.relevantPosting }
         postings.append(relevantPosting)
         self.relevantPosting = relevantPosting
-        return Transaction(metaData: metaData, postings: postings)
+        let transaction = Transaction(metaData: metaData)
+        transaction.postings.append(contentsOf: postings)
+        return transaction
     }
 
     private func getTags() -> [Tag] {
