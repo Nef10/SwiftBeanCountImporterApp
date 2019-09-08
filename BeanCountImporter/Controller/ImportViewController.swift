@@ -55,7 +55,7 @@ class ImportViewController: NSViewController {
     }
 
     private func updateOutput() {
-        textView.string = String(describing: ledger).trimmingCharacters(in: .whitespacesAndNewlines)
+        textView.string = ledger.transactions.map { String(describing: $0) }.reduce("") { "\($0)\n\n\($1)" }.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     private func showDataEntryViewForNextTransactionIfNeccessary() {
