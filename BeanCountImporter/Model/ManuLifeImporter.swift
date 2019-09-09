@@ -6,8 +6,6 @@
 //  Copyright © 2019 Steffen Kötte. All rights reserved.
 //
 
-//swiftlint:disable line_length
-
 import Foundation
 import SwiftBeanCountModel
 
@@ -236,14 +234,15 @@ class ManuLifeImporter {
     private func stringifyPurchase(_ purchase: ([ManuLifeBuy], Date?)) -> String {
         let (matches, date) = purchase
         let dateString = date != nil ? ManuLifeImporter.printDateFormatter.string(from: date!) : ""
-        let cashAccount = "\(accountString):\(cashAccountName)"
 
         var decimalPointPosition = 0
         if let index = amountString.range(of: ".")?.lowerBound {
             decimalPointPosition = amountString.distance(from: amountString.startIndex, to: index)
         }
 
-        var result = "\(dateString) * \"\" \"\"\n  \(cashAccount.padding(toLength: accountPaddingLength - decimalPointPosition + 1, withPad: " ", startingAt: 0)) \(amountString.padding(toLength: 10, withPad: " ", startingAt: 0)) \(commodityString)\n"
+        let cashAccount = "\(accountString):\(cashAccountName)".padding(toLength: accountPaddingLength - decimalPointPosition + 1, withPad: " ", startingAt: 0)
+
+        var result = "\(dateString) * \"\" \"\"\n  \(cashAccount) \(amountString.padding(toLength: 10, withPad: " ", startingAt: 0)) \(commodityString)\n"
         result += matches.map {
             let employeeBasic = "\(accountString):Employee:Basic:\($0.commodity)".padding(toLength: accountPaddingLength, withPad: " ", startingAt: 0)
             let employerBasic = "\(accountString):Employer:Basic:\($0.commodity)".padding(toLength: accountPaddingLength, withPad: " ", startingAt: 0)
