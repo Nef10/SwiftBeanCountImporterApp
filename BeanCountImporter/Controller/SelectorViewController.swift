@@ -13,7 +13,7 @@ import SwiftBeanCountParser
 
 enum ImportMode {
     case csv(CSVImporter?)
-    case text(String?, String?)
+    case text(String, String, String, String) // transaction, balance, account, commodity
 }
 
 private enum SelectedImportMode {
@@ -91,7 +91,7 @@ class SelectorViewController: NSViewController {
             case let .csv(fileURL):
                 controller.importMode = .csv(CSVImporter.new(url: fileURL, accountName: accountNameField.stringValue, commoditySymbol: commoditySymbolField.stringValue))
             case let .text(transactionString, balanceString):
-                controller.importMode = .text(transactionString, balanceString)
+                controller.importMode = .text(transactionString, balanceString, accountNameField.stringValue, commoditySymbolField.stringValue)
             }
             if let ledgerURL = ledgerURL {
                 controller.autocompleteLedger = try? Parser.parse(contentOf: ledgerURL)

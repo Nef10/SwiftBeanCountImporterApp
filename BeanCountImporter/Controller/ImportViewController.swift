@@ -25,15 +25,13 @@ class ImportViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard importMode != nil else {
-            textView.string = "Unable to import data"
-            return
+        if let font = NSFont(name: "Menlo", size: 12) {
+            textView.typingAttributes = [NSAttributedString.Key.font: font]
         }
-        updateOutput()
     }
 
     override func viewDidAppear() {
-        showDataEntryViewForNextTransactionIfNeccessary()
+        importData()
     }
 
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -56,6 +54,18 @@ class ImportViewController: NSViewController {
 
     private func updateOutput() {
         textView.string = resultLedger.transactions.map { String(describing: $0) }.reduce("") { "\($0)\n\n\($1)" }.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    private func importData() {
+        switch importMode {
+        case .csv?:
+            showDataEntryViewForNextTransactionIfNeccessary()
+        case let .text(transactionString, balanceString, account, commodity)?:
+            let importer = ManuLifeImporter(autocompleteLedger: autocompleteLedger, accountName: account, commodityString: commodity)
+            textView.string = importer.parse(transaction: transactionString, balance: balanceString)
+        case .none:
+            textView.string = "Unable to import data"
+        }
     }
 
     private func showDataEntryViewForNextTransactionIfNeccessary() {
