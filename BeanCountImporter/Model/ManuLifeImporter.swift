@@ -26,6 +26,22 @@ class ManuLifeImporter {
         let price: String
     }
 
+    /// DateFormatter for printing a date in the result string
+    private static let printDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter
+    }()
+
+    /// DateFormatter to parse the date from the input
+    private static let importDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "MMMM d, yyyy"
+        return dateFormatter
+    }()
+
     private let autocompleteLedger: Ledger?
     private let accountString: String
     private let commodityString: String
@@ -41,22 +57,6 @@ class ManuLifeImporter {
     private let employerMatchFraction = 2.5
     private let employeeVoluntaryFraction = 0.5
 
-    /// DateFormatter for printing a date in the result string
-    static private let printDateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter
-    }()
-
-    /// DateFormatter to parse the date from the input
-    static private let importDateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "MMMM d, yyyy"
-        return dateFormatter
-    }()
-
     init(autocompleteLedger: Ledger?, accountName: String, commodityString: String) {
         self.autocompleteLedger = autocompleteLedger
         self.accountString = accountName
@@ -71,21 +71,23 @@ class ManuLifeImporter {
         } ?? [:]
         // Temporary till parser can read names
         commodities.merge([
-                           
-                           
-                           
-                           
-                           
-                           
-                           
-                           
-                           
-                           
-                           
-                           
-                           
-                           
-                           ]) { current, _ in current }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        ]) { current, _ in current }
         var result = ""
         if !transaction.isEmpty {
             result = parse(transaction: transaction, commodities: commodities)
@@ -181,10 +183,12 @@ class ManuLifeImporter {
                 result.append("\(dateString) balance \(accountName) \(leftPadding(toLength: 8, withPad: " ", string: employeeVoluntary)) \($0.commodity)")
             }
             return result.joined(separator: "\n")
-        }.joined(separator: "\n") + "\n\n" +
-            balances.map {
-                "\(dateString) price \($0.commodity.padding(toLength: commodityPaddingLength, withPad: " ", startingAt: 0)) \($0.unitValue) \(commodityString)"
-            }.sorted().joined(separator: "\n")
+        }
+        .joined(separator: "\n") + "\n\n" + balances.map {
+            "\(dateString) price \($0.commodity.padding(toLength: commodityPaddingLength, withPad: " ", startingAt: 0)) \($0.unitValue) \(commodityString)"
+        }
+        .sorted()
+        .joined(separator: "\n")
     }
 
     /// Parses a string into ManuLifeBuys
@@ -255,11 +259,14 @@ class ManuLifeImporter {
             result += "  \(employerMatch) \(String(format: unitFormat, unitFraction * employerMatchFraction)) \(commodity) {\($0.price) \(commodityString)}\n"
             result += "  \(employeeVoluntary) \(String(format: unitFormat, unitFraction * employeeVoluntaryFraction)) \(commodity) {\($0.price) \(commodityString)}"
             return result
-        }.joined(separator: "\n")
+        }
+        .joined(separator: "\n")
         result += "\n\n"
         result += matches.map { buy -> String in
             "\(dateString) price \(buy.commodity.padding(toLength: commodityPaddingLength, withPad: " ", startingAt: 0)) \(buy.price) \(commodityString)"
-        }.sorted().joined(separator: "\n")
+        }
+        .sorted()
+        .joined(separator: "\n")
         return result
     }
 

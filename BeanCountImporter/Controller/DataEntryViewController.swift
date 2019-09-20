@@ -30,6 +30,12 @@ protocol DataEntryViewControllerDelegate: AnyObject {
 
 class DataEntryViewController: NSViewController {
 
+    private static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter
+    }()
+
     /// Leder used for autocomplete, can be nil
     var ledger: Ledger?
 
@@ -48,16 +54,16 @@ class DataEntryViewController: NSViewController {
     private var payeeComboBoxDataSource: PayeeComboBoxDataSource?
     private var transaction: Transaction?
 
-    @IBOutlet private weak var dateField: NSTextField!
-    @IBOutlet private weak var amountField: NSTextField!
-    @IBOutlet private weak var descriptionField: NSTextField!
-    @IBOutlet private weak var payeeField: NSComboBox!
-    @IBOutlet private weak var saveDescriptionPayeeCheckbox: NSButton!
-    @IBOutlet private weak var tagField: NSTokenField!
-    @IBOutlet private weak var accountField: NSComboBox!
-    @IBOutlet private weak var saveAccountCheckbox: NSButton!
-    @IBOutlet private weak var incompleteFlagButton: NSButton!
-    @IBOutlet private weak var completeFlagButton: NSButton!
+    @IBOutlet private var dateField: NSTextField!
+    @IBOutlet private var amountField: NSTextField!
+    @IBOutlet private var descriptionField: NSTextField!
+    @IBOutlet private var payeeField: NSComboBox!
+    @IBOutlet private var saveDescriptionPayeeCheckbox: NSButton!
+    @IBOutlet private var tagField: NSTokenField!
+    @IBOutlet private var accountField: NSComboBox!
+    @IBOutlet private var saveAccountCheckbox: NSButton!
+    @IBOutlet private var incompleteFlagButton: NSButton!
+    @IBOutlet private var completeFlagButton: NSButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +93,7 @@ class DataEntryViewController: NSViewController {
         saveAccountCheckbox.isEnabled = saveDescriptionPayeeCheckbox.state == .on
     }
 
-    @IBAction func flagRadioButtonChanged(_ sender: NSButton) {
+    @IBAction private func flagRadioButtonChanged(_ sender: NSButton) {
         if completeFlagButton.state == .on {
             flag = .complete
         } else {
@@ -196,11 +202,5 @@ class DataEntryViewController: NSViewController {
             UserDefaults.standard.set(defaultDescriptions, forKey: CSVImporter.userDefaultsDescription)
         }
     }
-
-    static private let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter
-    }()
 
 }

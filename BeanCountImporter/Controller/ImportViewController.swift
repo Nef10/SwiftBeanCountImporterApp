@@ -11,7 +11,7 @@ import SwiftBeanCountModel
 
 class ImportViewController: NSViewController {
 
-    struct SegueIdentifier {
+    enum SegueIdentifier {
         static let dataEntrySheet = "dataEntrySheet"
     }
 
@@ -53,7 +53,7 @@ class ImportViewController: NSViewController {
     }
 
     private func updateOutput() {
-        textView.string = resultLedger.transactions.map { String(describing: $0) }.reduce("") { "\($0)\n\n\($1)" }.trimmingCharacters(in: .whitespacesAndNewlines)
+        textView.string = resultLedger.transactions.map { String(describing: $0) }.reduce(into: "") { $0.append("\n\n\($1)") }.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     private func importData() {

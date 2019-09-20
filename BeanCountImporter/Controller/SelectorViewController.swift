@@ -23,18 +23,18 @@ private enum SelectedImportMode {
 
 class SelectorViewController: NSViewController {
 
-    struct SegueIdentifier {
+    enum SegueIdentifier {
         static let showImport = "showImport"
         static let showTextEntry = "showTextEntry"
     }
 
-    @IBOutlet private weak var accountNameField: NSTextField!
-    @IBOutlet private weak var commoditySymbolField: NSTextField!
-    @IBOutlet private weak var fileNameLabel: NSTextField!
-    @IBOutlet private weak var ledgerNameLabel: NSTextField!
-
     private var ledgerURL: URL?
     private var selectedImportMode: SelectedImportMode?
+
+    @IBOutlet private var accountNameField: NSTextField!
+    @IBOutlet private var commoditySymbolField: NSTextField!
+    @IBOutlet private var fileNameLabel: NSTextField!
+    @IBOutlet private var ledgerNameLabel: NSTextField!
 
     @IBAction private func selectButtonClicked(_ sender: Any) {
         let openPanel = NSOpenPanel()

@@ -12,10 +12,6 @@ import SwiftBeanCountModel
 
 class CSVImporter {
 
-    static let userDefaultsPayees = "payees"
-    static let userDefaultsAccounts = "accounts"
-    static let userDefaultsDescription = "description"
-
     struct CSVLine {
         let date: Date
         let description: String
@@ -23,14 +19,12 @@ class CSVImporter {
         let payee: String
     }
 
-    let csvReader: CSVReader
-    let account: Account
+    static let userDefaultsPayees = "payees"
+    static let userDefaultsAccounts = "accounts"
+    static let userDefaultsDescription = "description"
 
-    private let commoditySymbol: String
-    private let defaultAccountName = "Expenses:TODO"
-
-    static private let regexe: [NSRegularExpression] = {
-        [ // swiftlint:disable force_try
+    private static let regexe: [NSRegularExpression] = {  // swiftlint:disable force_try
+        [
             try! NSRegularExpression(pattern: "(C-)?IDP PURCHASE( )?-( )?[0-9]{4}", options: []),
             try! NSRegularExpression(pattern: "VISA DEBIT (PUR|REF)-[0-9]{4}", options: []),
             try! NSRegularExpression(pattern: "WWWINTERAC PUR [0-9]{4}", options: []),
@@ -40,13 +34,45 @@ class CSVImporter {
             try! NSRegularExpression(pattern: "-( )?(MAY|JUNE)( )?201(4|6)", options: []),
             try! NSRegularExpression(pattern: "[^ ]*  BC  CA", options: []),
             try! NSRegularExpression(pattern: "#( )?[0-9]{1,5}", options: []),
-        ] // swiftlint:enable force_try
-    }()
+        ]
+    }() // swiftlint:enable force_try
+
+    let csvReader: CSVReader
+    let account: Account
+
+    private let commoditySymbol: String
+    private let defaultAccountName = "Expenses:TODO"
 
     init(csvReader: CSVReader, account: Account, commoditySymbol: String) {
         self.csvReader = csvReader
         self.account = account
         self.commoditySymbol = commoditySymbol
+    }
+
+    static func new(url: URL?, accountName: String, commoditySymbol: String) -> CSVImporter? {
+        guard let url = url, let csvReader = openFile(url), let headerRow = csvReader.headerRow, let account = try? Account(name: accountName) else {
+            return nil
+        }
+        if headerRow == RBCImporter.header {
+            return RBCImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
+        } else if headerRow == TangerineImporter.header {
+            return TangerineImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
+        } else if headerRow == LunchOnUsImporter.header {
+            return LunchOnUsImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
+        }
+        return nil
+    }
+
+    private static func openFile(_ url: URL) -> CSVReader? {
+        let inputStream = InputStream(url: url)
+        guard let input = inputStream else {
+            return nil
+        }
+        do {
+            return try CSVReader(stream: input, hasHeaderRow: true, trimFields: true)
+        } catch {
+            return nil
+        }
     }
 
     func parseLineIntoTransaction() -> ImportedTransaction? {
@@ -87,34 +113,8 @@ class CSVImporter {
         return ImportedTransaction(transaction: transaction, originalDescription: originalDescription)
     }
 
-    func parseLine() -> CSVLine {
+    func parseLine() -> CSVLine { // swiftlint:disable:this unavailable_function
         fatalError("Must Override")
-    }
-
-    static func new(url: URL?, accountName: String, commoditySymbol: String) -> CSVImporter? {
-        guard let url = url, let csvReader = openFile(url), let headerRow = csvReader.headerRow, let account = try? Account(name: accountName) else {
-            return nil
-        }
-        if headerRow == RBCImporter.header {
-            return RBCImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
-        } else if headerRow == TangerineImporter.header {
-            return TangerineImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
-        } else if headerRow == LunchOnUsImporter.header {
-            return LunchOnUsImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
-        }
-        return nil
-    }
-
-    private static func openFile(_ url: URL) -> CSVReader? {
-        let inputStream = InputStream(url: url)
-        guard let input = inputStream else {
-            return nil
-        }
-        do {
-            return try CSVReader(stream: input, hasHeaderRow: true, trimFields: true)
-        } catch {
-            return nil
-        }
     }
 
 }
