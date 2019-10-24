@@ -32,6 +32,7 @@
 		F9C438721F550AB5004732E2 /* BeanCountImporterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438711F550AB5004732E2 /* BeanCountImporterUITests.swift */; };
 		F9C438801F550C11004732E2 /* CSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9C4387F1F550C11004732E2 /* CSV.framework */; };
 		F9C438811F550C11004732E2 /* CSV.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9C4387F1F550C11004732E2 /* CSV.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9DD662C23614C7300908BE2 /* N26Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DD662B23614C7300908BE2 /* N26Importer.swift */; };
 		F9DD92C01F5CBBD500738DEA /* SwiftBeanCountModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9DD92BF1F5CBBD400738DEA /* SwiftBeanCountModel.framework */; };
 		F9DD92C11F5CBBD500738DEA /* SwiftBeanCountModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9DD92BF1F5CBBD400738DEA /* SwiftBeanCountModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -110,6 +111,7 @@
 		F9C438711F550AB5004732E2 /* BeanCountImporterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeanCountImporterUITests.swift; sourceTree = "<group>"; };
 		F9C438731F550AB5004732E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9C4387F1F550C11004732E2 /* CSV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CSV.framework; path = Carthage/Build/Mac/CSV.framework; sourceTree = "<group>"; };
+		F9DD662B23614C7300908BE2 /* N26Importer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = N26Importer.swift; sourceTree = "<group>"; };
 		F9DD92BF1F5CBBD400738DEA /* SwiftBeanCountModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftBeanCountModel.framework; path = Carthage/Build/Mac/SwiftBeanCountModel.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,6 +185,7 @@
 			children = (
 				F98AD0F61F551D2300CC02DA /* CSVImporter.swift */,
 				F98AD0F81F55211900CC02DA /* RBCImporter.swift */,
+				F9DD662B23614C7300908BE2 /* N26Importer.swift */,
 				F98AD0FA1F55213300CC02DA /* TangerineImporter.swift */,
 				F93C20211F5D1D7900372960 /* LunchOnUsImporter.swift */,
 				F90DBD8220969AD5002CC310 /* ImportedTransaction.swift */,
@@ -420,6 +423,7 @@
 				F90DBD8320969AD5002CC310 /* ImportedTransaction.swift in Sources */,
 				F9B9E14E2324D4D200811B3F /* TextEntryViewController.swift in Sources */,
 				F909311B202FE9A500166FB9 /* AccountComboBoxDataSource.swift in Sources */,
+				F9DD662C23614C7300908BE2 /* N26Importer.swift in Sources */,
 				F98AD0F91F55211900CC02DA /* RBCImporter.swift in Sources */,
 				F9C438551F550AB5004732E2 /* AppDelegate.swift in Sources */,
 				F98E4AF82025911B00924AD4 /* DataEntryViewController.swift in Sources */,
