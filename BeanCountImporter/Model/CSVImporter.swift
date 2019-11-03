@@ -77,21 +77,26 @@ class CSVImporter {
         }
     }
 
+    private func sanitizeDesciription(_ description: String) -> String {
+        var result = description
+        for regex in CSVImporter.regexe {
+            result = regex.stringByReplacingMatches(in: result,
+                                                    options: .withoutAnchoringBounds,
+                                                    range: NSRange(description.startIndex..., in: description),
+                                                    withTemplate: "")
+        }
+        return result
+    }
+
     func parseLineIntoTransaction() -> ImportedTransaction? {
         guard csvReader.next() != nil else {
             return nil
         }
         let commodity = Commodity(symbol: commoditySymbol)
         let data = parseLine()
-        var description = data.description
+        var description = sanitizeDesciription(data.description)
         var payee = data.payee
         let originalPayee = payee
-        for regex in CSVImporter.regexe {
-            description = regex.stringByReplacingMatches(in: description,
-                                                         options: .withoutAnchoringBounds,
-                                                         range: NSRange(description.startIndex..., in: description),
-                                                         withTemplate: "")
-        }
         let originalDescription = description
         if let savedPayee = (UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsPayees) as? [String: String])?[description] {
             payee = savedPayee
