@@ -17,6 +17,7 @@ class CSVImporter {
         let description: String
         let amount: Decimal
         let payee: String
+        let price: Amount?
     }
 
     static let userDefaultsPayees = "payees"
@@ -116,7 +117,12 @@ class CSVImporter {
         let transaction = Transaction(metaData: transactionMetaData)
         let amount = Amount(number: data.amount, commodity: commodity, decimalDigits: 2)
         transaction.postings.append(Posting(account: account, amount: amount, transaction: transaction))
-        transaction.postings.append(Posting(account: categoryAccount, amount: categoryAmount, transaction: transaction))
+        if let price = data.price {
+            let pricePer = Amount(number: categoryAmount.number / price.number, commodity: categoryAmount.commodity, decimalDigits: 7)
+            transaction.postings.append(Posting(account: categoryAccount, amount: price, transaction: transaction, price: pricePer, cost: nil))
+        } else {
+            transaction.postings.append(Posting(account: categoryAccount, amount: categoryAmount, transaction: transaction))
+        }
         return ImportedTransaction(transaction: transaction, originalDescription: originalDescription)
     }
 

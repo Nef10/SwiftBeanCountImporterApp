@@ -33,7 +33,7 @@ class TangerineImporter: CSVImporter {
             description = csvReader[TangerineImporter.memo]!
         }
         let amount = Decimal(string: csvReader[TangerineImporter.amount]!, locale: Locale(identifier: "en_CA"))!
-        return CSVLine(date: date, description: description, amount: amount, payee: payee)
+        return CSVLine(date: date, description: description, amount: amount, payee: payee, price: nil)
     }
 
 }

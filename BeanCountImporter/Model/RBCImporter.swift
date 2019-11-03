@@ -28,7 +28,7 @@ class RBCImporter: CSVImporter {
         let description = csvReader[RBCImporter.description1]! + " " + csvReader[RBCImporter.description2]!
         let amount = Decimal(string: csvReader[RBCImporter.amount]!, locale: Locale(identifier: "en_CA"))!
         let payee = description == "MONTHLY FEE " ? "RBC" : ""
-        return CSVLine(date: date, description: description, amount: amount, payee: payee)
+        return CSVLine(date: date, description: description, amount: amount, payee: payee, price: nil)
     }
 
 }

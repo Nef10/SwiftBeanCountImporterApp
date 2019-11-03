@@ -36,7 +36,7 @@ class LunchOnUsImporter: CSVImporter {
             description = csvReader[LunchOnUsImporter.description]!
         }
         let amount = Decimal(string: sign + csvReader[LunchOnUsImporter.amount]!, locale: Locale(identifier: "en_CA"))!
-        return CSVLine(date: date, description: description, amount: amount, payee: payee)
+        return CSVLine(date: date, description: description, amount: amount, payee: payee, price: nil)
     }
 
 }
