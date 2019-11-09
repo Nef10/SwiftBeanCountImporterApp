@@ -78,12 +78,12 @@ class CSVImporter {
         }
     }
 
-    private func sanitizeDesciription(_ description: String) -> String {
+    private func sanitizeDescription(_ description: String) -> String {
         var result = description
         for regex in CSVImporter.regexe {
             result = regex.stringByReplacingMatches(in: result,
                                                     options: .withoutAnchoringBounds,
-                                                    range: NSRange(description.startIndex..., in: description),
+                                                    range: NSRange(result.startIndex..., in: result),
                                                     withTemplate: "")
         }
         return result
@@ -95,7 +95,7 @@ class CSVImporter {
         }
         let commodity = Commodity(symbol: commoditySymbol)
         let data = parseLine()
-        var description = sanitizeDesciription(data.description)
+        var description = sanitizeDescription(data.description)
         var payee = data.payee
         let originalPayee = payee
         let originalDescription = description
