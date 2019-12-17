@@ -62,6 +62,8 @@ class CSVImporter {
             return LunchOnUsImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
         } else if headerRow == N26Importer.header {
             return N26Importer(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
+        } else if headerRow == RogersImporter.header {
+            return RogersImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
         }
         return nil
     }

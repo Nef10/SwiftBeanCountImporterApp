@@ -15,6 +15,7 @@
 		F90DBD8320969AD5002CC310 /* ImportedTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90DBD8220969AD5002CC310 /* ImportedTransaction.swift */; };
 		F91C986C1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = F91C986B1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM */; };
 		F93C20221F5D1D7900372960 /* LunchOnUsImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C20211F5D1D7900372960 /* LunchOnUsImporter.swift */; };
+		F949EAAD23A7FA61003643AC /* RogersImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F949EAAC23A7FA61003643AC /* RogersImporter.swift */; };
 		F9786CB01F550C7E002EBB53 /* CSV.framework.dSYM in Carthage dSYMs */ = {isa = PBXBuildFile; fileRef = F9786CAF1F550C77002EBB53 /* CSV.framework.dSYM */; };
 		F97ED1F91F5CBC55009BAD44 /* SwiftBeanCountModel.framework.dSYM in Carthage dSYMs */ = {isa = PBXBuildFile; fileRef = F91C986B1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM */; };
 		F97ED1FD1F5CEEE1009BAD44 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97ED1FC1F5CEEE1009BAD44 /* ImportViewController.swift */; };
@@ -90,6 +91,7 @@
 		F90DBD8220969AD5002CC310 /* ImportedTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportedTransaction.swift; sourceTree = "<group>"; };
 		F91C986B1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftBeanCountModel.framework.dSYM; path = Carthage/Build/Mac/SwiftBeanCountModel.framework.dSYM; sourceTree = "<group>"; };
 		F93C20211F5D1D7900372960 /* LunchOnUsImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchOnUsImporter.swift; sourceTree = "<group>"; };
+		F949EAAC23A7FA61003643AC /* RogersImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RogersImporter.swift; sourceTree = "<group>"; };
 		F9786CAF1F550C77002EBB53 /* CSV.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CSV.framework.dSYM; path = Carthage/Build/Mac/CSV.framework.dSYM; sourceTree = "<group>"; };
 		F97ED1FC1F5CEEE1009BAD44 /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
 		F98AD0F61F551D2300CC02DA /* CSVImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVImporter.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				F93C20211F5D1D7900372960 /* LunchOnUsImporter.swift */,
 				F90DBD8220969AD5002CC310 /* ImportedTransaction.swift */,
 				F9B9E14F2325C96100811B3F /* ManuLifeImporter.swift */,
+				F949EAAC23A7FA61003643AC /* RogersImporter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				F9DD662C23614C7300908BE2 /* N26Importer.swift in Sources */,
 				F98AD0F91F55211900CC02DA /* RBCImporter.swift in Sources */,
 				F9C438551F550AB5004732E2 /* AppDelegate.swift in Sources */,
+				F949EAAD23A7FA61003643AC /* RogersImporter.swift in Sources */,
 				F98E4AF82025911B00924AD4 /* DataEntryViewController.swift in Sources */,
 				F93C20221F5D1D7900372960 /* LunchOnUsImporter.swift in Sources */,
 				F909311D202FF1F000166FB9 /* PayeeComboBoxDataSource.swift in Sources */,

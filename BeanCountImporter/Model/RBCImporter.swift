@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  RBCImporter.swift
 //  BeanCountImporter
 //
 //  Created by Steffen Kötte on 2017-08-28.
