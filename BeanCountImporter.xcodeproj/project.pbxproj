@@ -24,6 +24,7 @@
 		F98AD0FB1F55213300CC02DA /* TangerineImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0FA1F55213300CC02DA /* TangerineImporter.swift */; };
 		F98E4AF82025911B00924AD4 /* DataEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98E4AF72025911B00924AD4 /* DataEntryViewController.swift */; };
 		F995061C23B102E700777D71 /* SimpliiImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995061B23B102E700777D71 /* SimpliiImporter.swift */; };
+		F995061E23B11E8300777D71 /* DuplicateTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995061D23B11E8300777D71 /* DuplicateTransactionViewController.swift */; };
 		F9B9E14E2324D4D200811B3F /* TextEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B9E14D2324D4D200811B3F /* TextEntryViewController.swift */; };
 		F9B9E1502325C96100811B3F /* ManuLifeImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B9E14F2325C96100811B3F /* ManuLifeImporter.swift */; };
 		F9C438551F550AB5004732E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438541F550AB5004732E2 /* AppDelegate.swift */; };
@@ -100,6 +101,7 @@
 		F98AD0FA1F55213300CC02DA /* TangerineImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangerineImporter.swift; sourceTree = "<group>"; };
 		F98E4AF72025911B00924AD4 /* DataEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEntryViewController.swift; sourceTree = "<group>"; };
 		F995061B23B102E700777D71 /* SimpliiImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpliiImporter.swift; sourceTree = "<group>"; };
+		F995061D23B11E8300777D71 /* DuplicateTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicateTransactionViewController.swift; sourceTree = "<group>"; };
 		F9B9E14D2324D4D200811B3F /* TextEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEntryViewController.swift; sourceTree = "<group>"; };
 		F9B9E14F2325C96100811B3F /* ManuLifeImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuLifeImporter.swift; sourceTree = "<group>"; };
 		F9C438511F550AB5004732E2 /* BeanCountImporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeanCountImporter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,6 +182,7 @@
 				F97ED1FC1F5CEEE1009BAD44 /* ImportViewController.swift */,
 				F98E4AF72025911B00924AD4 /* DataEntryViewController.swift */,
 				F9B9E14D2324D4D200811B3F /* TextEntryViewController.swift */,
+				F995061D23B11E8300777D71 /* DuplicateTransactionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				F9DD662C23614C7300908BE2 /* N26Importer.swift in Sources */,
 				F98AD0F91F55211900CC02DA /* RBCImporter.swift in Sources */,
 				F9C438551F550AB5004732E2 /* AppDelegate.swift in Sources */,
+				F995061E23B11E8300777D71 /* DuplicateTransactionViewController.swift in Sources */,
 				F949EAAD23A7FA61003643AC /* RogersImporter.swift in Sources */,
 				F98E4AF82025911B00924AD4 /* DataEntryViewController.swift in Sources */,
 				F995061C23B102E700777D71 /* SimpliiImporter.swift in Sources */,

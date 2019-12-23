@@ -13,6 +13,7 @@ class ImportViewController: NSViewController {
 
     enum SegueIdentifier {
         static let dataEntrySheet = "dataEntrySheet"
+        static let duplicateTransactionSheet = "duplicateTransactionSheet"
     }
 
     var importMode: ImportMode?
@@ -47,6 +48,13 @@ class ImportViewController: NSViewController {
             controller.importedTransaction = nextTransaction
             controller.delegate = self
             controller.ledger = autocompleteLedger
+        case SegueIdentifier.duplicateTransactionSheet:
+            guard let controller = segue.destinationController as? DuplicateTransactionViewController else {
+                return
+            }
+            controller.importedTransaction = nextTransaction?.transaction
+            controller.existingTransaction = doesTransactionAlreadyExist()
+            controller.delegate = self
         default:
             break
         }
@@ -74,12 +82,34 @@ class ImportViewController: NSViewController {
         }
         nextTransaction = csvImporter?.parseLineIntoTransaction()
         if nextTransaction != nil {
-            showDataEntryViewForNextTransaction()
+            showDataEntryOrDuplicateTransactionViewForTransaction()
         }
     }
 
-    private func showDataEntryViewForNextTransaction() {
+    private func showDataEntryOrDuplicateTransactionViewForTransaction() {
+        if doesTransactionAlreadyExist() != nil {
+            showDuplicateTransactionViewForTransaction()
+        } else {
+            showDataEntryViewForTransaction()
+        }
+    }
+
+    private func showDataEntryViewForTransaction() {
         performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.dataEntrySheet), sender: self)
+    }
+
+    private func showDuplicateTransactionViewForTransaction() {
+           performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.duplicateTransactionSheet), sender: self)
+       }
+
+    private func doesTransactionAlreadyExist() -> Transaction? {
+        guard let nextTransaction = nextTransaction?.transaction, let autocompleteLedger = autocompleteLedger else {
+            return nil
+        }
+        return autocompleteLedger.transactions.first {
+            $0.postings.contains { $0.account.name == nextTransaction.postings.first?.account.name && $0.amount == nextTransaction.postings.first?.amount }
+                && $0.metaData.date == nextTransaction.metaData.date
+        }
     }
 
 }
@@ -96,6 +126,20 @@ extension ImportViewController: DataEntryViewControllerDelegate {
     func cancel(_ sheet: NSWindow) {
         view.window?.endSheet(sheet)
         view.window?.close()
+    }
+
+}
+
+extension ImportViewController: DuplicateTransactionViewControllerDelegate {
+
+    internal func skipImporting(_ sheet: NSWindow) {
+        view.window?.endSheet(sheet)
+        showDataEntryViewForNextTransactionIfNeccessary()
+    }
+
+    func importAnyway(_ sheet: NSWindow) {
+        view.window?.endSheet(sheet)
+        showDataEntryViewForTransaction()
     }
 
 }
