@@ -185,16 +185,24 @@
 		F98AD0FE1F552C8E00CC02DA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F995061A23B1020500777D71 /* Importer */,
 				F98AD0F61F551D2300CC02DA /* CSVImporter.swift */,
+				F90DBD8220969AD5002CC310 /* ImportedTransaction.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F995061A23B1020500777D71 /* Importer */ = {
+			isa = PBXGroup;
+			children = (
 				F98AD0F81F55211900CC02DA /* RBCImporter.swift */,
 				F9DD662B23614C7300908BE2 /* N26Importer.swift */,
 				F98AD0FA1F55213300CC02DA /* TangerineImporter.swift */,
 				F93C20211F5D1D7900372960 /* LunchOnUsImporter.swift */,
-				F90DBD8220969AD5002CC310 /* ImportedTransaction.swift */,
 				F9B9E14F2325C96100811B3F /* ManuLifeImporter.swift */,
 				F949EAAC23A7FA61003643AC /* RogersImporter.swift */,
 			);
-			path = Model;
+			path = Importer;
 			sourceTree = "<group>";
 		};
 		F9C438481F550AB5004732E2 = {
