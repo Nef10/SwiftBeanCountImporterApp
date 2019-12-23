@@ -23,9 +23,9 @@ class RogersImporter: CSVImporter {
     }()
 
     override func parseLine() -> CSVLine {
-        let date = RogersImporter.dateFormatter.date(from: csvReader[RogersImporter.date]!)!
-        let description = csvReader[RogersImporter.description]!
-        let amount = Decimal(string: csvReader[RogersImporter.amount]!, locale: Locale(identifier: "en_CA"))!
+        let date = Self.dateFormatter.date(from: csvReader[Self.date]!)!
+        let description = csvReader[Self.description]!
+        let amount = Decimal(string: csvReader[Self.amount]!, locale: Locale(identifier: "en_CA"))!
         let payee = description == "CashBack / Remises" ? "Rogers" : ""
         return CSVLine(date: date, description: description, amount: -amount, payee: payee, price: nil)
     }

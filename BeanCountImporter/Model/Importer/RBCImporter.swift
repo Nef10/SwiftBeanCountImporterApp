@@ -24,9 +24,9 @@ class RBCImporter: CSVImporter {
     }()
 
     override func parseLine() -> CSVLine {
-        let date = RBCImporter.dateFormatter.date(from: csvReader[RBCImporter.date]!)!
-        let description = csvReader[RBCImporter.description1]! + " " + csvReader[RBCImporter.description2]!
-        let amount = Decimal(string: csvReader[RBCImporter.amount]!, locale: Locale(identifier: "en_CA"))!
+        let date = Self.dateFormatter.date(from: csvReader[Self.date]!)!
+        let description = csvReader[Self.description1]! + " " + csvReader[Self.description2]!
+        let amount = Decimal(string: csvReader[Self.amount]!, locale: Locale(identifier: "en_CA"))!
         let payee = description == "MONTHLY FEE " ? "RBC" : ""
         return CSVLine(date: date, description: description, amount: amount, payee: payee, price: nil)
     }

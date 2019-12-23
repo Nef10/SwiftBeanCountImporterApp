@@ -24,11 +24,11 @@ class SimpliiImporter: CSVImporter {
     }()
 
     override func parseLine() -> CSVLine {
-        let date = SimpliiImporter.dateFormatter.date(from: csvReader[SimpliiImporter.date]!)!
-        let description = csvReader[SimpliiImporter.description]!
-        var amountString = csvReader[SimpliiImporter.amountIn] ?? ""
+        let date = Self.dateFormatter.date(from: csvReader[Self.date]!)!
+        let description = csvReader[Self.description]!
+        var amountString = csvReader[Self.amountIn] ?? ""
         if amountString.isEmpty {
-            amountString = "-" + (csvReader[SimpliiImporter.amountOut] ?? "0")
+            amountString = "-" + (csvReader[Self.amountOut] ?? "0")
         }
         let amount = Decimal(string: amountString, locale: Locale(identifier: "en_CA"))!
         let payee = description == "INTEREST" ? "Simplii" : ""

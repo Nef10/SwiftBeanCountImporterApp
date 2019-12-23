@@ -162,7 +162,7 @@ class ManuLifeImporter {
     /// - Parameter balances: Array of ManuLifeBalance
     /// - Returns: string with the balances and prices of the units at the current date
     private func stringifyBalances(_ balances: [ManuLifeBalance]) -> String {
-        let dateString = ManuLifeImporter.printDateFormatter.string(from: Date())
+        let dateString = Self.printDateFormatter.string(from: Date())
 
         return balances.map {
             var result = [String]()
@@ -210,7 +210,7 @@ class ManuLifeImporter {
 
         // Parse purchase date
         let parsedDate = firstMatch(in: input, regex: dateRegex) ?? ""
-        let date = ManuLifeImporter.importDateFormatter.date(from: parsedDate)
+        let date = Self.importDateFormatter.date(from: parsedDate)
 
         // Parse purchased units
         let fullRange = NSRange(input.startIndex..<input.endIndex, in: input)
@@ -237,7 +237,7 @@ class ManuLifeImporter {
     /// - Returns: string with the purchase and prices of the units at the purchase date
     private func stringifyPurchase(_ purchase: ([ManuLifeBuy], Date?)) -> String {
         let (matches, date) = purchase
-        let dateString = date != nil ? ManuLifeImporter.printDateFormatter.string(from: date!) : ""
+        let dateString = date != nil ? Self.printDateFormatter.string(from: date!) : ""
 
         var decimalPointPosition = 0
         if let index = amountString.range(of: ".")?.lowerBound {

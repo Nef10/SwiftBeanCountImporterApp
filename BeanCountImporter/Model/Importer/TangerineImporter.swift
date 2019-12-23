@@ -24,15 +24,15 @@ class TangerineImporter: CSVImporter {
     }()
 
     override func parseLine() -> CSVLine {
-        let date = TangerineImporter.dateFormatter.date(from: csvReader[TangerineImporter.date]!)!
+        let date = Self.dateFormatter.date(from: csvReader[Self.date]!)!
         var description = ""
         var payee = ""
-        if csvReader[TangerineImporter.name]! == "Interest Paid" {
+        if csvReader[Self.name]! == "Interest Paid" {
             payee = "Tangerine"
         } else {
-            description = csvReader[TangerineImporter.memo]!
+            description = csvReader[Self.memo]!
         }
-        let amount = Decimal(string: csvReader[TangerineImporter.amount]!, locale: Locale(identifier: "en_CA"))!
+        let amount = Decimal(string: csvReader[Self.amount]!, locale: Locale(identifier: "en_CA"))!
         return CSVLine(date: date, description: description, amount: amount, payee: payee, price: nil)
     }
 

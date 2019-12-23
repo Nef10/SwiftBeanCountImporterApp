@@ -24,18 +24,18 @@ class LunchOnUsImporter: CSVImporter {
     }()
 
     override func parseLine() -> CSVLine {
-        let date = LunchOnUsImporter.dateFormatter.date(from: csvReader[LunchOnUsImporter.date]!)!
+        let date = Self.dateFormatter.date(from: csvReader[Self.date]!)!
         var description = ""
         var payee = ""
         var sign = "-"
-        if csvReader[LunchOnUsImporter.type]! == "Activate Card" {
+        if csvReader[Self.type]! == "Activate Card" {
             payee = "SAP Canada Inc."
             sign = "+"
             description = ""
         } else {
-            description = csvReader[LunchOnUsImporter.description]!
+            description = csvReader[Self.description]!
         }
-        let amount = Decimal(string: sign + csvReader[LunchOnUsImporter.amount]!, locale: Locale(identifier: "en_CA"))!
+        let amount = Decimal(string: sign + csvReader[Self.amount]!, locale: Locale(identifier: "en_CA"))!
         return CSVLine(date: date, description: description, amount: amount, payee: payee, price: nil)
     }
 
