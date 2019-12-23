@@ -20,6 +20,13 @@ protocol DataEntryViewControllerDelegate: AnyObject {
     ///   - transaction: updated transaction
     func finished(_ sheet: NSWindow, transaction: Transaction)
 
+    /// Will be called if the user clicked skip
+    ///
+    /// The delegate is responsible for dismissing the DataEntryViewController
+    ///
+    /// - Parameter sheet: window of the DataEntryViewController
+    func skipImporting(_ sheet: NSWindow)
+
     /// Will be called if the user cancels the data entry
     ///
     /// The delegate is responsible for dismissing the DataEntryViewController
@@ -87,6 +94,10 @@ class DataEntryViewController: NSViewController {
 
     @IBAction private func cancelButtonPressed(_ sender: Any) {
         self.delegate?.cancel(view.window!)
+    }
+
+    @IBAction private func skipButtonPressed(_ sender: Any) {
+        self.delegate?.skipImporting(view.window!)
     }
 
     @IBAction private func saveDescriptionPayeeCheckboxClicked(_ sender: Any) {

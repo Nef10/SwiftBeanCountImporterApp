@@ -114,9 +114,9 @@ class ImportViewController: NSViewController {
 
 }
 
-extension ImportViewController: DataEntryViewControllerDelegate {
+extension ImportViewController: DataEntryViewControllerDelegate, DuplicateTransactionViewControllerDelegate {
 
-    internal func finished(_ sheet: NSWindow, transaction: Transaction) {
+    func finished(_ sheet: NSWindow, transaction: Transaction) {
         view.window?.endSheet(sheet)
         _ = resultLedger.add(transaction)
         updateOutput()
@@ -128,11 +128,7 @@ extension ImportViewController: DataEntryViewControllerDelegate {
         view.window?.close()
     }
 
-}
-
-extension ImportViewController: DuplicateTransactionViewControllerDelegate {
-
-    internal func skipImporting(_ sheet: NSWindow) {
+    func skipImporting(_ sheet: NSWindow) {
         view.window?.endSheet(sheet)
         showDataEntryViewForNextTransactionIfNeccessary()
     }
