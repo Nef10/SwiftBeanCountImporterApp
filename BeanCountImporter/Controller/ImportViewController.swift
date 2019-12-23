@@ -19,7 +19,7 @@ class ImportViewController: NSViewController {
     var autocompleteLedger: Ledger?
 
     private var resultLedger: Ledger = Ledger()
-    private var nextTransactions: ImportedTransaction?
+    private var nextTransaction: ImportedTransaction?
 
     @IBOutlet private var textView: NSTextView!
 
@@ -44,7 +44,7 @@ class ImportViewController: NSViewController {
                 return
             }
             controller.baseAccount = csvImporter?.account
-            controller.importedTransaction = nextTransactions
+            controller.importedTransaction = nextTransaction
             controller.delegate = self
             controller.ledger = autocompleteLedger
         default:
@@ -72,8 +72,8 @@ class ImportViewController: NSViewController {
         guard case let .csv(csvImporter)? = importMode else {
             return
         }
-        nextTransactions = csvImporter?.parseLineIntoTransaction()
-        if nextTransactions != nil {
+        nextTransaction = csvImporter?.parseLineIntoTransaction()
+        if nextTransaction != nil {
             showDataEntryViewForNextTransaction()
         }
     }
