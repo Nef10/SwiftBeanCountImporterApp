@@ -74,11 +74,11 @@ class ImportViewController: NSViewController {
         }
         nextTransactions = csvImporter?.parseLineIntoTransaction()
         if nextTransactions != nil {
-            showDateEntryViewForNextTransaction()
+            showDataEntryViewForNextTransaction()
         }
     }
 
-    private func showDateEntryViewForNextTransaction() {
+    private func showDataEntryViewForNextTransaction() {
         performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.dataEntrySheet), sender: self)
     }
 
