@@ -8,31 +8,44 @@
 
 import Cocoa
 import SwiftBeanCountModel
+import SwiftBeanCountParser
 
 class ImportViewController: NSViewController {
 
     enum SegueIdentifier {
         static let dataEntrySheet = "dataEntrySheet"
         static let duplicateTransactionSheet = "duplicateTransactionSheet"
+        static let loadingIndicatorSheet = "loadingIndicatorSheet"
     }
 
     var importMode: ImportMode?
-    var autocompleteLedger: Ledger?
+    var autocompleteLedgerURL: URL?
 
+    private var autocompleteLedger: Ledger?
     private var resultLedger: Ledger = Ledger()
     private var nextTransaction: ImportedTransaction?
+    private var csvImporter: CSVImporter?
+    private var manuLifeImporter: ManuLifeImporter?
+
+    private weak var loadingIndicatorSheet: LoadingIndicatorViewController?
 
     @IBOutlet private var textView: NSTextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let font = NSFont(name: "Menlo", size: 12) {
-            textView.typingAttributes = [NSAttributedString.Key.font: font]
-        }
+        setupUI()
     }
 
     override func viewDidAppear() {
-        importData()
+        super.viewDidAppear()
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            self?.processPassedData()
+            guard self?.isPassedDataValid() ?? false else {
+                self?.handleInvalidPassedData()
+                return
+            }
+            self?.importData()
+        }
     }
 
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -41,7 +54,7 @@ class ImportViewController: NSViewController {
         }
         switch identifier {
         case SegueIdentifier.dataEntrySheet:
-            guard let controller = segue.destinationController as? DataEntryViewController, case let .csv(csvImporter)? = importMode else {
+            guard let controller = segue.destinationController as? DataEntryViewController, case .csv = importMode else {
                 return
             }
             controller.baseAccount = csvImporter?.account
@@ -55,6 +68,11 @@ class ImportViewController: NSViewController {
             controller.importedTransaction = nextTransaction?.transaction
             controller.existingTransaction = doesTransactionAlreadyExist()
             controller.delegate = self
+        case SegueIdentifier.loadingIndicatorSheet:
+            guard let controller = segue.destinationController as? LoadingIndicatorViewController else {
+                return
+            }
+            loadingIndicatorSheet = controller
         default:
             break
         }
@@ -64,20 +82,64 @@ class ImportViewController: NSViewController {
         textView.string = resultLedger.transactions.map { String(describing: $0) }.reduce(into: "") { $0.append("\n\n\($1)") }.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
-    private func importData() {
+    private func processPassedData() {
+        DispatchQueue.main.async { [weak self] in
+            self?.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.loadingIndicatorSheet), sender: self)
+            self?.loadingIndicatorSheet?.updateText(text: "Loading import data")
+        }
         switch importMode {
-        case .csv?:
-            showDataEntryViewForNextTransactionIfNeccessary()
-        case let .text(transactionString, balanceString, account, commodity)?:
-            let importer = ManuLifeImporter(autocompleteLedger: autocompleteLedger, accountName: account, commodityString: commodity)
-            textView.string = importer.parse(transaction: transactionString, balance: balanceString)
+        case let .csv(fileURL, account, commodity)?:
+            csvImporter = CSVImporter.new(url: fileURL, accountName: account, commoditySymbol: commodity)
+        case let .text(_, _, account, commodity)?:
+            manuLifeImporter = ManuLifeImporter(autocompleteLedger: autocompleteLedger, accountName: account, commodityString: commodity)
         case .none:
-            textView.string = "Unable to import data"
+            break
+        }
+        if let autocompleteLedgerURL = autocompleteLedgerURL {
+            DispatchQueue.main.async { [weak self] in
+                self?.loadingIndicatorSheet?.updateText(text: "Loading Ledger")
+            }
+            autocompleteLedger = try? Parser.parse(contentOf: autocompleteLedgerURL)
+        }
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self, let window = self.loadingIndicatorSheet?.view.window else {
+                return
+            }
+            self.view.window?.endSheet(window)
+        }
+    }
+
+    private func isPassedDataValid() -> Bool {
+        return csvImporter != nil || manuLifeImporter != nil
+    }
+
+    private func setupUI() {
+        if let font = NSFont(name: "Menlo", size: 12) {
+            textView.typingAttributes = [NSAttributedString.Key.font: font]
+        }
+    }
+
+    private func handleInvalidPassedData() {
+        DispatchQueue.main.async { [weak self] in
+            self?.textView.string = "Unable to import data"
+        }
+    }
+
+    private func importData() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            if let manuLifeImporter = self.manuLifeImporter, case let .text(transactionString, balanceString, _, _)? = self.importMode {
+                self.textView.string = manuLifeImporter.parse(transaction: transactionString, balance: balanceString)
+            } else {
+                self.showDataEntryViewForNextTransactionIfNeccessary()
+            }
         }
     }
 
     private func showDataEntryViewForNextTransactionIfNeccessary() {
-        guard case let .csv(csvImporter)? = importMode else {
+        guard case .csv = importMode else {
             return
         }
         nextTransaction = csvImporter?.parseLineIntoTransaction()

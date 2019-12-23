@@ -25,6 +25,7 @@
 		F98E4AF82025911B00924AD4 /* DataEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98E4AF72025911B00924AD4 /* DataEntryViewController.swift */; };
 		F995061C23B102E700777D71 /* SimpliiImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995061B23B102E700777D71 /* SimpliiImporter.swift */; };
 		F995061E23B11E8300777D71 /* DuplicateTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995061D23B11E8300777D71 /* DuplicateTransactionViewController.swift */; };
+		F995062023B1780900777D71 /* LoadingIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995061F23B1780900777D71 /* LoadingIndicatorViewController.swift */; };
 		F9B9E14E2324D4D200811B3F /* TextEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B9E14D2324D4D200811B3F /* TextEntryViewController.swift */; };
 		F9B9E1502325C96100811B3F /* ManuLifeImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B9E14F2325C96100811B3F /* ManuLifeImporter.swift */; };
 		F9C438551F550AB5004732E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438541F550AB5004732E2 /* AppDelegate.swift */; };
@@ -102,6 +103,7 @@
 		F98E4AF72025911B00924AD4 /* DataEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEntryViewController.swift; sourceTree = "<group>"; };
 		F995061B23B102E700777D71 /* SimpliiImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpliiImporter.swift; sourceTree = "<group>"; };
 		F995061D23B11E8300777D71 /* DuplicateTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicateTransactionViewController.swift; sourceTree = "<group>"; };
+		F995061F23B1780900777D71 /* LoadingIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorViewController.swift; sourceTree = "<group>"; };
 		F9B9E14D2324D4D200811B3F /* TextEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEntryViewController.swift; sourceTree = "<group>"; };
 		F9B9E14F2325C96100811B3F /* ManuLifeImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuLifeImporter.swift; sourceTree = "<group>"; };
 		F9C438511F550AB5004732E2 /* BeanCountImporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeanCountImporter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +185,7 @@
 				F98E4AF72025911B00924AD4 /* DataEntryViewController.swift */,
 				F9B9E14D2324D4D200811B3F /* TextEntryViewController.swift */,
 				F995061D23B11E8300777D71 /* DuplicateTransactionViewController.swift */,
+				F995061F23B1780900777D71 /* LoadingIndicatorViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9C438571F550AB5004732E2 /* SelectorViewController.swift in Sources */,
+				F995062023B1780900777D71 /* LoadingIndicatorViewController.swift in Sources */,
 				F90DBD8320969AD5002CC310 /* ImportedTransaction.swift in Sources */,
 				F9B9E14E2324D4D200811B3F /* TextEntryViewController.swift in Sources */,
 				F909311B202FE9A500166FB9 /* AccountComboBoxDataSource.swift in Sources */,

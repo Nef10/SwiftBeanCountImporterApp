@@ -7,12 +7,10 @@
 //
 
 import Cocoa
-import CSV
 import SwiftBeanCountModel
-import SwiftBeanCountParser
 
 enum ImportMode {
-    case csv(CSVImporter?)
+    case csv(URL, String, String) // import file URL, account, commodity
     case text(String, String, String, String) // transaction, balance, account, commodity
 }
 
@@ -89,12 +87,12 @@ class SelectorViewController: NSViewController {
             }
             switch selectedImportMode! {
             case let .csv(fileURL):
-                controller.importMode = .csv(CSVImporter.new(url: fileURL, accountName: accountNameField.stringValue, commoditySymbol: commoditySymbolField.stringValue))
+                controller.importMode = .csv(fileURL, accountNameField.stringValue, commoditySymbolField.stringValue)
             case let .text(transactionString, balanceString):
                 controller.importMode = .text(transactionString, balanceString, accountNameField.stringValue, commoditySymbolField.stringValue)
             }
             if let ledgerURL = ledgerURL {
-                controller.autocompleteLedger = try? Parser.parse(contentOf: ledgerURL)
+                controller.autocompleteLedgerURL = ledgerURL
             }
         case SegueIdentifier.showTextEntry:
             guard let controller = segue.destinationController as? TextEntryViewController else {
