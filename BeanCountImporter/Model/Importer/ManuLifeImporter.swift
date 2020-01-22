@@ -18,6 +18,7 @@ class ManuLifeImporter {
         let employeeVoluntary: String?
         let employerMatch: String?
         let employerBasic: String?
+        let memberVoluntary: String?
     }
 
     private struct ManuLifeBuy {
@@ -45,8 +46,9 @@ class ManuLifeImporter {
     private let autocompleteLedger: Ledger?
     private let accountString: String
     private let commodityString: String
-    private let commodityPaddingLength = 18
+    private let commodityPaddingLength = 20
     private let accountPaddingLength = 69
+    private let amountPaddingLength = 9
     private let unitFormat = "%.5f"
 
     // Temporary: Figure out how to input this
@@ -120,7 +122,8 @@ class ManuLifeImporter {
         let employeeVoluntaryPattern = #"\s*?Employee voluntary\s*([0-9.]*)"#
         let employerBasicPattern = #"\s*?Employer Basic\s*([0-9.]*)"#
         let employerMatchPattern = #"\s*?Employer Match\s*([0-9.]*)"#
-        let unitValuePattern = #"\s*?Employer Basic\s*[0-9.]*\s*([0-9.]*)\s*[0-9.]*"#
+        let memberVoluntaryPattern = #"\s*?Member Voluntary\s*([0-9.]*)"#
+        let unitValuePattern = #"\s*?(?:Employer Basic|Member Voluntary)\s*[0-9.]*\s*([0-9.]*)\s*[0-9.]*"#
 
         //swiftlint:disable force_try
         let commodityRegex = try! NSRegularExpression(pattern: commodityPattern, options: [.anchorsMatchLines])
@@ -128,6 +131,7 @@ class ManuLifeImporter {
         let employeeVoluntaryRegex = try! NSRegularExpression(pattern: employeeVoluntaryPattern, options: [.anchorsMatchLines])
         let employerBasicRegex = try! NSRegularExpression(pattern: employerBasicPattern, options: [.anchorsMatchLines])
         let employerMatchRegex = try! NSRegularExpression(pattern: employerMatchPattern, options: [.anchorsMatchLines])
+        let memberVoluntaryRegex = try! NSRegularExpression(pattern: memberVoluntaryPattern, options: [.anchorsMatchLines])
         let unitValueRegex = try! NSRegularExpression(pattern: unitValuePattern, options: [.anchorsMatchLines])
         //swiftlint:enable force_try
 
@@ -146,12 +150,14 @@ class ManuLifeImporter {
             let employeeVoluntary = firstMatch(in: input, regex: employeeVoluntaryRegex)
             let employerBasic = firstMatch(in: input, regex: employerBasicRegex)
             let employerMatch = firstMatch(in: input, regex: employerMatchRegex)
+            let memberVoluntary = firstMatch(in: input, regex: memberVoluntaryRegex)
             results.append(ManuLifeBalance(commodity: commodity,
                                            unitValue: unitValue,
                                            employeeBasic: employeeBasic,
                                            employeeVoluntary: employeeVoluntary,
                                            employerMatch: employerMatch,
-                                           employerBasic: employerBasic))
+                                           employerBasic: employerBasic,
+                                           memberVoluntary: memberVoluntary))
         }
 
         return results
@@ -168,19 +174,23 @@ class ManuLifeImporter {
             var result = [String]()
             if let employeeBasic = $0.employeeBasic {
                 let accountName = "\(accountString):Employee:Basic:\($0.commodity)".padding(toLength: accountPaddingLength, withPad: " ", startingAt: 0)
-                result.append("\(dateString) balance \(accountName) \(leftPadding(toLength: 8, withPad: " ", string: employeeBasic)) \($0.commodity)")
+                result.append("\(dateString) balance \(accountName) \(leftPadding(toLength: amountPaddingLength, withPad: " ", string: employeeBasic)) \($0.commodity)")
             }
             if let employerBasic = $0.employerBasic {
                 let accountName = "\(accountString):Employer:Basic:\($0.commodity)".padding(toLength: accountPaddingLength, withPad: " ", startingAt: 0)
-                result.append("\(dateString) balance \(accountName) \(leftPadding(toLength: 8, withPad: " ", string: employerBasic)) \($0.commodity)")
+                result.append("\(dateString) balance \(accountName) \(leftPadding(toLength: amountPaddingLength, withPad: " ", string: employerBasic)) \($0.commodity)")
             }
             if let employerMatch = $0.employerMatch {
                 let accountName = "\(accountString):Employer:Match:\($0.commodity)".padding(toLength: accountPaddingLength, withPad: " ", startingAt: 0)
-                result.append("\(dateString) balance \(accountName) \(leftPadding(toLength: 8, withPad: " ", string: employerMatch)) \($0.commodity)")
+                result.append("\(dateString) balance \(accountName) \(leftPadding(toLength: amountPaddingLength, withPad: " ", string: employerMatch)) \($0.commodity)")
             }
             if let employeeVoluntary = $0.employeeVoluntary {
                 let accountName = "\(accountString):Employee:Voluntary:\($0.commodity)".padding(toLength: accountPaddingLength, withPad: " ", startingAt: 0)
-                result.append("\(dateString) balance \(accountName) \(leftPadding(toLength: 8, withPad: " ", string: employeeVoluntary)) \($0.commodity)")
+                result.append("\(dateString) balance \(accountName) \(leftPadding(toLength: amountPaddingLength, withPad: " ", string: employeeVoluntary)) \($0.commodity)")
+            }
+            if let memberVoluntary = $0.memberVoluntary {
+                let accountName = "\(accountString):\($0.commodity.components(separatedBy: "_")[0])".padding(toLength: accountPaddingLength, withPad: " ", startingAt: 0)
+                result.append("\(dateString) balance \(accountName) \(leftPadding(toLength: amountPaddingLength, withPad: " ", string: memberVoluntary)) \($0.commodity)")
             }
             return result.joined(separator: "\n")
         }
