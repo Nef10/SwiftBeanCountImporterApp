@@ -1,4 +1,4 @@
-# Updated for 0.35.0
+# Updated for 0.38.2
 
 excluded:
   - Carthage
@@ -77,6 +77,12 @@ opt_in_rules:
   - contains_over_filter_count
   - contains_over_filter_is_empty
   - empty_collection_literal
+  - contains_over_range_nil_comparison
+  - flatmap_over_map_reduce
+  - raw_value_for_camel_cased_codable_enum
+  - prefer_self_type_over_type_of_self
+  - enum_case_associated_values_count
+  - optional_enum_case_matching
 
 disabled_rules:
   - trailing_comma

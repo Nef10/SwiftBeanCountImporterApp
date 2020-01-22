@@ -101,11 +101,11 @@ class ManuLifeImporter {
     }
 
     private func parse(balance: String, commodities: [String: String]) -> String {
-        return stringifyBalances(parseBalances(balance, commodities))
+        stringifyBalances(parseBalances(balance, commodities))
     }
 
     private func parse(transaction: String, commodities: [String: String]) -> String {
-        return stringifyPurchase(parsePurchase(transaction, commodities))
+        stringifyPurchase(parsePurchase(transaction, commodities))
     }
 
     /// Parses a string into ManuLifeBalances
@@ -146,18 +146,13 @@ class ManuLifeImporter {
             }
             commodity = commodity.replacingOccurrences(of: " -", with: "")
             commodity = commodities[commodity] ?? commodity
-            let employeeBasic = firstMatch(in: input, regex: employeeBasicRegex)
-            let employeeVoluntary = firstMatch(in: input, regex: employeeVoluntaryRegex)
-            let employerBasic = firstMatch(in: input, regex: employerBasicRegex)
-            let employerMatch = firstMatch(in: input, regex: employerMatchRegex)
-            let memberVoluntary = firstMatch(in: input, regex: memberVoluntaryRegex)
             results.append(ManuLifeBalance(commodity: commodity,
                                            unitValue: unitValue,
-                                           employeeBasic: employeeBasic,
-                                           employeeVoluntary: employeeVoluntary,
-                                           employerMatch: employerMatch,
-                                           employerBasic: employerBasic,
-                                           memberVoluntary: memberVoluntary))
+                                           employeeBasic: firstMatch(in: input, regex: employeeBasicRegex),
+                                           employeeVoluntary: firstMatch(in: input, regex: employeeVoluntaryRegex),
+                                           employerMatch: firstMatch(in: input, regex: employerMatchRegex),
+                                           employerBasic: firstMatch(in: input, regex: employerBasicRegex),
+                                           memberVoluntary: firstMatch(in: input, regex: memberVoluntaryRegex)))
         }
 
         return results

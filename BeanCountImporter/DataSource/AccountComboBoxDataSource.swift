@@ -23,15 +23,15 @@ class AccountComboBoxDataSource: NSObject {
 extension AccountComboBoxDataSource: NSComboBoxDataSource {
 
     func numberOfItems(in comboBox: NSComboBox) -> Int {
-        return accounts.count
+        accounts.count
     }
 
     func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
-        return accounts[index].name
+        accounts[index].name
     }
 
     func comboBox(_ comboBox: NSComboBox, indexOfItemWithStringValue string: String) -> Int {
-        return accounts.firstIndex { $0.name == string } ?? NSNotFound
+        accounts.firstIndex { $0.name == string } ?? NSNotFound
     }
 
     func comboBox(_ comboBox: NSComboBox, completedString string: String) -> String? {

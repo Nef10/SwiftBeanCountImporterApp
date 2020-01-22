@@ -68,7 +68,7 @@ class DuplicateTransactionViewController: NSViewController {
     }
 
     private func isPassedDataValid() -> Bool {
-        return importedTransaction != nil && existingTransaction != nil
+        importedTransaction != nil && existingTransaction != nil
     }
 
     private func handleInvalidPassedData() {

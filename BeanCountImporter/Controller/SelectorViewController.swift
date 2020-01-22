@@ -109,19 +109,19 @@ class SelectorViewController: NSViewController {
     }
 
     private func isInputValid() -> Bool {
-        return isSourceValid() && isAccountValid() && isCommodityValid()
+        isSourceValid() && isAccountValid() && isCommodityValid()
     }
 
     private func isSourceValid() -> Bool {
-        return selectedImportMode != nil
+        selectedImportMode != nil
     }
 
     private func isAccountValid() -> Bool {
-        return Account.isNameValid(accountNameField.stringValue)
+        Account.isNameValid(accountNameField.stringValue)
     }
 
     private func isCommodityValid() -> Bool {
-        return !commoditySymbolField.stringValue.isEmpty
+        !commoditySymbolField.stringValue.isEmpty
     }
 
     private func showValidationError() {

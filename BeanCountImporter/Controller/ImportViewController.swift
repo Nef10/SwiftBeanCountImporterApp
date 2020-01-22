@@ -110,7 +110,7 @@ class ImportViewController: NSViewController {
     }
 
     private func isPassedDataValid() -> Bool {
-        return csvImporter != nil || manuLifeImporter != nil
+        csvImporter != nil || manuLifeImporter != nil
     }
 
     private func setupUI() {

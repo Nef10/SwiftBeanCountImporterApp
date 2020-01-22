@@ -128,7 +128,7 @@ class DataEntryViewController: NSViewController {
     }
 
     private func isPassedDataValid() -> Bool {
-        return transaction != nil && relevantPosting != nil && baseAccount != nil
+        transaction != nil && relevantPosting != nil && baseAccount != nil
     }
 
     private func handleInvalidPassedData() {

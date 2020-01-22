@@ -23,19 +23,19 @@ class PayeeComboBoxDataSource: NSObject {
 extension PayeeComboBoxDataSource: NSComboBoxDataSource {
 
     func numberOfItems(in comboBox: NSComboBox) -> Int {
-        return payees.count
+        payees.count
     }
 
     func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
-        return payees[index]
+        payees[index]
     }
 
     func comboBox(_ comboBox: NSComboBox, indexOfItemWithStringValue string: String) -> Int {
-        return payees.firstIndex { $0.lowercased() == string.lowercased() } ?? NSNotFound
+        payees.firstIndex { $0.lowercased() == string.lowercased() } ?? NSNotFound
     }
 
     func comboBox(_ comboBox: NSComboBox, completedString string: String) -> String? {
-        return payees.first { $0.lowercased().starts(with: string.lowercased()) }
+        payees.first { $0.lowercased().starts(with: string.lowercased()) }
     }
 
 }
