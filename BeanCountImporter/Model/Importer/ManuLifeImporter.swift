@@ -123,7 +123,7 @@ class ManuLifeImporter {
         let employerBasicPattern = #"\s*?Employer Basic\s*([0-9.]*)"#
         let employerMatchPattern = #"\s*?Employer Match\s*([0-9.]*)"#
         let memberVoluntaryPattern = #"\s*?Member Voluntary\s*([0-9.]*)"#
-        let unitValuePattern = #"\s*?(?:Employer Basic|Member Voluntary)\s*[0-9.]*\s*([0-9.]*)\s*[0-9.]*"#
+        let unitValuePattern = #"\s*?(?:Employer Basic|Member Voluntary|Employee voluntary)\s*[0-9.]*\s*([0-9.]*)\s*[0-9.]*"#
 
         //swiftlint:disable force_try
         let commodityRegex = try! NSRegularExpression(pattern: commodityPattern, options: [.anchorsMatchLines])
