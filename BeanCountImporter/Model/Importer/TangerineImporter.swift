@@ -17,6 +17,9 @@ class TangerineImporter: CSVImporter {
 
     static let header = [date, "Transaction", name, memo, amount]
 
+    static let interac = "INTERAC e-Transfer From: "
+    static let interest = "Interest Paid"
+
     private static var dateFormatter: DateFormatter = {
         var dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "M/d/yyyy"
@@ -27,10 +30,13 @@ class TangerineImporter: CSVImporter {
         let date = Self.dateFormatter.date(from: csvReader[Self.date]!)!
         var description = ""
         var payee = ""
-        if csvReader[Self.name]! == "Interest Paid" {
+        if csvReader[Self.name]! == Self.interest {
             payee = "Tangerine"
         } else {
             description = csvReader[Self.memo]!
+            if csvReader[Self.name]!.starts(with: Self.interac) {
+                description = "\(csvReader[Self.name]!.replacingOccurrences(of: Self.interac, with: "")) - \(description)"
+            }
         }
         let amount = Decimal(string: csvReader[Self.amount]!, locale: Locale(identifier: "en_CA"))!
         return CSVLine(date: date, description: description, amount: amount, payee: payee, price: nil)
