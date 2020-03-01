@@ -43,6 +43,8 @@ class CSVImporter {
 
     private let commoditySymbol: String
     private let defaultAccountName = "Expenses:TODO"
+    private var loaded = false
+    private var lines = [CSVLine]()
 
     init(csvReader: CSVReader, account: Account, commoditySymbol: String) {
         self.csvReader = csvReader
@@ -93,12 +95,22 @@ class CSVImporter {
         return result
     }
 
+    func loadFile() {
+        guard !loaded else {
+            return
+        }
+        while csvReader.next() != nil {
+            lines.append(parseLine())
+        }
+        lines.sort { $0.date > $1.date }
+        loaded = true
+    }
+
     func parseLineIntoTransaction() -> ImportedTransaction? {
-        guard csvReader.next() != nil else {
+        guard loaded, let data = lines.popLast() else {
             return nil
         }
         let commodity = Commodity(symbol: commoditySymbol)
-        let data = parseLine()
         var description = sanitizeDescription(data.description)
         var payee = data.payee
         let originalPayee = payee

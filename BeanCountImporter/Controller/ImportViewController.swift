@@ -90,6 +90,7 @@ class ImportViewController: NSViewController {
         switch importMode {
         case let .csv(fileURL, account, commodity)?:
             csvImporter = CSVImporter.new(url: fileURL, accountName: account, commoditySymbol: commodity)
+            csvImporter?.loadFile()
         case let .text(_, _, account, commodity)?:
             manuLifeImporter = ManuLifeImporter(autocompleteLedger: autocompleteLedger, accountName: account, commodityString: commodity)
         case .none:
