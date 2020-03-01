@@ -18,6 +18,8 @@ class ImportViewController: NSViewController {
         static let loadingIndicatorSheet = "loadingIndicatorSheet"
     }
 
+    private static let dateTolerance: TimeInterval = 2 * 60 * 60 * 24 // 2 days +- to check for duplicate transaction
+
     var importMode: ImportMode?
     var autocompleteLedgerURL: URL?
 
@@ -171,7 +173,7 @@ class ImportViewController: NSViewController {
         }
         return autocompleteLedger.transactions.first {
             $0.postings.contains { $0.account.name == nextTransaction.postings.first?.account.name && $0.amount == nextTransaction.postings.first?.amount }
-                && $0.metaData.date == nextTransaction.metaData.date
+                && $0.metaData.date + Self.dateTolerance >= nextTransaction.metaData.date && $0.metaData.date - Self.dateTolerance <= nextTransaction.metaData.date
         }
     }
 
