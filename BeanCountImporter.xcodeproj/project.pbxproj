@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F9007D55243A7AB9004F93E8 /* TangerineCardImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9007D54243A7AB9004F93E8 /* TangerineCardImporter.swift */; };
 		F909311B202FE9A500166FB9 /* AccountComboBoxDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909311A202FE9A500166FB9 /* AccountComboBoxDataSource.swift */; };
 		F909311D202FF1F000166FB9 /* PayeeComboBoxDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909311C202FF1F000166FB9 /* PayeeComboBoxDataSource.swift */; };
 		F9093120202FF4B300166FB9 /* SwiftBeanCountParser.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = F909311E202FF4B300166FB9 /* SwiftBeanCountParser.framework.dSYM */; };
@@ -21,7 +22,7 @@
 		F97ED1FD1F5CEEE1009BAD44 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97ED1FC1F5CEEE1009BAD44 /* ImportViewController.swift */; };
 		F98AD0F71F551D2300CC02DA /* CSVImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0F61F551D2300CC02DA /* CSVImporter.swift */; };
 		F98AD0F91F55211900CC02DA /* RBCImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0F81F55211900CC02DA /* RBCImporter.swift */; };
-		F98AD0FB1F55213300CC02DA /* TangerineImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0FA1F55213300CC02DA /* TangerineImporter.swift */; };
+		F98AD0FB1F55213300CC02DA /* TangerineAccountImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0FA1F55213300CC02DA /* TangerineAccountImporter.swift */; };
 		F98E4AF82025911B00924AD4 /* DataEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98E4AF72025911B00924AD4 /* DataEntryViewController.swift */; };
 		F995061C23B102E700777D71 /* SimpliiImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995061B23B102E700777D71 /* SimpliiImporter.swift */; };
 		F995061E23B11E8300777D71 /* DuplicateTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995061D23B11E8300777D71 /* DuplicateTransactionViewController.swift */; };
@@ -87,6 +88,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F9007D54243A7AB9004F93E8 /* TangerineCardImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangerineCardImporter.swift; sourceTree = "<group>"; };
 		F909311A202FE9A500166FB9 /* AccountComboBoxDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountComboBoxDataSource.swift; sourceTree = "<group>"; };
 		F909311C202FF1F000166FB9 /* PayeeComboBoxDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayeeComboBoxDataSource.swift; sourceTree = "<group>"; };
 		F909311E202FF4B300166FB9 /* SwiftBeanCountParser.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftBeanCountParser.framework.dSYM; path = Carthage/Build/Mac/SwiftBeanCountParser.framework.dSYM; sourceTree = "<group>"; };
@@ -99,7 +101,7 @@
 		F97ED1FC1F5CEEE1009BAD44 /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
 		F98AD0F61F551D2300CC02DA /* CSVImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVImporter.swift; sourceTree = "<group>"; };
 		F98AD0F81F55211900CC02DA /* RBCImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBCImporter.swift; sourceTree = "<group>"; };
-		F98AD0FA1F55213300CC02DA /* TangerineImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangerineImporter.swift; sourceTree = "<group>"; };
+		F98AD0FA1F55213300CC02DA /* TangerineAccountImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangerineAccountImporter.swift; sourceTree = "<group>"; };
 		F98E4AF72025911B00924AD4 /* DataEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEntryViewController.swift; sourceTree = "<group>"; };
 		F995061B23B102E700777D71 /* SimpliiImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpliiImporter.swift; sourceTree = "<group>"; };
 		F995061D23B11E8300777D71 /* DuplicateTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicateTransactionViewController.swift; sourceTree = "<group>"; };
@@ -205,7 +207,8 @@
 			children = (
 				F98AD0F81F55211900CC02DA /* RBCImporter.swift */,
 				F9DD662B23614C7300908BE2 /* N26Importer.swift */,
-				F98AD0FA1F55213300CC02DA /* TangerineImporter.swift */,
+				F98AD0FA1F55213300CC02DA /* TangerineAccountImporter.swift */,
+				F9007D54243A7AB9004F93E8 /* TangerineCardImporter.swift */,
 				F93C20211F5D1D7900372960 /* LunchOnUsImporter.swift */,
 				F9B9E14F2325C96100811B3F /* ManuLifeImporter.swift */,
 				F949EAAC23A7FA61003643AC /* RogersImporter.swift */,
@@ -443,6 +446,7 @@
 				F995062023B1780900777D71 /* LoadingIndicatorViewController.swift in Sources */,
 				F90DBD8320969AD5002CC310 /* ImportedTransaction.swift in Sources */,
 				F9B9E14E2324D4D200811B3F /* TextEntryViewController.swift in Sources */,
+				F9007D55243A7AB9004F93E8 /* TangerineCardImporter.swift in Sources */,
 				F909311B202FE9A500166FB9 /* AccountComboBoxDataSource.swift in Sources */,
 				F9DD662C23614C7300908BE2 /* N26Importer.swift in Sources */,
 				F98AD0F91F55211900CC02DA /* RBCImporter.swift in Sources */,
@@ -454,7 +458,7 @@
 				F93C20221F5D1D7900372960 /* LunchOnUsImporter.swift in Sources */,
 				F909311D202FF1F000166FB9 /* PayeeComboBoxDataSource.swift in Sources */,
 				F97ED1FD1F5CEEE1009BAD44 /* ImportViewController.swift in Sources */,
-				F98AD0FB1F55213300CC02DA /* TangerineImporter.swift in Sources */,
+				F98AD0FB1F55213300CC02DA /* TangerineAccountImporter.swift in Sources */,
 				F9B9E1502325C96100811B3F /* ManuLifeImporter.swift in Sources */,
 				F98AD0F71F551D2300CC02DA /* CSVImporter.swift in Sources */,
 			);

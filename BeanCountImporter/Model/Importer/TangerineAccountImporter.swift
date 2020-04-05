@@ -1,5 +1,5 @@
 //
-//  TangerineImporter.swift
+//  TangerineAccountImporter.swift
 //  BeanCountImporter
 //
 //  Created by Steffen Kötte on 2017-08-28.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TangerineImporter: CSVImporter {
+class TangerineAccountImporter: CSVImporter {
 
     private static let date = "Date"
     private static let name = "Name"

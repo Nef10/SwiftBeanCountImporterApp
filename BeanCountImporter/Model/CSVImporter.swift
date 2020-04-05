@@ -58,8 +58,10 @@ class CSVImporter {
         }
         if headerRow == RBCImporter.header {
             return RBCImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
-        } else if headerRow == TangerineImporter.header {
-            return TangerineImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
+        } else if headerRow == TangerineAccountImporter.header {
+            return TangerineAccountImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
+        } else if headerRow == TangerineCardImporter.header {
+            return TangerineCardImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
         } else if headerRow == LunchOnUsImporter.header {
             return LunchOnUsImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
         } else if headerRow == N26Importer.header {
