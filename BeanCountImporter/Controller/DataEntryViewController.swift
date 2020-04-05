@@ -59,6 +59,7 @@ class DataEntryViewController: NSViewController {
     private var flag = Flag.incomplete
     private var accountComboBoxDataSource: AccountComboBoxDataSource?
     private var payeeComboBoxDataSource: PayeeComboBoxDataSource?
+    private var tagTokenFieldDataSource: TagTokenFieldDataSource?
     private var transaction: Transaction?
 
     @IBOutlet private var dateField: NSTextField!
@@ -119,6 +120,8 @@ class DataEntryViewController: NSViewController {
             accountField.dataSource = accountComboBoxDataSource
             payeeComboBoxDataSource = PayeeComboBoxDataSource(ledger: ledger)
             payeeField.dataSource = payeeComboBoxDataSource
+            tagTokenFieldDataSource = TagTokenFieldDataSource(ledger: ledger)
+            tagField.delegate = tagTokenFieldDataSource
         }
     }
 
