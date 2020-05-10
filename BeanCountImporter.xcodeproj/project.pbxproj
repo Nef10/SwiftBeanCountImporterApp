@@ -41,6 +41,7 @@
 		F9DD662C23614C7300908BE2 /* N26Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DD662B23614C7300908BE2 /* N26Importer.swift */; };
 		F9DD92C01F5CBBD500738DEA /* SwiftBeanCountModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9DD92BF1F5CBBD400738DEA /* SwiftBeanCountModel.framework */; };
 		F9DD92C11F5CBBD500738DEA /* SwiftBeanCountModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9DD92BF1F5CBBD400738DEA /* SwiftBeanCountModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F9DFC62823B3EB0000FB3792 /* DescriptionMappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DFC62723B3EB0000FB3792 /* DescriptionMappingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,7 @@
 		F9C4387F1F550C11004732E2 /* CSV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CSV.framework; path = Carthage/Build/Mac/CSV.framework; sourceTree = "<group>"; };
 		F9DD662B23614C7300908BE2 /* N26Importer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = N26Importer.swift; sourceTree = "<group>"; };
 		F9DD92BF1F5CBBD400738DEA /* SwiftBeanCountModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftBeanCountModel.framework; path = Carthage/Build/Mac/SwiftBeanCountModel.framework; sourceTree = "<group>"; };
+		F9DFC62723B3EB0000FB3792 /* DescriptionMappingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DescriptionMappingViewController.swift; path = Settings/DescriptionMappingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 				F9B9E14D2324D4D200811B3F /* TextEntryViewController.swift */,
 				F995061D23B11E8300777D71 /* DuplicateTransactionViewController.swift */,
 				F995061F23B1780900777D71 /* LoadingIndicatorViewController.swift */,
+				F9DFC62723B3EB0000FB3792 /* DescriptionMappingViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				F995061E23B11E8300777D71 /* DuplicateTransactionViewController.swift in Sources */,
 				F949EAAD23A7FA61003643AC /* RogersImporter.swift in Sources */,
 				F98E4AF82025911B00924AD4 /* DataEntryViewController.swift in Sources */,
+				F9DFC62823B3EB0000FB3792 /* DescriptionMappingViewController.swift in Sources */,
 				F995061C23B102E700777D71 /* SimpliiImporter.swift in Sources */,
 				F93C20221F5D1D7900372960 /* LunchOnUsImporter.swift in Sources */,
 				F909311D202FF1F000166FB9 /* PayeeComboBoxDataSource.swift in Sources */,
