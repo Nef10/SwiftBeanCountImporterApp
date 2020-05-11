@@ -15,7 +15,9 @@ class TangerineAccountImporter: CSVImporter {
     private static let memo = "Memo"
     private static let amount = "Amount"
 
-    static let header = [date, "Transaction", name, memo, amount]
+    override class var header: [String] {
+        [date, "Transaction", name, memo, amount]
+    }
 
     static let interac = "INTERAC e-Transfer From: "
     static let interest = "Interest Paid"

@@ -19,7 +19,9 @@ class N26Importer: CSVImporter {
     private static let date = "Datum"
     private static let recipient = "Empfänger"
 
-    static let header = [date, recipient, "Kontonummer", "Transaktionstyp", description, "Kategorie", amount, amountForeignCurrency, foreignCurrency, exchangeRate]
+    override class var header: [String] {
+        [date, recipient, "Kontonummer", "Transaktionstyp", description, "Kategorie", amount, amountForeignCurrency, foreignCurrency, exchangeRate]
+    }
 
     private static var dateFormatter: DateFormatter = {
         var dateFormatter = DateFormatter()

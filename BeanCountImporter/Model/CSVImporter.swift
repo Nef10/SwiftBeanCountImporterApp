@@ -24,6 +24,8 @@ class CSVImporter {
     static let userDefaultsAccounts = "accounts"
     static let userDefaultsDescription = "description"
 
+    class var header: [String] { [] }
+
     private static let regexe: [NSRegularExpression] = {  // swiftlint:disable force_try
         [
             try! NSRegularExpression(pattern: "(C-)?IDP PURCHASE( )?-( )?[0-9]{4}", options: []),
@@ -46,7 +48,7 @@ class CSVImporter {
     private var loaded = false
     private var lines = [CSVLine]()
 
-    init(csvReader: CSVReader, account: Account, commoditySymbol: String) {
+    required init(csvReader: CSVReader, account: Account, commoditySymbol: String) {
         self.csvReader = csvReader
         self.account = account
         self.commoditySymbol = commoditySymbol
@@ -56,22 +58,22 @@ class CSVImporter {
         guard let url = url, let csvReader = openFile(url), let headerRow = csvReader.headerRow, let account = try? Account(name: accountName) else {
             return nil
         }
-        if headerRow == RBCImporter.header {
-            return RBCImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
-        } else if headerRow == TangerineAccountImporter.header {
-            return TangerineAccountImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
-        } else if headerRow == TangerineCardImporter.header {
-            return TangerineCardImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
-        } else if headerRow == LunchOnUsImporter.header {
-            return LunchOnUsImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
-        } else if headerRow == N26Importer.header {
-            return N26Importer(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
-        } else if headerRow == RogersImporter.header {
-            return RogersImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
-        } else if headerRow == SimpliiImporter.header {
-            return SimpliiImporter(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
+        let importers = [
+            RBCImporter.self,
+            TangerineCardImporter.self,
+            TangerineAccountImporter.self,
+            LunchOnUsImporter.self,
+            N26Importer.self,
+            RogersImporter.self,
+            SimpliiImporter.self
+        ]
+        let importer = importers.first {
+            $0.header == headerRow
         }
-        return nil
+        guard let importerClass = importer else {
+            return nil
+        }
+        return importerClass.init(csvReader: csvReader, account: account, commoditySymbol: commoditySymbol)
     }
 
     private static func openFile(_ url: URL) -> CSVReader? {
