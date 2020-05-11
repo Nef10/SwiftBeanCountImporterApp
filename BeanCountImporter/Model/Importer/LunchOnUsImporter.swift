@@ -8,16 +8,14 @@
 
 import Cocoa
 
-class LunchOnUsImporter: CSVImporter {
+class LunchOnUsImporter: CSVBaseImporter, CSVImporter {
 
     private static let date = "date"
     private static let type = "type"
     private static let amount = "amount"
     private static let description = "location"
 
-    override class var header: [String] {
-        [date, type, amount, "invoice", "remaining", description]
-    }
+    static let header = [date, type, amount, "invoice", "remaining", description]
 
     private static var dateFormatter: DateFormatter = {
         var dateFormatter = DateFormatter()

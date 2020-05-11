@@ -26,7 +26,7 @@ class ImportViewController: NSViewController {
     private var autocompleteLedger: Ledger?
     private var resultLedger: Ledger = Ledger()
     private var nextTransaction: ImportedTransaction?
-    private var csvImporter: CSVImporter?
+    private var fileImporter: FileImporter?
     private var manuLifeImporter: ManuLifeImporter?
 
     private weak var loadingIndicatorSheet: LoadingIndicatorViewController?
@@ -59,7 +59,7 @@ class ImportViewController: NSViewController {
             guard let controller = segue.destinationController as? DataEntryViewController, case .csv = importMode else {
                 return
             }
-            controller.baseAccount = csvImporter?.account
+            controller.baseAccount = fileImporter?.account
             controller.importedTransaction = nextTransaction
             controller.delegate = self
             controller.ledger = autocompleteLedger
@@ -91,8 +91,8 @@ class ImportViewController: NSViewController {
         }
         switch importMode {
         case let .csv(fileURL, account, commodity)?:
-            csvImporter = CSVImporter.new(url: fileURL, accountName: account, commoditySymbol: commodity)
-            csvImporter?.loadFile()
+            fileImporter = FileImporterManager.new(url: fileURL, accountName: account, commoditySymbol: commodity)
+            fileImporter?.loadFile()
         case let .text(_, _, account, commodity)?:
             manuLifeImporter = ManuLifeImporter(autocompleteLedger: autocompleteLedger, accountName: account, commodityString: commodity)
         case .none:
@@ -113,7 +113,7 @@ class ImportViewController: NSViewController {
     }
 
     private func isPassedDataValid() -> Bool {
-        csvImporter != nil || manuLifeImporter != nil
+        fileImporter != nil || manuLifeImporter != nil
     }
 
     private func setupUI() {
@@ -145,7 +145,7 @@ class ImportViewController: NSViewController {
         guard case .csv = importMode else {
             return
         }
-        nextTransaction = csvImporter?.parseLineIntoTransaction()
+        nextTransaction = fileImporter?.parseLineIntoTransaction()
         if nextTransaction != nil {
             showDataEntryOrDuplicateTransactionViewForTransaction()
         }

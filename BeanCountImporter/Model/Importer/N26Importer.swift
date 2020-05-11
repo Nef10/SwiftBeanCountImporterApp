@@ -9,7 +9,7 @@
 import Foundation
 import SwiftBeanCountModel
 
-class N26Importer: CSVImporter {
+class N26Importer: CSVBaseImporter, CSVImporter {
 
     private static let description = "Verwendungszweck"
     private static let amount = "Betrag (EUR)"
@@ -19,9 +19,7 @@ class N26Importer: CSVImporter {
     private static let date = "Datum"
     private static let recipient = "Empfänger"
 
-    override class var header: [String] {
-        [date, recipient, "Kontonummer", "Transaktionstyp", description, "Kategorie", amount, amountForeignCurrency, foreignCurrency, exchangeRate]
-    }
+    static let header = [date, recipient, "Kontonummer", "Transaktionstyp", description, "Kategorie", amount, amountForeignCurrency, foreignCurrency, exchangeRate]
 
     private static var dateFormatter: DateFormatter = {
         var dateFormatter = DateFormatter()

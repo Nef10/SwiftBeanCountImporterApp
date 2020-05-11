@@ -8,16 +8,14 @@
 
 import Foundation
 
-class SimpliiImporter: CSVImporter {
+class SimpliiImporter: CSVBaseImporter, CSVImporter {
 
     private static let description = "Transaction Details"
     private static let date = "Date"
     private static let amountIn = "Funds In"
     private static let amountOut = "Funds Out"
 
-    override class var header: [String] {
-        [date, description, amountOut, amountIn]
-    }
+    static let header = [date, description, amountOut, amountIn]
 
     private static var dateFormatter: DateFormatter = {
         var dateFormatter = DateFormatter()

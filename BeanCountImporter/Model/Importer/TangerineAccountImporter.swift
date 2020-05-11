@@ -8,16 +8,14 @@
 
 import Foundation
 
-class TangerineAccountImporter: CSVImporter {
+class TangerineAccountImporter: CSVBaseImporter, CSVImporter {
 
     private static let date = "Date"
     private static let name = "Name"
     private static let memo = "Memo"
     private static let amount = "Amount"
 
-    override class var header: [String] {
-        [date, "Transaction", name, memo, amount]
-    }
+    static let header = [date, "Transaction", name, memo, amount]
 
     static let interac = "INTERAC e-Transfer From: "
     static let interest = "Interest Paid"

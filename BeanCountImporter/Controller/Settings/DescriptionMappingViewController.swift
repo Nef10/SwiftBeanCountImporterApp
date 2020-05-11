@@ -35,22 +35,22 @@ class DescriptionMappingViewController: NSViewController {
     @IBAction private func editPayee(_ sender: NSTextField) {
         let row = tableView.row(for: sender)
         let line = lines[row]
-        guard var payees = UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsPayees) else {
+        guard var payees = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsPayees) else {
             return
         }
         payees[line.importedDescription] = sender.stringValue
-        UserDefaults.standard.set(payees, forKey: CSVImporter.userDefaultsPayees)
+        UserDefaults.standard.set(payees, forKey: Settings.userDefaultsPayees)
         refreshData()
     }
 
     @IBAction private func editDescription(_ sender: NSTextField) {
         let row = tableView.row(for: sender)
         let line = lines[row]
-        guard var desciptions = UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsDescription) else {
+        guard var desciptions = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsDescription) else {
             return
         }
         desciptions[line.importedDescription] = sender.stringValue
-        UserDefaults.standard.set(desciptions, forKey: CSVImporter.userDefaultsDescription)
+        UserDefaults.standard.set(desciptions, forKey: Settings.userDefaultsDescription)
         refreshData()
     }
 
@@ -59,14 +59,14 @@ class DescriptionMappingViewController: NSViewController {
             guard let newDescription = newLineAlert() else {
                 return
             }
-            guard var payees = UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsPayees),
-                var desciptions = UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsDescription) else {
+            guard var payees = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsPayees),
+                var desciptions = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsDescription) else {
                     return
             }
             payees[newDescription] = ""
             desciptions[newDescription] = ""
-            UserDefaults.standard.set(payees, forKey: CSVImporter.userDefaultsPayees)
-            UserDefaults.standard.set(desciptions, forKey: CSVImporter.userDefaultsDescription)
+            UserDefaults.standard.set(payees, forKey: Settings.userDefaultsPayees)
+            UserDefaults.standard.set(desciptions, forKey: Settings.userDefaultsDescription)
             refreshData()
             let index = lines.firstIndex {
                 $0.importedDescription == newDescription
@@ -80,14 +80,14 @@ class DescriptionMappingViewController: NSViewController {
         } else if sender.selectedSegment == 1 {// -
             let row = tableView.selectedRow
             let line = lines[row]
-            guard var payees = UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsPayees),
-                var desciptions = UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsDescription) else {
+            guard var payees = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsPayees),
+                var desciptions = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsDescription) else {
                 return
             }
             payees.removeValue(forKey: line.importedDescription)
             desciptions.removeValue(forKey: line.importedDescription)
-            UserDefaults.standard.set(payees, forKey: CSVImporter.userDefaultsPayees)
-            UserDefaults.standard.set(desciptions, forKey: CSVImporter.userDefaultsDescription)
+            UserDefaults.standard.set(payees, forKey: Settings.userDefaultsPayees)
+            UserDefaults.standard.set(desciptions, forKey: Settings.userDefaultsDescription)
             refreshData()
         }
     }
@@ -113,8 +113,8 @@ class DescriptionMappingViewController: NSViewController {
     }
 
     private func refreshData() {
-        guard let payees = UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsPayees) as? [String: String],
-            let desciptions = UserDefaults.standard.dictionary(forKey: CSVImporter.userDefaultsDescription) as? [String: String] else {
+        guard let payees = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsPayees) as? [String: String],
+            let desciptions = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsDescription) as? [String: String] else {
                 lines = []
                 return
         }

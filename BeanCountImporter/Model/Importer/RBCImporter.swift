@@ -8,16 +8,14 @@
 
 import Foundation
 
-class RBCImporter: CSVImporter {
+class RBCImporter: CSVBaseImporter, CSVImporter {
 
     private static let description1 = "Description 1"
     private static let description2 = "Description 2"
     private static let date = "Transaction Date"
     private static let amount = "CAD$"
 
-    override class var header: [String] {
-        ["Account Type", "Account Number", date, "Cheque Number", description1, description2, amount, "USD$"]
-    }
+    static let header = ["Account Type", "Account Number", date, "Cheque Number", description1, description2, amount, "USD$"]
 
     private static var dateFormatter: DateFormatter = {
         var dateFormatter = DateFormatter()

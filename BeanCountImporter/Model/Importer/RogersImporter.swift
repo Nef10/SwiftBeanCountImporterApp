@@ -8,15 +8,13 @@
 
 import Foundation
 
-class RogersImporter: CSVImporter {
+class RogersImporter: CSVBaseImporter, CSVImporter {
 
     private static let description = "Merchant Name"
     private static let date = "Date"
     private static let amount = "Amount"
 
-    override class var header: [String] {
-        [date, "Activity Type", description, "Merchant Category Description", amount, "Rewards"]
-    }
+    static let header = [date, "Activity Type", description, "Merchant Category Description", amount, "Rewards"]
 
     private static var dateFormatter: DateFormatter = {
         var dateFormatter = DateFormatter()
