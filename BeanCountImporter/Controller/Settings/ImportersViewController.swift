@@ -16,6 +16,21 @@ class ImportersViewController: NSViewController {
 
     @IBOutlet private var importersTableView: NSTableView!
     @IBOutlet private var settingsTableView: NSTableView!
+
+    override func viewWillAppear() {
+        importersTableView.reloadData()
+        settingsTableView.reloadData()
+        super.viewWillAppear()
+    }
+
+    @IBAction private func editValue(_ sender: NSTextField) {
+        guard let importer = selectedImporter else {
+            return
+        }
+        let row = settingsTableView.row(for: sender)
+        importer.set(setting: importer.settings[row], to: sender.stringValue)
+    }
+
 }
 
 extension ImportersViewController: NSTableViewDelegate {
@@ -78,7 +93,7 @@ extension ImportersViewController: NSTableViewDataSource {
             if tableColumn == tableView.tableColumns[0] {
                 text = setting.name
                 cellIdentifier = CellIdentifiers.SettingCell
-            } else if tableColumn == tableView.tableColumns[0] {
+            } else if tableColumn == tableView.tableColumns[1] {
                 text = selectedImporter.get(setting: setting) ?? ""
                 cellIdentifier = CellIdentifiers.ValueCell
             } else {
