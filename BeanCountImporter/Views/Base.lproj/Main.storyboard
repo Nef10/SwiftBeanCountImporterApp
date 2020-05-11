@@ -902,7 +902,7 @@ DQ
         <scene sceneID="EXs-dN-G7Q">
             <objects>
                 <customObject id="E8j-xu-CNH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <tabViewController selectedTabViewItemIndex="1" tabStyle="unspecified" id="h16-GC-fAk" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="unspecified" id="h16-GC-fAk" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem id="8wr-3L-ASs"/>
                         <tabViewItem id="6ly-Wd-G8l"/>

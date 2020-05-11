@@ -18,7 +18,7 @@ class SimpliiImporter: CSVBaseImporter, CSVImporter {
     static let header = [date, description, amountOut, amountIn]
     static let settingsIdentifier = "simplii"
     static let settingsName = "Simplii Accounts"
-    static var settings = [String]()
+    static var settings = [ImporterSetting]()
 
     private static var dateFormatter: DateFormatter = {
         var dateFormatter = DateFormatter()

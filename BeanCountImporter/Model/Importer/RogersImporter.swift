@@ -17,7 +17,7 @@ class RogersImporter: CSVBaseImporter, CSVImporter {
     static let header = [date, "Activity Type", description, "Merchant Category Description", amount, "Rewards"]
     static let settingsIdentifier = "rogers"
     static let settingsName = "Rogers CC"
-    static var settings = [String]()
+    static var settings = [ImporterSetting]()
 
     private static var dateFormatter: DateFormatter = {
         var dateFormatter = DateFormatter()

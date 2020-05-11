@@ -12,12 +12,17 @@ import Foundation
 class ImportersViewController: NSViewController {
 
     private let importers = ImporterManager.importers
+    private var selectedImporter: Importer.Type?
 
     @IBOutlet private var importersTableView: NSTableView!
 
 }
 
 extension ImportersViewController: NSTableViewDelegate {
+
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        selectedImporter = importers[importersTableView.selectedRow]
+    }
 
 }
 

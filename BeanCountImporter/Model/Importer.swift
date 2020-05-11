@@ -15,10 +15,15 @@ enum ImporterManager {
     }
 }
 
+struct ImporterSetting {
+    let identifier: String
+    let name: String
+}
+
 protocol Importer {
 
     static var settingsName: String { get }
     static var settingsIdentifier: String { get }
-    static var settings: [String] { get }
+    static var settings: [ImporterSetting] { get }
 
 }

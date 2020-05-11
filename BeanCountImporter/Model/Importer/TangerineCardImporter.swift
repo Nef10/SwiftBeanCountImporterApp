@@ -17,7 +17,7 @@ class TangerineCardImporter: CSVBaseImporter, CSVImporter {
     static let header = [date, "Transaction", name, "Memo", amount]
     static let settingsIdentifier = "tangerine_card"
     static let settingsName = "Tangerine CC"
-    static var settings = [String]()
+    static var settings = [ImporterSetting]()
 
     static let interac = "INTERAC e-Transfer From: "
     static let interest = "Interest Paid"

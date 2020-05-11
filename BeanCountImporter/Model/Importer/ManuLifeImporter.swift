@@ -29,7 +29,7 @@ class ManuLifeImporter: TextImporter {
 
     static let settingsName = "ManuLife"
     static let settingsIdentifier = "manulife"
-    static let settings = [String]()
+    static let settings = [ImporterSetting]()
 
     /// DateFormatter for printing a date in the result string
     private static let printDateFormatter: DateFormatter = {
