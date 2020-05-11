@@ -27,3 +27,15 @@ protocol Importer {
     static var settings: [ImporterSetting] { get }
 
 }
+
+extension Importer {
+
+    static func get(setting: ImporterSetting) -> String? {
+        UserDefaults.standard.string(forKey: "\(Self.settingsIdentifier).\(setting.identifier)")
+    }
+
+    static func set(setting: ImporterSetting, to value: String) {
+        UserDefaults.standard.set(value, forKey: "\(Self.settingsIdentifier).\(setting.identifier)")
+    }
+
+}

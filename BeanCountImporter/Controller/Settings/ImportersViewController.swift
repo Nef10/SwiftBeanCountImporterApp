@@ -15,13 +15,23 @@ class ImportersViewController: NSViewController {
     private var selectedImporter: Importer.Type?
 
     @IBOutlet private var importersTableView: NSTableView!
-
+    @IBOutlet private var settingsTableView: NSTableView!
 }
 
 extension ImportersViewController: NSTableViewDelegate {
 
     func tableViewSelectionDidChange(_ notification: Notification) {
-        selectedImporter = importers[importersTableView.selectedRow]
+        guard let table = notification.object as? NSTableView else {
+            return
+        }
+        if table == importersTableView {
+            if importersTableView.selectedRow == -1 {
+                selectedImporter = nil
+            } else {
+                selectedImporter = importers[importersTableView.selectedRow]
+            }
+            settingsTableView.reloadData()
+        }
     }
 
 }
@@ -30,27 +40,56 @@ extension ImportersViewController: NSTableViewDataSource {
 
     private enum CellIdentifiers {
         static let NameCell = NSUserInterfaceItemIdentifier("NameCellID")
+        static let SettingCell = NSUserInterfaceItemIdentifier("SettingCellID")
+        static let ValueCell = NSUserInterfaceItemIdentifier("ValueCellID")
     }
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        ImporterManager.importers.count
+        if tableView == importersTableView {
+            return ImporterManager.importers.count
+        } else if tableView == settingsTableView {
+            guard let selectedImporter = selectedImporter else {
+                return 0
+            }
+            return selectedImporter.settings.count
+        }
+        return 0
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 
-        let importer = importers[row]
-
+        var cellIdentifier: NSUserInterfaceItemIdentifier?
         var text: String = ""
-        var cellIdentifier: NSUserInterfaceItemIdentifier
 
-        if tableColumn == tableView.tableColumns[0] {
-            text = importer.settingsName
-            cellIdentifier = CellIdentifiers.NameCell
-        } else {
-            return nil
+        if tableView == importersTableView {
+            let importer = importers[row]
+
+            if tableColumn == tableView.tableColumns[0] {
+                text = importer.settingsName
+                cellIdentifier = CellIdentifiers.NameCell
+            } else {
+                return nil
+            }
+        } else if tableView == settingsTableView {
+            guard let selectedImporter = selectedImporter else {
+                return nil
+            }
+            let setting = selectedImporter.settings[row]
+            if tableColumn == tableView.tableColumns[0] {
+                text = setting.name
+                cellIdentifier = CellIdentifiers.SettingCell
+            } else if tableColumn == tableView.tableColumns[0] {
+                text = selectedImporter.get(setting: setting) ?? ""
+                cellIdentifier = CellIdentifiers.ValueCell
+            } else {
+                return nil
+            }
         }
 
-        if let cell = tableView.makeView(withIdentifier: cellIdentifier, owner: nil) as? NSTableCellView {
+        guard let identifier = cellIdentifier else {
+            return nil
+        }
+        if let cell = tableView.makeView(withIdentifier: identifier, owner: nil) as? NSTableCellView {
             cell.textField?.stringValue = text
             return cell
         }
