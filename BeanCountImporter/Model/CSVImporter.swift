@@ -20,11 +20,8 @@ struct CSVLine {
 
 enum CSVImporterManager {
 
-    static func new(url: URL?, accountName: String, commoditySymbol: String) -> FileImporter? {
-        guard let url = url, let csvReader = openFile(url), let headerRow = csvReader.headerRow, let account = try? Account(name: accountName) else {
-            return nil
-        }
-        let importers: [CSVImporter.Type] = [
+    static var importers: [CSVImporter.Type] {
+        [
             RBCImporter.self,
             TangerineCardImporter.self,
             TangerineAccountImporter.self,
@@ -33,7 +30,13 @@ enum CSVImporterManager {
             RogersImporter.self,
             SimpliiImporter.self
         ]
-        let importer = importers.first {
+    }
+
+    static func new(url: URL?, accountName: String, commoditySymbol: String) -> FileImporter? {
+        guard let url = url, let csvReader = openFile(url), let headerRow = csvReader.headerRow, let account = try? Account(name: accountName) else {
+            return nil
+        }
+        let importer = Self.importers.first {
             $0.header == headerRow
         }
         guard let importerClass = importer else {

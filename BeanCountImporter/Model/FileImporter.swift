@@ -12,6 +12,10 @@ import SwiftBeanCountModel
 
 enum FileImporterManager {
 
+    static var importers: [FileImporter.Type] {
+        CSVImporterManager.importers
+    }
+
     static func new(url: URL?, accountName: String, commoditySymbol: String) -> FileImporter? {
         CSVImporterManager.new(url: url, accountName: accountName, commoditySymbol: commoditySymbol)
     }
