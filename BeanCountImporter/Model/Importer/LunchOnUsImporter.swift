@@ -16,6 +16,7 @@ class LunchOnUsImporter: CSVBaseImporter, CSVImporter {
     private static let description = "location"
 
     static let header = [date, type, amount, "invoice", "remaining", description]
+    static var settings = [String]()
 
     private static var dateFormatter: DateFormatter = {
         var dateFormatter = DateFormatter()

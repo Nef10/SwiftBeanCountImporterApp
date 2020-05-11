@@ -6,7 +6,6 @@
 //  Copyright © 2017 Steffen Kötte. All rights reserved.
 //
 
-import CSV
 import Foundation
 import SwiftBeanCountModel
 
@@ -29,7 +28,7 @@ struct ImportedTransaction {
 
 }
 
-protocol FileImporter {
+protocol FileImporter: Importer {
 
     var account: Account { get }
 

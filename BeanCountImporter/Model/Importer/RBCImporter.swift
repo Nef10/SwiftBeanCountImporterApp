@@ -16,6 +16,7 @@ class RBCImporter: CSVBaseImporter, CSVImporter {
     private static let amount = "CAD$"
 
     static let header = ["Account Type", "Account Number", date, "Cheque Number", description1, description2, amount, "USD$"]
+    static var settings = [String]()
 
     private static var dateFormatter: DateFormatter = {
         var dateFormatter = DateFormatter()

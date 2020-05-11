@@ -27,7 +27,7 @@ class ImportViewController: NSViewController {
     private var resultLedger: Ledger = Ledger()
     private var nextTransaction: ImportedTransaction?
     private var fileImporter: FileImporter?
-    private var manuLifeImporter: ManuLifeImporter?
+    private var textImporter: TextImporter?
 
     private weak var loadingIndicatorSheet: LoadingIndicatorViewController?
 
@@ -94,7 +94,7 @@ class ImportViewController: NSViewController {
             fileImporter = FileImporterManager.new(url: fileURL, accountName: account, commoditySymbol: commodity)
             fileImporter?.loadFile()
         case let .text(_, _, account, commodity)?:
-            manuLifeImporter = ManuLifeImporter(autocompleteLedger: autocompleteLedger, accountName: account, commodityString: commodity)
+            textImporter = TextImporterManager.new(autocompleteLedger: autocompleteLedger, accountName: account, commodityString: commodity)
         case .none:
             break
         }
@@ -113,7 +113,7 @@ class ImportViewController: NSViewController {
     }
 
     private func isPassedDataValid() -> Bool {
-        fileImporter != nil || manuLifeImporter != nil
+        fileImporter != nil || textImporter != nil
     }
 
     private func setupUI() {
@@ -133,8 +133,8 @@ class ImportViewController: NSViewController {
             guard let self = self else {
                 return
             }
-            if let manuLifeImporter = self.manuLifeImporter, case let .text(transactionString, balanceString, _, _)? = self.importMode {
-                self.textView.string = manuLifeImporter.parse(transaction: transactionString, balance: balanceString)
+            if let textImporter = self.textImporter, case let .text(transactionString, balanceString, _, _)? = self.importMode {
+                self.textView.string = textImporter.parse(transaction: transactionString, balance: balanceString)
             } else {
                 self.showDataEntryViewForNextTransactionIfNeccessary()
             }

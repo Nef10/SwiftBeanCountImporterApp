@@ -9,7 +9,7 @@
 import Foundation
 import SwiftBeanCountModel
 
-class ManuLifeImporter {
+class ManuLifeImporter: TextImporter {
 
     private struct ManuLifeBalance {
         let commodity: String
@@ -26,6 +26,8 @@ class ManuLifeImporter {
         let units: String
         let price: String
     }
+
+    static let settings = [String]()
 
     /// DateFormatter for printing a date in the result string
     private static let printDateFormatter: DateFormatter = {
@@ -59,7 +61,7 @@ class ManuLifeImporter {
     private let employerMatchFraction = 2.5
     private let employeeVoluntaryFraction = 0.5
 
-    init(autocompleteLedger: Ledger?, accountName: String, commodityString: String) {
+    required init(autocompleteLedger: Ledger?, accountName: String, commodityString: String) {
         self.autocompleteLedger = autocompleteLedger
         self.accountString = accountName
         self.commodityString = commodityString
