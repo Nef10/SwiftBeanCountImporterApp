@@ -16,7 +16,7 @@ enum TextImporterManager {
     }
 
     static func new(autocompleteLedger: Ledger?, accountName: String, commodityString: String) -> TextImporter? {
-       ManuLifeImporter(autocompleteLedger: autocompleteLedger, accountName: accountName, commodityString: commodityString)
+        ManuLifeImporter(autocompleteLedger: autocompleteLedger, accountName: accountName, commodityString: commodityString)
     }
 
 }
