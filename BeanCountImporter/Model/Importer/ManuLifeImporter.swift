@@ -28,6 +28,7 @@ class ManuLifeImporter: TextImporter {
     }
 
     static let settingsName = "ManuLife"
+    static let settingsIdentifier = "manulife"
     static let settings = [String]()
 
     /// DateFormatter for printing a date in the result string

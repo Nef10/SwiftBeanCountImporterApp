@@ -18,6 +18,7 @@ enum ImporterManager {
 protocol Importer {
 
     static var settingsName: String { get }
+    static var settingsIdentifier: String { get }
     static var settings: [String] { get }
 
 }

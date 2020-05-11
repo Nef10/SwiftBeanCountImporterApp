@@ -20,6 +20,7 @@ class N26Importer: CSVBaseImporter, CSVImporter {
     private static let recipient = "Empfänger"
 
     static let header = [date, recipient, "Kontonummer", "Transaktionstyp", description, "Kategorie", amount, amountForeignCurrency, foreignCurrency, exchangeRate]
+    static let settingsIdentifier = "n26"
     static let settingsName = "N26"
     static var settings = [String]()
 
