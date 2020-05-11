@@ -27,6 +27,7 @@ class ManuLifeImporter: TextImporter {
         let price: String
     }
 
+    static let settingsName = "ManuLife"
     static let settings = [String]()
 
     /// DateFormatter for printing a date in the result string
