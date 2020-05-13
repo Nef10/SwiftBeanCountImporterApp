@@ -28,10 +28,15 @@ class ManuLifeImporter: TextImporter {
     }
 
     private static let currencySetting = ImporterSetting(identifier: "currency", name: "Currency")
+    private static let cashAccountSetting = ImporterSetting(identifier: "cashAccountName", name: "Cash Account Postfix")
+    private static let employeeBasicSetting = ImporterSetting(identifier: "employeeBasicFraction", name: "Employee Basic Percentage")
+    private static let employerBasicSetting = ImporterSetting(identifier: "employerBasicFraction", name: "Employer Basic Percentage")
+    private static let employerMatchSetting = ImporterSetting(identifier: "employerMatchFraction", name: "Employer Match Percentage")
+    private static let employeeVoluntarySetting = ImporterSetting(identifier: "employeeVoluntaryFraction", name: "Employee Voluntary Percentage")
 
     static let settingsName = "ManuLife"
     static let settingsIdentifier = "manulife"
-    static var settings = [currencySetting]
+    static var settings = [currencySetting, cashAccountSetting, employeeBasicSetting, employerBasicSetting, employerMatchSetting, employeeVoluntarySetting]
 
     /// DateFormatter for printing a date in the result string
     private static let printDateFormatter: DateFormatter = {
@@ -53,6 +58,9 @@ class ManuLifeImporter: TextImporter {
         Self.get(setting: currencySetting) ?? "CAD"
     }
 
+    private let defaultCashAccountName = "Parking"
+    private let defaultContribution = 1.0
+
     private let autocompleteLedger: Ledger?
     private let accountString: String
     private let commodityPaddingLength = 20
@@ -60,13 +68,24 @@ class ManuLifeImporter: TextImporter {
     private let amountPaddingLength = 9
     private let unitFormat = "%.5f"
 
-    // Temporary: Figure out how to input this
-    private let cashAccountName = "Parking"
+    // Temporary: Need to calculate this
     private let amountString = "0.00"
-    private let employeeBasicFraction = 2.0
-    private let employerBasicFraction = 2.5
-    private let employerMatchFraction = 2.5
-    private let employeeVoluntaryFraction = 0.5
+
+    private var cashAccountName: String {
+        Self.get(setting: Self.cashAccountSetting) ?? defaultCashAccountName
+    }
+    private var employeeBasicFraction: Double {
+        Double(Self.get(setting: Self.employeeBasicSetting) ?? "") ?? defaultContribution
+    }
+    private var employerBasicFraction: Double {
+        Double(Self.get(setting: Self.employerBasicSetting) ?? "") ?? defaultContribution
+    }
+    private var employerMatchFraction: Double {
+        Double(Self.get(setting: Self.employerMatchSetting) ?? "") ?? defaultContribution
+    }
+    private var employeeVoluntaryFraction: Double {
+        Double(Self.get(setting: Self.employeeVoluntarySetting) ?? "") ?? defaultContribution
+    }
 
     required init(autocompleteLedger: Ledger?, accountName: String) {
         self.autocompleteLedger = autocompleteLedger
