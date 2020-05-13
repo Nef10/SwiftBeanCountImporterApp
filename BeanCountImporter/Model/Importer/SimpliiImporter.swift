@@ -14,7 +14,6 @@ class SimpliiImporter: CSVBaseImporter, CSVImporter {
     private static let date = "Date"
     private static let amountIn = "Funds In"
     private static let amountOut = "Funds Out"
-    private static let currencySetting = ImporterSetting(identifier: "currency", name: "Currency")
 
     static let header = [date, description, amountOut, amountIn]
     static let settingsIdentifier = "simplii"

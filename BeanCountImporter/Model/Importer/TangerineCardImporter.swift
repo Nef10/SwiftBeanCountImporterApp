@@ -13,7 +13,6 @@ class TangerineCardImporter: CSVBaseImporter, CSVImporter {
     private static let date = "Transaction date"
     private static let name = "Name"
     private static let amount = "Amount"
-    private static let currencySetting = ImporterSetting(identifier: "currency", name: "Currency")
 
     static let header = [date, "Transaction", name, "Memo", amount]
     static let settingsIdentifier = "tangerine_card"

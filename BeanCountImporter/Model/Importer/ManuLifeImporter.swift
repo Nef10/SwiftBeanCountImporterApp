@@ -49,9 +49,12 @@ class ManuLifeImporter: TextImporter {
         return dateFormatter
     }()
 
+    private static var commodityString: String {
+        Self.get(setting: currencySetting) ?? "CAD"
+    }
+
     private let autocompleteLedger: Ledger?
     private let accountString: String
-    private let commodityString: String
     private let commodityPaddingLength = 20
     private let accountPaddingLength = 69
     private let amountPaddingLength = 9
@@ -65,10 +68,9 @@ class ManuLifeImporter: TextImporter {
     private let employerMatchFraction = 2.5
     private let employeeVoluntaryFraction = 0.5
 
-    required init(autocompleteLedger: Ledger?, accountName: String, commodityString: String) {
+    required init(autocompleteLedger: Ledger?, accountName: String) {
         self.autocompleteLedger = autocompleteLedger
         self.accountString = accountName
-        self.commodityString = commodityString
     }
 
     func parse(transaction: String, balance: String) -> String {
@@ -196,7 +198,7 @@ class ManuLifeImporter: TextImporter {
             return result.joined(separator: "\n")
         }
         .joined(separator: "\n") + "\n\n" + balances.map {
-            "\(dateString) price \($0.commodity.padding(toLength: commodityPaddingLength, withPad: " ", startingAt: 0)) \($0.unitValue) \(commodityString)"
+            "\(dateString) price \($0.commodity.padding(toLength: commodityPaddingLength, withPad: " ", startingAt: 0)) \($0.unitValue) \(Self.commodityString)"
         }
         .sorted()
         .joined(separator: "\n")
@@ -257,7 +259,7 @@ class ManuLifeImporter: TextImporter {
 
         let cashAccount = "\(accountString):\(cashAccountName)".padding(toLength: accountPaddingLength - decimalPointPosition + 1, withPad: " ", startingAt: 0)
 
-        var result = "\(dateString) * \"\" \"\"\n  \(cashAccount) \(amountString.padding(toLength: 10, withPad: " ", startingAt: 0)) \(commodityString)\n"
+        var result = "\(dateString) * \"\" \"\"\n  \(cashAccount) \(amountString.padding(toLength: 10, withPad: " ", startingAt: 0)) \(Self.commodityString)\n"
         result += matches.map {
             let employeeBasic = "\(accountString):Employee:Basic:\($0.commodity)".padding(toLength: accountPaddingLength, withPad: " ", startingAt: 0)
             let employerBasic = "\(accountString):Employer:Basic:\($0.commodity)".padding(toLength: accountPaddingLength, withPad: " ", startingAt: 0)
@@ -265,16 +267,16 @@ class ManuLifeImporter: TextImporter {
             let employeeVoluntary = "\(accountString):Employee:Voluntary:\($0.commodity)".padding(toLength: accountPaddingLength, withPad: " ", startingAt: 0)
             let unitFraction = Double($0.units)! / (employeeBasicFraction + employerBasicFraction + employerMatchFraction + employeeVoluntaryFraction)
             let commodity = $0.commodity.padding(toLength: commodityPaddingLength, withPad: " ", startingAt: 0)
-            var result = "  \(employeeBasic) \(String(format: unitFormat, unitFraction * employeeBasicFraction)) \(commodity) {\($0.price) \(commodityString)}\n"
-            result += "  \(employerBasic) \(String(format: unitFormat, unitFraction * employerBasicFraction)) \(commodity) {\($0.price) \(commodityString)}\n"
-            result += "  \(employerMatch) \(String(format: unitFormat, unitFraction * employerMatchFraction)) \(commodity) {\($0.price) \(commodityString)}\n"
-            result += "  \(employeeVoluntary) \(String(format: unitFormat, unitFraction * employeeVoluntaryFraction)) \(commodity) {\($0.price) \(commodityString)}"
+            var result = "  \(employeeBasic) \(String(format: unitFormat, unitFraction * employeeBasicFraction)) \(commodity) {\($0.price) \(Self.commodityString)}\n"
+            result += "  \(employerBasic) \(String(format: unitFormat, unitFraction * employerBasicFraction)) \(commodity) {\($0.price) \(Self.commodityString)}\n"
+            result += "  \(employerMatch) \(String(format: unitFormat, unitFraction * employerMatchFraction)) \(commodity) {\($0.price) \(Self.commodityString)}\n"
+            result += "  \(employeeVoluntary) \(String(format: unitFormat, unitFraction * employeeVoluntaryFraction)) \(commodity) {\($0.price) \(Self.commodityString)}"
             return result
         }
         .joined(separator: "\n")
         result += "\n\n"
         result += matches.map { buy -> String in
-            "\(dateString) price \(buy.commodity.padding(toLength: commodityPaddingLength, withPad: " ", startingAt: 0)) \(buy.price) \(commodityString)"
+            "\(dateString) price \(buy.commodity.padding(toLength: commodityPaddingLength, withPad: " ", startingAt: 0)) \(buy.price) \(Self.commodityString)"
         }
         .sorted()
         .joined(separator: "\n")

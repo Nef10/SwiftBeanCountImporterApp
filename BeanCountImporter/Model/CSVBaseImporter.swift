@@ -12,6 +12,10 @@ import SwiftBeanCountModel
 
 class CSVBaseImporter {
 
+    static let currencySetting = ImporterSetting(identifier: "currency", name: "Currency")
+
+    private static let fallbackCommodity = "CAD"
+
     private static let regexe: [NSRegularExpression] = {  // swiftlint:disable force_try
         [
             try! NSRegularExpression(pattern: "(C-)?IDP PURCHASE( )?-( )?[0-9]{4}", options: []),
@@ -26,17 +30,22 @@ class CSVBaseImporter {
         ]
     }() // swiftlint:enable force_try
 
+    private static var commodityString: String {
+        if let type = self as? Importer.Type {
+            return type.get(setting: currencySetting) ?? fallbackCommodity
+        }
+        return fallbackCommodity
+    }
+
     let csvReader: CSVReader
     let account: Account
-    let commoditySymbol: String
 
     private var loaded = false
     private var lines = [CSVLine]()
 
-    required init(csvReader: CSVReader, account: Account, commoditySymbol: String) {
+    required init(csvReader: CSVReader, account: Account) {
         self.csvReader = csvReader
         self.account = account
-        self.commoditySymbol = commoditySymbol
     }
 
     func loadFile() {
@@ -54,7 +63,7 @@ class CSVBaseImporter {
         guard loaded, let data = lines.popLast() else {
             return nil
         }
-        let commodity = Commodity(symbol: commoditySymbol)
+        let commodity = Commodity(symbol: Self.commodityString)
         var description = sanitizeDescription(data.description)
         var payee = data.payee
         let originalPayee = payee

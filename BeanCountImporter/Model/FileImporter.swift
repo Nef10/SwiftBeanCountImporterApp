@@ -15,8 +15,8 @@ enum FileImporterManager {
         CSVImporterManager.importers
     }
 
-    static func new(url: URL?, accountName: String, commoditySymbol: String) -> FileImporter? {
-        CSVImporterManager.new(url: url, accountName: accountName, commoditySymbol: commoditySymbol)
+    static func new(url: URL?, accountName: String) -> FileImporter? {
+        CSVImporterManager.new(url: url, accountName: accountName)
     }
 
 }

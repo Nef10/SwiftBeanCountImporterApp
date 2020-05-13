@@ -10,8 +10,8 @@ import Cocoa
 import SwiftBeanCountModel
 
 enum ImportMode {
-    case csv(URL, String, String) // import file URL, account, commodity
-    case text(String, String, String, String) // transaction, balance, account, commodity
+    case csv(URL, String) // import file URL, account
+    case text(String, String, String) // transaction, balance, account
 }
 
 private enum SelectedImportMode {
@@ -30,7 +30,6 @@ class SelectorViewController: NSViewController {
     private var selectedImportMode: SelectedImportMode?
 
     @IBOutlet private var accountNameField: NSTextField!
-    @IBOutlet private var commoditySymbolField: NSTextField!
     @IBOutlet private var fileNameLabel: NSTextField!
     @IBOutlet private var ledgerNameLabel: NSTextField!
 
@@ -87,9 +86,9 @@ class SelectorViewController: NSViewController {
             }
             switch selectedImportMode! {
             case let .csv(fileURL):
-                controller.importMode = .csv(fileURL, accountNameField.stringValue, commoditySymbolField.stringValue)
+                controller.importMode = .csv(fileURL, accountNameField.stringValue)
             case let .text(transactionString, balanceString):
-                controller.importMode = .text(transactionString, balanceString, accountNameField.stringValue, commoditySymbolField.stringValue)
+                controller.importMode = .text(transactionString, balanceString, accountNameField.stringValue)
             }
             if let ledgerURL = ledgerURL {
                 controller.autocompleteLedgerURL = ledgerURL
@@ -109,7 +108,7 @@ class SelectorViewController: NSViewController {
     }
 
     private func isInputValid() -> Bool {
-        isSourceValid() && isAccountValid() && isCommodityValid()
+        isSourceValid() && isAccountValid()
     }
 
     private func isSourceValid() -> Bool {
@@ -120,17 +119,11 @@ class SelectorViewController: NSViewController {
         Account.isNameValid(accountNameField.stringValue)
     }
 
-    private func isCommodityValid() -> Bool {
-        !commoditySymbolField.stringValue.isEmpty
-    }
-
     private func showValidationError() {
         if !isSourceValid() {
             showValidationError("Please select a file or enter valid text.")
         } else if !isAccountValid() {
             showValidationError("Please enter a valid account.")
-        } else if !isCommodityValid() {
-            showValidationError("Please enter a Commodity.")
         }
     }
 

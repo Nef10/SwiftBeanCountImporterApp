@@ -15,15 +15,15 @@ enum TextImporterManager {
         [ManuLifeImporter.self]
     }
 
-    static func new(autocompleteLedger: Ledger?, accountName: String, commodityString: String) -> TextImporter? {
-        ManuLifeImporter(autocompleteLedger: autocompleteLedger, accountName: accountName, commodityString: commodityString)
+    static func new(autocompleteLedger: Ledger?, accountName: String) -> TextImporter? {
+        ManuLifeImporter(autocompleteLedger: autocompleteLedger, accountName: accountName)
     }
 
 }
 
 protocol TextImporter: Importer {
 
-    init(autocompleteLedger: Ledger?, accountName: String, commodityString: String)
+    init(autocompleteLedger: Ledger?, accountName: String)
 
     func parse(transaction: String, balance: String) -> String
 

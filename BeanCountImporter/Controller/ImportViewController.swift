@@ -90,11 +90,11 @@ class ImportViewController: NSViewController {
             self?.loadingIndicatorSheet?.updateText(text: "Loading import data")
         }
         switch importMode {
-        case let .csv(fileURL, account, commodity)?:
-            fileImporter = FileImporterManager.new(url: fileURL, accountName: account, commoditySymbol: commodity)
+        case let .csv(fileURL, account)?:
+            fileImporter = FileImporterManager.new(url: fileURL, accountName: account)
             fileImporter?.loadFile()
-        case let .text(_, _, account, commodity)?:
-            textImporter = TextImporterManager.new(autocompleteLedger: autocompleteLedger, accountName: account, commodityString: commodity)
+        case let .text(_, _, account)?:
+            textImporter = TextImporterManager.new(autocompleteLedger: autocompleteLedger, accountName: account)
         case .none:
             break
         }
@@ -133,7 +133,7 @@ class ImportViewController: NSViewController {
             guard let self = self else {
                 return
             }
-            if let textImporter = self.textImporter, case let .text(transactionString, balanceString, _, _)? = self.importMode {
+            if let textImporter = self.textImporter, case let .text(transactionString, balanceString, _)? = self.importMode {
                 self.textView.string = textImporter.parse(transaction: transactionString, balance: balanceString)
             } else {
                 self.showDataEntryViewForNextTransactionIfNeccessary()

@@ -14,7 +14,6 @@ class TangerineAccountImporter: CSVBaseImporter, CSVImporter {
     private static let name = "Name"
     private static let memo = "Memo"
     private static let amount = "Amount"
-    private static let currencySetting = ImporterSetting(identifier: "currency", name: "Currency")
 
     static let header = [date, "Transaction", name, memo, amount]
     static let settingsIdentifier = "tangerine_accounts"

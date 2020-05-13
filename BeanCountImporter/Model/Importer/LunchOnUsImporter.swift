@@ -14,7 +14,6 @@ class LunchOnUsImporter: CSVBaseImporter, CSVImporter {
     private static let type = "type"
     private static let amount = "amount"
     private static let description = "location"
-    private static let currencySetting = ImporterSetting(identifier: "currency", name: "Currency")
 
     static let header = [date, type, amount, "invoice", "remaining", description]
     static let settingsIdentifier = "lunch_on_us"
