@@ -71,21 +71,11 @@ class ManuLifeImporter: TextImporter {
     // Temporary: Need to calculate this
     private let amountString = "0.00"
 
-    private var cashAccountName: String {
-        Self.get(setting: Self.cashAccountSetting) ?? defaultCashAccountName
-    }
-    private var employeeBasicFraction: Double {
-        Double(Self.get(setting: Self.employeeBasicSetting) ?? "") ?? defaultContribution
-    }
-    private var employerBasicFraction: Double {
-        Double(Self.get(setting: Self.employerBasicSetting) ?? "") ?? defaultContribution
-    }
-    private var employerMatchFraction: Double {
-        Double(Self.get(setting: Self.employerMatchSetting) ?? "") ?? defaultContribution
-    }
-    private var employeeVoluntaryFraction: Double {
-        Double(Self.get(setting: Self.employeeVoluntarySetting) ?? "") ?? defaultContribution
-    }
+    private var cashAccountName: String { Self.get(setting: Self.cashAccountSetting) ?? defaultCashAccountName }
+    private var employeeBasicFraction: Double { Double(Self.get(setting: Self.employeeBasicSetting) ?? "") ?? defaultContribution }
+    private var employerBasicFraction: Double { Double(Self.get(setting: Self.employerBasicSetting) ?? "") ?? defaultContribution }
+    private var employerMatchFraction: Double { Double(Self.get(setting: Self.employerMatchSetting) ?? "") ?? defaultContribution }
+    private var employeeVoluntaryFraction: Double { Double(Self.get(setting: Self.employeeVoluntarySetting) ?? "") ?? defaultContribution }
 
     required init(autocompleteLedger: Ledger?, accountName: String) {
         self.autocompleteLedger = autocompleteLedger
