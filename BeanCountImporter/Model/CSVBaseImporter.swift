@@ -39,13 +39,15 @@ class CSVBaseImporter {
 
     let csvReader: CSVReader
     let account: Account
+    let fileName: String
 
     private var loaded = false
     private var lines = [CSVLine]()
 
-    required init(csvReader: CSVReader, account: Account) {
+    required init(csvReader: CSVReader, account: Account, fileName: String) {
         self.csvReader = csvReader
         self.account = account
+        self.fileName = fileName
     }
 
     func loadFile() {

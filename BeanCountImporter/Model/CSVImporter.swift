@@ -42,7 +42,7 @@ enum CSVImporterManager {
         guard let importerClass = importer else {
             return nil
         }
-        return importerClass.init(csvReader: csvReader, account: account)
+        return importerClass.init(csvReader: csvReader, account: account, fileName: url.lastPathComponent)
     }
 
     private static func openFile(_ url: URL) -> CSVReader? {
@@ -63,6 +63,6 @@ protocol CSVImporter: FileImporter {
 
     static var header: [String] { get }
 
-    init(csvReader: CSVReader, account: Account)
+    init(csvReader: CSVReader, account: Account, fileName: String)
 
 }
