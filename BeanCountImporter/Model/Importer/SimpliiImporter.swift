@@ -14,11 +14,12 @@ class SimpliiImporter: CSVBaseImporter, CSVImporter {
     private static let date = "Date"
     private static let amountIn = "Funds In"
     private static let amountOut = "Funds Out"
+    private static let currencySetting = ImporterSetting(identifier: "currency", name: "Currency")
 
     static let header = [date, description, amountOut, amountIn]
     static let settingsIdentifier = "simplii"
     static let settingsName = "Simplii Accounts"
-    static var settings = [ImporterSetting]()
+    static var settings = [currencySetting]
 
     private static var dateFormatter: DateFormatter = {
         var dateFormatter = DateFormatter()

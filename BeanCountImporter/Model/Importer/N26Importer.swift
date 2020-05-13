@@ -18,11 +18,12 @@ class N26Importer: CSVBaseImporter, CSVImporter {
     private static let exchangeRate = "Wechselkurs"
     private static let date = "Datum"
     private static let recipient = "Empfänger"
+    private static let currencySetting = ImporterSetting(identifier: "currency", name: "Currency")
 
     static let header = [date, recipient, "Kontonummer", "Transaktionstyp", description, "Kategorie", amount, amountForeignCurrency, foreignCurrency, exchangeRate]
     static let settingsIdentifier = "n26"
     static let settingsName = "N26"
-    static var settings = [ImporterSetting]()
+    static var settings = [currencySetting]
 
     private static var dateFormatter: DateFormatter = {
         var dateFormatter = DateFormatter()

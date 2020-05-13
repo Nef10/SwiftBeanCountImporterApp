@@ -27,9 +27,11 @@ class ManuLifeImporter: TextImporter {
         let price: String
     }
 
+    private static let currencySetting = ImporterSetting(identifier: "currency", name: "Currency")
+
     static let settingsName = "ManuLife"
     static let settingsIdentifier = "manulife"
-    static let settings = [ImporterSetting]()
+    static var settings = [currencySetting]
 
     /// DateFormatter for printing a date in the result string
     private static let printDateFormatter: DateFormatter = {
