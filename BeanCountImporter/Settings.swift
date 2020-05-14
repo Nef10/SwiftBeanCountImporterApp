@@ -14,5 +14,7 @@ enum Settings {
     static let userDefaultsAccounts = "accounts"
     static let userDefaultsDescription = "description"
     static let defaultAccountName = "Expenses:TODO"
+    static let dateToleranceSettingsKey = "date_tolerance"
+    static let dateToleranceDefaultSetting = 2 // days
 
 }
