@@ -13,6 +13,7 @@ import SwiftBeanCountModel
 class CSVBaseImporter {
 
     static let currencySetting = ImporterSetting(identifier: "currency", name: "Currency")
+    static let accountsSetting = ImporterSetting(identifier: "accounts", name: "Account(s)")
 
     private static let fallbackCommodity = "CAD"
 

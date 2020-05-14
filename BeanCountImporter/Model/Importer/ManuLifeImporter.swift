@@ -28,6 +28,7 @@ class ManuLifeImporter: TextImporter {
     }
 
     private static let currencySetting = ImporterSetting(identifier: "currency", name: "Currency")
+    private static let accountsSetting = ImporterSetting(identifier: "accounts", name: "Account(s)")
     private static let cashAccountSetting = ImporterSetting(identifier: "cashAccountName", name: "Cash Account Postfix")
     private static let employeeBasicSetting = ImporterSetting(identifier: "employeeBasicFraction", name: "Employee Basic Percentage")
     private static let employerBasicSetting = ImporterSetting(identifier: "employerBasicFraction", name: "Employer Basic Percentage")
@@ -36,7 +37,7 @@ class ManuLifeImporter: TextImporter {
 
     static let settingsName = "ManuLife"
     static let settingsIdentifier = "manulife"
-    static var settings = [currencySetting, cashAccountSetting, employeeBasicSetting, employerBasicSetting, employerMatchSetting, employeeVoluntarySetting]
+    static var settings = [currencySetting, accountsSetting, cashAccountSetting, employeeBasicSetting, employerBasicSetting, employerMatchSetting, employeeVoluntarySetting]
 
     /// DateFormatter for printing a date in the result string
     private static let printDateFormatter: DateFormatter = {
