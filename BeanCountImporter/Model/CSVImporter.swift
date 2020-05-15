@@ -32,8 +32,8 @@ enum CSVImporterManager {
         ]
     }
 
-    static func new(url: URL?, accountName: String) -> FileImporter? {
-        guard let url = url, let csvReader = openFile(url), let headerRow = csvReader.headerRow, let account = try? Account(name: accountName) else {
+    static func new(url: URL?) -> FileImporter? {
+        guard let url = url, let csvReader = openFile(url), let headerRow = csvReader.headerRow else {
             return nil
         }
         let importer = Self.importers.first {
@@ -42,7 +42,7 @@ enum CSVImporterManager {
         guard let importerClass = importer else {
             return nil
         }
-        return importerClass.init(csvReader: csvReader, account: account, fileName: url.lastPathComponent)
+        return importerClass.init(csvReader: csvReader, fileName: url.lastPathComponent)
     }
 
     private static func openFile(_ url: URL) -> CSVReader? {
@@ -63,6 +63,6 @@ protocol CSVImporter: FileImporter {
 
     static var header: [String] { get }
 
-    init(csvReader: CSVReader, account: Account, fileName: String)
+    init(csvReader: CSVReader, fileName: String)
 
 }

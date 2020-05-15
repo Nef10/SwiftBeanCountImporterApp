@@ -16,6 +16,7 @@ class ImportViewController: NSViewController {
         static let dataEntrySheet = "dataEntrySheet"
         static let duplicateTransactionSheet = "duplicateTransactionSheet"
         static let loadingIndicatorSheet = "loadingIndicatorSheet"
+        static let accountSelectionSheet = "accountSelectionSheet"
     }
 
     private static var dateTolerance: TimeInterval {
@@ -51,10 +52,11 @@ class ImportViewController: NSViewController {
                 self?.handleInvalidPassedData()
                 return
             }
-            self?.importData()
+            self?.setAccount()
         }
     }
 
+    // swiftlint:disable:next cyclomatic_complexity
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else {
             return
@@ -80,6 +82,15 @@ class ImportViewController: NSViewController {
                 return
             }
             loadingIndicatorSheet = controller
+        case SegueIdentifier.accountSelectionSheet:
+            guard let controller = segue.destinationController as? AccountSelectionViewController else {
+                return
+            }
+            controller.delegate = self
+            controller.possibleAccounts = possibleAccounts()
+            if case let .csv(fileName) = importMode {
+                controller.fileName = fileName.lastPathComponent
+            }
         default:
             break
         }
@@ -95,11 +106,11 @@ class ImportViewController: NSViewController {
             self?.loadingIndicatorSheet?.updateText(text: "Loading import data")
         }
         switch importMode {
-        case let .csv(fileURL, account)?:
-            fileImporter = FileImporterManager.new(url: fileURL, accountName: account)
+        case let .csv(fileURL)?:
+            fileImporter = FileImporterManager.new(url: fileURL)
             fileImporter?.loadFile()
-        case let .text(_, _, account)?:
-            textImporter = TextImporterManager.new(autocompleteLedger: autocompleteLedger, accountName: account)
+        case .text:
+            textImporter = TextImporterManager.new(autocompleteLedger: autocompleteLedger)
         case .none:
             break
         }
@@ -133,12 +144,37 @@ class ImportViewController: NSViewController {
         }
     }
 
+    private func possibleAccounts() -> [String] {
+        switch importMode {
+        case .csv:
+            return fileImporter?.possibleAccounts() ?? []
+        case .text:
+            return textImporter?.possibleAccounts() ?? []
+        default:
+            return []
+        }
+    }
+
+    private func setAccount() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            let possibleAccounts = self.possibleAccounts()
+            if possibleAccounts.count != 1 {
+                self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.accountSelectionSheet), sender: self)
+            } else {
+                self.useAccount(name: possibleAccounts.first!)
+            }
+        }
+    }
+
     private func importData() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
                 return
             }
-            if let textImporter = self.textImporter, case let .text(transactionString, balanceString, _)? = self.importMode {
+            if let textImporter = self.textImporter, case let .text(transactionString, balanceString)? = self.importMode {
                 self.textView.string = textImporter.parse(transaction: transactionString, balance: balanceString)
             } else {
                 self.showDataEntryViewForNextTransactionIfNeccessary()
@@ -182,15 +218,50 @@ class ImportViewController: NSViewController {
         }
     }
 
+    private func useAccount(name: String) {
+        do {
+            switch importMode {
+            case .csv:
+                try fileImporter?.useAccount(name: name)
+            case .text:
+                try textImporter?.useAccount(name: name)
+            default:
+                break
+            }
+        } catch {
+            showError("\(error.localizedDescription)") { [weak self] _ in
+                guard let self = self else {
+                    return
+                }
+                self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.accountSelectionSheet), sender: self)
+            }
+            return
+        }
+        importData()
+    }
+
+    private func showError(_ error: String, completion: ((NSApplication.ModalResponse) -> Void)?) {
+        let alert = NSAlert()
+        alert.alertStyle = .critical
+        alert.addButton(withTitle: "OK")
+        alert.messageText = error
+        alert.beginSheetModal(for: view.window!, completionHandler: completion)
+    }
+
 }
 
-extension ImportViewController: DataEntryViewControllerDelegate, DuplicateTransactionViewControllerDelegate {
+extension ImportViewController: DataEntryViewControllerDelegate, DuplicateTransactionViewControllerDelegate, AccountSelectionViewControllerDelegate {
 
     func finished(_ sheet: NSWindow, transaction: Transaction) {
         view.window?.endSheet(sheet)
         _ = resultLedger.add(transaction)
         updateOutput()
         showDataEntryViewForNextTransactionIfNeccessary()
+    }
+
+    func finished(_ sheet: NSWindow, accountName: String) {
+        view.window?.endSheet(sheet)
+        useAccount(name: accountName)
     }
 
     func cancel(_ sheet: NSWindow) {

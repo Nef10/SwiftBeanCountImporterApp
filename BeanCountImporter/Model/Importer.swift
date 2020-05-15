@@ -23,19 +23,21 @@ struct ImporterSetting {
 protocol Importer {
 
     static var settingsName: String { get }
-    static var settingsIdentifier: String { get }
     static var settings: [ImporterSetting] { get }
+
+    func possibleAccounts() -> [String]
+    func useAccount(name: String) throws
 
 }
 
 extension Importer {
 
     static func get(setting: ImporterSetting) -> String? {
-        UserDefaults.standard.string(forKey: "\(Self.settingsIdentifier).\(setting.identifier)")
+        UserDefaults.standard.string(forKey: "\(String(describing: self)).\(setting.identifier)")
     }
 
     static func set(setting: ImporterSetting, to value: String) {
-        UserDefaults.standard.set(value, forKey: "\(Self.settingsIdentifier).\(setting.identifier)")
+        UserDefaults.standard.set(value, forKey: "\(String(describing: self)).\(setting.identifier)")
     }
 
 }

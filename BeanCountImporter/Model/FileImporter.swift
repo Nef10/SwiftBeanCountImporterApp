@@ -15,8 +15,8 @@ enum FileImporterManager {
         CSVImporterManager.importers
     }
 
-    static func new(url: URL?, accountName: String) -> FileImporter? {
-        CSVImporterManager.new(url: url, accountName: accountName)
+    static func new(url: URL?) -> FileImporter? {
+        CSVImporterManager.new(url: url)
     }
 
 }
@@ -30,7 +30,7 @@ struct ImportedTransaction {
 
 protocol FileImporter: Importer {
 
-    var account: Account { get }
+    var account: Account? { get }
 
     func loadFile()
     func parseLineIntoTransaction() -> ImportedTransaction?

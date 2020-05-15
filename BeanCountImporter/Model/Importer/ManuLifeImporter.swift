@@ -9,7 +9,7 @@
 import Foundation
 import SwiftBeanCountModel
 
-class ManuLifeImporter: TextImporter {
+class ManuLifeImporter: BaseImporter, TextImporter {
 
     private struct ManuLifeBalance {
         let commodity: String
@@ -27,17 +27,15 @@ class ManuLifeImporter: TextImporter {
         let price: String
     }
 
-    private static let currencySetting = ImporterSetting(identifier: "currency", name: "Currency")
-    private static let accountsSetting = ImporterSetting(identifier: "accounts", name: "Account(s)")
     private static let cashAccountSetting = ImporterSetting(identifier: "cashAccountName", name: "Cash Account Postfix")
     private static let employeeBasicSetting = ImporterSetting(identifier: "employeeBasicFraction", name: "Employee Basic Percentage")
     private static let employerBasicSetting = ImporterSetting(identifier: "employerBasicFraction", name: "Employer Basic Percentage")
     private static let employerMatchSetting = ImporterSetting(identifier: "employerMatchFraction", name: "Employer Match Percentage")
     private static let employeeVoluntarySetting = ImporterSetting(identifier: "employeeVoluntaryFraction", name: "Employee Voluntary Percentage")
 
-    static let settingsName = "ManuLife"
-    static let settingsIdentifier = "manulife"
-    static var settings = [currencySetting, accountsSetting, cashAccountSetting, employeeBasicSetting, employerBasicSetting, employerMatchSetting, employeeVoluntarySetting]
+    override class var settingsName: String { "ManuLife" }
+    override class var settings: [ImporterSetting] { super.settings +
+        [cashAccountSetting, employeeBasicSetting, employerBasicSetting, employerMatchSetting, employeeVoluntarySetting] }
 
     /// DateFormatter for printing a date in the result string
     private static let printDateFormatter: DateFormatter = {
@@ -55,15 +53,9 @@ class ManuLifeImporter: TextImporter {
         return dateFormatter
     }()
 
-    private static var commodityString: String {
-        Self.get(setting: currencySetting) ?? "CAD"
-    }
-
     private let defaultCashAccountName = "Parking"
     private let defaultContribution = 1.0
-
     private let autocompleteLedger: Ledger?
-    private let accountString: String
     private let commodityPaddingLength = 20
     private let accountPaddingLength = 69
     private let amountPaddingLength = 9
@@ -78,9 +70,8 @@ class ManuLifeImporter: TextImporter {
     private var employerMatchFraction: Double { Double(Self.get(setting: Self.employerMatchSetting) ?? "") ?? defaultContribution }
     private var employeeVoluntaryFraction: Double { Double(Self.get(setting: Self.employeeVoluntarySetting) ?? "") ?? defaultContribution }
 
-    required init(autocompleteLedger: Ledger?, accountName: String) {
+    required init(autocompleteLedger: Ledger?) {
         self.autocompleteLedger = autocompleteLedger
-        self.accountString = accountName
     }
 
     func parse(transaction: String, balance: String) -> String {
@@ -91,15 +82,6 @@ class ManuLifeImporter: TextImporter {
         } ?? [:]
         // Temporary till parser can read names
         commodities.merge([
-            
-            
-            
-            
-            
-            
-            
-            
-            
             
             
             
@@ -181,6 +163,7 @@ class ManuLifeImporter: TextImporter {
     /// - Parameter balances: Array of ManuLifeBalance
     /// - Returns: string with the balances and prices of the units at the current date
     private func stringifyBalances(_ balances: [ManuLifeBalance]) -> String {
+        guard let accountString = account?.name else { fatalError("No account configured") }
         let dateString = Self.printDateFormatter.string(from: Date())
 
         return balances.map {
@@ -208,7 +191,7 @@ class ManuLifeImporter: TextImporter {
             return result.joined(separator: "\n")
         }
         .joined(separator: "\n") + "\n\n" + balances.map {
-            "\(dateString) price \($0.commodity.padding(toLength: commodityPaddingLength, withPad: " ", startingAt: 0)) \($0.unitValue) \(Self.commodityString)"
+            "\(dateString) price \($0.commodity.padding(toLength: commodityPaddingLength, withPad: " ", startingAt: 0)) \($0.unitValue) \(commodityString)"
         }
         .sorted()
         .joined(separator: "\n")
@@ -259,6 +242,7 @@ class ManuLifeImporter: TextImporter {
     /// - Parameter purchase: tupel with array of ManuLifeBuy and a date
     /// - Returns: string with the purchase and prices of the units at the purchase date
     private func stringifyPurchase(_ purchase: ([ManuLifeBuy], Date?)) -> String {
+        guard let accountString = account?.name else { fatalError("No account configured") }
         let (matches, date) = purchase
         let dateString = date != nil ? Self.printDateFormatter.string(from: date!) : ""
 
@@ -269,7 +253,7 @@ class ManuLifeImporter: TextImporter {
 
         let cashAccount = "\(accountString):\(cashAccountName)".padding(toLength: accountPaddingLength - decimalPointPosition + 1, withPad: " ", startingAt: 0)
 
-        var result = "\(dateString) * \"\" \"\"\n  \(cashAccount) \(amountString.padding(toLength: 10, withPad: " ", startingAt: 0)) \(Self.commodityString)\n"
+        var result = "\(dateString) * \"\" \"\"\n  \(cashAccount) \(amountString.padding(toLength: 10, withPad: " ", startingAt: 0)) \(commodityString)\n"
         result += matches.map {
             let employeeBasic = "\(accountString):Employee:Basic:\($0.commodity)".padding(toLength: accountPaddingLength, withPad: " ", startingAt: 0)
             let employerBasic = "\(accountString):Employer:Basic:\($0.commodity)".padding(toLength: accountPaddingLength, withPad: " ", startingAt: 0)
@@ -277,16 +261,16 @@ class ManuLifeImporter: TextImporter {
             let employeeVoluntary = "\(accountString):Employee:Voluntary:\($0.commodity)".padding(toLength: accountPaddingLength, withPad: " ", startingAt: 0)
             let unitFraction = Double($0.units)! / (employeeBasicFraction + employerBasicFraction + employerMatchFraction + employeeVoluntaryFraction)
             let commodity = $0.commodity.padding(toLength: commodityPaddingLength, withPad: " ", startingAt: 0)
-            var result = "  \(employeeBasic) \(String(format: unitFormat, unitFraction * employeeBasicFraction)) \(commodity) {\($0.price) \(Self.commodityString)}\n"
-            result += "  \(employerBasic) \(String(format: unitFormat, unitFraction * employerBasicFraction)) \(commodity) {\($0.price) \(Self.commodityString)}\n"
-            result += "  \(employerMatch) \(String(format: unitFormat, unitFraction * employerMatchFraction)) \(commodity) {\($0.price) \(Self.commodityString)}\n"
-            result += "  \(employeeVoluntary) \(String(format: unitFormat, unitFraction * employeeVoluntaryFraction)) \(commodity) {\($0.price) \(Self.commodityString)}"
+            var result = "  \(employeeBasic) \(String(format: unitFormat, unitFraction * employeeBasicFraction)) \(commodity) {\($0.price) \(commodityString)}\n"
+            result += "  \(employerBasic) \(String(format: unitFormat, unitFraction * employerBasicFraction)) \(commodity) {\($0.price) \(commodityString)}\n"
+            result += "  \(employerMatch) \(String(format: unitFormat, unitFraction * employerMatchFraction)) \(commodity) {\($0.price) \(commodityString)}\n"
+            result += "  \(employeeVoluntary) \(String(format: unitFormat, unitFraction * employeeVoluntaryFraction)) \(commodity) {\($0.price) \(commodityString)}"
             return result
         }
         .joined(separator: "\n")
         result += "\n\n"
         result += matches.map { buy -> String in
-            "\(dateString) price \(buy.commodity.padding(toLength: commodityPaddingLength, withPad: " ", startingAt: 0)) \(buy.price) \(Self.commodityString)"
+            "\(dateString) price \(buy.commodity.padding(toLength: commodityPaddingLength, withPad: " ", startingAt: 0)) \(buy.price) \(commodityString)"
         }
         .sorted()
         .joined(separator: "\n")

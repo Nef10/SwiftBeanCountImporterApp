@@ -10,8 +10,8 @@ import Cocoa
 import SwiftBeanCountModel
 
 enum ImportMode {
-    case csv(URL, String) // import file URL, account
-    case text(String, String, String) // transaction, balance, account
+    case csv(URL) // import file URL
+    case text(String, String) // transaction, balance
 }
 
 private enum SelectedImportMode {
@@ -29,7 +29,6 @@ class SelectorViewController: NSViewController {
     private var ledgerURL: URL?
     private var selectedImportMode: SelectedImportMode?
 
-    @IBOutlet private var accountNameField: NSTextField!
     @IBOutlet private var fileNameLabel: NSTextField!
     @IBOutlet private var ledgerNameLabel: NSTextField!
 
@@ -86,9 +85,9 @@ class SelectorViewController: NSViewController {
             }
             switch selectedImportMode! {
             case let .csv(fileURL):
-                controller.importMode = .csv(fileURL, accountNameField.stringValue)
+                controller.importMode = .csv(fileURL)
             case let .text(transactionString, balanceString):
-                controller.importMode = .text(transactionString, balanceString, accountNameField.stringValue)
+                controller.importMode = .text(transactionString, balanceString)
             }
             if let ledgerURL = ledgerURL {
                 controller.autocompleteLedgerURL = ledgerURL
@@ -108,23 +107,11 @@ class SelectorViewController: NSViewController {
     }
 
     private func isInputValid() -> Bool {
-        isSourceValid() && isAccountValid()
-    }
-
-    private func isSourceValid() -> Bool {
         selectedImportMode != nil
     }
 
-    private func isAccountValid() -> Bool {
-        Account.isNameValid(accountNameField.stringValue)
-    }
-
     private func showValidationError() {
-        if !isSourceValid() {
-            showValidationError("Please select a file or enter valid text.")
-        } else if !isAccountValid() {
-            showValidationError("Please enter a valid account.")
-        }
+        showValidationError("Please select a file or enter valid text.")
     }
 
     private func showValidationError(_ text: String) {

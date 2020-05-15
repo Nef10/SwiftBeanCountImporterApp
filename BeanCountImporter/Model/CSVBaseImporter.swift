@@ -10,10 +10,7 @@ import CSV
 import Foundation
 import SwiftBeanCountModel
 
-class CSVBaseImporter {
-
-    static let currencySetting = ImporterSetting(identifier: "currency", name: "Currency")
-    static let accountsSetting = ImporterSetting(identifier: "accounts", name: "Account(s)")
+class CSVBaseImporter: BaseImporter {
 
     private static let fallbackCommodity = "CAD"
 
@@ -31,23 +28,14 @@ class CSVBaseImporter {
         ]
     }() // swiftlint:enable force_try
 
-    private static var commodityString: String {
-        if let type = self as? Importer.Type {
-            return type.get(setting: currencySetting) ?? fallbackCommodity
-        }
-        return fallbackCommodity
-    }
-
     let csvReader: CSVReader
-    let account: Account
     let fileName: String
 
     private var loaded = false
     private var lines = [CSVLine]()
 
-    required init(csvReader: CSVReader, account: Account, fileName: String) {
+    required init(csvReader: CSVReader, fileName: String) {
         self.csvReader = csvReader
-        self.account = account
         self.fileName = fileName
     }
 
@@ -63,10 +51,13 @@ class CSVBaseImporter {
     }
 
     func parseLineIntoTransaction() -> ImportedTransaction? {
+        guard let account = account else {
+            fatalError("No account configured")
+        }
         guard loaded, let data = lines.popLast() else {
             return nil
         }
-        let commodity = Commodity(symbol: Self.commodityString)
+        let commodity = Commodity(symbol: commodityString)
         var description = sanitizeDescription(data.description)
         var payee = data.payee
         let originalPayee = payee
