@@ -20,9 +20,14 @@ class BaseImporter: Importer {
     private let fallbackCommodity = "CAD"
 
     private(set) var account: Account?
+    var ledger: Ledger?
 
     var commodityString: String {
         Self.get(setting: Self.currencySetting) ?? fallbackCommodity
+    }
+
+    init(ledger: Ledger?) {
+        self.ledger = ledger
     }
 
     func possibleAccounts() -> [String] {

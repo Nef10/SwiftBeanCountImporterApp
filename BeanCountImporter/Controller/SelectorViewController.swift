@@ -90,7 +90,7 @@ class SelectorViewController: NSViewController {
                 controller.importMode = .text(transactionString, balanceString)
             }
             if let ledgerURL = ledgerURL {
-                controller.autocompleteLedgerURL = ledgerURL
+                controller.ledgerURL = ledgerURL
             }
         case SegueIdentifier.showTextEntry:
             guard let controller = segue.destinationController as? TextEntryViewController else {

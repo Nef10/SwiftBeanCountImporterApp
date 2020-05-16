@@ -27,9 +27,9 @@ class ImportViewController: NSViewController {
     }
 
     var importMode: ImportMode?
-    var autocompleteLedgerURL: URL?
+    var ledgerURL: URL?
 
-    private var autocompleteLedger: Ledger?
+    private var ledger: Ledger?
     private var resultLedger: Ledger = Ledger()
     private var nextTransaction: ImportedTransaction?
     private var fileImporter: FileImporter?
@@ -47,12 +47,13 @@ class ImportViewController: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            self?.processPassedData()
-            guard self?.isPassedDataValid() ?? false else {
-                self?.handleInvalidPassedData()
-                return
+            self?.processPassedData {
+                guard self?.isPassedDataValid() ?? false else {
+                    self?.handleInvalidPassedData()
+                    return
+                }
+                self?.setAccount()
             }
-            self?.setAccount()
         }
     }
 
@@ -69,7 +70,7 @@ class ImportViewController: NSViewController {
             controller.baseAccount = fileImporter?.account
             controller.importedTransaction = nextTransaction
             controller.delegate = self
-            controller.ledger = autocompleteLedger
+            controller.ledger = ledger
         case SegueIdentifier.duplicateTransactionSheet:
             guard let controller = segue.destinationController as? DuplicateTransactionViewController else {
                 return
@@ -100,31 +101,55 @@ class ImportViewController: NSViewController {
         textView.string = resultLedger.transactions.map { String(describing: $0) }.reduce(into: "") { $0.append("\n\n\($1)") }.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
-    private func processPassedData() {
-        DispatchQueue.main.async { [weak self] in
-            self?.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.loadingIndicatorSheet), sender: self)
-            self?.loadingIndicatorSheet?.updateText(text: "Loading import data")
-        }
-        switch importMode {
-        case let .csv(fileURL)?:
-            fileImporter = FileImporterManager.new(url: fileURL)
-            fileImporter?.loadFile()
-        case .text:
-            textImporter = TextImporterManager.new(autocompleteLedger: autocompleteLedger)
-        case .none:
-            break
-        }
-        if let autocompleteLedgerURL = autocompleteLedgerURL {
+    private func loadLedger(completion: @escaping () -> Void) {
+        if let ledgerURL = ledgerURL {
             DispatchQueue.main.async { [weak self] in
                 self?.loadingIndicatorSheet?.updateText(text: "Loading Ledger")
             }
-            autocompleteLedger = try? Parser.parse(contentOf: autocompleteLedgerURL)
+            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                self?.ledger = try? Parser.parse(contentOf: ledgerURL)
+                completion()
+            }
+        } else {
+            completion()
         }
+    }
+
+    private func setupImporter(completion: @escaping () -> Void) {
         DispatchQueue.main.async { [weak self] in
-            guard let self = self, let window = self.loadingIndicatorSheet?.view.window else {
+            self?.loadingIndicatorSheet?.updateText(text: "Loading import data")
+        }
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else {
                 return
             }
-            self.view.window?.endSheet(window)
+            switch self.importMode {
+            case let .csv(fileURL)?:
+                self.fileImporter = FileImporterManager.new(ledger: self.ledger, url: fileURL)
+                self.fileImporter?.loadFile()
+            case .text:
+                self.textImporter = TextImporterManager.new(ledger: self.ledger)
+            case .none:
+                break
+            }
+            completion()
+        }
+    }
+
+    private func processPassedData(completion: @escaping () -> Void) {
+        DispatchQueue.main.async { [weak self] in
+            self?.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.loadingIndicatorSheet), sender: self)
+        }
+        loadLedger { [weak self] in
+            self?.setupImporter { [weak self] in
+                DispatchQueue.main.async { [weak self] in
+                    guard let window = self?.loadingIndicatorSheet?.view.window else {
+                        return
+                    }
+                    self?.view.window?.endSheet(window)
+                }
+                completion()
+            }
         }
     }
 
@@ -209,10 +234,10 @@ class ImportViewController: NSViewController {
        }
 
     private func doesTransactionAlreadyExist() -> Transaction? {
-        guard let nextTransaction = nextTransaction?.transaction, let autocompleteLedger = autocompleteLedger else {
+        guard let nextTransaction = nextTransaction?.transaction, let ledger = ledger else {
             return nil
         }
-        return autocompleteLedger.transactions.first {
+        return ledger.transactions.first {
             $0.postings.contains { $0.account.name == nextTransaction.postings.first?.account.name && $0.amount == nextTransaction.postings.first?.amount }
                 && $0.metaData.date + Self.dateTolerance >= nextTransaction.metaData.date && $0.metaData.date - Self.dateTolerance <= nextTransaction.metaData.date
         }

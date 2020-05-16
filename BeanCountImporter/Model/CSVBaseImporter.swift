@@ -34,9 +34,10 @@ class CSVBaseImporter: BaseImporter {
     private var loaded = false
     private var lines = [CSVLine]()
 
-    required init(csvReader: CSVReader, fileName: String) {
+    required init(ledger: Ledger?, csvReader: CSVReader, fileName: String) {
         self.csvReader = csvReader
         self.fileName = fileName
+        super.init(ledger: ledger)
     }
 
     func loadFile() {

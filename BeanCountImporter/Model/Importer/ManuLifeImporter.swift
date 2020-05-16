@@ -55,7 +55,6 @@ class ManuLifeImporter: BaseImporter, TextImporter {
 
     private let defaultCashAccountName = "Parking"
     private let defaultContribution = 1.0
-    private let autocompleteLedger: Ledger?
     private let commodityPaddingLength = 20
     private let accountPaddingLength = 69
     private let amountPaddingLength = 9
@@ -70,12 +69,12 @@ class ManuLifeImporter: BaseImporter, TextImporter {
     private var employerMatchFraction: Double { Double(Self.get(setting: Self.employerMatchSetting) ?? "") ?? defaultContribution }
     private var employeeVoluntaryFraction: Double { Double(Self.get(setting: Self.employeeVoluntarySetting) ?? "") ?? defaultContribution }
 
-    required init(autocompleteLedger: Ledger?) {
-        self.autocompleteLedger = autocompleteLedger
+    override required init(ledger: Ledger?) {
+        super.init(ledger: ledger)
     }
 
     func parse(transaction: String, balance: String) -> String {
-        var commodities = autocompleteLedger?.commodities.reduce(into: [String: String]()) {
+        var commodities = ledger?.commodities.reduce(into: [String: String]()) {
             if let name = $1.name {
                 $0[name] = $1.symbol
             }
