@@ -202,18 +202,18 @@ class DataEntryViewController: NSViewController {
     private func savePrefrillData(transaction: Transaction) {
         if saveDescriptionPayeeCheckbox.state == .on, let importedTransaction = importedTransaction {
             if !transaction.metaData.payee.isEmpty {
-                var defaultPayees = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsPayees) ?? [:]
+                var defaultPayees = UserDefaults.standard.dictionary(forKey: Settings.payeesUserDefaultKey) ?? [:]
                 defaultPayees[importedTransaction.originalDescription] = transaction.metaData.payee
-                UserDefaults.standard.set(defaultPayees, forKey: Settings.userDefaultsPayees)
+                UserDefaults.standard.set(defaultPayees, forKey: Settings.payeesUserDefaultKey)
                 if saveAccountCheckbox.state == .on, let accountName = relevantPosting?.account.name {
-                    var defaultAccounts = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsAccounts) ?? [:]
+                    var defaultAccounts = UserDefaults.standard.dictionary(forKey: Settings.accountsUserDefaultsKey) ?? [:]
                     defaultAccounts[transaction.metaData.payee] = accountName
-                    UserDefaults.standard.set(defaultAccounts, forKey: Settings.userDefaultsAccounts)
+                    UserDefaults.standard.set(defaultAccounts, forKey: Settings.accountsUserDefaultsKey)
                 }
             }
-            var defaultDescriptions = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsDescription) ?? [:]
+            var defaultDescriptions = UserDefaults.standard.dictionary(forKey: Settings.descriptionUserDefaultsKey) ?? [:]
             defaultDescriptions[importedTransaction.originalDescription] = transaction.metaData.narration
-            UserDefaults.standard.set(defaultDescriptions, forKey: Settings.userDefaultsDescription)
+            UserDefaults.standard.set(defaultDescriptions, forKey: Settings.descriptionUserDefaultsKey)
         }
     }
 

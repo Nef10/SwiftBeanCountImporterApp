@@ -63,16 +63,16 @@ class CSVBaseImporter: BaseImporter {
         var payee = data.payee
         let originalPayee = payee
         let originalDescription = description
-        if let savedPayee = (UserDefaults.standard.dictionary(forKey: Settings.userDefaultsPayees) as? [String: String])?[description] {
+        if let savedPayee = (UserDefaults.standard.dictionary(forKey: Settings.payeesUserDefaultKey) as? [String: String])?[description] {
             payee = savedPayee
         }
-        if let savedDescription = (UserDefaults.standard.dictionary(forKey: Settings.userDefaultsDescription) as? [String: String])?[description] {
+        if let savedDescription = (UserDefaults.standard.dictionary(forKey: Settings.descriptionUserDefaultsKey) as? [String: String])?[description] {
             description = savedDescription
         }
 
         let categoryAmount = Amount(number: -data.amount, commodity: commodity, decimalDigits: 2)
         var categoryAccount = try! Account(name: Settings.defaultAccountName) // swiftlint:disable:this force_try
-        if let accountName = (UserDefaults.standard.dictionary(forKey: Settings.userDefaultsAccounts) as? [String: String])?[payee],
+        if let accountName = (UserDefaults.standard.dictionary(forKey: Settings.accountsUserDefaultsKey) as? [String: String])?[payee],
             let account = try? Account(name: accountName) {
             categoryAccount = account
         }

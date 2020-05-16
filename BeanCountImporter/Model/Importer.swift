@@ -33,11 +33,15 @@ protocol Importer {
 extension Importer {
 
     static func get(setting: ImporterSetting) -> String? {
-        UserDefaults.standard.string(forKey: "\(String(describing: self)).\(setting.identifier)")
+        UserDefaults.standard.string(forKey: getUserDefaultsKey(for: setting))
     }
 
     static func set(setting: ImporterSetting, to value: String) {
-        UserDefaults.standard.set(value, forKey: "\(String(describing: self)).\(setting.identifier)")
+        UserDefaults.standard.set(value, forKey: getUserDefaultsKey(for: setting))
+    }
+
+    static func getUserDefaultsKey(for setting: ImporterSetting) -> String {
+        "\(String(describing: self)).\(setting.identifier)"
     }
 
 }

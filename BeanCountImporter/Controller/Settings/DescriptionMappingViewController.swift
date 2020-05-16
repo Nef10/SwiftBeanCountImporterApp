@@ -35,22 +35,22 @@ class DescriptionMappingViewController: NSViewController {
     @IBAction private func editPayee(_ sender: NSTextField) {
         let row = tableView.row(for: sender)
         let line = lines[row]
-        guard var payees = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsPayees) else {
+        guard var payees = UserDefaults.standard.dictionary(forKey: Settings.payeesUserDefaultKey) else {
             return
         }
         payees[line.importedDescription] = sender.stringValue
-        UserDefaults.standard.set(payees, forKey: Settings.userDefaultsPayees)
+        UserDefaults.standard.set(payees, forKey: Settings.payeesUserDefaultKey)
         refreshData()
     }
 
     @IBAction private func editDescription(_ sender: NSTextField) {
         let row = tableView.row(for: sender)
         let line = lines[row]
-        guard var desciptions = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsDescription) else {
+        guard var desciptions = UserDefaults.standard.dictionary(forKey: Settings.descriptionUserDefaultsKey) else {
             return
         }
         desciptions[line.importedDescription] = sender.stringValue
-        UserDefaults.standard.set(desciptions, forKey: Settings.userDefaultsDescription)
+        UserDefaults.standard.set(desciptions, forKey: Settings.descriptionUserDefaultsKey)
         refreshData()
     }
 
@@ -59,14 +59,14 @@ class DescriptionMappingViewController: NSViewController {
             guard let newDescription = newLineAlert() else {
                 return
             }
-            guard var payees = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsPayees),
-                var desciptions = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsDescription) else {
+            guard var payees = UserDefaults.standard.dictionary(forKey: Settings.payeesUserDefaultKey),
+                var desciptions = UserDefaults.standard.dictionary(forKey: Settings.descriptionUserDefaultsKey) else {
                     return
             }
             payees[newDescription] = ""
             desciptions[newDescription] = ""
-            UserDefaults.standard.set(payees, forKey: Settings.userDefaultsPayees)
-            UserDefaults.standard.set(desciptions, forKey: Settings.userDefaultsDescription)
+            UserDefaults.standard.set(payees, forKey: Settings.payeesUserDefaultKey)
+            UserDefaults.standard.set(desciptions, forKey: Settings.descriptionUserDefaultsKey)
             refreshData()
             let index = lines.firstIndex {
                 $0.importedDescription == newDescription
@@ -79,15 +79,16 @@ class DescriptionMappingViewController: NSViewController {
             tableView.scrollRowToVisible(index1)
         } else if sender.selectedSegment == 1 {// -
             let row = tableView.selectedRow
-            let line = lines[row]
-            guard var payees = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsPayees),
-                var desciptions = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsDescription) else {
+            guard row != -1,
+                var payees = UserDefaults.standard.dictionary(forKey: Settings.payeesUserDefaultKey),
+                var desciptions = UserDefaults.standard.dictionary(forKey: Settings.descriptionUserDefaultsKey) else {
                 return
             }
+            let line = lines[row]
             payees.removeValue(forKey: line.importedDescription)
             desciptions.removeValue(forKey: line.importedDescription)
-            UserDefaults.standard.set(payees, forKey: Settings.userDefaultsPayees)
-            UserDefaults.standard.set(desciptions, forKey: Settings.userDefaultsDescription)
+            UserDefaults.standard.set(payees, forKey: Settings.payeesUserDefaultKey)
+            UserDefaults.standard.set(desciptions, forKey: Settings.descriptionUserDefaultsKey)
             refreshData()
         }
     }
@@ -113,8 +114,8 @@ class DescriptionMappingViewController: NSViewController {
     }
 
     private func refreshData() {
-        guard let payees = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsPayees) as? [String: String],
-            let desciptions = UserDefaults.standard.dictionary(forKey: Settings.userDefaultsDescription) as? [String: String] else {
+        guard let payees = UserDefaults.standard.dictionary(forKey: Settings.payeesUserDefaultKey) as? [String: String],
+            let desciptions = UserDefaults.standard.dictionary(forKey: Settings.descriptionUserDefaultsKey) as? [String: String] else {
                 lines = []
                 return
         }

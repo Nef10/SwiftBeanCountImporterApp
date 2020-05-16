@@ -20,10 +20,10 @@ class ImportViewController: NSViewController {
     }
 
     private static var dateTolerance: TimeInterval {
-        if let daysString = UserDefaults.standard.string(forKey: Settings.dateToleranceSettingsKey), let days = Int(daysString) {
+        if let daysString = UserDefaults.standard.string(forKey: Settings.dateToleranceUserDefaultsKey), let days = Int(daysString) {
             return Double(days * 60 * 60 * 24) // X days +- to check for duplicate transaction
         }
-        return Double(Settings.dateToleranceDefaultSetting * 60 * 60 * 24)
+        return Double(Settings.defaultDateTolerance * 60 * 60 * 24)
     }
 
     var importMode: ImportMode?

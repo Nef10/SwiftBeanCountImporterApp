@@ -10,11 +10,12 @@ import Foundation
 
 enum Settings {
 
-    static let userDefaultsPayees = "payees"
-    static let userDefaultsAccounts = "accounts"
-    static let userDefaultsDescription = "description"
+    static let payeesUserDefaultKey = "payees"
+    static let accountsUserDefaultsKey = "accounts"
+    static let descriptionUserDefaultsKey = "description"
+    static let dateToleranceUserDefaultsKey = "date_tolerance"
+
     static let defaultAccountName = "Expenses:TODO"
-    static let dateToleranceSettingsKey = "date_tolerance"
-    static let dateToleranceDefaultSetting = 2 // days
+    static let defaultDateTolerance = 2 // days
 
 }
