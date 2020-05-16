@@ -20,6 +20,7 @@
 		F90E0C31246D123700F4C3B6 /* GeneralSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C30246D123700F4C3B6 /* GeneralSettingsViewController.swift */; };
 		F90E0C33246D24F400F4C3B6 /* AccountSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C32246D24F400F4C3B6 /* AccountSelectionViewController.swift */; };
 		F90E0C35246E44E300F4C3B6 /* BaseImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C34246E44E300F4C3B6 /* BaseImporter.swift */; };
+		F90E0C37246FBD9900F4C3B6 /* AccountMappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C36246FBD9900F4C3B6 /* AccountMappingViewController.swift */; };
 		F91C986C1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = F91C986B1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM */; };
 		F93C20221F5D1D7900372960 /* LunchOnUsImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C20211F5D1D7900372960 /* LunchOnUsImporter.swift */; };
 		F949CA3A2468D768004BAEDD /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F949CA392468D768004BAEDD /* Settings.swift */; };
@@ -110,6 +111,7 @@
 		F90E0C30246D123700F4C3B6 /* GeneralSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsViewController.swift; sourceTree = "<group>"; };
 		F90E0C32246D24F400F4C3B6 /* AccountSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSelectionViewController.swift; sourceTree = "<group>"; };
 		F90E0C34246E44E300F4C3B6 /* BaseImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseImporter.swift; sourceTree = "<group>"; };
+		F90E0C36246FBD9900F4C3B6 /* AccountMappingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMappingViewController.swift; sourceTree = "<group>"; };
 		F91C986B1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftBeanCountModel.framework.dSYM; path = Carthage/Build/Mac/SwiftBeanCountModel.framework.dSYM; sourceTree = "<group>"; };
 		F93C20211F5D1D7900372960 /* LunchOnUsImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchOnUsImporter.swift; sourceTree = "<group>"; };
 		F949CA392468D768004BAEDD /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				F9DFC62723B3EB0000FB3792 /* DescriptionMappingViewController.swift */,
 				F90E0C2D2468EEF800F4C3B6 /* ImportersViewController.swift */,
 				F90E0C30246D123700F4C3B6 /* GeneralSettingsViewController.swift */,
+				F90E0C36246FBD9900F4C3B6 /* AccountMappingViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				F9DFC62823B3EB0000FB3792 /* DescriptionMappingViewController.swift in Sources */,
 				F90E0C35246E44E300F4C3B6 /* BaseImporter.swift in Sources */,
 				F995061C23B102E700777D71 /* SimpliiImporter.swift in Sources */,
+				F90E0C37246FBD9900F4C3B6 /* AccountMappingViewController.swift in Sources */,
 				F93C20221F5D1D7900372960 /* LunchOnUsImporter.swift in Sources */,
 				F90E0C33246D24F400F4C3B6 /* AccountSelectionViewController.swift in Sources */,
 				F909311D202FF1F000166FB9 /* PayeeComboBoxDataSource.swift in Sources */,
