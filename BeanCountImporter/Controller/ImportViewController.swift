@@ -264,8 +264,8 @@ class ImportViewController: NSViewController {
     }
 
     private func showDuplicateTransactionViewForTransaction() {
-           performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.duplicateTransactionSheet), sender: self)
-       }
+        performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.duplicateTransactionSheet), sender: self)
+    }
 
     private func doesTransactionAlreadyExist() -> Transaction? {
         guard let nextTransaction = nextTransaction?.transaction, let ledger = ledger else {
