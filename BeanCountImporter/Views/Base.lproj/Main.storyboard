@@ -802,6 +802,19 @@ DQ
                                     <segue destination="2jk-eB-CRq" kind="sheet" identifier="showTextEntry" id="BIA-NT-MmM"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yag-al-ih9">
+                                <rect key="frame" x="306" y="13" width="75" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Zll-By-Z5k"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="osV-MB-bQs">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="resetButtonClicked:" target="XfG-lQ-9wD" id="BtQ-xs-mk5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="rys-ub-8DF" firstAttribute="baseline" secondItem="dWW-CL-7YJ" secondAttribute="baseline" id="257-RY-KB5"/>
@@ -818,6 +831,7 @@ DQ
                             <constraint firstItem="rys-ub-8DF" firstAttribute="leading" secondItem="XgN-b4-fnb" secondAttribute="leading" id="UgU-jU-aki"/>
                             <constraint firstItem="XgN-b4-fnb" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="22" id="XtE-9a-2D6"/>
                             <constraint firstItem="5lC-7i-zNk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="YYu-o1-geS"/>
+                            <constraint firstItem="Yag-al-ih9" firstAttribute="centerY" secondItem="5lC-7i-zNk" secondAttribute="centerY" id="Z8e-Se-Kdn"/>
                             <constraint firstItem="kWa-I6-Xqh" firstAttribute="baseline" secondItem="dWW-CL-7YJ" secondAttribute="baseline" id="b7h-J6-Gay"/>
                             <constraint firstItem="ZIB-fw-dQe" firstAttribute="baseline" secondItem="SYp-cj-yhk" secondAttribute="baseline" id="dE3-bh-xsR"/>
                             <constraint firstItem="dWW-CL-7YJ" firstAttribute="width" secondItem="SYp-cj-yhk" secondAttribute="width" id="j8R-sA-R65"/>
@@ -829,6 +843,7 @@ DQ
                             <constraint firstItem="SYp-cj-yhk" firstAttribute="leading" secondItem="XgN-b4-fnb" secondAttribute="trailing" constant="15" id="vuX-JW-ueI"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kWa-I6-Xqh" secondAttribute="trailing" constant="20" id="w0r-Vr-Ehb"/>
                             <constraint firstItem="V2Y-gE-4US" firstAttribute="width" secondItem="SYp-cj-yhk" secondAttribute="width" id="xl8-nH-UdE"/>
+                            <constraint firstItem="5lC-7i-zNk" firstAttribute="leading" secondItem="Yag-al-ih9" secondAttribute="trailing" constant="12" id="yH7-eu-EaZ"/>
                             <constraint firstItem="ZIB-fw-dQe" firstAttribute="leading" secondItem="V2Y-gE-4US" secondAttribute="trailing" constant="9" id="zi9-ZG-p9p"/>
                         </constraints>
                     </view>
@@ -839,7 +854,7 @@ DQ
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="76" y="621"/>
+            <point key="canvasLocation" x="75.5" y="620.5"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="EXs-dN-G7Q">
@@ -1068,7 +1083,7 @@ DQ
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ogx-we-h8C">
                                 <rect key="frame" x="20" y="19" width="48" height="21"/>
                                 <segmentedCell key="cell" controlSize="small" borderStyle="border" alignment="left" style="smallSquare" trackingMode="momentary" id="I4E-Gb-xET">
-                                    <font key="font" metaFont="label" size="11"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                     <segments>
                                         <segment image="NSAddTemplate" width="23"/>
                                         <segment image="NSRemoveTemplate" width="22" tag="1"/>
@@ -2197,7 +2212,7 @@ Gw
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AFY-hD-5XN">
                                 <rect key="frame" x="20" y="19" width="48" height="21"/>
                                 <segmentedCell key="cell" controlSize="small" borderStyle="border" alignment="left" style="smallSquare" trackingMode="momentary" id="5AJ-VE-U9u">
-                                    <font key="font" metaFont="label" size="11"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                     <segments>
                                         <segment image="NSAddTemplate" width="23"/>
                                         <segment image="NSRemoveTemplate" width="22" tag="1"/>

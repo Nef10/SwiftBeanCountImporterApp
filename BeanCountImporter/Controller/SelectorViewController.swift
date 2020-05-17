@@ -27,6 +27,11 @@ class SelectorViewController: NSViewController {
     @IBOutlet private var fileNameLabel: NSTextField!
     @IBOutlet private var ledgerNameLabel: NSTextField!
 
+    @IBAction private func resetButtonClicked(_ sender: Any) {
+        imports = []
+        updateLabel()
+    }
+
     @IBAction private func selectButtonClicked(_ sender: Any) {
         let openPanel = NSOpenPanel()
         openPanel.canChooseDirectories = true
