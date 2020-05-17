@@ -14,11 +14,6 @@ enum ImportMode {
     case text(String, String) // transaction, balance
 }
 
-private enum SelectedImportMode {
-    case csv(URL)
-    case text(String, String)
-}
-
 class SelectorViewController: NSViewController {
 
     enum SegueIdentifier {
@@ -27,7 +22,7 @@ class SelectorViewController: NSViewController {
     }
 
     private var ledgerURL: URL?
-    private var selectedImportMode: SelectedImportMode?
+    private var selectedImportMode: ImportMode?
 
     @IBOutlet private var fileNameLabel: NSTextField!
     @IBOutlet private var ledgerNameLabel: NSTextField!
@@ -83,12 +78,7 @@ class SelectorViewController: NSViewController {
             guard let controller = segue.destinationController as? ImportViewController else {
                 return
             }
-            switch selectedImportMode! {
-            case let .csv(fileURL):
-                controller.importMode = .csv(fileURL)
-            case let .text(transactionString, balanceString):
-                controller.importMode = .text(transactionString, balanceString)
-            }
+            controller.importMode = selectedImportMode
             if let ledgerURL = ledgerURL {
                 controller.ledgerURL = ledgerURL
             }
