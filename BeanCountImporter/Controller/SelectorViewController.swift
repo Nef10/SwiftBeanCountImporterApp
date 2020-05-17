@@ -22,23 +22,19 @@ class SelectorViewController: NSViewController {
     }
 
     private var ledgerURL: URL?
-    private var selectedImportMode: ImportMode?
+    private var imports = [ImportMode]()
 
     @IBOutlet private var fileNameLabel: NSTextField!
     @IBOutlet private var ledgerNameLabel: NSTextField!
 
     @IBAction private func selectButtonClicked(_ sender: Any) {
         let openPanel = NSOpenPanel()
-        openPanel.canChooseDirectories = false
-        openPanel.allowsMultipleSelection = false
+        openPanel.canChooseDirectories = true
+        openPanel.allowsMultipleSelection = true
         openPanel.allowedFileTypes = ["csv"]
         openPanel.begin { [weak self] response in
             if response == .OK {
-                guard let fileURL = openPanel.url else {
-                    return
-                }
-                self?.selectedImportMode = .csv(fileURL)
-                self?.fileNameLabel.stringValue = fileURL.lastPathComponent
+                self?.selectFilesFromURLs(openPanel.urls)
             }
         }
     }
@@ -78,7 +74,7 @@ class SelectorViewController: NSViewController {
             guard let controller = segue.destinationController as? ImportViewController else {
                 return
             }
-            controller.importMode = selectedImportMode
+            controller.imports = imports.first
             if let ledgerURL = ledgerURL {
                 controller.ledgerURL = ledgerURL
             }
@@ -87,24 +83,51 @@ class SelectorViewController: NSViewController {
                 return
             }
             controller.delegate = self
-            if case let .text(transactionString, balanceString)? = selectedImportMode {
-                controller.prefilledTransactionString = transactionString
-                controller.prefilledBalanceString = balanceString
-            }
         default:
             break
         }
     }
 
+    private func selectFilesFromURLs(_ urls: [URL]) {
+        let resourceKeys: [URLResourceKey] = [.isDirectoryKey]
+        for url in urls {
+            if !url.hasDirectoryPath {
+                imports.append(.csv(url))
+            } else {
+                let enumerator = FileManager.default.enumerator(at: url,
+                                                                includingPropertiesForKeys: resourceKeys,
+                                                                options: [.skipsHiddenFiles]) { _, error -> Bool in
+                                                                    self.showError(error.localizedDescription)
+                                                                    return true
+                }!
+                for case let fileURL as URL in enumerator where !fileURL.hasDirectoryPath && fileURL.pathExtension.lowercased() == "csv" {
+                    imports.append(.csv(url))
+                }
+            }
+        }
+        updateLabel()
+    }
+
+    private func updateLabel() {
+        let files = imports.filter {
+            if case .csv = $0 {
+                return true
+            }
+            return false
+        }.count
+        let texts = imports.count - files
+        fileNameLabel.stringValue = "\(files) File(s) and \(texts) text(s) added"
+    }
+
     private func isInputValid() -> Bool {
-        selectedImportMode != nil
+        !imports.isEmpty
     }
 
     private func showValidationError() {
-        showValidationError("Please select a file or enter valid text.")
+        showError("Please select file(s) or enter valid text.")
     }
 
-    private func showValidationError(_ text: String) {
+    private func showError(_ text: String) {
         let alert = NSAlert()
         alert.alertStyle = .critical
         alert.addButton(withTitle: "OK")
@@ -121,11 +144,8 @@ extension SelectorViewController: TextEntryViewControllerDelegate {
         let transactionString = transaction.trimmingCharacters(in: .whitespacesAndNewlines)
         let balanceString = balance.trimmingCharacters(in: .whitespacesAndNewlines)
         if !transactionString.isEmpty || !balanceString.isEmpty {
-            selectedImportMode = .text(transactionString, balanceString)
-            fileNameLabel.stringValue = "Text entered"
-        } else {
-            selectedImportMode = nil
-            fileNameLabel.stringValue = ""
+            imports.append(.text(transactionString, balanceString))
+            updateLabel()
         }
     }
 

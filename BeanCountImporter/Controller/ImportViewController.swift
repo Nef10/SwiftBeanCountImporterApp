@@ -26,7 +26,7 @@ class ImportViewController: NSViewController {
         return Double(Settings.defaultDateTolerance * 60 * 60 * 24)
     }
 
-    var importMode: ImportMode?
+    var imports: ImportMode?
     var ledgerURL: URL?
 
     private var ledger: Ledger?
@@ -64,7 +64,7 @@ class ImportViewController: NSViewController {
         }
         switch identifier {
         case SegueIdentifier.dataEntrySheet:
-            guard let controller = segue.destinationController as? DataEntryViewController, case .csv = importMode else {
+            guard let controller = segue.destinationController as? DataEntryViewController, case .csv = imports else {
                 return
             }
             controller.baseAccount = fileImporter?.account
@@ -89,7 +89,7 @@ class ImportViewController: NSViewController {
             }
             controller.delegate = self
             controller.possibleAccounts = possibleAccounts()
-            if case let .csv(fileName) = importMode {
+            if case let .csv(fileName) = imports {
                 controller.fileName = fileName.lastPathComponent
             }
         default:
@@ -123,7 +123,7 @@ class ImportViewController: NSViewController {
             guard let self = self else {
                 return
             }
-            switch self.importMode {
+            switch self.imports {
             case let .csv(fileURL)?:
                 self.fileImporter = FileImporterManager.new(ledger: self.ledger, url: fileURL)
                 self.fileImporter?.loadFile()
@@ -170,7 +170,7 @@ class ImportViewController: NSViewController {
     }
 
     private func possibleAccounts() -> [String] {
-        switch importMode {
+        switch imports {
         case .csv:
             return fileImporter?.possibleAccounts() ?? []
         case .text:
@@ -199,7 +199,7 @@ class ImportViewController: NSViewController {
             guard let self = self else {
                 return
             }
-            if let textImporter = self.textImporter, case let .text(transactionString, balanceString)? = self.importMode {
+            if let textImporter = self.textImporter, case let .text(transactionString, balanceString)? = self.imports {
                 self.textView.string = textImporter.parse(transaction: transactionString, balance: balanceString)
             } else {
                 self.showDataEntryViewForNextTransactionIfNeccessary()
@@ -208,7 +208,7 @@ class ImportViewController: NSViewController {
     }
 
     private func showDataEntryViewForNextTransactionIfNeccessary() {
-        guard case .csv = importMode else {
+        guard case .csv = imports else {
             return
         }
         nextTransaction = fileImporter?.parseLineIntoTransaction()
@@ -245,7 +245,7 @@ class ImportViewController: NSViewController {
 
     private func useAccount(name: String) {
         do {
-            switch importMode {
+            switch imports {
             case .csv:
                 try fileImporter?.useAccount(name: name)
             case .text:

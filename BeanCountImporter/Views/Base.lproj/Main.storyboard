@@ -732,7 +732,7 @@ DQ
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZIB-fw-dQe" userLabel="File Name Label">
-                                <rect key="frame" x="280" y="161" width="4" height="16"/>
+                                <rect key="frame" x="286" y="161" width="4" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="a54-Sw-UkF">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -748,7 +748,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kWa-I6-Xqh" userLabel="Ledger Name Label">
-                                <rect key="frame" x="180" y="128" width="4" height="16"/>
+                                <rect key="frame" x="183" y="128" width="4" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="14z-78-rfz">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -764,11 +764,11 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SYp-cj-yhk">
-                                <rect key="frame" x="76" y="151" width="103" height="32"/>
+                                <rect key="frame" x="76" y="151" width="106" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="eqY-ca-9Ew"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="Select File" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dvZ-bn-4zX">
+                                <buttonCell key="cell" type="push" title="Add File(s)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dvZ-bn-4zX">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -777,7 +777,7 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dWW-CL-7YJ">
-                                <rect key="frame" x="76" y="118" width="103" height="32"/>
+                                <rect key="frame" x="76" y="118" width="106" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="nSM-kJ-pUT"/>
                                 </constraints>
@@ -790,11 +790,11 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V2Y-gE-4US">
-                                <rect key="frame" x="176" y="151" width="103" height="32"/>
+                                <rect key="frame" x="179" y="151" width="106" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="NW8-T8-E8l"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="Enter Text" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jqV-Y3-sf3">
+                                <buttonCell key="cell" type="push" title="Add Text" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jqV-Y3-sf3">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -901,7 +901,7 @@ DQ
         <scene sceneID="Wxf-LG-kLq">
             <objects>
                 <viewController title="Description Mapping" id="6Ey-ad-GT5" customClass="DescriptionMappingViewController" customModule="BeanCountImporter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="qAt-h5-3eG">
+                    <view key="view" id="qAt-h5-3eG">
                         <rect key="frame" x="0.0" y="0.0" width="744" height="131"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -1126,7 +1126,7 @@ Gw
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="83" id="LZD-ct-yCd"/>
                                     <constraint firstAttribute="height" constant="21" id="pdd-3A-uzr"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="Continue" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xwu-QK-Ohd">
+                                <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xwu-QK-Ohd">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <string key="keyEquivalent" base64-UTF8="YES">
@@ -2072,7 +2072,7 @@ Gw
             <objects>
                 <viewController title="Account Mapping" id="3mc-Me-KIb" customClass="AccountMappingViewController" customModule="BeanCountImporter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="ius-LY-aMc">
-                        <rect key="frame" x="0.0" y="0.0" width="843" height="106"/>
+                        <rect key="frame" x="0.0" y="0.0" width="843" height="131"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJ7-vb-V3X">

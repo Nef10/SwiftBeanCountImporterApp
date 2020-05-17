@@ -33,17 +33,9 @@ class TextEntryViewController: NSViewController {
 
     /// Delegate which will be informed about continue and cancel actions
     weak var delegate: TextEntryViewControllerDelegate?
-    var prefilledTransactionString: String?
-    var prefilledBalanceString: String?
 
     @IBOutlet private var transactionTextView: NSTextView!
     @IBOutlet private var balanceTextView: NSTextView!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        transactionTextView.string = prefilledTransactionString ?? ""
-        balanceTextView.string = prefilledBalanceString ?? ""
-    }
 
     @IBAction private func cancelButtonPressed(_ sender: Any) {
         delegate?.cancel(view.window!)
