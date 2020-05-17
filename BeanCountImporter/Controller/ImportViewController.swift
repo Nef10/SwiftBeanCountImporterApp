@@ -36,6 +36,7 @@ class ImportViewController: NSViewController {
 
     private var ledger: Ledger?
     private var resultLedger: Ledger = Ledger()
+    private var textImport = [String]()
     private var nextTransaction: ImportedTransaction?
     private var importers = [ImporterType]()
     private var currentImporter: ImporterType!
@@ -102,7 +103,9 @@ class ImportViewController: NSViewController {
     }
 
     private func updateOutput() {
-        textView.string = resultLedger.transactions.map { String(describing: $0) }.reduce(into: "") { $0.append("\n\n\($1)") }.trimmingCharacters(in: .whitespacesAndNewlines)
+        textView.string = resultLedger.transactions.reduce(into: "") { $0.append("\n\n\(String(describing: $1))") }
+            .appending(textImport.reduce(into: "") { $0.append("\n\n\($1)") })
+            .trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     private func loadLedger(completion: @escaping () -> Void) {
@@ -231,7 +234,8 @@ class ImportViewController: NSViewController {
             case .file:
                 self.showDataEntryViewForNextTransactionIfNeccessary()
             case let .text(textImporter):
-                self.textView.string.append("\n\(textImporter.parse())")
+                self.textImport.append(textImporter.parse())
+                self.updateOutput()
                 self.nextImporter()
             default:
                 break
