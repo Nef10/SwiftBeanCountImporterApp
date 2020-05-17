@@ -103,7 +103,8 @@ class ImportViewController: NSViewController {
     }
 
     private func updateOutput() {
-        textView.string = resultLedger.transactions.reduce(into: "") { $0.append("\n\n\(String(describing: $1))") }
+        textView.string = resultLedger.transactions.sorted { $0.metaData.date < $1.metaData.date }
+            .reduce(into: "") { $0.append("\n\n\(String(describing: $1))") }
             .appending(textImport.reduce(into: "") { $0.append("\n\n\($1)") })
             .trimmingCharacters(in: .whitespacesAndNewlines)
     }
