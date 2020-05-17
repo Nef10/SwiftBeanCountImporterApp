@@ -15,16 +15,16 @@ enum TextImporterManager {
         [ManuLifeImporter.self]
     }
 
-    static func new(ledger: Ledger?) -> TextImporter? {
-        ManuLifeImporter(ledger: ledger)
+    static func new(ledger: Ledger?, transaction: String, balance: String) -> TextImporter? {
+        ManuLifeImporter(ledger: ledger, transaction: transaction, balance: balance)
     }
 
 }
 
 protocol TextImporter: Importer {
 
-    init(ledger: Ledger?)
+    init(ledger: Ledger?, transaction: String, balance: String)
 
-    func parse(transaction: String, balance: String) -> String
+    func parse() -> String
 
 }

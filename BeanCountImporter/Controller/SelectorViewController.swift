@@ -74,7 +74,7 @@ class SelectorViewController: NSViewController {
             guard let controller = segue.destinationController as? ImportViewController else {
                 return
             }
-            controller.imports = imports.first
+            controller.imports = imports
             if let ledgerURL = ledgerURL {
                 controller.ledgerURL = ledgerURL
             }

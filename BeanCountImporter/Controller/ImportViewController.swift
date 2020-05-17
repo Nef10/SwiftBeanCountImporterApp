@@ -19,6 +19,11 @@ class ImportViewController: NSViewController {
         static let accountSelectionSheet = "accountSelectionSheet"
     }
 
+    enum ImporterType {
+        case file(FileImporter)
+        case text(TextImporter)
+    }
+
     private static var dateTolerance: TimeInterval {
         if let daysString = UserDefaults.standard.string(forKey: Settings.dateToleranceUserDefaultsKey), let days = Int(daysString) {
             return Double(days * 60 * 60 * 24) // X days +- to check for duplicate transaction
@@ -26,14 +31,15 @@ class ImportViewController: NSViewController {
         return Double(Settings.defaultDateTolerance * 60 * 60 * 24)
     }
 
-    var imports: ImportMode?
+    var imports = [ImportMode]()
     var ledgerURL: URL?
 
     private var ledger: Ledger?
     private var resultLedger: Ledger = Ledger()
     private var nextTransaction: ImportedTransaction?
-    private var fileImporter: FileImporter?
-    private var textImporter: TextImporter?
+    private var importers = [ImporterType]()
+    private var currentImporter: ImporterType!
+    private var errors = [String]()
 
     private weak var loadingIndicatorSheet: LoadingIndicatorViewController?
 
@@ -48,11 +54,9 @@ class ImportViewController: NSViewController {
         super.viewDidAppear()
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             self?.processPassedData {
-                guard self?.isPassedDataValid() ?? false else {
-                    self?.handleInvalidPassedData()
-                    return
+                self?.handleInvalidPassedData {
+                    self?.nextImporter()
                 }
-                self?.setAccount()
             }
         }
     }
@@ -64,10 +68,10 @@ class ImportViewController: NSViewController {
         }
         switch identifier {
         case SegueIdentifier.dataEntrySheet:
-            guard let controller = segue.destinationController as? DataEntryViewController, case .csv = imports else {
+            guard let controller = segue.destinationController as? DataEntryViewController, case let .file(fileImporter) = currentImporter else {
                 return
             }
-            controller.baseAccount = fileImporter?.account
+            controller.baseAccount = fileImporter.account
             controller.importedTransaction = nextTransaction
             controller.delegate = self
             controller.ledger = ledger
@@ -89,8 +93,8 @@ class ImportViewController: NSViewController {
             }
             controller.delegate = self
             controller.possibleAccounts = possibleAccounts()
-            if case let .csv(fileName) = imports {
-                controller.fileName = fileName.lastPathComponent
+            if case let .file(fileImporter) = currentImporter {
+                controller.fileName = fileImporter.fileName
             }
         default:
             break
@@ -123,14 +127,22 @@ class ImportViewController: NSViewController {
             guard let self = self else {
                 return
             }
-            switch self.imports {
-            case let .csv(fileURL)?:
-                self.fileImporter = FileImporterManager.new(ledger: self.ledger, url: fileURL)
-                self.fileImporter?.loadFile()
-            case .text:
-                self.textImporter = TextImporterManager.new(ledger: self.ledger)
-            case .none:
-                break
+            for importMode in self.imports {
+                switch importMode {
+                case let .csv(fileURL):
+                    guard let fileImporter = FileImporterManager.new(ledger: self.ledger, url: fileURL) else {
+                        self.errors.append("Unable to find importer for: \(fileURL)")
+                        continue
+                    }
+                    fileImporter.loadFile()
+                    self.importers.append(.file(fileImporter))
+                case let .text(transaction, balance):
+                    guard let textImporter = TextImporterManager.new(ledger: self.ledger, transaction: transaction, balance: balance) else {
+                        self.errors.append("Unable to find importer for text: \(transaction) \(balance)")
+                        continue
+                    }
+                    self.importers.append(.text(textImporter))
+                }
             }
             completion()
         }
@@ -153,28 +165,37 @@ class ImportViewController: NSViewController {
         }
     }
 
-    private func isPassedDataValid() -> Bool {
-        fileImporter != nil || textImporter != nil
-    }
-
     private func setupUI() {
         if let font = NSFont(name: "Menlo", size: 12) {
             textView.typingAttributes = [NSAttributedString.Key.font: font]
         }
     }
 
-    private func handleInvalidPassedData() {
-        DispatchQueue.main.async { [weak self] in
-            self?.textView.string = "Unable to import data"
+    private func handleInvalidPassedData(completion: @escaping (() -> Void)) {
+        if errors.isEmpty {
+            if importers.isEmpty {
+                DispatchQueue.main.async { [weak self] in
+                    self?.textView.string = "Unable to import data"
+                }
+            }
+            completion()
+        } else {
+            let error = errors.popLast()!
+            DispatchQueue.main.async { [weak self] in
+                self?.showError(error) { _ in
+                    self?.handleInvalidPassedData(completion: completion)
+                }
+            }
         }
+
     }
 
     private func possibleAccounts() -> [String] {
-        switch imports {
-        case .csv:
-            return fileImporter?.possibleAccounts() ?? []
-        case .text:
-            return textImporter?.possibleAccounts() ?? []
+        switch currentImporter {
+        case let .file(fileImporter):
+            return fileImporter.possibleAccounts()
+        case let .text(textImporter):
+            return textImporter.possibleAccounts()
         default:
             return []
         }
@@ -194,26 +215,39 @@ class ImportViewController: NSViewController {
         }
     }
 
+    private func nextImporter() {
+        currentImporter = importers.popLast()
+        if currentImporter != nil {
+            setAccount()
+        }
+    }
+
     private func importData() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
                 return
             }
-            if let textImporter = self.textImporter, case let .text(transactionString, balanceString)? = self.imports {
-                self.textView.string = textImporter.parse(transaction: transactionString, balance: balanceString)
-            } else {
+            switch self.currentImporter {
+            case .file:
                 self.showDataEntryViewForNextTransactionIfNeccessary()
+            case let .text(textImporter):
+                self.textView.string.append("\n\(textImporter.parse())")
+                self.nextImporter()
+            default:
+                break
             }
         }
     }
 
     private func showDataEntryViewForNextTransactionIfNeccessary() {
-        guard case .csv = imports else {
+        guard case let .file(fileImporter) = currentImporter else {
             return
         }
-        nextTransaction = fileImporter?.parseLineIntoTransaction()
+        nextTransaction = fileImporter.parseLineIntoTransaction()
         if nextTransaction != nil {
             showDataEntryOrDuplicateTransactionViewForTransaction()
+        } else {
+            nextImporter()
         }
     }
 
@@ -245,11 +279,11 @@ class ImportViewController: NSViewController {
 
     private func useAccount(name: String) {
         do {
-            switch imports {
-            case .csv:
-                try fileImporter?.useAccount(name: name)
-            case .text:
-                try textImporter?.useAccount(name: name)
+            switch currentImporter {
+            case let .file(fileImporter):
+                try fileImporter.useAccount(name: name)
+            case let .text(textImporter):
+                try textImporter.useAccount(name: name)
             default:
                 break
             }

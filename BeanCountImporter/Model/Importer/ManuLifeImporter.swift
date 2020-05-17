@@ -59,6 +59,8 @@ class ManuLifeImporter: BaseImporter, TextImporter {
     private let accountPaddingLength = 69
     private let amountPaddingLength = 9
     private let unitFormat = "%.5f"
+    private let transaction: String
+    private let balance: String
 
     // Temporary: Need to calculate this
     private let amountString = "0.00"
@@ -69,11 +71,13 @@ class ManuLifeImporter: BaseImporter, TextImporter {
     private var employerMatchFraction: Double { Double(Self.get(setting: Self.employerMatchSetting) ?? "") ?? defaultContribution }
     private var employeeVoluntaryFraction: Double { Double(Self.get(setting: Self.employeeVoluntarySetting) ?? "") ?? defaultContribution }
 
-    override required init(ledger: Ledger?) {
+    required init(ledger: Ledger?, transaction: String, balance: String) {
+        self.transaction = transaction
+        self.balance = balance
         super.init(ledger: ledger)
     }
 
-    func parse(transaction: String, balance: String) -> String {
+    func parse() -> String {
         var commodities = ledger?.commodities.reduce(into: [String: String]()) {
             if let name = $1.name {
                 $0[name] = $1.symbol

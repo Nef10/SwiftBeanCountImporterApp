@@ -31,6 +31,7 @@ struct ImportedTransaction {
 protocol FileImporter: Importer {
 
     var account: Account? { get }
+    var fileName: String { get }
 
     func loadFile()
     func parseLineIntoTransaction() -> ImportedTransaction?
