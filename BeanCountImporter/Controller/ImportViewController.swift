@@ -197,9 +197,9 @@ class ImportViewController: NSViewController {
     private func possibleAccounts() -> [AccountName] {
         switch currentImporter {
         case let .file(fileImporter):
-            return fileImporter.possibleAccountNames()
+            return fileImporter.possibleAccountNames(for: ledger)
         case let .text(textImporter):
-            return textImporter.possibleAccountNames()
+            return textImporter.possibleAccountNames(for: ledger)
         default:
             return []
         }

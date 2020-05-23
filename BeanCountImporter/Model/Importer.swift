@@ -25,7 +25,7 @@ protocol Importer {
     static var settingsName: String { get }
     static var settings: [ImporterSetting] { get }
 
-    func possibleAccountNames() -> [AccountName]
+    func possibleAccountNames(for ledger: Ledger?) -> [AccountName]
     func useAccount(name: AccountName)
 
 }

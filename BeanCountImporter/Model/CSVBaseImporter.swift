@@ -12,8 +12,6 @@ import SwiftBeanCountModel
 
 class CSVBaseImporter: BaseImporter {
 
-    private static let fallbackCommodity = "CAD"
-
     private static let regexe: [NSRegularExpression] = {  // swiftlint:disable force_try
         [
             try! NSRegularExpression(pattern: "(C-)?IDP PURCHASE( )?-( )?[0-9]{4}", options: []),

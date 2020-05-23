@@ -30,7 +30,7 @@ class BaseImporter: Importer {
         self.ledger = ledger
     }
 
-    func possibleAccountNames() -> [AccountName] {
+    func possibleAccountNames(for ledger: Ledger?) -> [AccountName] {
         if let accountName = accountName {
             return [accountName]
         }
@@ -41,7 +41,7 @@ class BaseImporter: Importer {
         self.accountName = name
     }
 
-    private func accountsFromSettings() -> [AccountName] {
+    func accountsFromSettings() -> [AccountName] {
         (Self.get(setting: Self.accountsSetting) ?? "").components(separatedBy: CharacterSet(charactersIn: " ,")).map { try? AccountName($0) }.compactMap { $0 }
     }
 

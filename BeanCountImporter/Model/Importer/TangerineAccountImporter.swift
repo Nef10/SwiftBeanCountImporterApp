@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftBeanCountModel
 
 class TangerineAccountImporter: CSVBaseImporter, CSVImporter {
 
@@ -26,6 +27,20 @@ class TangerineAccountImporter: CSVBaseImporter, CSVImporter {
         dateFormatter.dateFormat = "M/d/yyyy"
         return dateFormatter
     }()
+
+    override func possibleAccountNames(for ledger: Ledger?) -> [AccountName] {
+        if let accountName = accountName {
+            return [accountName]
+        }
+        let possibleAccountNames = accountsFromSettings()
+        let possibleAccounts = possibleAccountNames.compactMap { accountName in ledger?.accounts.first { $0.name == accountName } }
+        for account in possibleAccounts {
+            if let number = account.metaData["number"], fileName.contains(number) {
+                return [account.name]
+            }
+        }
+        return possibleAccountNames
+    }
 
     override func parseLine() -> CSVLine {
         let date = Self.dateFormatter.date(from: csvReader[Self.date]!)!
