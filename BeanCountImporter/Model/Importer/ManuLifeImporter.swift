@@ -78,21 +78,11 @@ class ManuLifeImporter: BaseImporter, TextImporter {
     }
 
     func parse() -> String {
-        var commodities = ledger?.commodities.reduce(into: [String: String]()) {
+        let commodities = ledger?.commodities.reduce(into: [String: String]()) {
             if let name = $1.metaData["name"] {
                 $0[name] = $1.symbol
             }
         } ?? [:]
-        // Temporary till parser can read names
-        commodities.merge([
-            
-            
-            
-            
-            
-            
-            
-        ]) { current, _ in current }
         var result = ""
         if !transaction.isEmpty {
             result = parse(transaction: transaction, commodities: commodities)
