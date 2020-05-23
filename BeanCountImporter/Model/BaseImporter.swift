@@ -22,7 +22,7 @@ class BaseImporter: Importer {
     private(set) var accountName: AccountName?
     var ledger: Ledger?
 
-    var commodityString: String {
+    var commoditySymbol: String {
         Self.get(setting: Self.currencySetting) ?? fallbackCommodity
     }
 

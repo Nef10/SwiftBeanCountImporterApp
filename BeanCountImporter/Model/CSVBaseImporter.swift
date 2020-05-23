@@ -58,7 +58,6 @@ class CSVBaseImporter: BaseImporter {
         guard loaded, let data = lines.popLast() else {
             return nil
         }
-        let commodity = Commodity(symbol: commodityString)
         var description = sanitizeDescription(data.description)
         var payee = data.payee
         let originalPayee = payee
@@ -70,7 +69,7 @@ class CSVBaseImporter: BaseImporter {
             description = savedDescription
         }
 
-        let categoryAmount = Amount(number: -data.amount, commodity: commodity, decimalDigits: 2)
+        let categoryAmount = Amount(number: -data.amount, commoditySymbol: commoditySymbol, decimalDigits: 2)
         var categoryAccountName = try! AccountName(Settings.defaultAccountName) // swiftlint:disable:this force_try
         if let accountNameString = (UserDefaults.standard.dictionary(forKey: Settings.accountsUserDefaultsKey) as? [String: String])?[payee],
             let accountName = try? AccountName(accountNameString) {
@@ -78,11 +77,11 @@ class CSVBaseImporter: BaseImporter {
         }
         let flag: Flag = description == originalDescription && payee == originalPayee ? .incomplete : .complete
         let transactionMetaData = TransactionMetaData(date: data.date, payee: payee, narration: description, flag: flag, tags: [])
-        let amount = Amount(number: data.amount, commodity: commodity, decimalDigits: 2)
+        let amount = Amount(number: data.amount, commoditySymbol: commoditySymbol, decimalDigits: 2)
         let posting = Posting(accountName: accountName, amount: amount)
         var posting2: Posting
         if let price = data.price {
-            let pricePer = Amount(number: categoryAmount.number / price.number, commodity: categoryAmount.commodity, decimalDigits: 7)
+            let pricePer = Amount(number: categoryAmount.number / price.number, commoditySymbol: commoditySymbol, decimalDigits: 7)
             posting2 = Posting(accountName: categoryAccountName, amount: price, price: pricePer, cost: nil)
         } else {
             posting2 = Posting(accountName: categoryAccountName, amount: categoryAmount)
