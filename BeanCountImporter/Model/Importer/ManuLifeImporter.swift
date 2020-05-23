@@ -79,7 +79,7 @@ class ManuLifeImporter: BaseImporter, TextImporter {
 
     func parse() -> String {
         var commodities = ledger?.commodities.reduce(into: [String: String]()) {
-            if let name = $1.name {
+            if let name = $1.metaData["name"] {
                 $0[name] = $1.symbol
             }
         } ?? [:]

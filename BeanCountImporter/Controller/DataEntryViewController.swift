@@ -127,7 +127,7 @@ class DataEntryViewController: NSViewController {
 
     private func processPassedData() {
         transaction = importedTransaction?.transaction
-        relevantPosting = transaction?.postings.first { $0.account != baseAccount }
+        relevantPosting = transaction?.postings.first { $0.accountName != baseAccount?.name }
     }
 
     private func isPassedDataValid() -> Bool {
@@ -154,7 +154,7 @@ class DataEntryViewController: NSViewController {
             incompleteFlagButton.state = .on
             flag = .incomplete
         }
-        accountField.stringValue = posting.account.name
+        accountField.stringValue = posting.accountName.fullName
     }
 
     private func getUpdatedTransaction() throws -> Transaction {
@@ -163,15 +163,13 @@ class DataEntryViewController: NSViewController {
                                            narration: descriptionField.stringValue,
                                            flag: flag,
                                            tags: getTags())
-        let relevantPosting = Posting(account: try Account(name: accountField.stringValue),
+        let relevantPosting = Posting(accountName: try AccountName(accountField.stringValue),
                                       amount: self.relevantPosting!.amount,
-                                      transaction: transaction!,
                                       price: self.relevantPosting?.price)
-        var postings = transaction!.postings.filter { $0 != self.relevantPosting }
+        var postings: [Posting] = transaction!.postings.filter { $0 != self.relevantPosting }
         postings.append(relevantPosting)
         self.relevantPosting = relevantPosting
-        let transaction = Transaction(metaData: metaData)
-        transaction.postings.append(contentsOf: postings)
+        let transaction = Transaction(metaData: metaData, postings: postings)
         return transaction
     }
 
@@ -205,7 +203,7 @@ class DataEntryViewController: NSViewController {
                 var defaultPayees = UserDefaults.standard.dictionary(forKey: Settings.payeesUserDefaultKey) ?? [:]
                 defaultPayees[importedTransaction.originalDescription] = transaction.metaData.payee
                 UserDefaults.standard.set(defaultPayees, forKey: Settings.payeesUserDefaultKey)
-                if saveAccountCheckbox.state == .on, let accountName = relevantPosting?.account.name {
+                if saveAccountCheckbox.state == .on, let accountName = relevantPosting?.accountName {
                     var defaultAccounts = UserDefaults.standard.dictionary(forKey: Settings.accountsUserDefaultsKey) ?? [:]
                     defaultAccounts[transaction.metaData.payee] = accountName
                     UserDefaults.standard.set(defaultAccounts, forKey: Settings.accountsUserDefaultsKey)

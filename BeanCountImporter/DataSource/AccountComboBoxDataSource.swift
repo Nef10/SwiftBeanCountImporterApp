@@ -15,7 +15,7 @@ class AccountComboBoxDataSource: NSObject {
     private let accounts: [Account]
 
     init(ledger: Ledger) {
-        accounts = ledger.accounts.sorted { $0.name < $1.name }
+        accounts = ledger.accounts.sorted { $0.name.fullName < $1.name.fullName }
     }
 
 }
@@ -31,15 +31,15 @@ extension AccountComboBoxDataSource: NSComboBoxDataSource {
     }
 
     func comboBox(_ comboBox: NSComboBox, indexOfItemWithStringValue string: String) -> Int {
-        accounts.firstIndex { $0.name == string } ?? NSNotFound
+        accounts.firstIndex { $0.name.fullName == string } ?? NSNotFound
     }
 
     func comboBox(_ comboBox: NSComboBox, completedString string: String) -> String? {
-        guard let name = (accounts.first { $0.name.starts(with: string) }?.name) else {
+        guard let name = (accounts.first { $0.name.fullName.starts(with: string) }?.name) else {
             return ""
         }
         var result = ""
-        for group in name.split(separator: ":") {
+        for group in name.fullName.split(separator: ":") {
             if !result.isEmpty {
                 result.append(":")
             }

@@ -32,13 +32,13 @@ class BaseImporter: Importer {
 
     func possibleAccounts() -> [String] {
         if let account = account {
-            return [account.name]
+            return [account.name.fullName]
         }
         return accountsFromSettings()
     }
 
     func useAccount(name: String) throws {
-        try self.account = Account(name: name)
+        try self.account = Account(name: AccountName(name))
     }
 
     private func accountsFromSettings() -> [String] {

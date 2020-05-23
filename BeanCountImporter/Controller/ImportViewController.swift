@@ -277,7 +277,7 @@ class ImportViewController: NSViewController {
             return nil
         }
         return ledger.transactions.first {
-            $0.postings.contains { $0.account.name == nextTransaction.postings.first?.account.name && $0.amount == nextTransaction.postings.first?.amount }
+            $0.postings.contains { $0.accountName == nextTransaction.postings.first?.accountName && $0.amount == nextTransaction.postings.first?.amount }
                 && $0.metaData.date + Self.dateTolerance >= nextTransaction.metaData.date && $0.metaData.date - Self.dateTolerance <= nextTransaction.metaData.date
         }
     }

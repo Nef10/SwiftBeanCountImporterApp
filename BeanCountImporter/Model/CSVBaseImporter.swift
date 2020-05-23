@@ -71,22 +71,23 @@ class CSVBaseImporter: BaseImporter {
         }
 
         let categoryAmount = Amount(number: -data.amount, commodity: commodity, decimalDigits: 2)
-        var categoryAccount = try! Account(name: Settings.defaultAccountName) // swiftlint:disable:this force_try
-        if let accountName = (UserDefaults.standard.dictionary(forKey: Settings.accountsUserDefaultsKey) as? [String: String])?[payee],
-            let account = try? Account(name: accountName) {
-            categoryAccount = account
+        var categoryAccountName = try! AccountName(Settings.defaultAccountName) // swiftlint:disable:this force_try
+        if let accountNameString = (UserDefaults.standard.dictionary(forKey: Settings.accountsUserDefaultsKey) as? [String: String])?[payee],
+            let accountName = try? AccountName(accountNameString) {
+            categoryAccountName = accountName
         }
         let flag: Flag = description == originalDescription && payee == originalPayee ? .incomplete : .complete
         let transactionMetaData = TransactionMetaData(date: data.date, payee: payee, narration: description, flag: flag, tags: [])
-        let transaction = Transaction(metaData: transactionMetaData)
         let amount = Amount(number: data.amount, commodity: commodity, decimalDigits: 2)
-        transaction.postings.append(Posting(account: account, amount: amount, transaction: transaction))
+        let posting = Posting(accountName: account.name, amount: amount)
+        var posting2: Posting
         if let price = data.price {
             let pricePer = Amount(number: categoryAmount.number / price.number, commodity: categoryAmount.commodity, decimalDigits: 7)
-            transaction.postings.append(Posting(account: categoryAccount, amount: price, transaction: transaction, price: pricePer, cost: nil))
+            posting2 = Posting(accountName: categoryAccountName, amount: price, price: pricePer, cost: nil)
         } else {
-            transaction.postings.append(Posting(account: categoryAccount, amount: categoryAmount, transaction: transaction))
+            posting2 = Posting(accountName: categoryAccountName, amount: categoryAmount)
         }
+        let transaction = Transaction(metaData: transactionMetaData, postings: [posting, posting2])
         return ImportedTransaction(transaction: transaction, originalDescription: originalDescription)
     }
 
