@@ -50,7 +50,7 @@ class DataEntryViewController: NSViewController {
     var importedTransaction: ImportedTransaction?
 
     /// Account of the posting which should not be shown, must not be nil upon loading the view
-    var baseAccount: Account?
+    var baseAccountName: AccountName?
 
     /// Delegate which will be informed about continue and cancel actions
     weak var delegate: DataEntryViewControllerDelegate?
@@ -127,11 +127,11 @@ class DataEntryViewController: NSViewController {
 
     private func processPassedData() {
         transaction = importedTransaction?.transaction
-        relevantPosting = transaction?.postings.first { $0.accountName != baseAccount?.name }
+        relevantPosting = transaction?.postings.first { $0.accountName != baseAccountName }
     }
 
     private func isPassedDataValid() -> Bool {
-        transaction != nil && relevantPosting != nil && baseAccount != nil
+        transaction != nil && relevantPosting != nil && baseAccountName != nil
     }
 
     private func handleInvalidPassedData() {

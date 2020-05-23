@@ -72,7 +72,7 @@ class ImportViewController: NSViewController {
             guard let controller = segue.destinationController as? DataEntryViewController, case let .file(fileImporter) = currentImporter else {
                 return
             }
-            controller.baseAccount = fileImporter.account
+            controller.baseAccountName = fileImporter.accountName
             controller.importedTransaction = nextTransaction
             controller.delegate = self
             controller.ledger = ledger
@@ -93,7 +93,7 @@ class ImportViewController: NSViewController {
                 return
             }
             controller.delegate = self
-            controller.possibleAccounts = possibleAccounts()
+            controller.possibleAccounts = possibleAccounts().map { $0.fullName }
             if case let .file(fileImporter) = currentImporter {
                 controller.fileName = fileImporter.fileName
             }
@@ -194,12 +194,12 @@ class ImportViewController: NSViewController {
 
     }
 
-    private func possibleAccounts() -> [String] {
+    private func possibleAccounts() -> [AccountName] {
         switch currentImporter {
         case let .file(fileImporter):
-            return fileImporter.possibleAccounts()
+            return fileImporter.possibleAccountNames()
         case let .text(textImporter):
-            return textImporter.possibleAccounts()
+            return textImporter.possibleAccountNames()
         default:
             return []
         }
@@ -282,24 +282,14 @@ class ImportViewController: NSViewController {
         }
     }
 
-    private func useAccount(name: String) {
-        do {
-            switch currentImporter {
-            case let .file(fileImporter):
-                try fileImporter.useAccount(name: name)
-            case let .text(textImporter):
-                try textImporter.useAccount(name: name)
-            default:
-                break
-            }
-        } catch {
-            showError("\(error.localizedDescription)") { [weak self] _ in
-                guard let self = self else {
-                    return
-                }
-                self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.accountSelectionSheet), sender: self)
-            }
-            return
+    private func useAccount(name: AccountName) {
+        switch currentImporter {
+        case let .file(fileImporter):
+            fileImporter.useAccount(name: name)
+        case let .text(textImporter):
+            textImporter.useAccount(name: name)
+        default:
+            break
         }
         importData()
     }
@@ -325,7 +315,18 @@ extension ImportViewController: DataEntryViewControllerDelegate, DuplicateTransa
 
     func finished(_ sheet: NSWindow, accountName: String) {
         view.window?.endSheet(sheet)
-        useAccount(name: accountName)
+        do {
+            let accountName = try AccountName(accountName)
+            useAccount(name: accountName)
+        } catch {
+            showError("\(error.localizedDescription)") { [weak self] _ in
+                guard let self = self else {
+                    return
+                }
+                self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.accountSelectionSheet), sender: self)
+            }
+            return
+        }
     }
 
     func cancel(_ sheet: NSWindow) {

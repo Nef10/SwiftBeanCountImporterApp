@@ -52,7 +52,7 @@ class CSVBaseImporter: BaseImporter {
     }
 
     func parseLineIntoTransaction() -> ImportedTransaction? {
-        guard let account = account else {
+        guard let accountName = accountName else {
             fatalError("No account configured")
         }
         guard loaded, let data = lines.popLast() else {
@@ -79,7 +79,7 @@ class CSVBaseImporter: BaseImporter {
         let flag: Flag = description == originalDescription && payee == originalPayee ? .incomplete : .complete
         let transactionMetaData = TransactionMetaData(date: data.date, payee: payee, narration: description, flag: flag, tags: [])
         let amount = Amount(number: data.amount, commodity: commodity, decimalDigits: 2)
-        let posting = Posting(accountName: account.name, amount: amount)
+        let posting = Posting(accountName: accountName, amount: amount)
         var posting2: Posting
         if let price = data.price {
             let pricePer = Amount(number: categoryAmount.number / price.number, commodity: categoryAmount.commodity, decimalDigits: 7)

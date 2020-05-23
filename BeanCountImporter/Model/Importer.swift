@@ -7,9 +7,9 @@
 //
 
 import Foundation
+import SwiftBeanCountModel
 
 enum ImporterManager {
-
     static var importers: [Importer.Type] {
         FileImporterManager.importers + TextImporterManager.importers
     }
@@ -25,8 +25,8 @@ protocol Importer {
     static var settingsName: String { get }
     static var settings: [ImporterSetting] { get }
 
-    func possibleAccounts() -> [String]
-    func useAccount(name: String) throws
+    func possibleAccountNames() -> [AccountName]
+    func useAccount(name: AccountName)
 
 }
 

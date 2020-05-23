@@ -19,7 +19,7 @@ class BaseImporter: Importer {
 
     private let fallbackCommodity = "CAD"
 
-    private(set) var account: Account?
+    private(set) var accountName: AccountName?
     var ledger: Ledger?
 
     var commodityString: String {
@@ -30,19 +30,19 @@ class BaseImporter: Importer {
         self.ledger = ledger
     }
 
-    func possibleAccounts() -> [String] {
-        if let account = account {
-            return [account.name.fullName]
+    func possibleAccountNames() -> [AccountName] {
+        if let accountName = accountName {
+            return [accountName]
         }
         return accountsFromSettings()
     }
 
-    func useAccount(name: String) throws {
-        try self.account = Account(name: AccountName(name))
+    func useAccount(name: AccountName) {
+        self.accountName = name
     }
 
-    private func accountsFromSettings() -> [String] {
-        (Self.get(setting: Self.accountsSetting) ?? "").components(separatedBy: CharacterSet(charactersIn: " ,")).filter { !$0.isEmpty }
+    private func accountsFromSettings() -> [AccountName] {
+        (Self.get(setting: Self.accountsSetting) ?? "").components(separatedBy: CharacterSet(charactersIn: " ,")).map { try? AccountName($0) }.compactMap { $0 }
     }
 
 }

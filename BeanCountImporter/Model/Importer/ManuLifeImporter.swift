@@ -166,7 +166,7 @@ class ManuLifeImporter: BaseImporter, TextImporter {
     /// - Parameter balances: Array of ManuLifeBalance
     /// - Returns: string with the balances and prices of the units at the current date
     private func stringifyBalances(_ balances: [ManuLifeBalance]) -> String {
-        guard let accountString = account?.name else { fatalError("No account configured") }
+        guard let accountString = accountName?.fullName else { fatalError("No account configured") }
         let dateString = Self.printDateFormatter.string(from: Date())
 
         return balances.map {
@@ -245,7 +245,7 @@ class ManuLifeImporter: BaseImporter, TextImporter {
     /// - Parameter purchase: tupel with array of ManuLifeBuy and a date
     /// - Returns: string with the purchase and prices of the units at the purchase date
     private func stringifyPurchase(_ purchase: ([ManuLifeBuy], Date?)) -> String {
-        guard let accountString = account?.name else { fatalError("No account configured") }
+        guard let accountString = accountName?.fullName else { fatalError("No account configured") }
         let (matches, date) = purchase
         let dateString = date != nil ? Self.printDateFormatter.string(from: date!) : ""
 
