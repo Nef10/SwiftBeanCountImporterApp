@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,9 +11,6 @@
 		F9007D57243A8509004F93E8 /* TagTokenFieldDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9007D56243A8509004F93E8 /* TagTokenFieldDataSource.swift */; };
 		F909311B202FE9A500166FB9 /* AccountComboBoxDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909311A202FE9A500166FB9 /* AccountComboBoxDataSource.swift */; };
 		F909311D202FF1F000166FB9 /* PayeeComboBoxDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909311C202FF1F000166FB9 /* PayeeComboBoxDataSource.swift */; };
-		F9093120202FF4B300166FB9 /* SwiftBeanCountParser.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = F909311E202FF4B300166FB9 /* SwiftBeanCountParser.framework.dSYM */; };
-		F9093122202FF4BB00166FB9 /* SwiftBeanCountParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F909311F202FF4B300166FB9 /* SwiftBeanCountParser.framework */; };
-		F9093123202FF4BB00166FB9 /* SwiftBeanCountParser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F909311F202FF4B300166FB9 /* SwiftBeanCountParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F90E0C282468E4F700F4C3B6 /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C272468E4F700F4C3B6 /* Importer.swift */; };
 		F90E0C2A2468E5B700F4C3B6 /* TextImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C292468E5B700F4C3B6 /* TextImporter.swift */; };
 		F90E0C2F2468F02000F4C3B6 /* ImportersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C2D2468EEF800F4C3B6 /* ImportersViewController.swift */; };
@@ -21,14 +18,11 @@
 		F90E0C33246D24F400F4C3B6 /* AccountSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C32246D24F400F4C3B6 /* AccountSelectionViewController.swift */; };
 		F90E0C35246E44E300F4C3B6 /* BaseImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C34246E44E300F4C3B6 /* BaseImporter.swift */; };
 		F90E0C37246FBD9900F4C3B6 /* AccountMappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C36246FBD9900F4C3B6 /* AccountMappingViewController.swift */; };
-		F91C986C1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = F91C986B1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM */; };
 		F93C20221F5D1D7900372960 /* LunchOnUsImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C20211F5D1D7900372960 /* LunchOnUsImporter.swift */; };
 		F949CA3A2468D768004BAEDD /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F949CA392468D768004BAEDD /* Settings.swift */; };
 		F949CA3C2468D856004BAEDD /* CSVImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F949CA3B2468D856004BAEDD /* CSVImporter.swift */; };
 		F949CA3F2468DB56004BAEDD /* CSVBaseImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F949CA3E2468DB56004BAEDD /* CSVBaseImporter.swift */; };
 		F949EAAD23A7FA61003643AC /* RogersImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F949EAAC23A7FA61003643AC /* RogersImporter.swift */; };
-		F9786CB01F550C7E002EBB53 /* CSV.framework.dSYM in Carthage dSYMs */ = {isa = PBXBuildFile; fileRef = F9786CAF1F550C77002EBB53 /* CSV.framework.dSYM */; };
-		F97ED1F91F5CBC55009BAD44 /* SwiftBeanCountModel.framework.dSYM in Carthage dSYMs */ = {isa = PBXBuildFile; fileRef = F91C986B1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM */; };
 		F97ED1FD1F5CEEE1009BAD44 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97ED1FC1F5CEEE1009BAD44 /* ImportViewController.swift */; };
 		F98AD0F71F551D2300CC02DA /* FileImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0F61F551D2300CC02DA /* FileImporter.swift */; };
 		F98AD0F91F55211900CC02DA /* RBCImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0F81F55211900CC02DA /* RBCImporter.swift */; };
@@ -39,17 +33,16 @@
 		F995062023B1780900777D71 /* LoadingIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995061F23B1780900777D71 /* LoadingIndicatorViewController.swift */; };
 		F9B9E14E2324D4D200811B3F /* TextEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B9E14D2324D4D200811B3F /* TextEntryViewController.swift */; };
 		F9B9E1502325C96100811B3F /* ManuLifeImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B9E14F2325C96100811B3F /* ManuLifeImporter.swift */; };
+		F9C329FE2488D1770055EB90 /* SwiftBeanCountModel in Frameworks */ = {isa = PBXBuildFile; productRef = F9C329FD2488D1770055EB90 /* SwiftBeanCountModel */; };
+		F9C32A012488D1A80055EB90 /* SwiftBeanCountParser in Frameworks */ = {isa = PBXBuildFile; productRef = F9C32A002488D1A80055EB90 /* SwiftBeanCountParser */; };
+		F9C32A042488D1DA0055EB90 /* CSV in Frameworks */ = {isa = PBXBuildFile; productRef = F9C32A032488D1DA0055EB90 /* CSV */; };
 		F9C438551F550AB5004732E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438541F550AB5004732E2 /* AppDelegate.swift */; };
 		F9C438571F550AB5004732E2 /* SelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438561F550AB5004732E2 /* SelectorViewController.swift */; };
 		F9C438591F550AB5004732E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9C438581F550AB5004732E2 /* Assets.xcassets */; };
 		F9C4385C1F550AB5004732E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9C4385A1F550AB5004732E2 /* Main.storyboard */; };
 		F9C438671F550AB5004732E2 /* SwiftBeanCountImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438661F550AB5004732E2 /* SwiftBeanCountImporterTests.swift */; };
 		F9C438721F550AB5004732E2 /* SwiftBeanCountImporterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438711F550AB5004732E2 /* SwiftBeanCountImporterUITests.swift */; };
-		F9C438801F550C11004732E2 /* CSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9C4387F1F550C11004732E2 /* CSV.framework */; };
-		F9C438811F550C11004732E2 /* CSV.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9C4387F1F550C11004732E2 /* CSV.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9DD662C23614C7300908BE2 /* N26Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DD662B23614C7300908BE2 /* N26Importer.swift */; };
-		F9DD92C01F5CBBD500738DEA /* SwiftBeanCountModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9DD92BF1F5CBBD400738DEA /* SwiftBeanCountModel.framework */; };
-		F9DD92C11F5CBBD500738DEA /* SwiftBeanCountModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9DD92BF1F5CBBD400738DEA /* SwiftBeanCountModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9DFC62823B3EB0000FB3792 /* DescriptionMappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DFC62723B3EB0000FB3792 /* DescriptionMappingViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,8 +70,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				F9786CB01F550C7E002EBB53 /* CSV.framework.dSYM in Carthage dSYMs */,
-				F97ED1F91F5CBC55009BAD44 /* SwiftBeanCountModel.framework.dSYM in Carthage dSYMs */,
 			);
 			name = "Carthage dSYMs";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,9 +80,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F9093123202FF4BB00166FB9 /* SwiftBeanCountParser.framework in Embed Frameworks */,
-				F9DD92C11F5CBBD500738DEA /* SwiftBeanCountModel.framework in Embed Frameworks */,
-				F9C438811F550C11004732E2 /* CSV.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,8 +91,6 @@
 		F9007D56243A8509004F93E8 /* TagTokenFieldDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTokenFieldDataSource.swift; sourceTree = "<group>"; };
 		F909311A202FE9A500166FB9 /* AccountComboBoxDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountComboBoxDataSource.swift; sourceTree = "<group>"; };
 		F909311C202FF1F000166FB9 /* PayeeComboBoxDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayeeComboBoxDataSource.swift; sourceTree = "<group>"; };
-		F909311E202FF4B300166FB9 /* SwiftBeanCountParser.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftBeanCountParser.framework.dSYM; path = Carthage/Build/Mac/SwiftBeanCountParser.framework.dSYM; sourceTree = "<group>"; };
-		F909311F202FF4B300166FB9 /* SwiftBeanCountParser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftBeanCountParser.framework; path = Carthage/Build/Mac/SwiftBeanCountParser.framework; sourceTree = "<group>"; };
 		F90E0C272468E4F700F4C3B6 /* Importer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Importer.swift; sourceTree = "<group>"; };
 		F90E0C292468E5B700F4C3B6 /* TextImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextImporter.swift; sourceTree = "<group>"; };
 		F90E0C2D2468EEF800F4C3B6 /* ImportersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportersViewController.swift; sourceTree = "<group>"; };
@@ -112,13 +98,11 @@
 		F90E0C32246D24F400F4C3B6 /* AccountSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSelectionViewController.swift; sourceTree = "<group>"; };
 		F90E0C34246E44E300F4C3B6 /* BaseImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseImporter.swift; sourceTree = "<group>"; };
 		F90E0C36246FBD9900F4C3B6 /* AccountMappingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMappingViewController.swift; sourceTree = "<group>"; };
-		F91C986B1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftBeanCountModel.framework.dSYM; path = Carthage/Build/Mac/SwiftBeanCountModel.framework.dSYM; sourceTree = "<group>"; };
 		F93C20211F5D1D7900372960 /* LunchOnUsImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchOnUsImporter.swift; sourceTree = "<group>"; };
 		F949CA392468D768004BAEDD /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F949CA3B2468D856004BAEDD /* CSVImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVImporter.swift; sourceTree = "<group>"; };
 		F949CA3E2468DB56004BAEDD /* CSVBaseImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVBaseImporter.swift; sourceTree = "<group>"; };
 		F949EAAC23A7FA61003643AC /* RogersImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RogersImporter.swift; sourceTree = "<group>"; };
-		F9786CAF1F550C77002EBB53 /* CSV.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CSV.framework.dSYM; path = Carthage/Build/Mac/CSV.framework.dSYM; sourceTree = "<group>"; };
 		F97ED1FC1F5CEEE1009BAD44 /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
 		F98AD0F61F551D2300CC02DA /* FileImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImporter.swift; sourceTree = "<group>"; };
 		F98AD0F81F55211900CC02DA /* RBCImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBCImporter.swift; sourceTree = "<group>"; };
@@ -141,9 +125,7 @@
 		F9C4386D1F550AB5004732E2 /* SwiftBeanCountImporterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftBeanCountImporterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9C438711F550AB5004732E2 /* SwiftBeanCountImporterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBeanCountImporterUITests.swift; sourceTree = "<group>"; };
 		F9C438731F550AB5004732E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F9C4387F1F550C11004732E2 /* CSV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CSV.framework; path = Carthage/Build/Mac/CSV.framework; sourceTree = "<group>"; };
 		F9DD662B23614C7300908BE2 /* N26Importer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = N26Importer.swift; sourceTree = "<group>"; };
-		F9DD92BF1F5CBBD400738DEA /* SwiftBeanCountModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftBeanCountModel.framework; path = Carthage/Build/Mac/SwiftBeanCountModel.framework; sourceTree = "<group>"; };
 		F9DFC62723B3EB0000FB3792 /* DescriptionMappingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionMappingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,9 +134,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9DD92C01F5CBBD500738DEA /* SwiftBeanCountModel.framework in Frameworks */,
-				F9C438801F550C11004732E2 /* CSV.framework in Frameworks */,
-				F9093122202FF4BB00166FB9 /* SwiftBeanCountParser.framework in Frameworks */,
+				F9C32A042488D1DA0055EB90 /* CSV in Frameworks */,
+				F9C329FE2488D1770055EB90 /* SwiftBeanCountModel in Frameworks */,
+				F9C32A012488D1A80055EB90 /* SwiftBeanCountParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,12 +295,6 @@
 		F9C438831F550C18004732E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F909311F202FF4B300166FB9 /* SwiftBeanCountParser.framework */,
-				F909311E202FF4B300166FB9 /* SwiftBeanCountParser.framework.dSYM */,
-				F9DD92BF1F5CBBD400738DEA /* SwiftBeanCountModel.framework */,
-				F91C986B1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM */,
-				F9C4387F1F550C11004732E2 /* CSV.framework */,
-				F9786CAF1F550C77002EBB53 /* CSV.framework.dSYM */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -342,6 +318,11 @@
 			dependencies = (
 			);
 			name = SwiftBeanCountImporter;
+			packageProductDependencies = (
+				F9C329FD2488D1770055EB90 /* SwiftBeanCountModel */,
+				F9C32A002488D1A80055EB90 /* SwiftBeanCountParser */,
+				F9C32A032488D1DA0055EB90 /* CSV */,
+			);
 			productName = BeanCountImporter;
 			productReference = F9C438511F550AB5004732E2 /* SwiftBeanCountImporter.app */;
 			productType = "com.apple.product-type.application";
@@ -422,6 +403,11 @@
 				Base,
 			);
 			mainGroup = F9C438481F550AB5004732E2;
+			packageReferences = (
+				F9C329FC2488D1770055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */,
+				F9C329FF2488D1A80055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */,
+				F9C32A022488D1DA0055EB90 /* XCRemoteSwiftPackageReference "CSV.swift" */,
+			);
 			productRefGroup = F9C438521F550AB5004732E2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -439,9 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9C438591F550AB5004732E2 /* Assets.xcassets in Resources */,
-				F91C986C1F5CBC01008BAB11 /* SwiftBeanCountModel.framework.dSYM in Resources */,
 				F9C4385C1F550AB5004732E2 /* Main.storyboard in Resources */,
-				F9093120202FF4B300166FB9 /* SwiftBeanCountParser.framework.dSYM in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,7 +649,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
@@ -682,7 +667,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftBeanCountImporter/Supporting Files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountImporter.SwiftBeanCountImporter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -704,7 +692,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftBeanCountImporter/Supporting Files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountImporter.SwiftBeanCountImporter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -722,7 +713,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftBeanCountImporterTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountImporter.SwiftBeanCountImporterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -740,7 +735,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftBeanCountImporterTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountImporter.SwiftBeanCountImporterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -757,7 +756,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftBeanCountImporterUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountImporter.SwiftBeanCountImporterUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -774,7 +777,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftBeanCountImporterUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountImporter.SwiftBeanCountImporterUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -823,6 +830,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F9C329FC2488D1770055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Nef10/SwiftBeanCountModel.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.1.0;
+			};
+		};
+		F9C329FF2488D1A80055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Nef10/SwiftBeanCountParser.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.1.0;
+			};
+		};
+		F9C32A022488D1DA0055EB90 /* XCRemoteSwiftPackageReference "CSV.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yaslab/CSV.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F9C329FD2488D1770055EB90 /* SwiftBeanCountModel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F9C329FC2488D1770055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */;
+			productName = SwiftBeanCountModel;
+		};
+		F9C32A002488D1A80055EB90 /* SwiftBeanCountParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F9C329FF2488D1A80055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */;
+			productName = SwiftBeanCountParser;
+		};
+		F9C32A032488D1DA0055EB90 /* CSV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F9C32A022488D1DA0055EB90 /* XCRemoteSwiftPackageReference "CSV.swift" */;
+			productName = CSV;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F9C438491F550AB5004732E2 /* Project object */;
 }
