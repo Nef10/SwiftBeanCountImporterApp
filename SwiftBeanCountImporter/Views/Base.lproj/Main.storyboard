@@ -1083,7 +1083,7 @@ DQ
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ogx-we-h8C">
                                 <rect key="frame" x="20" y="19" width="48" height="21"/>
                                 <segmentedCell key="cell" controlSize="small" borderStyle="border" alignment="left" style="smallSquare" trackingMode="momentary" id="I4E-Gb-xET">
-                                    <font key="font" metaFont="controlContent" size="11"/>
+                                    <font key="font" metaFont="menu" size="11"/>
                                     <segments>
                                         <segment image="NSAddTemplate" width="23"/>
                                         <segment image="NSRemoveTemplate" width="22" tag="1"/>
@@ -1534,7 +1534,7 @@ Gw
         <!--Duplicate Transaction View Controller-->
         <scene sceneID="JBv-Xa-UCZ">
             <objects>
-                <viewController id="pc6-TH-P9Q" customClass="DuplicateTransactionViewController" customModule="BeanCountImporter" sceneMemberID="viewController">
+                <viewController id="pc6-TH-P9Q" customClass="DuplicateTransactionViewController" customModule="SwiftBeanCountImporter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hSV-fP-Te7">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="85"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2212,7 +2212,7 @@ Gw
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AFY-hD-5XN">
                                 <rect key="frame" x="20" y="19" width="48" height="21"/>
                                 <segmentedCell key="cell" controlSize="small" borderStyle="border" alignment="left" style="smallSquare" trackingMode="momentary" id="5AJ-VE-U9u">
-                                    <font key="font" metaFont="controlContent" size="11"/>
+                                    <font key="font" metaFont="menu" size="11"/>
                                     <segments>
                                         <segment image="NSAddTemplate" width="23"/>
                                         <segment image="NSRemoveTemplate" width="22" tag="1"/>
