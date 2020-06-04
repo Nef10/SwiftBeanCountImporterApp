@@ -21,11 +21,6 @@ or alternatively using `brew cask install fastlane`
 fastlane mac test
 ```
 Run tests
-### mac dependencies
-```
-fastlane mac dependencies
-```
-Install dependencies
 ### mac lint
 ```
 fastlane mac lint

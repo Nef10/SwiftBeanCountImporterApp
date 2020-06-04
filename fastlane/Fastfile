@@ -8,11 +8,6 @@ platform :mac do
     scan(formatter: 'xcpretty-json-formatter')
   end
 
-  desc "Install dependencies"
-  lane :dependencies do
-    carthage(command: "bootstrap", use_ssh: false, cache_builds: true, platform: "mac")
-  end
-
   desc "Run linter"
   lane :lint do
     swiftlint(strict: true, config_file: ".swiftlint.yml")
@@ -30,14 +25,12 @@ platform :mac do
 
   desc "Test and gather coverage report"
   lane :coverage do
-    dependencies
     test
     coverage_report
   end
 
   desc "Test, lint and run danger for coverage comment"
   lane :ci do
-    dependencies
     lint
     test
     pr_comment # includes coverage
