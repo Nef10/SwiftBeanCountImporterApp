@@ -7,42 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F9007D55243A7AB9004F93E8 /* TangerineCardImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9007D54243A7AB9004F93E8 /* TangerineCardImporter.swift */; };
 		F9007D57243A8509004F93E8 /* TagTokenFieldDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9007D56243A8509004F93E8 /* TagTokenFieldDataSource.swift */; };
 		F909311B202FE9A500166FB9 /* AccountComboBoxDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909311A202FE9A500166FB9 /* AccountComboBoxDataSource.swift */; };
 		F909311D202FF1F000166FB9 /* PayeeComboBoxDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909311C202FF1F000166FB9 /* PayeeComboBoxDataSource.swift */; };
-		F90E0C282468E4F700F4C3B6 /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C272468E4F700F4C3B6 /* Importer.swift */; };
-		F90E0C2A2468E5B700F4C3B6 /* TextImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C292468E5B700F4C3B6 /* TextImporter.swift */; };
 		F90E0C2F2468F02000F4C3B6 /* ImportersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C2D2468EEF800F4C3B6 /* ImportersViewController.swift */; };
 		F90E0C31246D123700F4C3B6 /* GeneralSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C30246D123700F4C3B6 /* GeneralSettingsViewController.swift */; };
 		F90E0C33246D24F400F4C3B6 /* AccountSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C32246D24F400F4C3B6 /* AccountSelectionViewController.swift */; };
-		F90E0C35246E44E300F4C3B6 /* BaseImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C34246E44E300F4C3B6 /* BaseImporter.swift */; };
 		F90E0C37246FBD9900F4C3B6 /* AccountMappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C36246FBD9900F4C3B6 /* AccountMappingViewController.swift */; };
-		F93C20221F5D1D7900372960 /* LunchOnUsImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C20211F5D1D7900372960 /* LunchOnUsImporter.swift */; };
-		F949CA3A2468D768004BAEDD /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F949CA392468D768004BAEDD /* Settings.swift */; };
-		F949CA3C2468D856004BAEDD /* CSVImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F949CA3B2468D856004BAEDD /* CSVImporter.swift */; };
-		F949CA3F2468DB56004BAEDD /* CSVBaseImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F949CA3E2468DB56004BAEDD /* CSVBaseImporter.swift */; };
-		F949EAAD23A7FA61003643AC /* RogersImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F949EAAC23A7FA61003643AC /* RogersImporter.swift */; };
 		F97ED1FD1F5CEEE1009BAD44 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97ED1FC1F5CEEE1009BAD44 /* ImportViewController.swift */; };
-		F98AD0F71F551D2300CC02DA /* FileImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0F61F551D2300CC02DA /* FileImporter.swift */; };
-		F98AD0F91F55211900CC02DA /* RBCImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0F81F55211900CC02DA /* RBCImporter.swift */; };
-		F98AD0FB1F55213300CC02DA /* TangerineAccountImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98AD0FA1F55213300CC02DA /* TangerineAccountImporter.swift */; };
 		F98E4AF82025911B00924AD4 /* DataEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98E4AF72025911B00924AD4 /* DataEntryViewController.swift */; };
-		F995061C23B102E700777D71 /* SimpliiImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995061B23B102E700777D71 /* SimpliiImporter.swift */; };
 		F995061E23B11E8300777D71 /* DuplicateTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995061D23B11E8300777D71 /* DuplicateTransactionViewController.swift */; };
 		F995062023B1780900777D71 /* LoadingIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F995061F23B1780900777D71 /* LoadingIndicatorViewController.swift */; };
+		F99C9D97248C4A300008E360 /* SwiftBeanCountImporter in Frameworks */ = {isa = PBXBuildFile; productRef = F99C9D96248C4A300008E360 /* SwiftBeanCountImporter */; };
 		F9B9E14E2324D4D200811B3F /* TextEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B9E14D2324D4D200811B3F /* TextEntryViewController.swift */; };
-		F9B9E1502325C96100811B3F /* ManuLifeImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B9E14F2325C96100811B3F /* ManuLifeImporter.swift */; };
 		F9C329FE2488D1770055EB90 /* SwiftBeanCountModel in Frameworks */ = {isa = PBXBuildFile; productRef = F9C329FD2488D1770055EB90 /* SwiftBeanCountModel */; };
 		F9C32A012488D1A80055EB90 /* SwiftBeanCountParser in Frameworks */ = {isa = PBXBuildFile; productRef = F9C32A002488D1A80055EB90 /* SwiftBeanCountParser */; };
-		F9C32A042488D1DA0055EB90 /* CSV in Frameworks */ = {isa = PBXBuildFile; productRef = F9C32A032488D1DA0055EB90 /* CSV */; };
 		F9C438551F550AB5004732E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438541F550AB5004732E2 /* AppDelegate.swift */; };
 		F9C438571F550AB5004732E2 /* SelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438561F550AB5004732E2 /* SelectorViewController.swift */; };
 		F9C438591F550AB5004732E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9C438581F550AB5004732E2 /* Assets.xcassets */; };
 		F9C4385C1F550AB5004732E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9C4385A1F550AB5004732E2 /* Main.storyboard */; };
 		F9C438671F550AB5004732E2 /* SwiftBeanCountImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438661F550AB5004732E2 /* SwiftBeanCountImporterTests.swift */; };
 		F9C438721F550AB5004732E2 /* SwiftBeanCountImporterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438711F550AB5004732E2 /* SwiftBeanCountImporterUITests.swift */; };
-		F9DD662C23614C7300908BE2 /* N26Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DD662B23614C7300908BE2 /* N26Importer.swift */; };
 		F9DFC62823B3EB0000FB3792 /* DescriptionMappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DFC62723B3EB0000FB3792 /* DescriptionMappingViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,45 +72,30 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F9007D54243A7AB9004F93E8 /* TangerineCardImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangerineCardImporter.swift; sourceTree = "<group>"; };
 		F9007D56243A8509004F93E8 /* TagTokenFieldDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTokenFieldDataSource.swift; sourceTree = "<group>"; };
 		F909311A202FE9A500166FB9 /* AccountComboBoxDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountComboBoxDataSource.swift; sourceTree = "<group>"; };
 		F909311C202FF1F000166FB9 /* PayeeComboBoxDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayeeComboBoxDataSource.swift; sourceTree = "<group>"; };
-		F90E0C272468E4F700F4C3B6 /* Importer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Importer.swift; sourceTree = "<group>"; };
-		F90E0C292468E5B700F4C3B6 /* TextImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextImporter.swift; sourceTree = "<group>"; };
 		F90E0C2D2468EEF800F4C3B6 /* ImportersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportersViewController.swift; sourceTree = "<group>"; };
 		F90E0C30246D123700F4C3B6 /* GeneralSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsViewController.swift; sourceTree = "<group>"; };
 		F90E0C32246D24F400F4C3B6 /* AccountSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSelectionViewController.swift; sourceTree = "<group>"; };
-		F90E0C34246E44E300F4C3B6 /* BaseImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseImporter.swift; sourceTree = "<group>"; };
 		F90E0C36246FBD9900F4C3B6 /* AccountMappingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMappingViewController.swift; sourceTree = "<group>"; };
-		F93C20211F5D1D7900372960 /* LunchOnUsImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchOnUsImporter.swift; sourceTree = "<group>"; };
-		F949CA392468D768004BAEDD /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		F949CA3B2468D856004BAEDD /* CSVImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVImporter.swift; sourceTree = "<group>"; };
-		F949CA3E2468DB56004BAEDD /* CSVBaseImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVBaseImporter.swift; sourceTree = "<group>"; };
-		F949EAAC23A7FA61003643AC /* RogersImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RogersImporter.swift; sourceTree = "<group>"; };
 		F97ED1FC1F5CEEE1009BAD44 /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
-		F98AD0F61F551D2300CC02DA /* FileImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImporter.swift; sourceTree = "<group>"; };
-		F98AD0F81F55211900CC02DA /* RBCImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBCImporter.swift; sourceTree = "<group>"; };
-		F98AD0FA1F55213300CC02DA /* TangerineAccountImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangerineAccountImporter.swift; sourceTree = "<group>"; };
 		F98E4AF72025911B00924AD4 /* DataEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEntryViewController.swift; sourceTree = "<group>"; };
-		F995061B23B102E700777D71 /* SimpliiImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpliiImporter.swift; sourceTree = "<group>"; };
 		F995061D23B11E8300777D71 /* DuplicateTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicateTransactionViewController.swift; sourceTree = "<group>"; };
 		F995061F23B1780900777D71 /* LoadingIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorViewController.swift; sourceTree = "<group>"; };
 		F9B9E14D2324D4D200811B3F /* TextEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEntryViewController.swift; sourceTree = "<group>"; };
-		F9B9E14F2325C96100811B3F /* ManuLifeImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuLifeImporter.swift; sourceTree = "<group>"; };
-		F9C438511F550AB5004732E2 /* SwiftBeanCountImporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftBeanCountImporter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9C438511F550AB5004732E2 /* SwiftBeanCountImporterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftBeanCountImporterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9C438541F550AB5004732E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9C438561F550AB5004732E2 /* SelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorViewController.swift; sourceTree = "<group>"; };
 		F9C438581F550AB5004732E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9C4385B1F550AB5004732E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F9C4385D1F550AB5004732E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F9C438621F550AB5004732E2 /* SwiftBeanCountImporterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftBeanCountImporterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9C438621F550AB5004732E2 /* SwiftBeanCountImporterAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftBeanCountImporterAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9C438661F550AB5004732E2 /* SwiftBeanCountImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBeanCountImporterTests.swift; sourceTree = "<group>"; };
 		F9C438681F550AB5004732E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F9C4386D1F550AB5004732E2 /* SwiftBeanCountImporterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftBeanCountImporterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9C4386D1F550AB5004732E2 /* SwiftBeanCountImporterAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftBeanCountImporterAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9C438711F550AB5004732E2 /* SwiftBeanCountImporterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBeanCountImporterUITests.swift; sourceTree = "<group>"; };
 		F9C438731F550AB5004732E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F9DD662B23614C7300908BE2 /* N26Importer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = N26Importer.swift; sourceTree = "<group>"; };
 		F9DFC62723B3EB0000FB3792 /* DescriptionMappingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionMappingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,9 +104,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9C32A042488D1DA0055EB90 /* CSV in Frameworks */,
 				F9C329FE2488D1770055EB90 /* SwiftBeanCountModel in Frameworks */,
 				F9C32A012488D1A80055EB90 /* SwiftBeanCountParser in Frameworks */,
+				F99C9D97248C4A300008E360 /* SwiftBeanCountImporter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,41 +180,12 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		F98AD0FE1F552C8E00CC02DA /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				F995061A23B1020500777D71 /* Importer */,
-				F90E0C272468E4F700F4C3B6 /* Importer.swift */,
-				F90E0C292468E5B700F4C3B6 /* TextImporter.swift */,
-				F98AD0F61F551D2300CC02DA /* FileImporter.swift */,
-				F949CA3B2468D856004BAEDD /* CSVImporter.swift */,
-				F90E0C34246E44E300F4C3B6 /* BaseImporter.swift */,
-				F949CA3E2468DB56004BAEDD /* CSVBaseImporter.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		F995061A23B1020500777D71 /* Importer */ = {
-			isa = PBXGroup;
-			children = (
-				F98AD0F81F55211900CC02DA /* RBCImporter.swift */,
-				F9DD662B23614C7300908BE2 /* N26Importer.swift */,
-				F98AD0FA1F55213300CC02DA /* TangerineAccountImporter.swift */,
-				F9007D54243A7AB9004F93E8 /* TangerineCardImporter.swift */,
-				F93C20211F5D1D7900372960 /* LunchOnUsImporter.swift */,
-				F9B9E14F2325C96100811B3F /* ManuLifeImporter.swift */,
-				F949EAAC23A7FA61003643AC /* RogersImporter.swift */,
-				F995061B23B102E700777D71 /* SimpliiImporter.swift */,
-			);
-			path = Importer;
-			sourceTree = "<group>";
-		};
 		F9C438481F550AB5004732E2 = {
 			isa = PBXGroup;
 			children = (
-				F9C438531F550AB5004732E2 /* SwiftBeanCountImporter */,
-				F9C438651F550AB5004732E2 /* SwiftBeanCountImporterTests */,
-				F9C438701F550AB5004732E2 /* SwiftBeanCountImporterUITests */,
+				F9C438531F550AB5004732E2 /* SwiftBeanCountImporterApp */,
+				F9C438651F550AB5004732E2 /* SwiftBeanCountImporterAppTests */,
+				F9C438701F550AB5004732E2 /* SwiftBeanCountImporterAppUITests */,
 				F9C438831F550C18004732E2 /* Frameworks */,
 				F9C438521F550AB5004732E2 /* Products */,
 			);
@@ -253,43 +194,41 @@
 		F9C438521F550AB5004732E2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F9C438511F550AB5004732E2 /* SwiftBeanCountImporter.app */,
-				F9C438621F550AB5004732E2 /* SwiftBeanCountImporterTests.xctest */,
-				F9C4386D1F550AB5004732E2 /* SwiftBeanCountImporterUITests.xctest */,
+				F9C438511F550AB5004732E2 /* SwiftBeanCountImporterApp.app */,
+				F9C438621F550AB5004732E2 /* SwiftBeanCountImporterAppTests.xctest */,
+				F9C4386D1F550AB5004732E2 /* SwiftBeanCountImporterAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F9C438531F550AB5004732E2 /* SwiftBeanCountImporter */ = {
+		F9C438531F550AB5004732E2 /* SwiftBeanCountImporterApp */ = {
 			isa = PBXGroup;
 			children = (
 				F9C438541F550AB5004732E2 /* AppDelegate.swift */,
-				F949CA392468D768004BAEDD /* Settings.swift */,
-				F98AD0FE1F552C8E00CC02DA /* Model */,
 				F98AD0FD1F552C8000CC02DA /* Controller */,
 				F9093119202FE98900166FB9 /* DataSource */,
 				F98AD0FC1F552C7300CC02DA /* Views */,
 				F9786CB11F550CA5002EBB53 /* Supporting Files */,
 			);
-			path = SwiftBeanCountImporter;
+			path = SwiftBeanCountImporterApp;
 			sourceTree = "<group>";
 		};
-		F9C438651F550AB5004732E2 /* SwiftBeanCountImporterTests */ = {
+		F9C438651F550AB5004732E2 /* SwiftBeanCountImporterAppTests */ = {
 			isa = PBXGroup;
 			children = (
 				F9C438661F550AB5004732E2 /* SwiftBeanCountImporterTests.swift */,
 				F9C438681F550AB5004732E2 /* Info.plist */,
 			);
-			path = SwiftBeanCountImporterTests;
+			path = SwiftBeanCountImporterAppTests;
 			sourceTree = "<group>";
 		};
-		F9C438701F550AB5004732E2 /* SwiftBeanCountImporterUITests */ = {
+		F9C438701F550AB5004732E2 /* SwiftBeanCountImporterAppUITests */ = {
 			isa = PBXGroup;
 			children = (
 				F9C438711F550AB5004732E2 /* SwiftBeanCountImporterUITests.swift */,
 				F9C438731F550AB5004732E2 /* Info.plist */,
 			);
-			path = SwiftBeanCountImporterUITests;
+			path = SwiftBeanCountImporterAppUITests;
 			sourceTree = "<group>";
 		};
 		F9C438831F550C18004732E2 /* Frameworks */ = {
@@ -302,9 +241,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F9C438501F550AB5004732E2 /* SwiftBeanCountImporter */ = {
+		F9C438501F550AB5004732E2 /* SwiftBeanCountImporterApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F9C438761F550AB5004732E2 /* Build configuration list for PBXNativeTarget "SwiftBeanCountImporter" */;
+			buildConfigurationList = F9C438761F550AB5004732E2 /* Build configuration list for PBXNativeTarget "SwiftBeanCountImporterApp" */;
 			buildPhases = (
 				F9786CB21F550CD1002EBB53 /* SwiftLint */,
 				F9C4384D1F550AB5004732E2 /* Sources */,
@@ -317,19 +256,19 @@
 			);
 			dependencies = (
 			);
-			name = SwiftBeanCountImporter;
+			name = SwiftBeanCountImporterApp;
 			packageProductDependencies = (
 				F9C329FD2488D1770055EB90 /* SwiftBeanCountModel */,
 				F9C32A002488D1A80055EB90 /* SwiftBeanCountParser */,
-				F9C32A032488D1DA0055EB90 /* CSV */,
+				F99C9D96248C4A300008E360 /* SwiftBeanCountImporter */,
 			);
 			productName = BeanCountImporter;
-			productReference = F9C438511F550AB5004732E2 /* SwiftBeanCountImporter.app */;
+			productReference = F9C438511F550AB5004732E2 /* SwiftBeanCountImporterApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F9C438611F550AB5004732E2 /* SwiftBeanCountImporterTests */ = {
+		F9C438611F550AB5004732E2 /* SwiftBeanCountImporterAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F9C438791F550AB5004732E2 /* Build configuration list for PBXNativeTarget "SwiftBeanCountImporterTests" */;
+			buildConfigurationList = F9C438791F550AB5004732E2 /* Build configuration list for PBXNativeTarget "SwiftBeanCountImporterAppTests" */;
 			buildPhases = (
 				F9C4385E1F550AB5004732E2 /* Sources */,
 				F9C4385F1F550AB5004732E2 /* Frameworks */,
@@ -340,14 +279,14 @@
 			dependencies = (
 				F9C438641F550AB5004732E2 /* PBXTargetDependency */,
 			);
-			name = SwiftBeanCountImporterTests;
+			name = SwiftBeanCountImporterAppTests;
 			productName = BeanCountImporterTests;
-			productReference = F9C438621F550AB5004732E2 /* SwiftBeanCountImporterTests.xctest */;
+			productReference = F9C438621F550AB5004732E2 /* SwiftBeanCountImporterAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		F9C4386C1F550AB5004732E2 /* SwiftBeanCountImporterUITests */ = {
+		F9C4386C1F550AB5004732E2 /* SwiftBeanCountImporterAppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F9C4387C1F550AB5004732E2 /* Build configuration list for PBXNativeTarget "SwiftBeanCountImporterUITests" */;
+			buildConfigurationList = F9C4387C1F550AB5004732E2 /* Build configuration list for PBXNativeTarget "SwiftBeanCountImporterAppUITests" */;
 			buildPhases = (
 				F9C438691F550AB5004732E2 /* Sources */,
 				F9C4386A1F550AB5004732E2 /* Frameworks */,
@@ -358,9 +297,9 @@
 			dependencies = (
 				F9C4386F1F550AB5004732E2 /* PBXTargetDependency */,
 			);
-			name = SwiftBeanCountImporterUITests;
+			name = SwiftBeanCountImporterAppUITests;
 			productName = BeanCountImporterUITests;
-			productReference = F9C4386D1F550AB5004732E2 /* SwiftBeanCountImporterUITests.xctest */;
+			productReference = F9C4386D1F550AB5004732E2 /* SwiftBeanCountImporterAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -394,7 +333,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F9C4384C1F550AB5004732E2 /* Build configuration list for PBXProject "SwiftBeanCountImporter" */;
+			buildConfigurationList = F9C4384C1F550AB5004732E2 /* Build configuration list for PBXProject "SwiftBeanCountImporterApp" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -406,15 +345,15 @@
 			packageReferences = (
 				F9C329FC2488D1770055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */,
 				F9C329FF2488D1A80055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */,
-				F9C32A022488D1DA0055EB90 /* XCRemoteSwiftPackageReference "CSV.swift" */,
+				F99C9D95248C4A300008E360 /* XCRemoteSwiftPackageReference "SwiftBeanCountImporter" */,
 			);
 			productRefGroup = F9C438521F550AB5004732E2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F9C438501F550AB5004732E2 /* SwiftBeanCountImporter */,
-				F9C438611F550AB5004732E2 /* SwiftBeanCountImporterTests */,
-				F9C4386C1F550AB5004732E2 /* SwiftBeanCountImporterUITests */,
+				F9C438501F550AB5004732E2 /* SwiftBeanCountImporterApp */,
+				F9C438611F550AB5004732E2 /* SwiftBeanCountImporterAppTests */,
+				F9C4386C1F550AB5004732E2 /* SwiftBeanCountImporterAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -471,32 +410,17 @@
 				F995062023B1780900777D71 /* LoadingIndicatorViewController.swift in Sources */,
 				F9B9E14E2324D4D200811B3F /* TextEntryViewController.swift in Sources */,
 				F9007D57243A8509004F93E8 /* TagTokenFieldDataSource.swift in Sources */,
-				F9007D55243A7AB9004F93E8 /* TangerineCardImporter.swift in Sources */,
-				F949CA3C2468D856004BAEDD /* CSVImporter.swift in Sources */,
 				F909311B202FE9A500166FB9 /* AccountComboBoxDataSource.swift in Sources */,
-				F90E0C2A2468E5B700F4C3B6 /* TextImporter.swift in Sources */,
-				F9DD662C23614C7300908BE2 /* N26Importer.swift in Sources */,
-				F949CA3F2468DB56004BAEDD /* CSVBaseImporter.swift in Sources */,
 				F90E0C31246D123700F4C3B6 /* GeneralSettingsViewController.swift in Sources */,
 				F90E0C2F2468F02000F4C3B6 /* ImportersViewController.swift in Sources */,
-				F98AD0F91F55211900CC02DA /* RBCImporter.swift in Sources */,
 				F9C438551F550AB5004732E2 /* AppDelegate.swift in Sources */,
-				F90E0C282468E4F700F4C3B6 /* Importer.swift in Sources */,
 				F995061E23B11E8300777D71 /* DuplicateTransactionViewController.swift in Sources */,
-				F949EAAD23A7FA61003643AC /* RogersImporter.swift in Sources */,
 				F98E4AF82025911B00924AD4 /* DataEntryViewController.swift in Sources */,
 				F9DFC62823B3EB0000FB3792 /* DescriptionMappingViewController.swift in Sources */,
-				F90E0C35246E44E300F4C3B6 /* BaseImporter.swift in Sources */,
-				F995061C23B102E700777D71 /* SimpliiImporter.swift in Sources */,
 				F90E0C37246FBD9900F4C3B6 /* AccountMappingViewController.swift in Sources */,
-				F93C20221F5D1D7900372960 /* LunchOnUsImporter.swift in Sources */,
 				F90E0C33246D24F400F4C3B6 /* AccountSelectionViewController.swift in Sources */,
 				F909311D202FF1F000166FB9 /* PayeeComboBoxDataSource.swift in Sources */,
 				F97ED1FD1F5CEEE1009BAD44 /* ImportViewController.swift in Sources */,
-				F98AD0FB1F55213300CC02DA /* TangerineAccountImporter.swift in Sources */,
-				F9B9E1502325C96100811B3F /* ManuLifeImporter.swift in Sources */,
-				F949CA3A2468D768004BAEDD /* Settings.swift in Sources */,
-				F98AD0F71F551D2300CC02DA /* FileImporter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,12 +445,12 @@
 /* Begin PBXTargetDependency section */
 		F9C438641F550AB5004732E2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F9C438501F550AB5004732E2 /* SwiftBeanCountImporter */;
+			target = F9C438501F550AB5004732E2 /* SwiftBeanCountImporterApp */;
 			targetProxy = F9C438631F550AB5004732E2 /* PBXContainerItemProxy */;
 		};
 		F9C4386F1F550AB5004732E2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F9C438501F550AB5004732E2 /* SwiftBeanCountImporter */;
+			target = F9C438501F550AB5004732E2 /* SwiftBeanCountImporterApp */;
 			targetProxy = F9C4386E1F550AB5004732E2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -663,12 +587,12 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "$(SRCROOT)/SwiftBeanCountImporter/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftBeanCountImporterApp/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountImporter.SwiftBeanCountImporter;
+				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountImporterApp.SwiftBeanCountImporterApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -685,12 +609,12 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "$(SRCROOT)/SwiftBeanCountImporter/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftBeanCountImporterApp/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountImporter.SwiftBeanCountImporter;
+				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountImporterApp.SwiftBeanCountImporterApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -706,17 +630,17 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = SwiftBeanCountImporterTests/Info.plist;
+				INFOPLIST_FILE = SwiftBeanCountImporterAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountImporter.SwiftBeanCountImporterTests;
+				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountImporterApp.SwiftBeanCountImporterAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftBeanCountImporter.app/Contents/MacOS/SwiftBeanCountImporter";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftBeanCountImporterApp.app/Contents/MacOS/SwiftBeanCountImporterApp";
 			};
 			name = Debug;
 		};
@@ -728,17 +652,17 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = SwiftBeanCountImporterTests/Info.plist;
+				INFOPLIST_FILE = SwiftBeanCountImporterAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountImporter.SwiftBeanCountImporterTests;
+				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountImporterApp.SwiftBeanCountImporterAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftBeanCountImporter.app/Contents/MacOS/SwiftBeanCountImporter";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftBeanCountImporterApp.app/Contents/MacOS/SwiftBeanCountImporterApp";
 			};
 			name = Release;
 		};
@@ -749,17 +673,17 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = SwiftBeanCountImporterUITests/Info.plist;
+				INFOPLIST_FILE = SwiftBeanCountImporterAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountImporter.SwiftBeanCountImporterUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.steffenkoette.SwiftBeanCountImporterApp.SwiftBeanCountImporterApp;UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = SwiftBeanCountImporter;
+				TEST_TARGET_NAME = SwiftBeanCountImporterApp;
 			};
 			name = Debug;
 		};
@@ -770,24 +694,24 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = SwiftBeanCountImporterUITests/Info.plist;
+				INFOPLIST_FILE = SwiftBeanCountImporterAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.steffenkoette.SwiftBeanCountImporter.SwiftBeanCountImporterUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.steffenkoette.SwiftBeanCountImporterApp.SwiftBeanCountImporterApp;UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = SwiftBeanCountImporter;
+				TEST_TARGET_NAME = SwiftBeanCountImporterApp;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F9C4384C1F550AB5004732E2 /* Build configuration list for PBXProject "SwiftBeanCountImporter" */ = {
+		F9C4384C1F550AB5004732E2 /* Build configuration list for PBXProject "SwiftBeanCountImporterApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F9C438741F550AB5004732E2 /* Debug */,
@@ -796,7 +720,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F9C438761F550AB5004732E2 /* Build configuration list for PBXNativeTarget "SwiftBeanCountImporter" */ = {
+		F9C438761F550AB5004732E2 /* Build configuration list for PBXNativeTarget "SwiftBeanCountImporterApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F9C438771F550AB5004732E2 /* Debug */,
@@ -805,7 +729,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F9C438791F550AB5004732E2 /* Build configuration list for PBXNativeTarget "SwiftBeanCountImporterTests" */ = {
+		F9C438791F550AB5004732E2 /* Build configuration list for PBXNativeTarget "SwiftBeanCountImporterAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F9C4387A1F550AB5004732E2 /* Debug */,
@@ -814,7 +738,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F9C4387C1F550AB5004732E2 /* Build configuration list for PBXNativeTarget "SwiftBeanCountImporterUITests" */ = {
+		F9C4387C1F550AB5004732E2 /* Build configuration list for PBXNativeTarget "SwiftBeanCountImporterAppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F9C4387D1F550AB5004732E2 /* Debug */,
@@ -826,6 +750,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F99C9D95248C4A300008E360 /* XCRemoteSwiftPackageReference "SwiftBeanCountImporter" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Nef10/SwiftBeanCountImporter.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.0.1;
+			};
+		};
 		F9C329FC2488D1770055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountModel.git";
@@ -842,17 +774,14 @@
 				version = 0.1.0;
 			};
 		};
-		F9C32A022488D1DA0055EB90 /* XCRemoteSwiftPackageReference "CSV.swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/yaslab/CSV.swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F99C9D96248C4A300008E360 /* SwiftBeanCountImporter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F99C9D95248C4A300008E360 /* XCRemoteSwiftPackageReference "SwiftBeanCountImporter" */;
+			productName = SwiftBeanCountImporter;
+		};
 		F9C329FD2488D1770055EB90 /* SwiftBeanCountModel */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F9C329FC2488D1770055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */;
@@ -862,11 +791,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F9C329FF2488D1A80055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */;
 			productName = SwiftBeanCountParser;
-		};
-		F9C32A032488D1DA0055EB90 /* CSV */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F9C32A022488D1DA0055EB90 /* XCRemoteSwiftPackageReference "CSV.swift" */;
-			productName = CSV;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

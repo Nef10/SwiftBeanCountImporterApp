@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F9C438501F550AB5004732E2"
-               BuildableName = "SwiftBeanCountImporter.app"
-               BlueprintName = "SwiftBeanCountImporter"
-               ReferencedContainer = "container:SwiftBeanCountImporter.xcodeproj">
+               BuildableName = "SwiftBeanCountImporterApp.app"
+               BlueprintName = "SwiftBeanCountImporterApp"
+               ReferencedContainer = "container:SwiftBeanCountImporterApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,9 +34,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F9C438611F550AB5004732E2"
-               BuildableName = "SwiftBeanCountImporterTests.xctest"
-               BlueprintName = "SwiftBeanCountImporterTests"
-               ReferencedContainer = "container:SwiftBeanCountImporter.xcodeproj">
+               BuildableName = "SwiftBeanCountImporterAppTests.xctest"
+               BlueprintName = "SwiftBeanCountImporterAppTests"
+               ReferencedContainer = "container:SwiftBeanCountImporterApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F9C438501F550AB5004732E2"
-            BuildableName = "SwiftBeanCountImporter.app"
-            BlueprintName = "SwiftBeanCountImporter"
-            ReferencedContainer = "container:SwiftBeanCountImporter.xcodeproj">
+            BuildableName = "SwiftBeanCountImporterApp.app"
+            BlueprintName = "SwiftBeanCountImporterApp"
+            ReferencedContainer = "container:SwiftBeanCountImporterApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -73,9 +73,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F9C438501F550AB5004732E2"
-            BuildableName = "SwiftBeanCountImporter.app"
-            BlueprintName = "SwiftBeanCountImporter"
-            ReferencedContainer = "container:SwiftBeanCountImporter.xcodeproj">
+            BuildableName = "SwiftBeanCountImporterApp.app"
+            BlueprintName = "SwiftBeanCountImporterApp"
+            ReferencedContainer = "container:SwiftBeanCountImporterApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
