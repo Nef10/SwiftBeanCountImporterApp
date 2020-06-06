@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import SwiftBeanCountImporter
 import SwiftBeanCountModel
 import SwiftBeanCountParser
 
