@@ -11,11 +11,10 @@ import SwiftBeanCountModel
 
 class BaseImporter: Importer {
 
-    static let currencySetting = ImporterSetting(identifier: "currency", name: "Currency")
     static let accountsSetting = ImporterSetting(identifier: "accounts", name: "Account(s)")
 
     class var settingsName: String { "" }
-    class var settings: [ImporterSetting] { [currencySetting, accountsSetting] }
+    class var settings: [ImporterSetting] { [accountsSetting] }
 
     private let fallbackCommodity = "CAD"
 
@@ -23,7 +22,7 @@ class BaseImporter: Importer {
     var ledger: Ledger?
 
     var commoditySymbol: String {
-        Self.get(setting: Self.currencySetting) ?? fallbackCommodity
+        ledger?.accounts.first { $0.name == accountName }?.commoditySymbol ?? fallbackCommodity
     }
 
     init(ledger: Ledger?) {
