@@ -206,7 +206,7 @@ class DataEntryViewController: NSViewController {
                 UserDefaults.standard.set(defaultPayees, forKey: Settings.payeesUserDefaultKey)
                 if saveAccountCheckbox.state == .on, let accountName = relevantPosting?.accountName {
                     var defaultAccounts = UserDefaults.standard.dictionary(forKey: Settings.accountsUserDefaultsKey) ?? [:]
-                    defaultAccounts[transaction.metaData.payee] = accountName
+                    defaultAccounts[transaction.metaData.payee] = accountName.fullName
                     UserDefaults.standard.set(defaultAccounts, forKey: Settings.accountsUserDefaultsKey)
                 }
             }
