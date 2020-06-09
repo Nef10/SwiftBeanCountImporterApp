@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+    - master
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+    runs-on: macOS-latest
+    steps:
+    - name: Select Xcode version
+      run: sudo xcode-select -s /Applications/Xcode_11.5.app/
+    - uses: actions/checkout@master
+    - name: Tests
+      uses: sersoft-gmbh/xcodebuild-action@v1
+      with:
+        project: SwiftBeanCountImporterApp.xcodeproj
+        scheme: SwiftBeanCountImporterApp
+        destination: platform=macOS
+        action: test
+  swiftlint:
+    name: SwiftLint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+      - name: Run SwiftLint --strict
+        uses: norio-nomura/action-swiftlint@3.1.0
+        with:
+          args: --strict
