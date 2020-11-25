@@ -172,7 +172,10 @@ class ImportViewController: NSViewController {
 
     private func setupUI() {
         if let font = NSFont(name: "Menlo", size: 12) {
-            textView.typingAttributes = [NSAttributedString.Key.font: font]
+            textView.typingAttributes = [
+                NSAttributedString.Key.font: font,
+                NSAttributedString.Key.foregroundColor: NSColor.controlTextColor
+            ]
         }
     }
 
