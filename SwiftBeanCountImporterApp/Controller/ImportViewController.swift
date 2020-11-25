@@ -309,7 +309,7 @@ extension ImportViewController: DataEntryViewControllerDelegate, DuplicateTransa
 
     func finished(_ sheet: NSWindow, transaction: Transaction) {
         view.window?.endSheet(sheet)
-        _ = resultLedger.add(transaction)
+        resultLedger.add(transaction)
         updateOutput()
         showDataEntryViewForNextTransactionIfNeccessary()
     }
