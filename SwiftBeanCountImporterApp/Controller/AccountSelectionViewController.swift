@@ -9,7 +9,7 @@
 import Cocoa
 import Foundation
 
-protocol AccountSelectionViewControllerDelegate: class {
+protocol AccountSelectionViewControllerDelegate: AnyObject {
 
     func finished(_ sheet: NSWindow, accountName: String)
     func cancel(_ sheet: NSWindow)
