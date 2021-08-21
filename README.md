@@ -1,6 +1,6 @@
 # SwiftBeanCountImporterApp
 
-[![CI Status](https://github.com/Nef10/SwiftBeanCountImporterApp/workflows/CI/badge.svg?event=push)](https://github.com/Nef10/SwiftBeanCountImporterApp/actions?query=workflow%3A%22CI%22) [![License: MIT](https://img.shields.io/github/license/Nef10/SwiftBeanCountImporterApp)](https://github.com/Nef10/SwiftBeanCountImporterApp/blob/master/LICENSE) [![Latest version](https://img.shields.io/github/v/release/Nef10/SwiftBeanCountImporterApp?label=SemVer&sort=semver)](https://github.com/Nef10/SwiftBeanCountImporterApp/releases) ![platforms supported: macOS ](https://img.shields.io/badge/platform-macOS-blue)
+[![CI Status](https://github.com/Nef10/SwiftBeanCountImporterApp/workflows/CI/badge.svg?event=push)](https://github.com/Nef10/SwiftBeanCountImporterApp/actions?query=workflow%3A%22CI%22) [![License: MIT](https://img.shields.io/github/license/Nef10/SwiftBeanCountImporterApp)](https://github.com/Nef10/SwiftBeanCountImporterApp/blob/main/LICENSE) [![Latest version](https://img.shields.io/github/v/release/Nef10/SwiftBeanCountImporterApp?label=SemVer&sort=semver)](https://github.com/Nef10/SwiftBeanCountImporterApp/releases) ![platforms supported: macOS ](https://img.shields.io/badge/platform-macOS-blue)
 
 ### ***This project is part for SwiftBeanCount, please check out the main documentation [here](https://github.com/Nef10/SwiftBeanCount).***
 
