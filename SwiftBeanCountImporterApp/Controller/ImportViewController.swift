@@ -20,27 +20,14 @@ class ImportViewController: NSViewController {
         static let accountSelectionSheet = "accountSelectionSheet"
     }
 
-    enum ImporterType {
-        case file(FileImporter)
-        case text(TextImporter)
-    }
-
-    private static var dateTolerance: TimeInterval {
-        if let daysString = UserDefaults.standard.string(forKey: Settings.dateToleranceUserDefaultsKey), let days = Int(daysString) {
-            return Double(days * 60 * 60 * 24) // X days +- to check for duplicate transaction
-        }
-        return Double(Settings.defaultDateTolerance * 60 * 60 * 24)
-    }
-
     var imports = [ImportMode]()
     var ledgerURL: URL?
 
     private var ledger: Ledger?
     private var resultLedger: Ledger = Ledger()
-    private var textImport = [String]()
     private var nextTransaction: ImportedTransaction?
-    private var importers = [ImporterType]()
-    private var currentImporter: ImporterType!
+    private var importers = [Importer]()
+    private var currentImporter: Importer!
     private var errors = [String]()
 
     private weak var loadingIndicatorSheet: LoadingIndicatorViewController?
@@ -63,17 +50,15 @@ class ImportViewController: NSViewController {
         }
     }
 
-    // swiftlint:disable:next cyclomatic_complexity
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else {
             return
         }
         switch identifier {
         case SegueIdentifier.dataEntrySheet:
-            guard let controller = segue.destinationController as? DataEntryViewController, case let .file(fileImporter) = currentImporter else {
+            guard let controller = segue.destinationController as? DataEntryViewController else {
                 return
             }
-            controller.baseAccountName = fileImporter.accountName
             controller.importedTransaction = nextTransaction
             controller.delegate = self
             controller.ledger = ledger
@@ -82,7 +67,7 @@ class ImportViewController: NSViewController {
                 return
             }
             controller.importedTransaction = nextTransaction?.transaction
-            controller.existingTransaction = doesTransactionAlreadyExist()
+            controller.existingTransaction = nextTransaction?.possibleDuplicate
             controller.delegate = self
         case SegueIdentifier.loadingIndicatorSheet:
             guard let controller = segue.destinationController as? LoadingIndicatorViewController else {
@@ -94,19 +79,17 @@ class ImportViewController: NSViewController {
                 return
             }
             controller.delegate = self
-            controller.possibleAccounts = possibleAccounts().map { $0.fullName }
-            if case let .file(fileImporter) = currentImporter {
-                controller.fileName = fileImporter.fileName
-            }
+            controller.possibleAccounts = currentImporter.possibleAccountNames().map { $0.fullName }
+            controller.importName = currentImporter.importName
         default:
             break
         }
     }
 
     private func updateOutput() {
-        textView.string = resultLedger.transactions.sorted { $0.metaData.date < $1.metaData.date }
-            .reduce(into: "") { $0.append("\n\n\(String(describing: $1))") }
-            .appending(textImport.reduce(into: "") { $0.append("\n\n\($1)") })
+        textView.string = ("\(resultLedger.transactions.sorted { $0.metaData.date < $1.metaData.date }.map { "\($0)" }.joined(separator: "\n\n"))\n\n" +
+            "\(resultLedger.accounts.flatMap { $0.balances }.sorted { $0.date < $1.date }.map { "\($0)" }.joined(separator: "\n"))\n\n" +
+            "\(resultLedger.prices.sorted { $0.date < $1.date }.map { "\($0)" }.joined(separator: "\n"))")
             .trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
@@ -135,18 +118,19 @@ class ImportViewController: NSViewController {
             for importMode in self.imports {
                 switch importMode {
                 case let .csv(fileURL):
-                    guard let fileImporter = FileImporterManager.new(ledger: self.ledger, url: fileURL) else {
+                    guard let importer = ImporterFactory.new(ledger: self.ledger, url: fileURL) else {
                         self.errors.append("Unable to find importer for: \(fileURL)")
                         continue
                     }
-                    fileImporter.loadFile()
-                    self.importers.append(.file(fileImporter))
+                    importer.load()
+                    self.importers.append(importer)
                 case let .text(transaction, balance):
-                    guard let textImporter = TextImporterManager.new(ledger: self.ledger, transaction: transaction, balance: balance) else {
+                    guard let importer = ImporterFactory.new(ledger: self.ledger, transaction: transaction, balance: balance) else {
                         self.errors.append("Unable to find importer for text: \(transaction) \(balance)")
                         continue
                     }
-                    self.importers.append(.text(textImporter))
+                    importer.load()
+                    self.importers.append(importer)
                 }
             }
             completion()
@@ -198,23 +182,12 @@ class ImportViewController: NSViewController {
 
     }
 
-    private func possibleAccounts() -> [AccountName] {
-        switch currentImporter {
-        case let .file(fileImporter):
-            return fileImporter.possibleAccountNames(for: ledger)
-        case let .text(textImporter):
-            return textImporter.possibleAccountNames(for: ledger)
-        default:
-            return []
-        }
-    }
-
     private func setAccount() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
                 return
             }
-            let possibleAccounts = self.possibleAccounts()
+            let possibleAccounts = self.currentImporter.possibleAccountNames()
             if possibleAccounts.count != 1 {
                 self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.accountSelectionSheet), sender: self)
             } else {
@@ -235,33 +208,34 @@ class ImportViewController: NSViewController {
             guard let self = self else {
                 return
             }
-            switch self.currentImporter {
-            case .file:
-                self.showDataEntryViewForNextTransactionIfNeccessary()
-            case let .text(textImporter):
-                self.textImport.append(textImporter.parse())
-                self.updateOutput()
-                self.nextImporter()
-            default:
-                break
-            }
+            self.showDataEntryViewForNextTransactionIfNeccessary()
         }
     }
 
     private func showDataEntryViewForNextTransactionIfNeccessary() {
-        guard case let .file(fileImporter) = currentImporter else {
-            return
-        }
-        nextTransaction = fileImporter.parseLineIntoTransaction()
-        if nextTransaction != nil {
-            showDataEntryOrDuplicateTransactionViewForTransaction()
+        nextTransaction = currentImporter.nextTransaction()
+        if let importedTransaction = nextTransaction {
+            if importedTransaction.shouldAllowUserToEdit {
+                showDataEntryOrDuplicateTransactionViewForTransaction()
+            } else {
+                resultLedger.add(importedTransaction.transaction)
+                updateOutput()
+                showDataEntryViewForNextTransactionIfNeccessary()
+            }
         } else {
+            for balance in currentImporter.balancesToImport() {
+                resultLedger.add(balance)
+            }
+            for price in currentImporter.pricesToImport() {
+                try? resultLedger.add(price)
+            }
+            updateOutput()
             nextImporter()
         }
     }
 
     private func showDataEntryOrDuplicateTransactionViewForTransaction() {
-        if doesTransactionAlreadyExist() != nil {
+        if nextTransaction?.possibleDuplicate != nil {
             showDuplicateTransactionViewForTransaction()
         } else {
             showDataEntryViewForTransaction()
@@ -276,25 +250,8 @@ class ImportViewController: NSViewController {
         performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.duplicateTransactionSheet), sender: self)
     }
 
-    private func doesTransactionAlreadyExist() -> Transaction? {
-        guard let nextTransaction = nextTransaction?.transaction, let ledger = ledger else {
-            return nil
-        }
-        return ledger.transactions.first {
-            $0.postings.contains { $0.accountName == nextTransaction.postings.first?.accountName && $0.amount == nextTransaction.postings.first?.amount }
-                && $0.metaData.date + Self.dateTolerance >= nextTransaction.metaData.date && $0.metaData.date - Self.dateTolerance <= nextTransaction.metaData.date
-        }
-    }
-
     private func useAccount(name: AccountName) {
-        switch currentImporter {
-        case let .file(fileImporter):
-            fileImporter.useAccount(name: name)
-        case let .text(textImporter):
-            textImporter.useAccount(name: name)
-        default:
-            break
-        }
+        currentImporter.useAccount(name: name)
         importData()
     }
 

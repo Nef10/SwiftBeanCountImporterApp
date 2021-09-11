@@ -17,7 +17,6 @@ class GeneralSettingsViewController: NSViewController {
         let accounts: [String: String]
         let descriptions: [String: String]
         let dateTolerance: String
-        let importerSettings: [String: String]
     }
 
     @IBAction private func importSettingsButtonPressed(_ sender: Any) {
@@ -71,12 +70,29 @@ class GeneralSettingsViewController: NSViewController {
     }
 
     private func apply(settingsFile: SettingsFile) {
-        UserDefaults.standard.set(settingsFile.payees, forKey: Settings.payeesUserDefaultKey)
-        UserDefaults.standard.set(settingsFile.accounts, forKey: Settings.accountsUserDefaultsKey)
-        UserDefaults.standard.set(settingsFile.descriptions, forKey: Settings.descriptionUserDefaultsKey)
-        UserDefaults.standard.set(settingsFile.dateTolerance, forKey: Settings.dateToleranceUserDefaultsKey)
-        for (key, setting) in settingsFile.importerSettings {
-            UserDefaults.standard.set(setting, forKey: key)
+        // Delete all old mappings
+        for (description, _) in Settings.allDescriptionMappings {
+            Settings.setDescriptionMapping(key: description, description: nil)
+        }
+        for (description, _) in Settings.allPayeeMappings {
+            Settings.setPayeeMapping(key: description, payee: nil)
+        }
+        for (description, _) in Settings.allAccountMappings {
+            Settings.setAccountMapping(key: description, account: nil)
+        }
+
+        // Set new once
+        for (description, newDescriptions) in settingsFile.descriptions {
+            Settings.setDescriptionMapping(key: description, description: newDescriptions)
+        }
+        for (description, payee) in settingsFile.payees {
+            Settings.setPayeeMapping(key: description, payee: payee)
+        }
+        for (description, account) in settingsFile.accounts {
+            Settings.setAccountMapping(key: description, account: account)
+        }
+        if let dateTolerance = Int(settingsFile.dateTolerance) {
+            Settings.dateToleranceInDays = dateTolerance
         }
     }
 
@@ -107,22 +123,10 @@ class GeneralSettingsViewController: NSViewController {
     }
 
     private func generateSettings() -> SettingsFile {
-        SettingsFile(payees: UserDefaults.standard.dictionary(forKey: Settings.payeesUserDefaultKey) as? [String: String] ?? [:],
-                     accounts: UserDefaults.standard.dictionary(forKey: Settings.accountsUserDefaultsKey)  as? [String: String] ?? [:],
-                     descriptions: UserDefaults.standard.dictionary(forKey: Settings.descriptionUserDefaultsKey) as? [String: String] ?? [:],
-                     dateTolerance: UserDefaults.standard.string(forKey: Settings.dateToleranceUserDefaultsKey) ?? "\(Settings.defaultDateTolerance)",
-                     importerSettings: generateImporterSettings())
-    }
-
-    private func generateImporterSettings() -> [String: String] {
-        var result = [String: String]()
-        let importers = ImporterManager.importers
-        for importer in importers {
-            for setting in importer.settings {
-                result[importer.getUserDefaultsKey(for: setting)] = importer.get(setting: setting)
-            }
-        }
-        return result
+        SettingsFile(payees: Settings.allPayeeMappings,
+                     accounts: Settings.allAccountMappings,
+                     descriptions: Settings.allDescriptionMappings,
+                     dateTolerance: "\(Settings.dateToleranceInDays)")
     }
 
     private func showError(text: String) {

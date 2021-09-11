@@ -50,9 +50,6 @@ class DataEntryViewController: NSViewController {
     /// Transaction to prepopulate the UI with, must not be nil upon loading the view
     var importedTransaction: ImportedTransaction?
 
-    /// Account of the posting which should not be shown, must not be nil upon loading the view
-    var baseAccountName: AccountName?
-
     /// Delegate which will be informed about continue and cancel actions
     weak var delegate: DataEntryViewControllerDelegate?
 
@@ -128,11 +125,11 @@ class DataEntryViewController: NSViewController {
 
     private func processPassedData() {
         transaction = importedTransaction?.transaction
-        relevantPosting = transaction?.postings.first { $0.accountName != baseAccountName }
+        relevantPosting = transaction?.postings.first { $0.accountName != importedTransaction?.accountName }
     }
 
     private func isPassedDataValid() -> Bool {
-        transaction != nil && relevantPosting != nil && baseAccountName != nil
+        transaction != nil && relevantPosting != nil
     }
 
     private func handleInvalidPassedData() {
@@ -200,19 +197,9 @@ class DataEntryViewController: NSViewController {
 
     private func savePrefrillData(transaction: Transaction) {
         if saveDescriptionPayeeCheckbox.state == .on, let importedTransaction = importedTransaction {
-            if !transaction.metaData.payee.isEmpty {
-                var defaultPayees = UserDefaults.standard.dictionary(forKey: Settings.payeesUserDefaultKey) ?? [:]
-                defaultPayees[importedTransaction.originalDescription] = transaction.metaData.payee
-                UserDefaults.standard.set(defaultPayees, forKey: Settings.payeesUserDefaultKey)
-                if saveAccountCheckbox.state == .on, let accountName = relevantPosting?.accountName {
-                    var defaultAccounts = UserDefaults.standard.dictionary(forKey: Settings.accountsUserDefaultsKey) ?? [:]
-                    defaultAccounts[transaction.metaData.payee] = accountName.fullName
-                    UserDefaults.standard.set(defaultAccounts, forKey: Settings.accountsUserDefaultsKey)
-                }
-            }
-            var defaultDescriptions = UserDefaults.standard.dictionary(forKey: Settings.descriptionUserDefaultsKey) ?? [:]
-            defaultDescriptions[importedTransaction.originalDescription] = transaction.metaData.narration
-            UserDefaults.standard.set(defaultDescriptions, forKey: Settings.descriptionUserDefaultsKey)
+            importedTransaction.saveMapped(description: transaction.metaData.narration,
+                                           payee: transaction.metaData.payee,
+                                           accountName: saveAccountCheckbox.state == .on ? relevantPosting?.accountName : nil)
         }
     }
 
