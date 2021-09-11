@@ -41,6 +41,9 @@ class DuplicateTransactionViewController: NSViewController {
     /// Transaction which already exists in the ledger, must not be nil upon loading the view
     var existingTransaction: Transaction?
 
+    /// Name of the import where the duplicate transaction was found
+    var importName: String?
+
     /// Delegate which will be informed about continue and cancel actions
     weak var delegate: DuplicateTransactionViewControllerDelegate?
 
@@ -68,7 +71,7 @@ class DuplicateTransactionViewController: NSViewController {
     }
 
     private func isPassedDataValid() -> Bool {
-        importedTransaction != nil && existingTransaction != nil
+        importedTransaction != nil && existingTransaction != nil && importName != nil
     }
 
     private func handleInvalidPassedData() {
@@ -77,7 +80,17 @@ class DuplicateTransactionViewController: NSViewController {
     }
 
     private func populateUI() {
-        textField.stringValue = "The transaction found in the import data:\n\n\(String(describing: importedTransaction!))\n\nseems to be alredy present in your ledger:\n\n\(String(describing: existingTransaction!))\n\nHow do you want to proceed?" // swiftlint:disable:this line_length
+        textField.stringValue = """
+            The transaction found in the import data of \(importName!):
+
+            \(String(describing: importedTransaction!))
+
+            seems to be alredy present in your ledger:
+
+            \(String(describing: existingTransaction!))
+
+            How do you want to proceed?
+            """
     }
 
 }

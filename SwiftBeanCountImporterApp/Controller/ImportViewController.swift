@@ -68,6 +68,7 @@ class ImportViewController: NSViewController {
             }
             controller.importedTransaction = nextTransaction?.transaction
             controller.existingTransaction = nextTransaction?.possibleDuplicate
+            controller.importName = currentImporter.importName
             controller.delegate = self
         case SegueIdentifier.loadingIndicatorSheet:
             guard let controller = segue.destinationController as? LoadingIndicatorViewController else {
