@@ -21,8 +21,8 @@ class AccountSelectionViewController: NSViewController {
     /// Accounts which the importer thinks the file belongs to, can be empty
     var possibleAccounts = [String]()
 
-    /// Filename of the imported file, nil if imported from text
-    var fileName: String?
+    /// Name describing the import, to tell the user for which file / download info is requested
+    var importName: String?
 
     /// Delegate to send finish and cancel message to
     weak var delegate: AccountSelectionViewControllerDelegate?
@@ -32,11 +32,10 @@ class AccountSelectionViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let fileName = fileName {
-            label.stringValue = "Please select the account for file \(fileName):"
-        } else {
-            label.stringValue = "Please select the account for the entered text:"
+        guard let importName = importName else {
+            fatalError("importName is required to create an AccountSelectionViewController")
         }
+        label.stringValue = "Please select the account for the following import: \(importName)"
         comboBox.removeAllItems()
         comboBox.addItems(withObjectValues: possibleAccounts)
     }

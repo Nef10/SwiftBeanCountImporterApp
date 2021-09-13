@@ -36,22 +36,14 @@ class DescriptionMappingViewController: NSViewController {
     @IBAction private func editPayee(_ sender: NSTextField) {
         let row = tableView.row(for: sender)
         let line = lines[row]
-        guard var payees = UserDefaults.standard.dictionary(forKey: Settings.payeesUserDefaultKey) else {
-            return
-        }
-        payees[line.importedDescription] = sender.stringValue
-        UserDefaults.standard.set(payees, forKey: Settings.payeesUserDefaultKey)
+        Settings.setPayeeMapping(key: line.importedDescription, payee: sender.stringValue)
         refreshData()
     }
 
     @IBAction private func editDescription(_ sender: NSTextField) {
         let row = tableView.row(for: sender)
         let line = lines[row]
-        guard var desciptions = UserDefaults.standard.dictionary(forKey: Settings.descriptionUserDefaultsKey) else {
-            return
-        }
-        desciptions[line.importedDescription] = sender.stringValue
-        UserDefaults.standard.set(desciptions, forKey: Settings.descriptionUserDefaultsKey)
+        Settings.setDescriptionMapping(key: line.importedDescription, description: sender.stringValue)
         refreshData()
     }
 
@@ -60,14 +52,8 @@ class DescriptionMappingViewController: NSViewController {
             guard let newDescription = newLineAlert() else {
                 return
             }
-            guard var payees = UserDefaults.standard.dictionary(forKey: Settings.payeesUserDefaultKey),
-                var desciptions = UserDefaults.standard.dictionary(forKey: Settings.descriptionUserDefaultsKey) else {
-                    return
-            }
-            payees[newDescription] = ""
-            desciptions[newDescription] = ""
-            UserDefaults.standard.set(payees, forKey: Settings.payeesUserDefaultKey)
-            UserDefaults.standard.set(desciptions, forKey: Settings.descriptionUserDefaultsKey)
+            Settings.setDescriptionMapping(key: newDescription, description: "")
+            Settings.setPayeeMapping(key: newDescription, payee: "")
             refreshData()
             let index = lines.firstIndex {
                 $0.importedDescription == newDescription
@@ -80,16 +66,12 @@ class DescriptionMappingViewController: NSViewController {
             tableView.scrollRowToVisible(index1)
         } else if sender.selectedSegment == 1 {// -
             let row = tableView.selectedRow
-            guard row != -1,
-                var payees = UserDefaults.standard.dictionary(forKey: Settings.payeesUserDefaultKey),
-                var desciptions = UserDefaults.standard.dictionary(forKey: Settings.descriptionUserDefaultsKey) else {
+            guard row != -1 else {
                 return
             }
             let line = lines[row]
-            payees.removeValue(forKey: line.importedDescription)
-            desciptions.removeValue(forKey: line.importedDescription)
-            UserDefaults.standard.set(payees, forKey: Settings.payeesUserDefaultKey)
-            UserDefaults.standard.set(desciptions, forKey: Settings.descriptionUserDefaultsKey)
+            Settings.setDescriptionMapping(key: line.importedDescription, description: nil)
+            Settings.setPayeeMapping(key: line.importedDescription, payee: nil)
             refreshData()
         }
     }
@@ -115,13 +97,10 @@ class DescriptionMappingViewController: NSViewController {
     }
 
     private func refreshData() {
-        guard let payees = UserDefaults.standard.dictionary(forKey: Settings.payeesUserDefaultKey) as? [String: String],
-            let desciptions = UserDefaults.standard.dictionary(forKey: Settings.descriptionUserDefaultsKey) as? [String: String] else {
-                lines = []
-                return
-        }
+        let payees = Settings.allPayeeMappings
+        let descriptions = Settings.allDescriptionMappings
         let array = Array(payees.keys)
-        lines = array.map { Line(importedDescription: $0, payee: payees[$0] ?? "", description: desciptions[$0] ?? "") }
+        lines = array.map { Line(importedDescription: $0, payee: payees[$0] ?? "", description: descriptions[$0] ?? "") }
         lines = (lines as NSArray).sortedArray(using: tableView.sortDescriptors) as! [Line] // swiftlint:disable:this force_cast
         tableView.reloadData()
     }

@@ -34,11 +34,7 @@ class AccountMappingViewController: NSViewController {
     @IBAction private func editAccount(_ sender: NSTextField) {
         let row = tableView.row(for: sender)
         let line = lines[row]
-        guard var accounts = UserDefaults.standard.dictionary(forKey: Settings.accountsUserDefaultsKey) else {
-            return
-        }
-        accounts[line.payee] = sender.stringValue
-        UserDefaults.standard.set(accounts, forKey: Settings.accountsUserDefaultsKey)
+        Settings.setAccountMapping(key: line.payee, account: sender.stringValue)
         refreshData()
     }
 
@@ -47,11 +43,7 @@ class AccountMappingViewController: NSViewController {
             guard let newPayee = newLineAlert() else {
                 return
             }
-            guard var accounts = UserDefaults.standard.dictionary(forKey: Settings.accountsUserDefaultsKey) else {
-                    return
-            }
-            accounts[newPayee] = ""
-            UserDefaults.standard.set(accounts, forKey: Settings.accountsUserDefaultsKey)
+            Settings.setAccountMapping(key: newPayee, account: "")
             refreshData()
             let index = lines.firstIndex {
                 $0.payee == newPayee
@@ -64,12 +56,11 @@ class AccountMappingViewController: NSViewController {
             tableView.scrollRowToVisible(index1)
         } else if sender.selectedSegment == 1 {// -
             let row = tableView.selectedRow
-            guard row != -1, var accounts = UserDefaults.standard.dictionary(forKey: Settings.accountsUserDefaultsKey) else {
+            guard row != -1 else {
                 return
             }
             let line = lines[row]
-            accounts.removeValue(forKey: line.payee)
-            UserDefaults.standard.set(accounts, forKey: Settings.accountsUserDefaultsKey)
+            Settings.setAccountMapping(key: line.payee, account: nil)
             refreshData()
         }
     }
@@ -95,10 +86,7 @@ class AccountMappingViewController: NSViewController {
     }
 
     private func refreshData() {
-        guard let accounts = UserDefaults.standard.dictionary(forKey: Settings.accountsUserDefaultsKey) as? [String: String] else {
-                lines = []
-                return
-        }
+        let accounts = Settings.allAccountMappings
         let array = Array(accounts.keys)
         lines = array.map { Line(payee: $0, account: accounts[$0] ?? "") }
         lines = (lines as NSArray).sortedArray(using: tableView.sortDescriptors) as! [Line] // swiftlint:disable:this force_cast
