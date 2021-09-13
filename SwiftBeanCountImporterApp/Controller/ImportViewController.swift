@@ -17,7 +17,7 @@ class ImportViewController: NSViewController {
         static let dataEntrySheet = "dataEntrySheet"
         static let duplicateTransactionSheet = "duplicateTransactionSheet"
         static let loadingIndicatorSheet = "loadingIndicatorSheet"
-        static let accountSelectionSheet = "accountSelectionSheet"
+        static let importerInputSheet = "importerInputSheet"
     }
 
     var imports = [ImportMode]()
@@ -29,6 +29,7 @@ class ImportViewController: NSViewController {
     private var importers = [Importer]()
     private var currentImporter: Importer!
     private var errors = [String]()
+    private var inputRequest: (String, [String], Bool, (String) -> Bool)! // swiftlint:disable:this large_tuple
 
     private weak var loadingIndicatorSheet: LoadingIndicatorViewController?
 
@@ -50,7 +51,7 @@ class ImportViewController: NSViewController {
         }
     }
 
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) { // swiftlint:disable:this function_body_length
         guard let identifier = segue.identifier else {
             return
         }
@@ -75,13 +76,16 @@ class ImportViewController: NSViewController {
                 return
             }
             loadingIndicatorSheet = controller
-        case SegueIdentifier.accountSelectionSheet:
-            guard let controller = segue.destinationController as? AccountSelectionViewController else {
+        case SegueIdentifier.importerInputSheet:
+            guard let controller = segue.destinationController as? ImporterInputViewController else {
                 return
             }
+            let (name, suggestions, isSecure, _) = inputRequest
             controller.delegate = self
-            controller.possibleAccounts = currentImporter.possibleAccountNames().map { $0.fullName }
+            controller.suggestions = suggestions
             controller.importName = currentImporter.importName
+            controller.name = name
+            controller.isSecure = isSecure
         default:
             break
         }
@@ -110,7 +114,7 @@ class ImportViewController: NSViewController {
 
     private func setupImporter(completion: @escaping () -> Void) {
         DispatchQueue.main.async { [weak self] in
-            self?.loadingIndicatorSheet?.updateText(text: "Loading import data")
+            self?.loadingIndicatorSheet?.updateText(text: "Preparing imports")
         }
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else {
@@ -123,14 +127,12 @@ class ImportViewController: NSViewController {
                         self.errors.append("Unable to find importer for: \(fileURL)")
                         continue
                     }
-                    importer.load()
                     self.importers.append(importer)
                 case let .text(transaction, balance):
                     guard let importer = ImporterFactory.new(ledger: self.ledger, transaction: transaction, balance: balance) else {
                         self.errors.append("Unable to find importer for text: \(transaction) \(balance)")
                         continue
                     }
-                    importer.load()
                     self.importers.append(importer)
                 }
             }
@@ -183,24 +185,11 @@ class ImportViewController: NSViewController {
 
     }
 
-    private func setAccount() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            let possibleAccounts = self.currentImporter.possibleAccountNames()
-            if possibleAccounts.count != 1 {
-                self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.accountSelectionSheet), sender: self)
-            } else {
-                self.useAccount(name: possibleAccounts.first!)
-            }
-        }
-    }
-
     private func nextImporter() {
         currentImporter = importers.popLast()
         if currentImporter != nil {
-            setAccount()
+            currentImporter.delegate = self
+            importData()
         }
     }
 
@@ -209,7 +198,17 @@ class ImportViewController: NSViewController {
             guard let self = self else {
                 return
             }
-            self.showDataEntryViewForNextTransactionIfNeccessary()
+            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.loadingIndicatorSheet), sender: self)
+            self.loadingIndicatorSheet?.updateText(text: "Preparing import \(self.currentImporter.importName)")
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.currentImporter.load()
+                DispatchQueue.main.async { [weak self] in
+                    if let window = self?.loadingIndicatorSheet?.view.window {
+                        self?.view.window?.endSheet(window)
+                    }
+                    self?.showDataEntryViewForNextTransactionIfNeccessary()
+                }
+            }
         }
     }
 
@@ -251,11 +250,6 @@ class ImportViewController: NSViewController {
         performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.duplicateTransactionSheet), sender: self)
     }
 
-    private func useAccount(name: AccountName) {
-        currentImporter.useAccount(name: name)
-        importData()
-    }
-
     private func showError(_ error: String, completion: ((NSApplication.ModalResponse) -> Void)?) {
         let alert = NSAlert()
         alert.alertStyle = .critical
@@ -264,9 +258,15 @@ class ImportViewController: NSViewController {
         alert.beginSheetModal(for: view.window!, completionHandler: completion)
     }
 
+    private func showInputRequest() {
+        DispatchQueue.main.async { [weak self] in
+            self?.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.importerInputSheet), sender: self)
+        }
+    }
+
 }
 
-extension ImportViewController: DataEntryViewControllerDelegate, DuplicateTransactionViewControllerDelegate, AccountSelectionViewControllerDelegate {
+extension ImportViewController: DataEntryViewControllerDelegate, DuplicateTransactionViewControllerDelegate, ImporterInputViewControllerDelegate {
 
     func finished(_ sheet: NSWindow, transaction: Transaction) {
         view.window?.endSheet(sheet)
@@ -275,19 +275,11 @@ extension ImportViewController: DataEntryViewControllerDelegate, DuplicateTransa
         showDataEntryViewForNextTransactionIfNeccessary()
     }
 
-    func finished(_ sheet: NSWindow, accountName: String) {
+    func finished(_ sheet: NSWindow, input: String) {
         view.window?.endSheet(sheet)
-        do {
-            let accountName = try AccountName(accountName)
-            useAccount(name: accountName)
-        } catch {
-            showError("\(error.localizedDescription)") { [weak self] _ in
-                guard let self = self else {
-                    return
-                }
-                self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.accountSelectionSheet), sender: self)
-            }
-            return
+        let (_, _, _, completion) = inputRequest
+        if !completion(input) {
+            showInputRequest()
         }
     }
 
@@ -304,6 +296,20 @@ extension ImportViewController: DataEntryViewControllerDelegate, DuplicateTransa
     func importAnyway(_ sheet: NSWindow) {
         view.window?.endSheet(sheet)
         showDataEntryViewForTransaction()
+    }
+
+}
+
+extension ImportViewController: ImporterDelegate {
+
+    func requestInput(name: String, suggestions: [String], allowSaving: Bool, allowSaved: Bool, completion: @escaping (String) -> Bool) {
+        inputRequest = (name, suggestions, false, completion)
+        showInputRequest()
+    }
+
+    func requestSecretInput(name: String, allowSaving: Bool, allowSaved: Bool, completion: @escaping (String) -> Bool) {
+        inputRequest = (name, [], true, completion)
+        showInputRequest()
     }
 
 }

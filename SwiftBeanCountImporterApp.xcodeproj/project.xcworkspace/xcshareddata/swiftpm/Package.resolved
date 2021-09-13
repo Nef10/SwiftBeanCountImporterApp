@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/Nef10/SwiftBeanCountImporter.git",
         "state": {
           "branch": null,
-          "revision": "344ca6fc507deb12f91272276f42b185227a0638",
-          "version": "0.1.0"
+          "revision": "545611bc3b6b3724431c93bd37f6fc5abe531099",
+          "version": null
         }
       },
       {
@@ -35,6 +35,15 @@
           "branch": null,
           "revision": "4299b420e43abeb113a315467b1a70a5017ca758",
           "version": "0.1.8"
+        }
+      },
+      {
+        "package": "SwiftBeanCountParserUtils",
+        "repositoryURL": "https://github.com/Nef10/SwiftBeanCountParserUtils.git",
+        "state": {
+          "branch": null,
+          "revision": "c0978850756dd137f929cd9d523d443772881b3e",
+          "version": "0.0.1"
         }
       }
     ]

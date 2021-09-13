@@ -915,18 +915,18 @@ DQ
         <scene sceneID="Wxf-LG-kLq">
             <objects>
                 <viewController title="Description Mapping" id="6Ey-ad-GT5" customClass="DescriptionMappingViewController" customModule="SwiftBeanCountImporterApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="qAt-h5-3eG">
-                        <rect key="frame" x="0.0" y="0.0" width="739" height="136"/>
+                    <view key="view" misplaced="YES" id="qAt-h5-3eG">
+                        <rect key="frame" x="0.0" y="0.0" width="739" height="106"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tds-K5-ezd">
-                                <rect key="frame" x="20" y="47" width="699" height="69"/>
+                                <rect key="frame" x="20" y="47" width="699" height="64"/>
                                 <clipView key="contentView" id="xlK-hF-cYC">
-                                    <rect key="frame" x="1" y="1" width="697" height="67"/>
+                                    <rect key="frame" x="1" y="1" width="697" height="62"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="iEo-2W-2DO" viewBased="YES" id="pdd-j3-0yI">
-                                            <rect key="frame" x="0.0" y="0.0" width="697" height="42"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="697" height="37"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="3"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1608,16 +1608,16 @@ Gw
             </objects>
             <point key="canvasLocation" x="697" y="1283.5"/>
         </scene>
-        <!--Account Selection View Controller-->
+        <!--Importer Input View Controller-->
         <scene sceneID="0ca-QV-gtx">
             <objects>
-                <viewController id="8fJ-R1-fPR" customClass="AccountSelectionViewController" customModule="SwiftBeanCountImporterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8fJ-R1-fPR" customClass="ImporterInputViewController" customModule="SwiftBeanCountImporterApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Did-RG-Ug4">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="124"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="125"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X0J-jp-7R7">
-                                <rect key="frame" x="20" y="57" width="413" height="25"/>
+                                <rect key="frame" x="20" y="58" width="413" height="25"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="hz8-E9-KPb">
                                     <font key="font" metaFont="menu"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1630,7 +1630,7 @@ Gw
                                 </comboBoxCell>
                             </comboBox>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pLg-dD-60o">
-                                <rect key="frame" x="20" y="88" width="206" height="16"/>
+                                <rect key="frame" x="20" y="89" width="206" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Please select the account for file:" id="i6t-Zl-2mW">
                                     <font key="font" metaFont="menu"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1663,25 +1663,54 @@ Gw
                                     <action selector="cancelButtonPressed:" target="8fJ-R1-fPR" id="Q8x-6S-zaF"/>
                                 </connections>
                             </button>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EPh-6Y-UUH">
+                                <rect key="frame" x="20" y="60" width="410" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="hZt-k1-GL8">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dNs-PA-HHE">
+                                <rect key="frame" x="20" y="60" width="410" height="21"/>
+                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="V9f-Ji-10D">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <allowedInputSourceLocales>
+                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                    </allowedInputSourceLocales>
+                                </secureTextFieldCell>
+                            </secureTextField>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="7mF-t7-VMk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dNs-PA-HHE" secondAttribute="bottom" constant="20" id="43u-kB-14C"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pLg-dD-60o" secondAttribute="trailing" constant="22" id="4xa-D0-GjM"/>
                             <constraint firstItem="7mF-t7-VMk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="X0J-jp-7R7" secondAttribute="bottom" constant="20" id="6d5-mh-TA8"/>
+                            <constraint firstItem="7mF-t7-VMk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="EPh-6Y-UUH" secondAttribute="bottom" constant="20" id="CYO-UU-MkF"/>
                             <constraint firstItem="xsI-Fk-O5s" firstAttribute="firstBaseline" secondItem="7mF-t7-VMk" secondAttribute="firstBaseline" id="H7h-As-SFv"/>
                             <constraint firstAttribute="trailing" secondItem="7mF-t7-VMk" secondAttribute="trailing" constant="20" id="O79-Zf-NGh"/>
+                            <constraint firstAttribute="trailing" secondItem="dNs-PA-HHE" secondAttribute="trailing" constant="20" id="Ov5-Jp-sed"/>
                             <constraint firstItem="pLg-dD-60o" firstAttribute="leading" secondItem="Did-RG-Ug4" secondAttribute="leading" constant="22" id="SJP-br-03R"/>
                             <constraint firstItem="7mF-t7-VMk" firstAttribute="leading" secondItem="xsI-Fk-O5s" secondAttribute="trailing" constant="12" id="Sfd-Kj-Q9a"/>
+                            <constraint firstItem="dNs-PA-HHE" firstAttribute="leading" secondItem="Did-RG-Ug4" secondAttribute="leading" constant="20" id="Syo-j3-uiD"/>
+                            <constraint firstItem="EPh-6Y-UUH" firstAttribute="top" secondItem="pLg-dD-60o" secondAttribute="bottom" constant="8" id="TEp-8N-Ps1"/>
+                            <constraint firstAttribute="trailing" secondItem="EPh-6Y-UUH" secondAttribute="trailing" constant="20" id="bOd-h7-3e5"/>
                             <constraint firstItem="X0J-jp-7R7" firstAttribute="leading" secondItem="Did-RG-Ug4" secondAttribute="leading" constant="20" id="dHd-l7-X8Y"/>
                             <constraint firstItem="pLg-dD-60o" firstAttribute="top" secondItem="Did-RG-Ug4" secondAttribute="top" constant="20" id="eCd-We-FXA"/>
                             <constraint firstItem="X0J-jp-7R7" firstAttribute="top" secondItem="pLg-dD-60o" secondAttribute="bottom" constant="8" id="f1Q-lQ-OQP"/>
+                            <constraint firstItem="dNs-PA-HHE" firstAttribute="top" secondItem="pLg-dD-60o" secondAttribute="bottom" constant="8" id="gD5-Qp-eW1"/>
                             <constraint firstAttribute="bottom" secondItem="7mF-t7-VMk" secondAttribute="bottom" constant="20" id="hUt-w8-iJi"/>
                             <constraint firstItem="xsI-Fk-O5s" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Did-RG-Ug4" secondAttribute="leading" constant="20" id="jUZ-eG-EtW"/>
+                            <constraint firstItem="EPh-6Y-UUH" firstAttribute="leading" secondItem="Did-RG-Ug4" secondAttribute="leading" constant="20" id="jvB-Dg-03d"/>
                             <constraint firstAttribute="trailing" secondItem="X0J-jp-7R7" secondAttribute="trailing" constant="20" id="my9-NM-AiX"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="comboBox" destination="X0J-jp-7R7" id="nVL-fV-WG8"/>
                         <outlet property="label" destination="pLg-dD-60o" id="bKb-rN-OFs"/>
+                        <outlet property="secureTextField" destination="dNs-PA-HHE" id="2Qe-cb-Drs"/>
+                        <outlet property="textField" destination="EPh-6Y-UUH" id="gdx-y0-Meo"/>
                     </connections>
                 </viewController>
                 <customObject id="D5X-Md-u3m" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1784,7 +1813,7 @@ Gw
                         <segue destination="4qL-kF-ACr" kind="sheet" identifier="dataEntrySheet" id="K3F-Ya-3Sg"/>
                         <segue destination="pc6-TH-P9Q" kind="sheet" identifier="duplicateTransactionSheet" id="HeQ-61-RVh"/>
                         <segue destination="RQg-rQ-Hf6" kind="sheet" identifier="loadingIndicatorSheet" id="221-wE-HDH"/>
-                        <segue destination="8fJ-R1-fPR" kind="sheet" identifier="accountSelectionSheet" id="iGj-Zw-8Au"/>
+                        <segue destination="8fJ-R1-fPR" kind="sheet" identifier="importerInputSheet" id="iGj-Zw-8Au"/>
                     </connections>
                 </viewController>
                 <customObject id="ldv-VY-XFR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1893,18 +1922,18 @@ Gw
         <scene sceneID="v2R-U1-JWU">
             <objects>
                 <viewController title="Account Mapping" id="3mc-Me-KIb" customClass="AccountMappingViewController" customModule="SwiftBeanCountImporterApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="ius-LY-aMc">
-                        <rect key="frame" x="0.0" y="0.0" width="838" height="132"/>
+                    <view key="view" misplaced="YES" id="ius-LY-aMc">
+                        <rect key="frame" x="0.0" y="0.0" width="838" height="106"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJ7-vb-V3X">
-                                <rect key="frame" x="20" y="47" width="798" height="65"/>
+                                <rect key="frame" x="20" y="47" width="798" height="64"/>
                                 <clipView key="contentView" id="YUf-xb-8kl">
-                                    <rect key="frame" x="1" y="1" width="796" height="63"/>
+                                    <rect key="frame" x="1" y="1" width="796" height="62"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="6DC-Mv-GEh" viewBased="YES" id="Ir4-Rf-8qy">
-                                            <rect key="frame" x="0.0" y="0.0" width="796" height="38"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="796" height="37"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="3"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1962,11 +1991,11 @@ Gw
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="AccountCellID" id="7om-dq-sHE">
-                                                            <rect key="frame" x="231" y="1" width="419" height="16"/>
+                                                            <rect key="frame" x="231" y="1" width="418" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pkC-Y2-1TS">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="419" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="418" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="GhZ-xN-Mdz">
                                                                         <font key="font" metaFont="menu"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
