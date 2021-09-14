@@ -753,7 +753,7 @@
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountImporter.git";
 			requirement = {
 				kind = revision;
-				revision = af0150d989881cca4f1f4097c4163cfbe59d71f3;
+				revision = 4ada5a28d80f8da195227878c725828b9106afeb;
 			};
 		};
 		F9C329FC2488D1770055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */ = {
