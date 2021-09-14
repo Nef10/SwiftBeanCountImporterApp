@@ -92,10 +92,12 @@ class ImportViewController: NSViewController {
     }
 
     private func updateOutput() {
-        textView.string = ("\(resultLedger.transactions.sorted { $0.metaData.date < $1.metaData.date }.map { "\($0)" }.joined(separator: "\n\n"))\n\n" +
-            "\(resultLedger.accounts.flatMap { $0.balances }.sorted { $0.date < $1.date }.map { "\($0)" }.joined(separator: "\n"))\n\n" +
-            "\(resultLedger.prices.sorted { $0.date < $1.date }.map { "\($0)" }.joined(separator: "\n"))")
-            .trimmingCharacters(in: .whitespacesAndNewlines)
+        DispatchQueue.main.async {
+            self.textView.string = ("\(self.resultLedger.transactions.sorted { $0.metaData.date < $1.metaData.date }.map { "\($0)" }.joined(separator: "\n\n"))\n\n" +
+                                    "\(self.resultLedger.accounts.flatMap { $0.balances }.sorted { $0.date < $1.date }.map { "\($0)" }.joined(separator: "\n"))\n\n" +
+                                    "\(self.resultLedger.prices.sorted { $0.date < $1.date }.map { "\($0)" }.joined(separator: "\n"))")
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+        }
     }
 
     private func loadLedger(completion: @escaping () -> Void) {
@@ -194,43 +196,42 @@ class ImportViewController: NSViewController {
     }
 
     private func importData() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else {
-                return
-            }
+        DispatchQueue.main.async {
             self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.loadingIndicatorSheet), sender: self)
             self.loadingIndicatorSheet?.updateText(text: "Preparing import \(self.currentImporter.importName)")
             DispatchQueue.global(qos: .userInitiated).async {
                 self.currentImporter.load()
-                DispatchQueue.main.async { [weak self] in
-                    if let window = self?.loadingIndicatorSheet?.view.window {
-                        self?.view.window?.endSheet(window)
+                DispatchQueue.main.async {
+                    if let window = self.loadingIndicatorSheet?.view.window {
+                        self.view.window?.endSheet(window)
                     }
-                    self?.showDataEntryViewForNextTransactionIfNeccessary()
                 }
+                self.showDataEntryViewForNextTransactionIfNeccessary()
             }
         }
     }
 
     private func showDataEntryViewForNextTransactionIfNeccessary() {
-        nextTransaction = currentImporter.nextTransaction()
-        if let importedTransaction = nextTransaction {
-            if importedTransaction.shouldAllowUserToEdit {
-                showDataEntryOrDuplicateTransactionViewForTransaction()
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.nextTransaction = self.currentImporter.nextTransaction()
+            if let importedTransaction = self.nextTransaction {
+                if importedTransaction.shouldAllowUserToEdit {
+                    self.showDataEntryOrDuplicateTransactionViewForTransaction()
+                } else {
+                    self.resultLedger.add(importedTransaction.transaction)
+                    self.updateOutput()
+                    self.showDataEntryViewForNextTransactionIfNeccessary()
+                }
             } else {
-                resultLedger.add(importedTransaction.transaction)
-                updateOutput()
-                showDataEntryViewForNextTransactionIfNeccessary()
+                for balance in self.currentImporter.balancesToImport() {
+                    self.resultLedger.add(balance)
+                }
+                for price in self.currentImporter.pricesToImport() {
+                    try? self.resultLedger.add(price)
+                }
+                self.updateOutput()
+                self.nextImporter()
             }
-        } else {
-            for balance in currentImporter.balancesToImport() {
-                resultLedger.add(balance)
-            }
-            for price in currentImporter.pricesToImport() {
-                try? resultLedger.add(price)
-            }
-            updateOutput()
-            nextImporter()
         }
     }
 
@@ -243,11 +244,15 @@ class ImportViewController: NSViewController {
     }
 
     private func showDataEntryViewForTransaction() {
-        performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.dataEntrySheet), sender: self)
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.dataEntrySheet), sender: self)
+        }
     }
 
     private func showDuplicateTransactionViewForTransaction() {
-        performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.duplicateTransactionSheet), sender: self)
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.duplicateTransactionSheet), sender: self)
+        }
     }
 
     private func showError(_ error: String, completion: ((NSApplication.ModalResponse) -> Void)?) {

@@ -915,8 +915,8 @@ DQ
         <scene sceneID="Wxf-LG-kLq">
             <objects>
                 <viewController title="Description Mapping" id="6Ey-ad-GT5" customClass="DescriptionMappingViewController" customModule="SwiftBeanCountImporterApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="qAt-h5-3eG">
-                        <rect key="frame" x="0.0" y="0.0" width="739" height="106"/>
+                    <view key="view" id="qAt-h5-3eG">
+                        <rect key="frame" x="0.0" y="0.0" width="739" height="131"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tds-K5-ezd">
@@ -1922,8 +1922,8 @@ Gw
         <scene sceneID="v2R-U1-JWU">
             <objects>
                 <viewController title="Account Mapping" id="3mc-Me-KIb" customClass="AccountMappingViewController" customModule="SwiftBeanCountImporterApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="ius-LY-aMc">
-                        <rect key="frame" x="0.0" y="0.0" width="838" height="106"/>
+                    <view key="view" id="ius-LY-aMc">
+                        <rect key="frame" x="0.0" y="0.0" width="838" height="131"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJ7-vb-V3X">
@@ -1991,11 +1991,11 @@ Gw
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="AccountCellID" id="7om-dq-sHE">
-                                                            <rect key="frame" x="231" y="1" width="418" height="16"/>
+                                                            <rect key="frame" x="231" y="1" width="419" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pkC-Y2-1TS">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="418" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="419" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="GhZ-xN-Mdz">
                                                                         <font key="font" metaFont="menu"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
