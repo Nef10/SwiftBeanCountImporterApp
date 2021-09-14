@@ -27,6 +27,7 @@
 		F9C4385C1F550AB5004732E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9C4385A1F550AB5004732E2 /* Main.storyboard */; };
 		F9C438671F550AB5004732E2 /* SwiftBeanCountImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438661F550AB5004732E2 /* SwiftBeanCountImporterTests.swift */; };
 		F9C438721F550AB5004732E2 /* SwiftBeanCountImporterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438711F550AB5004732E2 /* SwiftBeanCountImporterUITests.swift */; };
+		F9D40B2026F0813100C4B28D /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D40B1F26F0813100C4B28D /* HelpView.swift */; };
 		F9DFC62823B3EB0000FB3792 /* DescriptionMappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DFC62723B3EB0000FB3792 /* DescriptionMappingViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +95,7 @@
 		F9C4386D1F550AB5004732E2 /* SwiftBeanCountImporterAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftBeanCountImporterAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9C438711F550AB5004732E2 /* SwiftBeanCountImporterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBeanCountImporterUITests.swift; sourceTree = "<group>"; };
 		F9C438731F550AB5004732E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9D40B1F26F0813100C4B28D /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		F9DFC62723B3EB0000FB3792 /* DescriptionMappingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionMappingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -165,6 +167,7 @@
 		F98AD0FD1F552C8000CC02DA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F9D40B1E26F0812500C4B28D /* Help */,
 				F90E0C2C2468EEB700F4C3B6 /* Settings */,
 				F9C438561F550AB5004732E2 /* SelectorViewController.swift */,
 				F97ED1FC1F5CEEE1009BAD44 /* ImportViewController.swift */,
@@ -233,6 +236,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F9D40B1E26F0812500C4B28D /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				F9D40B1F26F0813100C4B28D /* HelpView.swift */,
+			);
+			path = Help;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -416,6 +427,7 @@
 				F90E0C37246FBD9900F4C3B6 /* AccountMappingViewController.swift in Sources */,
 				F90E0C33246D24F400F4C3B6 /* ImporterInputViewController.swift in Sources */,
 				F909311D202FF1F000166FB9 /* PayeeComboBoxDataSource.swift in Sources */,
+				F9D40B2026F0813100C4B28D /* HelpView.swift in Sources */,
 				F97ED1FD1F5CEEE1009BAD44 /* ImportViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,7 +526,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -568,7 +580,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;

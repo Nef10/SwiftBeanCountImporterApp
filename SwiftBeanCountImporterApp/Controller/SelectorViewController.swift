@@ -8,6 +8,7 @@
 
 import Cocoa
 import SwiftBeanCountModel
+import SwiftUI
 
 enum ImportMode {
     case csv(URL) // import file URL
@@ -68,6 +69,11 @@ class SelectorViewController: NSViewController {
         default:
             return true
         }
+    }
+
+    @IBSegueAction
+    func prepareShowHelp(_ coder: NSCoder) -> NSViewController? {
+        NSHostingController(coder: coder, rootView: HelpView())
     }
 
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {

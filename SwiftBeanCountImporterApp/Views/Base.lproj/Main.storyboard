@@ -815,9 +815,20 @@ DQ
                                     <action selector="resetButtonClicked:" target="XfG-lQ-9wD" id="BtQ-xs-mk5"/>
                                 </connections>
                             </button>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pri-vV-pdM">
+                                <rect key="frame" x="17" y="16" width="25" height="25"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Dvu-dX-Qun">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="TNt-Pc-sfx" kind="show" destinationCreationSelector="prepareShowHelp:" id="rqR-Ss-x3b"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="rys-ub-8DF" firstAttribute="baseline" secondItem="dWW-CL-7YJ" secondAttribute="baseline" id="257-RY-KB5"/>
+                            <constraint firstItem="pri-vV-pdM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="rys-ub-8DF" secondAttribute="bottom" constant="88" id="8cw-Tv-gbA"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZIB-fw-dQe" secondAttribute="trailing" constant="20" id="Dvl-PF-xKi"/>
                             <constraint firstAttribute="trailing" secondItem="5lC-7i-zNk" secondAttribute="trailing" constant="20" id="EbQ-Tl-h4S"/>
                             <constraint firstItem="5lC-7i-zNk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dWW-CL-7YJ" secondAttribute="bottom" constant="20" id="GQY-GT-vtu"/>
@@ -833,17 +844,20 @@ DQ
                             <constraint firstItem="XgN-b4-fnb" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="22" id="XtE-9a-2D6"/>
                             <constraint firstItem="5lC-7i-zNk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="YYu-o1-geS"/>
                             <constraint firstItem="Yag-al-ih9" firstAttribute="centerY" secondItem="5lC-7i-zNk" secondAttribute="centerY" id="Z8e-Se-Kdn"/>
+                            <constraint firstItem="pri-vV-pdM" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="aut-76-va3"/>
                             <constraint firstItem="kWa-I6-Xqh" firstAttribute="baseline" secondItem="dWW-CL-7YJ" secondAttribute="baseline" id="b7h-J6-Gay"/>
                             <constraint firstItem="ZIB-fw-dQe" firstAttribute="baseline" secondItem="SYp-cj-yhk" secondAttribute="baseline" id="dE3-bh-xsR"/>
                             <constraint firstItem="dWW-CL-7YJ" firstAttribute="width" secondItem="SYp-cj-yhk" secondAttribute="width" id="j8R-sA-R65"/>
                             <constraint firstItem="XgN-b4-fnb" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="lp7-z5-3en"/>
                             <constraint firstItem="5lC-7i-zNk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dWW-CL-7YJ" secondAttribute="trailing" constant="20" id="meU-SQ-Mk0"/>
+                            <constraint firstAttribute="bottom" secondItem="pri-vV-pdM" secondAttribute="bottom" constant="20" id="opt-IS-zDc"/>
                             <constraint firstItem="V2Y-gE-4US" firstAttribute="height" secondItem="SYp-cj-yhk" secondAttribute="height" id="t3v-IF-FbP"/>
                             <constraint firstItem="XgN-b4-fnb" firstAttribute="baseline" secondItem="SYp-cj-yhk" secondAttribute="baseline" id="uQe-jY-nt1"/>
                             <constraint firstAttribute="bottom" secondItem="5lC-7i-zNk" secondAttribute="bottom" constant="20" id="upW-kD-eUE"/>
                             <constraint firstItem="SYp-cj-yhk" firstAttribute="leading" secondItem="XgN-b4-fnb" secondAttribute="trailing" constant="15" id="vuX-JW-ueI"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kWa-I6-Xqh" secondAttribute="trailing" constant="20" id="w0r-Vr-Ehb"/>
                             <constraint firstItem="V2Y-gE-4US" firstAttribute="width" secondItem="SYp-cj-yhk" secondAttribute="width" id="xl8-nH-UdE"/>
+                            <constraint firstItem="Yag-al-ih9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pri-vV-pdM" secondAttribute="trailing" constant="20" id="xyq-kC-Cxf"/>
                             <constraint firstItem="5lC-7i-zNk" firstAttribute="leading" secondItem="Yag-al-ih9" secondAttribute="trailing" constant="12" id="yH7-eu-EaZ"/>
                             <constraint firstItem="ZIB-fw-dQe" firstAttribute="leading" secondItem="V2Y-gE-4US" secondAttribute="trailing" constant="9" id="zi9-ZG-p9p"/>
                         </constraints>
@@ -915,7 +929,7 @@ DQ
         <scene sceneID="Wxf-LG-kLq">
             <objects>
                 <viewController title="Description Mapping" id="6Ey-ad-GT5" customClass="DescriptionMappingViewController" customModule="SwiftBeanCountImporterApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="qAt-h5-3eG">
+                    <view key="view" misplaced="YES" id="qAt-h5-3eG">
                         <rect key="frame" x="0.0" y="0.0" width="739" height="131"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -1528,7 +1542,7 @@ Gw
                 </viewController>
                 <customObject id="8LB-jN-ehb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="1675"/>
+            <point key="canvasLocation" x="50" y="1675"/>
         </scene>
         <!--Duplicate Transaction View Controller-->
         <scene sceneID="JBv-Xa-UCZ">
@@ -1755,6 +1769,14 @@ Gw
             </objects>
             <point key="canvasLocation" x="697" y="1087"/>
         </scene>
+        <!--Help-->
+        <scene sceneID="4eX-Q2-2z0">
+            <objects>
+                <hostingController title="Help" showSeguePresentationStyle="single" id="TNt-Pc-sfx" sceneMemberID="viewController"/>
+                <customObject id="iYx-ld-XMq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-484" y="1006"/>
+        </scene>
         <!--Import View Controller-->
         <scene sceneID="A6D-60-B7g">
             <objects>
@@ -1818,7 +1840,7 @@ Gw
                 </viewController>
                 <customObject id="ldv-VY-XFR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="76" y="1088"/>
+            <point key="canvasLocation" x="51" y="1113"/>
         </scene>
         <!--General-->
         <scene sceneID="nQb-Dh-xxo">
@@ -1922,7 +1944,7 @@ Gw
         <scene sceneID="v2R-U1-JWU">
             <objects>
                 <viewController title="Account Mapping" id="3mc-Me-KIb" customClass="AccountMappingViewController" customModule="SwiftBeanCountImporterApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="ius-LY-aMc">
+                    <view key="view" misplaced="YES" id="ius-LY-aMc">
                         <rect key="frame" x="0.0" y="0.0" width="838" height="131"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
