@@ -7,12 +7,29 @@
 //
 
 import Cocoa
+import SwiftBeanCountImporter
 import SwiftBeanCountModel
 import SwiftUI
 
-enum ImportMode {
+enum ImportMode: Equatable {
     case csv(URL) // import file URL
     case text(String, String) // transaction, balance
+    case download(String) // importer name
+}
+
+class CheckBoxTableViewCell: NSTableCellView {
+
+    @IBOutlet private var checkBox: NSButton!
+
+    func setUpButtonFor(row: Int, target: SelectorViewController) {
+        let importer = ImporterFactory.downloadImporterNames[row]
+        checkBox.title = importer
+        checkBox.tag = row
+        checkBox.state = target.isDownloaderImporterEnabled(row: row) ? .on : .off
+        checkBox.target = target
+        checkBox.action = #selector(SelectorViewController.downloderCheckBoxClicked)
+    }
+
 }
 
 class SelectorViewController: NSViewController {
@@ -27,10 +44,17 @@ class SelectorViewController: NSViewController {
 
     @IBOutlet private var fileNameLabel: NSTextField!
     @IBOutlet private var ledgerNameLabel: NSTextField!
+    @IBOutlet private var downloaderTableView: NSTableView!
+
+    override func viewDidLoad() {
+        updateLabel()
+        super.viewDidLoad()
+    }
 
     @IBAction private func resetButtonClicked(_ sender: Any) {
         imports = []
         updateLabel()
+        downloaderTableView.reloadData()
     }
 
     @IBAction private func selectButtonClicked(_ sender: Any) {
@@ -99,6 +123,27 @@ class SelectorViewController: NSViewController {
         }
     }
 
+    @objc
+    func downloderCheckBoxClicked(sender: NSButton) {
+        if sender.state == .on && !isDownloaderImporterEnabled(row: sender.tag) {
+            enableDownloader(row: sender.tag)
+        } else if sender.state == .off && isDownloaderImporterEnabled(row: sender.tag) {
+            disableDownloader(row: sender.tag)
+        }
+    }
+
+    func isDownloaderImporterEnabled(row: Int) -> Bool {
+        imports.contains(ImportMode.download(ImporterFactory.downloadImporterNames[row]))
+    }
+
+    private func enableDownloader(row: Int) {
+        imports.append(ImportMode.download(ImporterFactory.downloadImporterNames[row]))
+    }
+
+    private func disableDownloader(row: Int) {
+        imports.removeAll { $0 == ImportMode.download(ImporterFactory.downloadImporterNames[row]) }
+    }
+
     private func selectFilesFromURLs(_ urls: [URL]) {
         let resourceKeys: [URLResourceKey] = [.isDirectoryKey]
         for url in urls {
@@ -126,7 +171,12 @@ class SelectorViewController: NSViewController {
             }
             return false
         }.count
-        let texts = imports.count - files
+        let texts = imports.filter {
+            if case .text = $0 {
+                return true
+            }
+            return false
+        }.count
         fileNameLabel.stringValue = "\(files) File(s) and \(texts) text(s) added"
     }
 
@@ -162,6 +212,26 @@ extension SelectorViewController: TextEntryViewControllerDelegate {
 
     func cancel(_ sheet: NSWindow) {
         view.window?.endSheet(sheet)
+    }
+
+}
+
+extension SelectorViewController: NSTableViewDelegate {
+
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        guard let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("CheckboxCell"), owner: self) as? CheckBoxTableViewCell else {
+            return nil
+        }
+        cell.setUpButtonFor(row: row, target: self)
+        return cell
+    }
+
+}
+
+extension SelectorViewController: NSTableViewDataSource {
+
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        ImporterFactory.downloadImporterNames.count
     }
 
 }

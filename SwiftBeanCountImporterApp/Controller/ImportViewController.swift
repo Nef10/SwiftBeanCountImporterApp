@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import KeychainAccess
 import SwiftBeanCountImporter
 import SwiftBeanCountModel
 import SwiftBeanCountParser
@@ -22,6 +23,8 @@ class ImportViewController: NSViewController {
 
     var imports = [ImportMode]()
     var ledgerURL: URL?
+
+    private  let keychain = Keychain(service: "com.github.nef10.swiftbeancountimporterapp")
 
     private var ledger: Ledger?
     private var resultLedger: Ledger = Ledger()
@@ -80,6 +83,9 @@ class ImportViewController: NSViewController {
             guard let controller = segue.destinationController as? ImporterInputViewController else {
                 return
             }
+            if let window = self.loadingIndicatorSheet?.view.window {
+                self.view.window?.endSheet(window)
+            }
             let (name, suggestions, isSecure, _) = inputRequest
             controller.delegate = self
             controller.suggestions = suggestions
@@ -119,25 +125,30 @@ class ImportViewController: NSViewController {
             self?.loadingIndicatorSheet?.updateText(text: "Preparing imports")
         }
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            for importMode in self.imports {
-                switch importMode {
+            self?.importers = self?.imports.compactMap {
+                switch $0 {
                 case let .csv(fileURL):
-                    guard let importer = ImporterFactory.new(ledger: self.ledger, url: fileURL) else {
-                        self.errors.append("Unable to find importer for: \(fileURL)")
-                        continue
+                    if let importer = ImporterFactory.new(ledger: self?.ledger, url: fileURL) {
+                        return importer
                     }
-                    self.importers.append(importer)
+                    self?.errors.append("Unable to find importer for: \(fileURL)")
                 case let .text(transaction, balance):
-                    guard let importer = ImporterFactory.new(ledger: self.ledger, transaction: transaction, balance: balance) else {
-                        self.errors.append("Unable to find importer for text: \(transaction) \(balance)")
-                        continue
+                    if let importer = ImporterFactory.new(ledger: self?.ledger, transaction: transaction, balance: balance) {
+                        return importer
                     }
-                    self.importers.append(importer)
+                    self?.errors.append("Unable to find importer for text: \(transaction) \(balance)")
+                case let .download(name):
+                    guard let ledger = self?.ledger else {
+                        self?.errors.append("Downloads require a ledger to be selected.")
+                        return nil
+                    }
+                    if let importer = ImporterFactory.new(ledger: ledger, name: name) {
+                        return importer
+                    }
+                    self?.errors.append("Unable to find importer for download: \(name)")
                 }
-            }
+                return nil
+            } ?? []
             completion()
         }
     }
@@ -307,14 +318,27 @@ extension ImportViewController: DataEntryViewControllerDelegate, DuplicateTransa
 
 extension ImportViewController: ImporterDelegate {
 
-    func requestInput(name: String, suggestions: [String], allowSaving: Bool, allowSaved: Bool, completion: @escaping (String) -> Bool) {
-        inputRequest = (name, suggestions, false, completion)
+    func requestInput(name: String, suggestions: [String], isSecret: Bool, completion: @escaping (String) -> Bool) {
+        inputRequest = (name, suggestions, isSecret, completion)
         showInputRequest()
     }
 
-    func requestSecretInput(name: String, allowSaving: Bool, allowSaved: Bool, completion: @escaping (String) -> Bool) {
-        inputRequest = (name, [], true, completion)
-        showInputRequest()
+    func saveCredential(_ value: String, for key: String) {
+        keychain[key] = value
+    }
+
+    func readCredential(_ key: String) -> String? {
+        keychain[key]
+    }
+
+    func error(_ error: Error) {
+        DispatchQueue.main.async { [weak self] in
+            self?.showError(error.localizedDescription) { _ in
+                if self?.currentImporter != nil {
+                    self?.showDataEntryViewForNextTransactionIfNeccessary()
+                }
+            }
+        }
     }
 
 }

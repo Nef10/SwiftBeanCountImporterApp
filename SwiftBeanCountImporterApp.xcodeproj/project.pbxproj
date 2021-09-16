@@ -28,6 +28,7 @@
 		F9C438671F550AB5004732E2 /* SwiftBeanCountImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438661F550AB5004732E2 /* SwiftBeanCountImporterTests.swift */; };
 		F9C438721F550AB5004732E2 /* SwiftBeanCountImporterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438711F550AB5004732E2 /* SwiftBeanCountImporterUITests.swift */; };
 		F9D40B2026F0813100C4B28D /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D40B1F26F0813100C4B28D /* HelpView.swift */; };
+		F9D40B2326F1C45200C4B28D /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = F9D40B2226F1C45200C4B28D /* KeychainAccess */; };
 		F9DFC62823B3EB0000FB3792 /* DescriptionMappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DFC62723B3EB0000FB3792 /* DescriptionMappingViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9D40B2326F1C45200C4B28D /* KeychainAccess in Frameworks */,
 				F9C329FE2488D1770055EB90 /* SwiftBeanCountModel in Frameworks */,
 				F9C32A012488D1A80055EB90 /* SwiftBeanCountParser in Frameworks */,
 				F99C9D97248C4A300008E360 /* SwiftBeanCountImporter in Frameworks */,
@@ -269,6 +271,7 @@
 				F9C329FD2488D1770055EB90 /* SwiftBeanCountModel */,
 				F9C32A002488D1A80055EB90 /* SwiftBeanCountParser */,
 				F99C9D96248C4A300008E360 /* SwiftBeanCountImporter */,
+				F9D40B2226F1C45200C4B28D /* KeychainAccess */,
 			);
 			productName = BeanCountImporter;
 			productReference = F9C438511F550AB5004732E2 /* SwiftBeanCountImporterApp.app */;
@@ -354,6 +357,7 @@
 				F9C329FC2488D1770055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */,
 				F9C329FF2488D1A80055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */,
 				F99C9D95248C4A300008E360 /* XCRemoteSwiftPackageReference "SwiftBeanCountImporter" */,
+				F9D40B2126F1C45200C4B28D /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = F9C438521F550AB5004732E2 /* Products */;
 			projectDirPath = "";
@@ -765,7 +769,7 @@
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountImporter.git";
 			requirement = {
 				kind = revision;
-				revision = 4ada5a28d80f8da195227878c725828b9106afeb;
+				revision = b5011cd701f767a53f386328dc73956953b1792a;
 			};
 		};
 		F9C329FC2488D1770055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */ = {
@@ -782,6 +786,14 @@
 			requirement = {
 				kind = exactVersion;
 				version = 0.1.8;
+			};
+		};
+		F9D40B2126F1C45200C4B28D /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -801,6 +813,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F9C329FF2488D1A80055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */;
 			productName = SwiftBeanCountParser;
+		};
+		F9D40B2226F1C45200C4B28D /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F9D40B2126F1C45200C4B28D /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
