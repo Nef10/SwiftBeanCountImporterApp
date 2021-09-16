@@ -138,11 +138,7 @@ class ImportViewController: NSViewController {
                     }
                     self?.errors.append("Unable to find importer for text: \(transaction) \(balance)")
                 case let .download(name):
-                    guard let ledger = self?.ledger else {
-                        self?.errors.append("Downloads require a ledger to be selected.")
-                        return nil
-                    }
-                    if let importer = ImporterFactory.new(ledger: ledger, name: name) {
+                    if let importer = ImporterFactory.new(ledger: self?.ledger, name: name) {
                         return importer
                     }
                     self?.errors.append("Unable to find importer for download: \(name)")

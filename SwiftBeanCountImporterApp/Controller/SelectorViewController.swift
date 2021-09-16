@@ -185,7 +185,7 @@ class SelectorViewController: NSViewController {
     }
 
     private func showValidationError() {
-        showError("Please select file(s) or enter valid text.")
+        showError("Please select file(s), enter valid text or select a download option.")
     }
 
     private func showError(_ text: String) {
