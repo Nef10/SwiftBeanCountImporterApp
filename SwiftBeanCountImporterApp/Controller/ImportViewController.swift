@@ -205,7 +205,7 @@ class ImportViewController: NSViewController {
     private func importData() {
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.loadingIndicatorSheet), sender: self)
-            self.loadingIndicatorSheet?.updateText(text: "Preparing import \(self.currentImporter.importName)")
+            self.loadingIndicatorSheet?.updateText(text: "Preparing import: \(self.currentImporter.importName)")
             DispatchQueue.global(qos: .userInitiated).async {
                 self.currentImporter.load()
                 DispatchQueue.main.async {
