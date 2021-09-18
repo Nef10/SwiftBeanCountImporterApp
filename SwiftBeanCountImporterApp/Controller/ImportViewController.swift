@@ -99,10 +99,18 @@ class ImportViewController: NSViewController {
 
     private func updateOutput() {
         DispatchQueue.main.async {
-            self.textView.string = ("\(self.resultLedger.transactions.sorted { $0.metaData.date < $1.metaData.date }.map { "\($0)" }.joined(separator: "\n\n"))\n\n" +
-                                    "\(self.resultLedger.accounts.flatMap { $0.balances }.sorted { $0.date < $1.date }.map { "\($0)" }.joined(separator: "\n"))\n\n" +
-                                    "\(self.resultLedger.prices.sorted { $0.date < $1.date }.map { "\($0)" }.joined(separator: "\n"))")
-                .trimmingCharacters(in: .whitespacesAndNewlines)
+            self.textView.string = """
+                \(self.resultLedger.transactions.sorted { $0.metaData.date < $1.metaData.date }.map { "\($0)" }.joined(separator: "\n\n"))
+
+                \(self.resultLedger.accounts.flatMap { $0.balances }
+                    .sorted { (balance1: Balance, balance2: Balance) in
+                        balance1.date == balance2.date ? balance1.accountName.fullName < balance2.accountName.fullName : balance1.date < balance2.date
+                    }
+                    .map { "\($0)" }
+                    .joined(separator: "\n"))
+
+                \(self.resultLedger.prices.sorted { $0.date == $1.date ? $0.commoditySymbol < $1.commoditySymbol : $0.date < $1.date }.map { "\($0)" }.joined(separator: "\n"))
+                """.trimmingCharacters(in: .whitespacesAndNewlines)
         }
     }
 
