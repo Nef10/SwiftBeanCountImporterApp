@@ -54,7 +54,7 @@ class ImportViewController: NSViewController {
         }
     }
 
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?) { // swiftlint:disable:this function_body_length
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) { // swiftlint:disable:this function_body_length cyclomatic_complexity
         guard let identifier = segue.identifier else {
             return
         }

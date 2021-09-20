@@ -160,7 +160,8 @@ class DataEntryViewController: NSViewController {
                                            payee: payeeField.stringValue,
                                            narration: descriptionField.stringValue,
                                            flag: flag,
-                                           tags: getTags())
+                                           tags: getTags(),
+                                           metaData: transaction!.metaData.metaData)
         let relevantPosting = Posting(accountName: try AccountName(accountField.stringValue),
                                       amount: self.relevantPosting!.amount,
                                       price: self.relevantPosting?.price)
