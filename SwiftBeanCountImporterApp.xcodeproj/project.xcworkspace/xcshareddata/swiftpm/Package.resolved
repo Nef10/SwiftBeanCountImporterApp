@@ -20,15 +20,6 @@
         }
       },
       {
-        "package": "SwiftBeanCountImporter",
-        "repositoryURL": "https://github.com/Nef10/SwiftBeanCountImporter.git",
-        "state": {
-          "branch": null,
-          "revision": "e1019c55312d67e744b77b9dfe0b0e1aeafaa50f",
-          "version": null
-        }
-      },
-      {
         "package": "SwiftBeanCountModel",
         "repositoryURL": "https://github.com/Nef10/SwiftBeanCountModel.git",
         "state": {
@@ -60,8 +51,8 @@
         "repositoryURL": "https://github.com/Nef10/SwiftBeanCountWealthsimpleMapper.git",
         "state": {
           "branch": null,
-          "revision": "5e1db9ba433ce6212e6e0c307f337a0b5998ebe1",
-          "version": "1.4.0"
+          "revision": "d9d06b9fcc339e5381fef45370de667651117763",
+          "version": "1.4.1"
         }
       },
       {
@@ -69,8 +60,8 @@
         "repositoryURL": "https://github.com/Nef10/WealthsimpleDownloader.git",
         "state": {
           "branch": null,
-          "revision": "2fb4a6c4f2ae97a463972fe712694f3601c6d709",
-          "version": "1.1.1"
+          "revision": "5502b33f55805536cb4fe7434121333b92ac79c7",
+          "version": "2.0.0"
         }
       }
     ]
