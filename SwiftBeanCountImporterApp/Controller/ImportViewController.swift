@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import KeychainAccess
 import SwiftBeanCountImporter
 import SwiftBeanCountModel
 import SwiftBeanCountParser
@@ -17,11 +18,13 @@ class ImportViewController: NSViewController {
         static let dataEntrySheet = "dataEntrySheet"
         static let duplicateTransactionSheet = "duplicateTransactionSheet"
         static let loadingIndicatorSheet = "loadingIndicatorSheet"
-        static let accountSelectionSheet = "accountSelectionSheet"
+        static let importerInputSheet = "importerInputSheet"
     }
 
     var imports = [ImportMode]()
     var ledgerURL: URL?
+
+    private  let keychain = Keychain(service: "com.github.nef10.swiftbeancountimporterapp")
 
     private var ledger: Ledger?
     private var resultLedger: Ledger = Ledger()
@@ -29,6 +32,7 @@ class ImportViewController: NSViewController {
     private var importers = [Importer]()
     private var currentImporter: Importer!
     private var errors = [String]()
+    private var inputRequest: (String, [String], Bool, (String) -> Bool)! // swiftlint:disable:this large_tuple
 
     private weak var loadingIndicatorSheet: LoadingIndicatorViewController?
 
@@ -50,7 +54,7 @@ class ImportViewController: NSViewController {
         }
     }
 
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) { // swiftlint:disable:this function_body_length cyclomatic_complexity
         guard let identifier = segue.identifier else {
             return
         }
@@ -75,23 +79,39 @@ class ImportViewController: NSViewController {
                 return
             }
             loadingIndicatorSheet = controller
-        case SegueIdentifier.accountSelectionSheet:
-            guard let controller = segue.destinationController as? AccountSelectionViewController else {
+        case SegueIdentifier.importerInputSheet:
+            guard let controller = segue.destinationController as? ImporterInputViewController else {
                 return
             }
+            if let window = self.loadingIndicatorSheet?.view.window {
+                self.view.window?.endSheet(window)
+            }
+            let (name, suggestions, isSecure, _) = inputRequest
             controller.delegate = self
-            controller.possibleAccounts = currentImporter.possibleAccountNames().map { $0.fullName }
+            controller.suggestions = suggestions
             controller.importName = currentImporter.importName
+            controller.name = name
+            controller.isSecure = isSecure
         default:
             break
         }
     }
 
     private func updateOutput() {
-        textView.string = ("\(resultLedger.transactions.sorted { $0.metaData.date < $1.metaData.date }.map { "\($0)" }.joined(separator: "\n\n"))\n\n" +
-            "\(resultLedger.accounts.flatMap { $0.balances }.sorted { $0.date < $1.date }.map { "\($0)" }.joined(separator: "\n"))\n\n" +
-            "\(resultLedger.prices.sorted { $0.date < $1.date }.map { "\($0)" }.joined(separator: "\n"))")
-            .trimmingCharacters(in: .whitespacesAndNewlines)
+        DispatchQueue.main.async {
+            self.textView.string = """
+                \(self.resultLedger.transactions.sorted { $0.metaData.date < $1.metaData.date }.map { "\($0)" }.joined(separator: "\n\n"))
+
+                \(self.resultLedger.accounts.flatMap { $0.balances }
+                    .sorted { (balance1: Balance, balance2: Balance) in
+                        balance1.date == balance2.date ? balance1.accountName.fullName < balance2.accountName.fullName : balance1.date < balance2.date
+                    }
+                    .map { "\($0)" }
+                    .joined(separator: "\n"))
+
+                \(self.resultLedger.prices.sorted { $0.date == $1.date ? $0.commoditySymbol < $1.commoditySymbol : $0.date < $1.date }.map { "\($0)" }.joined(separator: "\n"))
+                """.trimmingCharacters(in: .whitespacesAndNewlines)
+        }
     }
 
     private func loadLedger(completion: @escaping () -> Void) {
@@ -110,30 +130,29 @@ class ImportViewController: NSViewController {
 
     private func setupImporter(completion: @escaping () -> Void) {
         DispatchQueue.main.async { [weak self] in
-            self?.loadingIndicatorSheet?.updateText(text: "Loading import data")
+            self?.loadingIndicatorSheet?.updateText(text: "Preparing imports")
         }
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            for importMode in self.imports {
-                switch importMode {
+            self?.importers = self?.imports.compactMap {
+                switch $0 {
                 case let .csv(fileURL):
-                    guard let importer = ImporterFactory.new(ledger: self.ledger, url: fileURL) else {
-                        self.errors.append("Unable to find importer for: \(fileURL)")
-                        continue
+                    if let importer = ImporterFactory.new(ledger: self?.ledger, url: fileURL) {
+                        return importer
                     }
-                    importer.load()
-                    self.importers.append(importer)
+                    self?.errors.append("Unable to find importer for: \(fileURL)")
                 case let .text(transaction, balance):
-                    guard let importer = ImporterFactory.new(ledger: self.ledger, transaction: transaction, balance: balance) else {
-                        self.errors.append("Unable to find importer for text: \(transaction) \(balance)")
-                        continue
+                    if let importer = ImporterFactory.new(ledger: self?.ledger, transaction: transaction, balance: balance) {
+                        return importer
                     }
-                    importer.load()
-                    self.importers.append(importer)
+                    self?.errors.append("Unable to find importer for text: \(transaction) \(balance)")
+                case let .download(name):
+                    if let importer = ImporterFactory.new(ledger: self?.ledger, name: name) {
+                        return importer
+                    }
+                    self?.errors.append("Unable to find importer for download: \(name)")
                 }
-            }
+                return nil
+            } ?? []
             completion()
         }
     }
@@ -183,55 +202,51 @@ class ImportViewController: NSViewController {
 
     }
 
-    private func setAccount() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            let possibleAccounts = self.currentImporter.possibleAccountNames()
-            if possibleAccounts.count != 1 {
-                self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.accountSelectionSheet), sender: self)
-            } else {
-                self.useAccount(name: possibleAccounts.first!)
-            }
-        }
-    }
-
     private func nextImporter() {
         currentImporter = importers.popLast()
         if currentImporter != nil {
-            setAccount()
+            currentImporter.delegate = self
+            importData()
         }
     }
 
     private func importData() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else {
-                return
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.loadingIndicatorSheet), sender: self)
+            self.loadingIndicatorSheet?.updateText(text: "Preparing import: \(self.currentImporter.importName)")
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.currentImporter.load()
+                DispatchQueue.main.async {
+                    if let window = self.loadingIndicatorSheet?.view.window {
+                        self.view.window?.endSheet(window)
+                    }
+                }
+                self.showDataEntryViewForNextTransactionIfNeccessary()
             }
-            self.showDataEntryViewForNextTransactionIfNeccessary()
         }
     }
 
     private func showDataEntryViewForNextTransactionIfNeccessary() {
-        nextTransaction = currentImporter.nextTransaction()
-        if let importedTransaction = nextTransaction {
-            if importedTransaction.shouldAllowUserToEdit {
-                showDataEntryOrDuplicateTransactionViewForTransaction()
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.nextTransaction = self.currentImporter.nextTransaction()
+            if let importedTransaction = self.nextTransaction {
+                if importedTransaction.shouldAllowUserToEdit {
+                    self.showDataEntryOrDuplicateTransactionViewForTransaction()
+                } else {
+                    self.resultLedger.add(importedTransaction.transaction)
+                    self.updateOutput()
+                    self.showDataEntryViewForNextTransactionIfNeccessary()
+                }
             } else {
-                resultLedger.add(importedTransaction.transaction)
-                updateOutput()
-                showDataEntryViewForNextTransactionIfNeccessary()
+                for balance in self.currentImporter.balancesToImport() {
+                    self.resultLedger.add(balance)
+                }
+                for price in self.currentImporter.pricesToImport() {
+                    try? self.resultLedger.add(price)
+                }
+                self.updateOutput()
+                self.nextImporter()
             }
-        } else {
-            for balance in currentImporter.balancesToImport() {
-                resultLedger.add(balance)
-            }
-            for price in currentImporter.pricesToImport() {
-                try? resultLedger.add(price)
-            }
-            updateOutput()
-            nextImporter()
         }
     }
 
@@ -244,16 +259,15 @@ class ImportViewController: NSViewController {
     }
 
     private func showDataEntryViewForTransaction() {
-        performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.dataEntrySheet), sender: self)
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.dataEntrySheet), sender: self)
+        }
     }
 
     private func showDuplicateTransactionViewForTransaction() {
-        performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.duplicateTransactionSheet), sender: self)
-    }
-
-    private func useAccount(name: AccountName) {
-        currentImporter.useAccount(name: name)
-        importData()
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.duplicateTransactionSheet), sender: self)
+        }
     }
 
     private func showError(_ error: String, completion: ((NSApplication.ModalResponse) -> Void)?) {
@@ -264,9 +278,15 @@ class ImportViewController: NSViewController {
         alert.beginSheetModal(for: view.window!, completionHandler: completion)
     }
 
+    private func showInputRequest() {
+        DispatchQueue.main.async { [weak self] in
+            self?.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.importerInputSheet), sender: self)
+        }
+    }
+
 }
 
-extension ImportViewController: DataEntryViewControllerDelegate, DuplicateTransactionViewControllerDelegate, AccountSelectionViewControllerDelegate {
+extension ImportViewController: DataEntryViewControllerDelegate, DuplicateTransactionViewControllerDelegate, ImporterInputViewControllerDelegate {
 
     func finished(_ sheet: NSWindow, transaction: Transaction) {
         view.window?.endSheet(sheet)
@@ -275,19 +295,11 @@ extension ImportViewController: DataEntryViewControllerDelegate, DuplicateTransa
         showDataEntryViewForNextTransactionIfNeccessary()
     }
 
-    func finished(_ sheet: NSWindow, accountName: String) {
+    func finished(_ sheet: NSWindow, input: String) {
         view.window?.endSheet(sheet)
-        do {
-            let accountName = try AccountName(accountName)
-            useAccount(name: accountName)
-        } catch {
-            showError("\(error.localizedDescription)") { [weak self] _ in
-                guard let self = self else {
-                    return
-                }
-                self.performSegue(withIdentifier: NSStoryboardSegue.Identifier(SegueIdentifier.accountSelectionSheet), sender: self)
-            }
-            return
+        let (_, _, _, completion) = inputRequest
+        if !completion(input) {
+            showInputRequest()
         }
     }
 
@@ -304,6 +316,33 @@ extension ImportViewController: DataEntryViewControllerDelegate, DuplicateTransa
     func importAnyway(_ sheet: NSWindow) {
         view.window?.endSheet(sheet)
         showDataEntryViewForTransaction()
+    }
+
+}
+
+extension ImportViewController: ImporterDelegate {
+
+    func requestInput(name: String, suggestions: [String], isSecret: Bool, completion: @escaping (String) -> Bool) {
+        inputRequest = (name, suggestions, isSecret, completion)
+        showInputRequest()
+    }
+
+    func saveCredential(_ value: String, for key: String) {
+        keychain[key] = value
+    }
+
+    func readCredential(_ key: String) -> String? {
+        keychain[key]
+    }
+
+    func error(_ error: Error) {
+        DispatchQueue.main.async { [weak self] in
+            self?.showError(error.localizedDescription) { _ in
+                if self?.currentImporter != nil {
+                    self?.showDataEntryViewForNextTransactionIfNeccessary()
+                }
+            }
+        }
     }
 
 }

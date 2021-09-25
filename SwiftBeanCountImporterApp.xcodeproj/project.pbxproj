@@ -11,7 +11,7 @@
 		F909311B202FE9A500166FB9 /* AccountComboBoxDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909311A202FE9A500166FB9 /* AccountComboBoxDataSource.swift */; };
 		F909311D202FF1F000166FB9 /* PayeeComboBoxDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909311C202FF1F000166FB9 /* PayeeComboBoxDataSource.swift */; };
 		F90E0C31246D123700F4C3B6 /* GeneralSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C30246D123700F4C3B6 /* GeneralSettingsViewController.swift */; };
-		F90E0C33246D24F400F4C3B6 /* AccountSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C32246D24F400F4C3B6 /* AccountSelectionViewController.swift */; };
+		F90E0C33246D24F400F4C3B6 /* ImporterInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C32246D24F400F4C3B6 /* ImporterInputViewController.swift */; };
 		F90E0C37246FBD9900F4C3B6 /* AccountMappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E0C36246FBD9900F4C3B6 /* AccountMappingViewController.swift */; };
 		F97ED1FD1F5CEEE1009BAD44 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97ED1FC1F5CEEE1009BAD44 /* ImportViewController.swift */; };
 		F98E4AF82025911B00924AD4 /* DataEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98E4AF72025911B00924AD4 /* DataEntryViewController.swift */; };
@@ -27,6 +27,8 @@
 		F9C4385C1F550AB5004732E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9C4385A1F550AB5004732E2 /* Main.storyboard */; };
 		F9C438671F550AB5004732E2 /* SwiftBeanCountImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438661F550AB5004732E2 /* SwiftBeanCountImporterTests.swift */; };
 		F9C438721F550AB5004732E2 /* SwiftBeanCountImporterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C438711F550AB5004732E2 /* SwiftBeanCountImporterUITests.swift */; };
+		F9D40B2026F0813100C4B28D /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D40B1F26F0813100C4B28D /* HelpView.swift */; };
+		F9D40B2326F1C45200C4B28D /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = F9D40B2226F1C45200C4B28D /* KeychainAccess */; };
 		F9DFC62823B3EB0000FB3792 /* DescriptionMappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DFC62723B3EB0000FB3792 /* DescriptionMappingViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,7 +77,7 @@
 		F909311A202FE9A500166FB9 /* AccountComboBoxDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountComboBoxDataSource.swift; sourceTree = "<group>"; };
 		F909311C202FF1F000166FB9 /* PayeeComboBoxDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayeeComboBoxDataSource.swift; sourceTree = "<group>"; };
 		F90E0C30246D123700F4C3B6 /* GeneralSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsViewController.swift; sourceTree = "<group>"; };
-		F90E0C32246D24F400F4C3B6 /* AccountSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSelectionViewController.swift; sourceTree = "<group>"; };
+		F90E0C32246D24F400F4C3B6 /* ImporterInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImporterInputViewController.swift; sourceTree = "<group>"; };
 		F90E0C36246FBD9900F4C3B6 /* AccountMappingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMappingViewController.swift; sourceTree = "<group>"; };
 		F97ED1FC1F5CEEE1009BAD44 /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
 		F98E4AF72025911B00924AD4 /* DataEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEntryViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 		F9C4386D1F550AB5004732E2 /* SwiftBeanCountImporterAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftBeanCountImporterAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9C438711F550AB5004732E2 /* SwiftBeanCountImporterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBeanCountImporterUITests.swift; sourceTree = "<group>"; };
 		F9C438731F550AB5004732E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9D40B1F26F0813100C4B28D /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		F9DFC62723B3EB0000FB3792 /* DescriptionMappingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionMappingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9D40B2326F1C45200C4B28D /* KeychainAccess in Frameworks */,
 				F9C329FE2488D1770055EB90 /* SwiftBeanCountModel in Frameworks */,
 				F9C32A012488D1A80055EB90 /* SwiftBeanCountParser in Frameworks */,
 				F99C9D97248C4A300008E360 /* SwiftBeanCountImporter in Frameworks */,
@@ -165,6 +169,7 @@
 		F98AD0FD1F552C8000CC02DA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F9D40B1E26F0812500C4B28D /* Help */,
 				F90E0C2C2468EEB700F4C3B6 /* Settings */,
 				F9C438561F550AB5004732E2 /* SelectorViewController.swift */,
 				F97ED1FC1F5CEEE1009BAD44 /* ImportViewController.swift */,
@@ -172,7 +177,7 @@
 				F9B9E14D2324D4D200811B3F /* TextEntryViewController.swift */,
 				F995061D23B11E8300777D71 /* DuplicateTransactionViewController.swift */,
 				F995061F23B1780900777D71 /* LoadingIndicatorViewController.swift */,
-				F90E0C32246D24F400F4C3B6 /* AccountSelectionViewController.swift */,
+				F90E0C32246D24F400F4C3B6 /* ImporterInputViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -235,6 +240,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F9D40B1E26F0812500C4B28D /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				F9D40B1F26F0813100C4B28D /* HelpView.swift */,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -258,6 +271,7 @@
 				F9C329FD2488D1770055EB90 /* SwiftBeanCountModel */,
 				F9C32A002488D1A80055EB90 /* SwiftBeanCountParser */,
 				F99C9D96248C4A300008E360 /* SwiftBeanCountImporter */,
+				F9D40B2226F1C45200C4B28D /* KeychainAccess */,
 			);
 			productName = BeanCountImporter;
 			productReference = F9C438511F550AB5004732E2 /* SwiftBeanCountImporterApp.app */;
@@ -306,7 +320,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = "Steffen Kötte";
 				TargetAttributes = {
 					F9C438501F550AB5004732E2 = {
@@ -343,6 +357,7 @@
 				F9C329FC2488D1770055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */,
 				F9C329FF2488D1A80055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */,
 				F99C9D95248C4A300008E360 /* XCRemoteSwiftPackageReference "SwiftBeanCountImporter" */,
+				F9D40B2126F1C45200C4B28D /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = F9C438521F550AB5004732E2 /* Products */;
 			projectDirPath = "";
@@ -414,8 +429,9 @@
 				F98E4AF82025911B00924AD4 /* DataEntryViewController.swift in Sources */,
 				F9DFC62823B3EB0000FB3792 /* DescriptionMappingViewController.swift in Sources */,
 				F90E0C37246FBD9900F4C3B6 /* AccountMappingViewController.swift in Sources */,
-				F90E0C33246D24F400F4C3B6 /* AccountSelectionViewController.swift in Sources */,
+				F90E0C33246D24F400F4C3B6 /* ImporterInputViewController.swift in Sources */,
 				F909311D202FF1F000166FB9 /* PayeeComboBoxDataSource.swift in Sources */,
+				F9D40B2026F0813100C4B28D /* HelpView.swift in Sources */,
 				F97ED1FD1F5CEEE1009BAD44 /* ImportViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,7 +530,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -568,7 +584,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -753,7 +769,7 @@
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountImporter.git";
 			requirement = {
 				kind = exactVersion;
-				version = 0.1.0;
+				version = 0.2.1;
 			};
 		};
 		F9C329FC2488D1770055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */ = {
@@ -770,6 +786,14 @@
 			requirement = {
 				kind = exactVersion;
 				version = 0.1.8;
+			};
+		};
+		F9D40B2126F1C45200C4B28D /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -789,6 +813,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F9C329FF2488D1A80055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountParser" */;
 			productName = SwiftBeanCountParser;
+		};
+		F9D40B2226F1C45200C4B28D /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F9D40B2126F1C45200C4B28D /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
