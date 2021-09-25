@@ -768,8 +768,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountImporter.git";
 			requirement = {
-				kind = revision;
-				revision = e1019c55312d67e744b77b9dfe0b0e1aeafaa50f;
+				kind = exactVersion;
+				version = 0.2.0;
 			};
 		};
 		F9C329FC2488D1770055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */ = {
