@@ -328,7 +328,12 @@ extension ImportViewController: ImporterDelegate {
     }
 
     func saveCredential(_ value: String, for key: String) {
-        keychain[key] = value
+        // seems the keychain does not allow saving empty strings
+        if value.isEmpty {
+            try? keychain.remove(key)
+        } else {
+            keychain[key] = value
+        }
     }
 
     func readCredential(_ key: String) -> String? {
