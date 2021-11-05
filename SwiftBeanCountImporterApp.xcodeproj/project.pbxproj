@@ -320,7 +320,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = "Steffen Kötte";
 				TargetAttributes = {
 					F9C438501F550AB5004732E2 = {
@@ -769,7 +769,7 @@
 			repositoryURL = "https://github.com/Nef10/SwiftBeanCountImporter.git";
 			requirement = {
 				kind = exactVersion;
-				version = 0.3.0;
+				version = 0.3.1;
 			};
 		};
 		F9C329FC2488D1770055EB90 /* XCRemoteSwiftPackageReference "SwiftBeanCountModel" */ = {
