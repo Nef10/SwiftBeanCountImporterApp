@@ -30,4 +30,4 @@ The output is text, which can be easily copied into your beancout file.
 
 ## Usage
 
-Currently there is no distributed version of the app, so please clone/download the repository and build the app yourself.
+Currently there is no distributed version of the app, so please clone/download the repository and build the app yourself. Minimum supported macOS version is 12.

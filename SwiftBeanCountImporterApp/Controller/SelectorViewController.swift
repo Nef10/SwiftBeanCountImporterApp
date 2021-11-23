@@ -10,6 +10,7 @@ import Cocoa
 import SwiftBeanCountImporter
 import SwiftBeanCountModel
 import SwiftUI
+import UniformTypeIdentifiers
 
 enum ImportMode: Equatable {
     case csv(URL) // import file URL
@@ -61,7 +62,7 @@ class SelectorViewController: NSViewController {
         let openPanel = NSOpenPanel()
         openPanel.canChooseDirectories = true
         openPanel.allowsMultipleSelection = true
-        openPanel.allowedFileTypes = ["csv"]
+        openPanel.allowedContentTypes = [UTType(filenameExtension: "csv")!]
         openPanel.begin { [weak self] response in
             if response == .OK {
                 self?.selectFilesFromURLs(openPanel.urls)
@@ -73,7 +74,7 @@ class SelectorViewController: NSViewController {
         let openPanel = NSOpenPanel()
         openPanel.canChooseDirectories = false
         openPanel.allowsMultipleSelection = false
-        openPanel.allowedFileTypes = ["beancount"]
+        openPanel.allowedContentTypes = [UTType(filenameExtension: "beancount")!]
         openPanel.begin { [weak self] response in
             if response == .OK {
                 self?.ledgerURL = openPanel.url

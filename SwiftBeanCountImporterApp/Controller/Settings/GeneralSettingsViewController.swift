@@ -9,6 +9,7 @@
 import Cocoa
 import Foundation
 import SwiftBeanCountImporter
+import UniformTypeIdentifiers
 
 class GeneralSettingsViewController: NSViewController {
 
@@ -23,7 +24,7 @@ class GeneralSettingsViewController: NSViewController {
         let openPanel = NSOpenPanel()
         openPanel.canChooseDirectories = false
         openPanel.allowsMultipleSelection = false
-        openPanel.allowedFileTypes = ["json"]
+        openPanel.allowedContentTypes = [UTType(filenameExtension: "json")!]
         openPanel.begin { [weak self] response in
             if response == .OK {
                 guard let fileURL = openPanel.url else {
