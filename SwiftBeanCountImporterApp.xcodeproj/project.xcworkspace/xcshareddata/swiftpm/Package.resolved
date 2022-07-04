@@ -1,97 +1,95 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "CSV.swift",
-        "repositoryURL": "https://github.com/yaslab/CSV.swift.git",
-        "state": {
-          "branch": null,
-          "revision": "81d2874c51db364d7e1d71b0d99018a294c87ac1",
-          "version": "2.4.3"
-        }
-      },
-      {
-        "package": "KeychainAccess",
-        "repositoryURL": "https://github.com/kishikawakatsumi/KeychainAccess.git",
-        "state": {
-          "branch": null,
-          "revision": "84e546727d66f1adc5439debad16270d0fdd04e7",
-          "version": "4.2.2"
-        }
-      },
-      {
-        "package": "RogersBankDownloader",
-        "repositoryURL": "https://github.com/Nef10/RogersBankDownloader.git",
-        "state": {
-          "branch": null,
-          "revision": "7021815ed20c6e6356e4efb947e61ed46f044b57",
-          "version": "0.0.6"
-        }
-      },
-      {
-        "package": "SwiftBeanCountImporter",
-        "repositoryURL": "https://github.com/Nef10/SwiftBeanCountImporter.git",
-        "state": {
-          "branch": null,
-          "revision": "8013f94d1c7b8e1326ac9c729daab7ee81708c2d",
-          "version": "0.3.3"
-        }
-      },
-      {
-        "package": "SwiftBeanCountModel",
-        "repositoryURL": "https://github.com/Nef10/SwiftBeanCountModel.git",
-        "state": {
-          "branch": null,
-          "revision": "a72ca4e46e816638be644ddfbb3c3f9233a5c944",
-          "version": "0.1.6"
-        }
-      },
-      {
-        "package": "SwiftBeanCountParser",
-        "repositoryURL": "https://github.com/Nef10/SwiftBeanCountParser.git",
-        "state": {
-          "branch": null,
-          "revision": "4299b420e43abeb113a315467b1a70a5017ca758",
-          "version": "0.1.8"
-        }
-      },
-      {
-        "package": "SwiftBeanCountParserUtils",
-        "repositoryURL": "https://github.com/Nef10/SwiftBeanCountParserUtils.git",
-        "state": {
-          "branch": null,
-          "revision": "c0978850756dd137f929cd9d523d443772881b3e",
-          "version": "0.0.1"
-        }
-      },
-      {
-        "package": "SwiftBeanCountRogersBankMapper",
-        "repositoryURL": "https://github.com/Nef10/SwiftBeanCountRogersBankMapper.git",
-        "state": {
-          "branch": null,
-          "revision": "033621ba92566555002692f2bb5322785b03bb07",
-          "version": "0.0.6"
-        }
-      },
-      {
-        "package": "SwiftBeanCountWealthsimpleMapper",
-        "repositoryURL": "https://github.com/Nef10/SwiftBeanCountWealthsimpleMapper.git",
-        "state": {
-          "branch": null,
-          "revision": "0ea9dea80ad2f3f2fc341698f8673e8e9073a2ec",
-          "version": "1.5.0"
-        }
-      },
-      {
-        "package": "WealthsimpleDownloader",
-        "repositoryURL": "https://github.com/Nef10/WealthsimpleDownloader.git",
-        "state": {
-          "branch": null,
-          "revision": "ea3c4e8f98eb3d496232f20f1d72e35d47cb7d04",
-          "version": "2.0.1"
-        }
+  "pins" : [
+    {
+      "identity" : "csv.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/yaslab/CSV.swift.git",
+      "state" : {
+        "revision" : "81d2874c51db364d7e1d71b0d99018a294c87ac1",
+        "version" : "2.4.3"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "keychainaccess",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kishikawakatsumi/KeychainAccess.git",
+      "state" : {
+        "revision" : "84e546727d66f1adc5439debad16270d0fdd04e7",
+        "version" : "4.2.2"
+      }
+    },
+    {
+      "identity" : "rogersbankdownloader",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Nef10/RogersBankDownloader.git",
+      "state" : {
+        "revision" : "c14700963628f7ff82c08fca6ecab709da2ddd46",
+        "version" : "0.0.7"
+      }
+    },
+    {
+      "identity" : "swiftbeancountimporter",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Nef10/SwiftBeanCountImporter.git",
+      "state" : {
+        "revision" : "7e4446026ec78b82b7387cb287fb1dd9c8a0a724",
+        "version" : "0.3.5"
+      }
+    },
+    {
+      "identity" : "swiftbeancountmodel",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Nef10/SwiftBeanCountModel.git",
+      "state" : {
+        "revision" : "a72ca4e46e816638be644ddfbb3c3f9233a5c944",
+        "version" : "0.1.6"
+      }
+    },
+    {
+      "identity" : "swiftbeancountparser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Nef10/SwiftBeanCountParser.git",
+      "state" : {
+        "revision" : "4299b420e43abeb113a315467b1a70a5017ca758",
+        "version" : "0.1.8"
+      }
+    },
+    {
+      "identity" : "swiftbeancountparserutils",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Nef10/SwiftBeanCountParserUtils.git",
+      "state" : {
+        "revision" : "c0978850756dd137f929cd9d523d443772881b3e",
+        "version" : "0.0.1"
+      }
+    },
+    {
+      "identity" : "swiftbeancountrogersbankmapper",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Nef10/SwiftBeanCountRogersBankMapper.git",
+      "state" : {
+        "revision" : "7ee5a617ba59cec4fa4c38dc7c5f6f9369e84d73",
+        "version" : "0.0.7"
+      }
+    },
+    {
+      "identity" : "swiftbeancountwealthsimplemapper",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Nef10/SwiftBeanCountWealthsimpleMapper.git",
+      "state" : {
+        "revision" : "0ea9dea80ad2f3f2fc341698f8673e8e9073a2ec",
+        "version" : "1.5.0"
+      }
+    },
+    {
+      "identity" : "wealthsimpledownloader",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Nef10/WealthsimpleDownloader.git",
+      "state" : {
+        "revision" : "ea3c4e8f98eb3d496232f20f1d72e35d47cb7d04",
+        "version" : "2.0.1"
+      }
+    }
+  ],
+  "version" : 2
 }
