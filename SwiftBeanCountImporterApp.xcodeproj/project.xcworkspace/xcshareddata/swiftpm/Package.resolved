@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/SwiftBeanCountImporter.git",
       "state" : {
-        "revision" : "7e4446026ec78b82b7387cb287fb1dd9c8a0a724",
-        "version" : "0.3.5"
+        "revision" : "630be9b6d935737d14ad0d77ccf5f66d1a661a93",
+        "version" : "0.4.1"
       }
     },
     {
@@ -73,12 +73,39 @@
       }
     },
     {
+      "identity" : "swiftbeancounttangerinemapper",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Nef10/SwiftBeanCountTangerineMapper.git",
+      "state" : {
+        "revision" : "81ba50dc619694b96797966407bfdc46c990197e",
+        "version" : "0.0.2"
+      }
+    },
+    {
       "identity" : "swiftbeancountwealthsimplemapper",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/SwiftBeanCountWealthsimpleMapper.git",
       "state" : {
         "revision" : "0ea9dea80ad2f3f2fc341698f8673e8e9073a2ec",
         "version" : "1.5.0"
+      }
+    },
+    {
+      "identity" : "swiftscraper",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Nef10/SwiftScraper.git",
+      "state" : {
+        "revision" : "d957a9e1e5ef3a3f5cd88654d8a480db54c1fd92",
+        "version" : "0.5.1"
+      }
+    },
+    {
+      "identity" : "tangerinedownloader",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Nef10/TangerineDownloader.git",
+      "state" : {
+        "revision" : "003f165db122164527353c64eff1a90d3b1b0be5",
+        "version" : "0.0.2"
       }
     },
     {

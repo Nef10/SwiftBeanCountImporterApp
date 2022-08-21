@@ -24,7 +24,9 @@ class ImportViewController: NSViewController {
     var imports = [ImportMode]()
     var ledgerURL: URL?
 
-    private  let keychain = Keychain(service: "com.github.nef10.swiftbeancountimporterapp")
+    private let keychain = Keychain(service: "com.github.nef10.swiftbeancountimporterapp")
+
+    private var importerWindowController: NSWindowController?
 
     private var ledger: Ledger?
     private var resultLedger: Ledger = Ledger()
@@ -321,6 +323,17 @@ extension ImportViewController: DataEntryViewControllerDelegate, DuplicateTransa
 }
 
 extension ImportViewController: ImporterDelegate {
+
+    func view() -> NSView? {
+        importerWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "WebViewController") as? NSWindowController
+        importerWindowController?.showWindow(self)
+        return importerWindowController?.window?.contentView
+    }
+
+    func removeView() {
+        importerWindowController?.close()
+        importerWindowController = nil
+    }
 
     func requestInput(name: String, suggestions: [String], isSecret: Bool, completion: @escaping (String) -> Bool) {
         inputRequest = (name, suggestions, isSecret, completion)
