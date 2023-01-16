@@ -24,7 +24,7 @@ struct HelpView: View {
         NavigationView {
             List {
                 Section(header: Text("Importers")) {
-                    ForEach(0..<ImporterFactory.allImporters.count) { index in
+                    ForEach(0..<ImporterFactory.allImporters.count, id: \.self) { index in
                         NavigationLink(destination: HelpTextView(content: ImporterFactory.allImporters[index].helpText)) {
                             Text(ImporterFactory.allImporters[index].importerName)
                         }
