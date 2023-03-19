@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "compasscarddownloader",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Nef10/CompassCardDownloader.git",
+      "state" : {
+        "revision" : "eab7329ae9272465c083245b462d1db7036fac14",
+        "version" : "0.0.1"
+      }
+    },
+    {
       "identity" : "csv.swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/yaslab/CSV.swift.git",
@@ -28,12 +37,21 @@
       }
     },
     {
+      "identity" : "swiftbeancountcompasscardmapper",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Nef10/SwiftBeanCountCompassCardMapper.git",
+      "state" : {
+        "revision" : "fae6ea8f46af72461f00e722f2993f7f3ef9609c",
+        "version" : "0.0.2"
+      }
+    },
+    {
       "identity" : "swiftbeancountimporter",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/SwiftBeanCountImporter.git",
       "state" : {
-        "revision" : "54c5a224864427eb73aafe2b46b551dffbbb2d3f",
-        "version" : "0.4.3"
+        "revision" : "d1f1c12f280caeb563d8f1e0dcb6cd5b42db7d5f",
+        "version" : "0.5.0"
       }
     },
     {
@@ -95,8 +113,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/SwiftScraper.git",
       "state" : {
-        "revision" : "d957a9e1e5ef3a3f5cd88654d8a480db54c1fd92",
-        "version" : "0.5.1"
+        "revision" : "d93707b290c6d5cf899cdcdd229a7c858f9f2f19",
+        "version" : "0.6.0"
       }
     },
     {
@@ -104,8 +122,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/TangerineDownloader.git",
       "state" : {
-        "revision" : "003f165db122164527353c64eff1a90d3b1b0be5",
-        "version" : "0.0.2"
+        "revision" : "6c136d179a008542023e2fea46fe2a48450e5ef9",
+        "version" : "0.0.3"
       }
     },
     {
