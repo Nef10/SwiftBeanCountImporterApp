@@ -77,7 +77,7 @@ class DescriptionMappingViewController: NSViewController {
     }
 
     private func newLineAlert() -> String? {
-        let alert: NSAlert = NSAlert()
+        let alert = NSAlert()
 
         alert.addButton(withTitle: "OK")
         alert.addButton(withTitle: "Cancel")
@@ -91,9 +91,8 @@ class DescriptionMappingViewController: NSViewController {
         let response = alert.runModal()
         if response == .alertFirstButtonReturn {
             return textField.stringValue
-        } else {
-            return nil
         }
+        return nil
     }
 
     private func refreshData() {
@@ -101,7 +100,7 @@ class DescriptionMappingViewController: NSViewController {
         let descriptions = Settings.allDescriptionMappings
         let array = Array(payees.keys)
         lines = array.map { Line(importedDescription: $0, payee: payees[$0] ?? "", description: descriptions[$0] ?? "") }
-        lines = (lines as NSArray).sortedArray(using: tableView.sortDescriptors) as! [Line] // swiftlint:disable:this force_cast
+        lines = (lines as NSArray).sortedArray(using: tableView.sortDescriptors) as! [Line] // swiftlint:disable:this force_cast legacy_objc_type
         tableView.reloadData()
     }
 

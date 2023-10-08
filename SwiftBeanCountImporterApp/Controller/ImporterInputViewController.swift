@@ -40,7 +40,7 @@ class ImporterInputViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let importName = importName, let name = name else {
+        guard let importName, let name else {
             fatalError("importName and name are required to create an AccountSelectionViewController")
         }
         label.stringValue = "Please enter \(name) for the following import: \(importName)"

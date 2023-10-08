@@ -29,7 +29,7 @@ class ImportViewController: NSViewController {
     private var importerWindowController: NSWindowController?
 
     private var ledger: Ledger?
-    private var resultLedger: Ledger = Ledger()
+    private var resultLedger = Ledger()
     private var nextTransaction: ImportedTransaction?
     private var importers = [Importer]()
     private var currentImporter: Importer!
@@ -117,7 +117,7 @@ class ImportViewController: NSViewController {
     }
 
     private func loadLedger(completion: @escaping () -> Void) {
-        if let ledgerURL = ledgerURL {
+        if let ledgerURL {
             DispatchQueue.main.async { [weak self] in
                 self?.loadingIndicatorSheet?.updateText(text: "Loading Ledger")
             }

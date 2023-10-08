@@ -9,7 +9,7 @@
 import Cocoa
 import SwiftBeanCountModel
 
-protocol DuplicateTransactionViewControllerDelegate: AnyObject { // swiftlint:disable:this type_name
+protocol DuplicateTransactionViewControllerDelegate: AnyObject {
 
     /// Will be called if the user clicked skip
     ///

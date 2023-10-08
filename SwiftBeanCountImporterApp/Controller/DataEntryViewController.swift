@@ -113,7 +113,7 @@ class DataEntryViewController: NSViewController {
 
     private func setupUI() {
         tagField.tokenizingCharacterSet = CharacterSet.whitespacesAndNewlines
-        if let ledger = ledger {
+        if let ledger {
             accountComboBoxDataSource = AccountComboBoxDataSource(ledger: ledger)
             accountField.dataSource = accountComboBoxDataSource
             payeeComboBoxDataSource = PayeeComboBoxDataSource(ledger: ledger)
@@ -141,7 +141,7 @@ class DataEntryViewController: NSViewController {
         let metaData = transaction!.metaData
         let posting = relevantPosting!
 
-        dateField.stringValue = DataEntryViewController.dateFormatter.string(from: metaData.date)
+        dateField.stringValue = Self.dateFormatter.string(from: metaData.date)
         amountField.stringValue = String(describing: posting.amount) + (posting.price != nil ? " @ \(String(describing: posting.price!))" : "")
         descriptionField.stringValue = metaData.narration
         payeeField.stringValue = metaData.payee
@@ -168,8 +168,7 @@ class DataEntryViewController: NSViewController {
         var postings: [Posting] = transaction!.postings.filter { $0 != self.relevantPosting }
         postings.append(relevantPosting)
         self.relevantPosting = relevantPosting
-        let transaction = Transaction(metaData: metaData, postings: postings)
-        return transaction
+        return Transaction(metaData: metaData, postings: postings)
     }
 
     private func getTags() -> [Tag] {
@@ -197,7 +196,7 @@ class DataEntryViewController: NSViewController {
     }
 
     private func savePrefrillData(transaction: Transaction) {
-        if saveDescriptionPayeeCheckbox.state == .on, let importedTransaction = importedTransaction {
+        if saveDescriptionPayeeCheckbox.state == .on, let importedTransaction {
             importedTransaction.saveMapped(description: transaction.metaData.narration,
                                            payee: transaction.metaData.payee,
                                            accountName: saveAccountCheckbox.state == .on ? relevantPosting?.accountName : nil)
