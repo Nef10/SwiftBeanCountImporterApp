@@ -110,7 +110,7 @@ class SelectorViewController: NSViewController {
                 return
             }
             controller.imports = imports
-            if let ledgerURL = ledgerURL {
+            if let ledgerURL {
                 controller.ledgerURL = ledgerURL
             }
         case SegueIdentifier.showTextEntry:

@@ -66,7 +66,7 @@ class AccountMappingViewController: NSViewController {
     }
 
     private func newLineAlert() -> String? {
-        let alert: NSAlert = NSAlert()
+        let alert = NSAlert()
 
         alert.addButton(withTitle: "OK")
         alert.addButton(withTitle: "Cancel")
@@ -80,16 +80,15 @@ class AccountMappingViewController: NSViewController {
         let response = alert.runModal()
         if response == .alertFirstButtonReturn {
             return textField.stringValue
-        } else {
-            return nil
         }
+        return nil
     }
 
     private func refreshData() {
         let accounts = Settings.allAccountMappings
         let array = Array(accounts.keys)
         lines = array.map { Line(payee: $0, account: accounts[$0] ?? "") }
-        lines = (lines as NSArray).sortedArray(using: tableView.sortDescriptors) as! [Line] // swiftlint:disable:this force_cast
+        lines = (lines as NSArray).sortedArray(using: tableView.sortDescriptors) as! [Line] // swiftlint:disable:this force_cast legacy_objc_type
         tableView.reloadData()
     }
 
