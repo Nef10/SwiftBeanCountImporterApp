@@ -13,6 +13,11 @@ categories:
   - title: '🧰 Maintenance'
     labels:
       - 'refactoring'
+      - 'documentation'
+      - 'tests'
+      - 'maintenance'
+  - title: '📦 Dependencies'
+    labels:
       - 'dependencies'
 exclude-labels:
   - 'skip-changelog'
@@ -29,6 +34,6 @@ version-resolver:
       - 'patch'
   default: patch
 template: |
-  ## Changes
+  # Changes
 
   $CHANGES
