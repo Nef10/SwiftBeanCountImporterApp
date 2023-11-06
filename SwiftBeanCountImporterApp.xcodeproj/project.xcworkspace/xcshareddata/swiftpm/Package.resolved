@@ -104,8 +104,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/SwiftBeanCountImporter.git",
       "state" : {
-        "revision" : "8acaac7addc824bdf7ddebcf9adf74db51bea32c",
-        "version" : "0.6.2"
+        "revision" : "c035bee1ac7ae9d8882bce4cacf1cec84dc3259a",
+        "version" : "0.6.3"
       }
     },
     {
