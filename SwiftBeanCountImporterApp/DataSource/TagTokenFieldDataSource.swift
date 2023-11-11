@@ -27,7 +27,7 @@ extension TagTokenFieldDataSource: NSTokenFieldDelegate {
         completionsForSubstring substring: String,
         indexOfToken tokenIndex: Int,
         indexOfSelectedItem selectedIndex: UnsafeMutablePointer<Int>?
-    ) -> [Any]? {
+    ) -> [Any]? {  // swiftlint:disable:this discouraged_optional_collection
         let string = substring.first == "#" ? String(substring.dropFirst()) : substring
         let filteredTags = tags.filter {
             $0.contains(string)
