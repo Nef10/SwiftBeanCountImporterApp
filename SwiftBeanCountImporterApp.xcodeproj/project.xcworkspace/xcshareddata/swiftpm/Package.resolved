@@ -104,8 +104,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/SwiftBeanCountImporter.git",
       "state" : {
-        "revision" : "e306d0025e537cad8fc49b6b29abe799a021018f",
-        "version" : "0.6.5"
+        "revision" : "82655e0aa7ccb5c4e87d93c8c0a8a0f8d80a70c6",
+        "version" : "0.6.6"
       }
     },
     {
@@ -167,8 +167,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/SwiftBeanCountWealthsimpleMapper.git",
       "state" : {
-        "revision" : "16ba4be1da6ffe1bdc290b54aa9763eb872f6c79",
-        "version" : "1.6.0"
+        "revision" : "329658558cf2d19f63289eebb85620251e234dd0",
+        "version" : "1.6.1"
       }
     },
     {
