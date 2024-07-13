@@ -1,4 +1,5 @@
 {
+  "originHash" : "79f1d7f62a4d971602029ea9527c63c044d229d1de789335e8ff8f15c36f506e",
   "pins" : [
     {
       "identity" : "brightfutures",
@@ -59,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tid-kijyun/Kanna.git",
       "state" : {
-        "revision" : "f9e4922223dd0d3dfbf02ca70812cf5531fc0593",
-        "version" : "5.2.7"
+        "revision" : "41c3d28ea0eac07e4551b28def9de1ede702e739",
+        "version" : "5.3.0"
       }
     },
     {
@@ -104,8 +105,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/SwiftBeanCountImporter.git",
       "state" : {
-        "revision" : "67b9764f48d2259646cad17ed647545e91d5c2ee",
-        "version" : "0.7.0"
+        "revision" : "a571a76504e31d755e8211fbc5de5f7ddf497663",
+        "version" : "0.7.2"
       }
     },
     {
@@ -167,8 +168,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/SwiftBeanCountWealthsimpleMapper.git",
       "state" : {
-        "revision" : "329658558cf2d19f63289eebb85620251e234dd0",
-        "version" : "1.6.1"
+        "revision" : "49a0d32f6fecd8cab5003f54fdf161784bab245b",
+        "version" : "1.6.2"
       }
     },
     {
@@ -203,10 +204,10 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/WealthsimpleDownloader.git",
       "state" : {
-        "revision" : "ea3c4e8f98eb3d496232f20f1d72e35d47cb7d04",
-        "version" : "2.0.1"
+        "revision" : "af3e30a235d0311de7b37536095f8cf6470abd51",
+        "version" : "2.0.2"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
