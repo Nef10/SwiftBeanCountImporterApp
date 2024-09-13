@@ -96,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/SwiftBeanCountCompassCardMapper.git",
       "state" : {
-        "revision" : "bca124c935c039a8f7253ada84770e523c98c8d9",
-        "version" : "0.0.3"
+        "revision" : "6b42d3138a339d40ce715380d24dc829003046dd",
+        "version" : "0.1.0"
       }
     },
     {
@@ -105,8 +105,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/SwiftBeanCountImporter.git",
       "state" : {
-        "revision" : "a571a76504e31d755e8211fbc5de5f7ddf497663",
-        "version" : "0.7.2"
+        "revision" : "c05fe97ea07367335cfa24ac4c28675fce15405a",
+        "version" : "0.7.3"
       }
     },
     {
