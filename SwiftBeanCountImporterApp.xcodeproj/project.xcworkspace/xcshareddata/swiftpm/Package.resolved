@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/yaslab/CSV.swift.git",
       "state" : {
-        "revision" : "81d2874c51db364d7e1d71b0d99018a294c87ac1",
-        "version" : "2.4.3"
+        "revision" : "5be4d8e0d9cc8aa22d9eb12ac76bc429105d7a4c",
+        "version" : "2.5.0"
       }
     },
     {
@@ -96,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/SwiftBeanCountCompassCardMapper.git",
       "state" : {
-        "revision" : "6b42d3138a339d40ce715380d24dc829003046dd",
-        "version" : "0.1.0"
+        "revision" : "c1af5fc33aa9062ce635f77bacc722a085a90d2b",
+        "version" : "0.1.1"
       }
     },
     {
@@ -105,8 +105,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Nef10/SwiftBeanCountImporter.git",
       "state" : {
-        "revision" : "c05fe97ea07367335cfa24ac4c28675fce15405a",
-        "version" : "0.7.3"
+        "revision" : "5f3419102c5e04a24c4aa0462f6bbcdfb31fb16b",
+        "version" : "0.7.4"
       }
     },
     {
