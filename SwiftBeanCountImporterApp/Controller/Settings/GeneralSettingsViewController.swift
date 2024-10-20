@@ -19,7 +19,7 @@ class GeneralSettingsViewController: NSViewController {
         let dateTolerance: String
     }
 
-    @IBAction private func importSettingsButtonPressed(_ sender: Any) {
+    @IBAction private func importSettingsButtonPressed(_: Any) {
         let openPanel = NSOpenPanel()
         openPanel.canChooseDirectories = false
         openPanel.allowsMultipleSelection = false
@@ -42,7 +42,7 @@ class GeneralSettingsViewController: NSViewController {
         }
     }
 
-    @IBAction private func exportSettingsButtonPressed(_ sender: Any) {
+    @IBAction private func exportSettingsButtonPressed(_: Any) {
         let savePanel = NSSavePanel()
         savePanel.nameFieldStringValue = "Settings.json"
         savePanel.begin { [weak self] response in

@@ -51,13 +51,13 @@ class SelectorViewController: NSViewController {
         super.viewDidLoad()
     }
 
-    @IBAction private func resetButtonClicked(_ sender: Any) {
+    @IBAction private func resetButtonClicked(_ _: Any) {
         imports = []
         updateLabel()
         downloaderTableView.reloadData()
     }
 
-    @IBAction private func selectButtonClicked(_ sender: Any) {
+    @IBAction private func selectButtonClicked(_ _: Any) {
         let openPanel = NSOpenPanel()
         openPanel.canChooseDirectories = true
         openPanel.allowsMultipleSelection = true
@@ -69,7 +69,7 @@ class SelectorViewController: NSViewController {
         }
     }
 
-    @IBAction private func ledgerSelectButtonClicked(_ sender: Any) {
+    @IBAction private func ledgerSelectButtonClicked(_ _: Any) {
         let openPanel = NSOpenPanel()
         openPanel.canChooseDirectories = false
         openPanel.allowsMultipleSelection = false
@@ -82,7 +82,7 @@ class SelectorViewController: NSViewController {
         }
     }
 
-    override func shouldPerformSegue(withIdentifier identifier: NSStoryboardSegue.Identifier, sender: Any?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: NSStoryboardSegue.Identifier, sender _: Any?) -> Bool {
         switch identifier {
         case SegueIdentifier.showImport:
             if !isInputValid() {
@@ -100,7 +100,7 @@ class SelectorViewController: NSViewController {
         NSHostingController(coder: coder, rootView: HelpView())
     }
 
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: NSStoryboardSegue, sender _: Any?) {
         guard let identifier = segue.identifier else {
             return
         }
@@ -218,7 +218,7 @@ extension SelectorViewController: TextEntryViewControllerDelegate {
 
 extension SelectorViewController: NSTableViewDelegate {
 
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+    func tableView(_ tableView: NSTableView, viewFor _: NSTableColumn?, row: Int) -> NSView? {
         guard let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("CheckboxCell"), owner: self) as? CheckBoxTableViewCell else {
             return nil
         }
@@ -230,7 +230,7 @@ extension SelectorViewController: NSTableViewDelegate {
 
 extension SelectorViewController: NSTableViewDataSource {
 
-    func numberOfRows(in tableView: NSTableView) -> Int {
+    func numberOfRows(in _: NSTableView) -> Int {
         ImporterFactory.downloadImporterNames.count
     }
 

@@ -8,6 +8,6 @@
 
 import XCTest
 
-class SwiftBeanCountImporterUITests: XCTestCase {
+final class SwiftBeanCountImporterUITests: XCTestCase {
 
 }

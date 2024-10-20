@@ -58,15 +58,15 @@ class DuplicateTransactionViewController: NSViewController {
         populateUI()
     }
 
-    @IBAction private func skipButtonPressed(_ sender: Any) {
+    @IBAction private func skipButtonPressed(_: Any) {
         self.delegate?.skipImporting(view.window!)
     }
 
-    @IBAction private func importAnywayButtonPressed(_ sender: Any) {
+    @IBAction private func importAnywayButtonPressed(_: Any) {
         self.delegate?.importAnyway(view.window!)
     }
 
-    @IBAction private func cancelButtonPressed(_ sender: Any) {
+    @IBAction private func cancelButtonPressed(_: Any) {
         self.delegate?.cancel(view.window!)
     }
 

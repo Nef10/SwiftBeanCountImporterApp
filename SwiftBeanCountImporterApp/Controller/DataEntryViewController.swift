@@ -82,7 +82,7 @@ class DataEntryViewController: NSViewController {
         prepopulateUI()
     }
 
-    @IBAction private func continueButtonPressed(_ sender: Any) {
+    @IBAction private func continueButtonPressed(_: Any) {
         guard let transaction = try? getUpdatedTransaction() else {
             showAccountValidationError()
             return
@@ -91,19 +91,19 @@ class DataEntryViewController: NSViewController {
         delegate?.finished(view.window!, transaction: transaction)
     }
 
-    @IBAction private func cancelButtonPressed(_ sender: Any) {
+    @IBAction private func cancelButtonPressed(_: Any) {
         self.delegate?.cancel(view.window!)
     }
 
-    @IBAction private func skipButtonPressed(_ sender: Any) {
+    @IBAction private func skipButtonPressed(_: Any) {
         self.delegate?.skipImporting(view.window!)
     }
 
-    @IBAction private func saveDescriptionPayeeCheckboxClicked(_ sender: Any) {
+    @IBAction private func saveDescriptionPayeeCheckboxClicked(_: Any) {
         saveAccountCheckbox.isEnabled = saveDescriptionPayeeCheckbox.state == .on
     }
 
-    @IBAction private func flagRadioButtonChanged(_ sender: NSButton) {
+    @IBAction private func flagRadioButtonChanged(_: NSButton) {
         if completeFlagButton.state == .on {
             flag = .complete
         } else {

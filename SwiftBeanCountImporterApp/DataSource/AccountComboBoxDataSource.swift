@@ -22,19 +22,19 @@ class AccountComboBoxDataSource: NSObject {
 
 extension AccountComboBoxDataSource: NSComboBoxDataSource {
 
-    func numberOfItems(in comboBox: NSComboBox) -> Int {
+    func numberOfItems(in _: NSComboBox) -> Int {
         accounts.count
     }
 
-    func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
+    func comboBox(_: NSComboBox, objectValueForItemAt index: Int) -> Any? {
         accounts[index].name
     }
 
-    func comboBox(_ comboBox: NSComboBox, indexOfItemWithStringValue string: String) -> Int {
+    func comboBox(_: NSComboBox, indexOfItemWithStringValue string: String) -> Int {
         accounts.firstIndex { $0.name.fullName == string } ?? NSNotFound
     }
 
-    func comboBox(_ comboBox: NSComboBox, completedString string: String) -> String? {
+    func comboBox(_: NSComboBox, completedString string: String) -> String? {
         guard let name = (accounts.first { $0.name.fullName.starts(with: string) }?.name) else {
             return ""
         }

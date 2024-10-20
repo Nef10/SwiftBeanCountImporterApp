@@ -37,11 +37,11 @@ class TextEntryViewController: NSViewController {
     @IBOutlet private var transactionTextView: NSTextView!
     @IBOutlet private var balanceTextView: NSTextView!
 
-    @IBAction private func cancelButtonPressed(_ sender: Any) {
+    @IBAction private func cancelButtonPressed(_: Any) {
         delegate?.cancel(view.window!)
     }
 
-    @IBAction private func continueButtonPressed(_ sender: Any) {
+    @IBAction private func continueButtonPressed(_: Any) {
         delegate?.finished(view.window!, transaction: transactionTextView.textStorage?.string ?? "", balance: balanceTextView.textStorage?.string ?? "")
     }
 
