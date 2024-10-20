@@ -61,7 +61,7 @@ class ImporterInputViewController: NSViewController {
         }
     }
 
-    @IBAction private func okButtonPressed(_ sender: NSButton) {
+    @IBAction private func okButtonPressed(_: NSButton) {
         let input: String
         if isSecure {
             input = secureTextField.stringValue
@@ -73,7 +73,7 @@ class ImporterInputViewController: NSViewController {
         delegate?.finished(view.window!, input: input)
     }
 
-    @IBAction private func cancelButtonPressed(_ sender: NSButton) {
+    @IBAction private func cancelButtonPressed(_: NSButton) {
         delegate?.cancel(view.window!)
     }
 

@@ -15,26 +15,26 @@ class PayeeComboBoxDataSource: NSObject {
     private let payees: [String]
 
     init(ledger: Ledger) {
-        payees = Array(Set(ledger.transactions.map { $0.metaData.payee })).filter { !$0.isEmpty }.sorted { $0.lowercased() < $1.lowercased() }
+        payees = Array(Set(ledger.transactions.map(\.metaData.payee))).filter { !$0.isEmpty }.sorted { $0.lowercased() < $1.lowercased() }
     }
 
 }
 
 extension PayeeComboBoxDataSource: NSComboBoxDataSource {
 
-    func numberOfItems(in comboBox: NSComboBox) -> Int {
+    func numberOfItems(in _: NSComboBox) -> Int {
         payees.count
     }
 
-    func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
+    func comboBox(_: NSComboBox, objectValueForItemAt index: Int) -> Any? {
         payees[index]
     }
 
-    func comboBox(_ comboBox: NSComboBox, indexOfItemWithStringValue string: String) -> Int {
+    func comboBox(_: NSComboBox, indexOfItemWithStringValue string: String) -> Int {
         payees.firstIndex { $0.lowercased() == string.lowercased() } ?? NSNotFound
     }
 
-    func comboBox(_ comboBox: NSComboBox, completedString string: String) -> String? {
+    func comboBox(_: NSComboBox, completedString string: String) -> String? {
         payees.first { $0.lowercased().starts(with: string.lowercased()) }
     }
 

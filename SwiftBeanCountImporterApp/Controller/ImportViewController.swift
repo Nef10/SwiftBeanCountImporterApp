@@ -56,7 +56,7 @@ class ImportViewController: NSViewController {
         }
     }
 
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?) { // swiftlint:disable:this function_body_length cyclomatic_complexity
+    override func prepare(for segue: NSStoryboardSegue, sender _: Any?) { // swiftlint:disable:this function_body_length cyclomatic_complexity
         guard let identifier = segue.identifier else {
             return
         }
@@ -104,7 +104,7 @@ class ImportViewController: NSViewController {
             self.textView.string = """
                 \(self.resultLedger.transactions.sorted { $0.metaData.date < $1.metaData.date }.map { "\($0)" }.joined(separator: "\n\n"))
 
-                \(self.resultLedger.accounts.flatMap { $0.balances }
+                \(self.resultLedger.accounts.flatMap(\.balances)
                     .sorted { (balance1: Balance, balance2: Balance) in
                         balance1.date == balance2.date ? balance1.accountName.fullName < balance2.accountName.fullName : balance1.date < balance2.date
                     }

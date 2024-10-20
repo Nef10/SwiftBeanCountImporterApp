@@ -108,11 +108,11 @@ class DescriptionMappingViewController: NSViewController {
 
 extension DescriptionMappingViewController: NSTableViewDataSource {
 
-    func numberOfRows(in tableView: NSTableView) -> Int {
+    func numberOfRows(in _: NSTableView) -> Int {
         lines.count
     }
 
-    func tableView(_ tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
+    func tableView(_: NSTableView, sortDescriptorsDidChange _: [NSSortDescriptor]) {
         refreshData()
     }
 

@@ -15,7 +15,7 @@ class TagTokenFieldDataSource: NSObject {
     private let tags: [String]
 
     init(ledger: Ledger) {
-        tags = ledger.tags.map { $0.name }
+        tags = ledger.tags.map(\.name)
     }
 
 }
@@ -23,9 +23,9 @@ class TagTokenFieldDataSource: NSObject {
 extension TagTokenFieldDataSource: NSTokenFieldDelegate {
 
     func tokenField(
-        _ tokenField: NSTokenField,
+        _: NSTokenField,
         completionsForSubstring substring: String,
-        indexOfToken tokenIndex: Int,
+        indexOfToken _: Int,
         indexOfSelectedItem selectedIndex: UnsafeMutablePointer<Int>?
     ) -> [Any]? {  // swiftlint:disable:this discouraged_optional_collection
         let string = substring.first == "#" ? String(substring.dropFirst()) : substring
