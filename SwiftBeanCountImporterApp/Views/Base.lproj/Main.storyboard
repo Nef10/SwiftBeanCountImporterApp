@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23094"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -1054,7 +1054,7 @@ DQ
         <scene sceneID="Wxf-LG-kLq">
             <objects>
                 <viewController title="Description Mapping" id="6Ey-ad-GT5" customClass="DescriptionMappingViewController" customModule="SwiftBeanCountImporterApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="qAt-h5-3eG">
+                    <view key="view" id="qAt-h5-3eG">
                         <rect key="frame" x="0.0" y="0.0" width="739" height="131"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -1751,9 +1751,8 @@ Gw
         <scene sceneID="0ca-QV-gtx">
             <objects>
                 <viewController id="8fJ-R1-fPR" customClass="ImporterInputViewController" customModule="SwiftBeanCountImporterApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="Did-RG-Ug4">
+                    <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="Did-RG-Ug4">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="125"/>
-                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <comboBox focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X0J-jp-7R7">
                                 <rect key="frame" x="19" y="59" width="414" height="23"/>
@@ -1770,7 +1769,7 @@ Gw
                             </comboBox>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pLg-dD-60o">
                                 <rect key="frame" x="20" y="89" width="206" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Please select the account for file:" id="i6t-Zl-2mW">
+                                <textFieldCell key="cell" title="Please select the account for file:" id="i6t-Zl-2mW">
                                     <font key="font" metaFont="menu"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1843,11 +1842,14 @@ Gw
                             <constraint firstItem="xsI-Fk-O5s" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Did-RG-Ug4" secondAttribute="leading" constant="20" id="jUZ-eG-EtW"/>
                             <constraint firstItem="EPh-6Y-UUH" firstAttribute="leading" secondItem="Did-RG-Ug4" secondAttribute="leading" constant="20" id="jvB-Dg-03d"/>
                             <constraint firstAttribute="trailing" secondItem="X0J-jp-7R7" secondAttribute="trailing" constant="20" id="my9-NM-AiX"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="530" id="p4W-fi-ZRd"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="xsI-Fk-O5s" id="Ybh-nT-xiM"/>
                         <outlet property="comboBox" destination="X0J-jp-7R7" id="nVL-fV-WG8"/>
                         <outlet property="label" destination="pLg-dD-60o" id="bKb-rN-OFs"/>
+                        <outlet property="okButton" destination="7mF-t7-VMk" id="GNk-fL-pID"/>
                         <outlet property="secureTextField" destination="dNs-PA-HHE" id="2Qe-cb-Drs"/>
                         <outlet property="textField" destination="EPh-6Y-UUH" id="gdx-y0-Meo"/>
                     </connections>
@@ -2070,7 +2072,7 @@ Gw
             <objects>
                 <viewController title="Account Mapping" id="3mc-Me-KIb" customClass="AccountMappingViewController" customModule="SwiftBeanCountImporterApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="ius-LY-aMc">
-                        <rect key="frame" x="0.0" y="0.0" width="838" height="106"/>
+                        <rect key="frame" x="0.0" y="0.0" width="838" height="131"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJ7-vb-V3X">
@@ -2138,11 +2140,11 @@ Gw
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="AccountCellID" id="7om-dq-sHE">
-                                                            <rect key="frame" x="231" y="1" width="419" height="16"/>
+                                                            <rect key="frame" x="231" y="1" width="418" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pkC-Y2-1TS">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="419" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="418" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="GhZ-xN-Mdz">
                                                                         <font key="font" metaFont="menu"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

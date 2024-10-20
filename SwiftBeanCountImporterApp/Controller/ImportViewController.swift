@@ -34,7 +34,7 @@ class ImportViewController: NSViewController {
     private var importers = [Importer]()
     private var currentImporter: Importer!
     private var errors = [String]()
-    private var inputRequest: (String, [String], Bool, (String) -> Bool)! // swiftlint:disable:this large_tuple
+    private var inputRequest: (String, ImporterInputRequestType, (String) -> Bool)! // swiftlint:disable:this large_tuple
 
     private weak var loadingIndicatorSheet: LoadingIndicatorViewController?
 
@@ -88,12 +88,11 @@ class ImportViewController: NSViewController {
             if let window = self.loadingIndicatorSheet?.view.window {
                 self.view.window?.endSheet(window)
             }
-            let (name, suggestions, isSecure, _) = inputRequest
-            controller.delegate = self
-            controller.suggestions = suggestions
+            let (name, type, _) = inputRequest
             controller.importName = currentImporter.importName
             controller.name = name
-            controller.isSecure = isSecure
+            controller.type = type
+            controller.delegate = self
         default:
             break
         }
@@ -299,7 +298,7 @@ extension ImportViewController: DataEntryViewControllerDelegate, DuplicateTransa
 
     func finished(_ sheet: NSWindow, input: String) {
         view.window?.endSheet(sheet)
-        let (_, _, _, completion) = inputRequest
+        let (_, _, completion) = inputRequest
         if !completion(input) {
             showInputRequest()
         }
@@ -335,8 +334,8 @@ extension ImportViewController: ImporterDelegate {
         importerWindowController = nil
     }
 
-    func requestInput(name: String, suggestions: [String], isSecret: Bool, completion: @escaping (String) -> Bool) {
-        inputRequest = (name, suggestions, isSecret, completion)
+    func requestInput(name: String, type: ImporterInputRequestType, completion: @escaping (String) -> Bool) {
+        inputRequest = (name, type, completion)
         showInputRequest()
     }
 
