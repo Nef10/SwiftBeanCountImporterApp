@@ -9,6 +9,6 @@
 @testable import SwiftBeanCountImporter
 import XCTest
 
-class SwiftBeanCountImporterTests: XCTestCase {
+final class SwiftBeanCountImporterTests: XCTestCase {
 
 }
