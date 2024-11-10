@@ -44,7 +44,8 @@ class ImporterInputViewController: NSViewController {
         guard let importName, let name else {
             fatalError("importName and name are required to create an AccountSelectionViewController")
         }
-        label.stringValue = "\(type == .bool ? "" : "Please enter ")\(name) for the following import: \(importName)"
+        let verb = if case .choice = type { "select" } else { "enter" }
+        label.stringValue = "\(type == .bool ? "" : "Please \(verb) ")\(name) for the following import: \(importName)"
         switch type {
         case .text(let suggestions):
             secureTextField.isHidden = true
@@ -59,6 +60,7 @@ class ImporterInputViewController: NSViewController {
                 textField.isHidden = true
                 comboBox.removeAllItems()
                 comboBox.addItems(withObjectValues: suggestions)
+                comboBox.isEditable = true
             }
         case .secret:
             comboBox.isHidden = true
@@ -79,6 +81,15 @@ class ImporterInputViewController: NSViewController {
             secureTextField.isHidden = true
             okButton.title = "Yes"
             cancelButton.title = "No"
+        case .choice(let options):
+            secureTextField.isHidden = true
+            okButton.title = "Ok"
+            cancelButton.title = "Cancel"
+            comboBox.isHidden = false
+            textField.isHidden = true
+            comboBox.removeAllItems()
+            comboBox.addItems(withObjectValues: options)
+            comboBox.isEditable = false
         case .none:
             fatalError("No type configured in ImporterInputViewController")
         }
@@ -99,6 +110,8 @@ class ImporterInputViewController: NSViewController {
             input = textField.stringValue
         case .bool:
             input = "true"
+        case .choice:
+            input = comboBox.stringValue
         case .none:
             fatalError("No type configured in ImporterInputViewController")
         }
