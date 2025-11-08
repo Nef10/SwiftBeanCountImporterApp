@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v5
     - name: Tests
-      uses: sersoft-gmbh/xcodebuild-action@v3
+      uses: sersoft-gmbh/xcodebuild-action@v4
       with:
         project: SwiftBeanCountImporterApp.xcodeproj
         scheme: SwiftBeanCountImporterApp
